@@ -125,7 +125,8 @@ Hooks.once("init", () => {
 
 Hooks.once("ready", async () => {
   try {
-    REGISTRY = await (await fetch(`${BASE}/assets.json`)).json();
+    const version = game.modules.get(MODULE_ID).version;
+    REGISTRY = await (await fetch(`${BASE}/assets.json?v=${version}`, { cache: "no-cache" })).json();
     console.log(`${MODULE_ID} | ${Object.keys(REGISTRY).length} asset(s) carregado(s)`);
   } catch (err) {
     console.error(`${MODULE_ID} | falha ao carregar assets.json`, err);
