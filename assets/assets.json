@@ -1,0 +1,10 @@
+{
+  "mesa": {
+    "name": "Mesa de madeira",
+    "size": { "w": 2.2, "h": 1.2 },
+    "states": [
+      { "id": "inteira", "name": "Inteira", "src": "mesa/mesa_inteira.png" },
+      { "id": "quebrada", "name": "Quebrada", "src": "mesa/mesa_quebrada.png" }
+    ]
+  }
+}

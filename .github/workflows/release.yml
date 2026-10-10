@@ -1,0 +1,21 @@
+name: Release
+on:
+  push:
+    tags: ["v*"]
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Empacotar módulo
+        run: |
+          mkdir -p dist/interactive-assets
+          cp -r module.json scripts styles assets README.md dist/interactive-assets/
+          cd dist && zip -r interactive-assets.zip interactive-assets && cp interactive-assets/module.json .
+      - uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/module.json
+            dist/interactive-assets.zip
