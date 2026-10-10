@@ -26,6 +26,16 @@ Assets sem `actor` no `assets.json` continuam virando Tile, com o mesmo botão n
 
 Também dá pra trocar por macro: `api.nextState(tile)` / `api.setState(tile, 1)`.
 
+## Modo desenvolvimento (testar sem atualizar o módulo)
+
+Em **Configurar Configurações → Interactive Assets**, ligue **Modo desenvolvimento (GitHub)**.
+Com ele ligado, cada recarregamento da página (F5) busca o código e as imagens do último commit
+da branch `main` no GitHub (via jsDelivr), sem precisar apertar Atualizar no setup.
+
+- Mudanças no `module.json` (nome, versão, novos arquivos de estilo) ainda pedem atualização normal.
+- O GitHub permite 60 consultas por hora por IP; se passar disso ou o GitHub cair, o módulo usa a versão instalada e avisa.
+- Desligar o modo volta para os arquivos instalados; tokens já na cena trocam as imagens sozinhos.
+
 ## Mesa: reações por tipo de dano
 CA 0, 10 PV, imune a veneno e psíquico, resistente a perfurante.
 
