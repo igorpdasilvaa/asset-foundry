@@ -5,7 +5,8 @@ let REGISTRY = {};
 /**
  * Estados guardados no documento (Tile ou Token):
  * flags.interactive-assets.data = { asset, states: [{id,name,src,broken?}], index }
- * Assets com "actor" no assets.json viram Tokens com PV/CA (dnd5e) e quebram ao chegar a 0 PV.
+ * Assets com "actor" no assets.json viram Tokens; com "hp" eles têm PV/CA (dnd5e) e quebram ao chegar a 0 PV.
+ * Cada estado pode trazer "light" (luz do token) e "sound" (som ambiente que acompanha o token).
  */
 function getData(doc) {
   return doc?.getFlag(MODULE_ID, "data") ?? null;
@@ -14,6 +15,11 @@ function getData(doc) {
 /** Só um GM executa as automações, para não aplicar nada em dobro. */
 function isResponsibleGM() {
   return game.user.isGM && (game.users.activeGM ? game.users.activeGM.isSelf : true);
+}
+
+/** Asset com vida: PV e estado "quebrado" andam juntos. */
+function isDamageable(data) {
+  return data.damageable ?? (REGISTRY[data.asset]?.actor?.hp != null);
 }
 
 function brokenIndex(data) {
@@ -25,13 +31,15 @@ async function setState(doc, index, { syncHP = true } = {}) {
   const data = getData(doc);
   if (!data?.states?.length) return;
   const i = ((index % data.states.length) + data.states.length) % data.states.length;
-  await doc.update({
+  const update = {
     "texture.src": data.states[i].src,
     [`flags.${MODULE_ID}.data.index`]: i
-  });
+  };
+  if (doc.documentName === "Token" && data.states.some(s => s.light)) update.light = lightFor(data.states[i]);
+  await doc.update(update);
   // Trocar o estado manualmente num Token também ajusta a vida: quebrada = 0 PV, inteira = PV cheio.
   const hp = doc.actor?.system?.attributes?.hp;
-  if (syncHP && hp) {
+  if (syncHP && hp && isDamageable(data)) {
     const value = data.states[i].broken ? 0 : hp.max;
     if (hp.value !== value) await doc.actor.update({ "system.attributes.hp.value": value }, { [MODULE_ID]: { fromState: true } });
   }
@@ -43,8 +51,47 @@ async function nextState(doc) {
 }
 
 function stateFlags(assetId, def) {
-  const states = def.states.map(s => ({ ...s, src: `${BASE}/${s.src}` }));
-  return { [MODULE_ID]: { data: { asset: assetId, states, index: 0 } } };
+  const states = def.states.map(s => ({
+    ...s,
+    src: `${BASE}/${s.src}`,
+    ...(s.sound ? { sound: { ...s.sound, src: `${BASE}/${s.sound.src}` } } : {})
+  }));
+  return { [MODULE_ID]: { data: { asset: assetId, states, index: 0, damageable: def.actor?.hp != null } } };
+}
+
+/** Estado sem "light" apaga a luz do token. */
+function lightFor(state) {
+  return state.light ?? { bright: 0, dim: 0 };
+}
+
+/* ---------- Som que acompanha o token ---------- */
+
+function linkedSound(token) {
+  return token.parent?.sounds.find(s => s.getFlag(MODULE_ID, "token") === token.id);
+}
+
+function tokenCenter(token) {
+  const g = token.parent.grid.size;
+  return { x: token.x + (token.width * g) / 2, y: token.y + (token.height * g) / 2 };
+}
+
+/** Cria, move, troca ou remove o AmbientSound ligado ao token conforme o estado atual. */
+async function syncSound(token) {
+  const data = getData(token);
+  if (!data?.states?.length || !token.parent) return;
+  const want = data.states[data.index ?? 0]?.sound;
+  const sound = linkedSound(token);
+  if (!want) {
+    if (sound) await sound.delete();
+    return;
+  }
+  const { x, y } = tokenCenter(token);
+  const props = { x, y, path: want.src, radius: want.radius ?? 30, volume: want.volume ?? 0.5, easing: true, walls: true, repeat: true };
+  if (!sound) {
+    await token.parent.createEmbeddedDocuments("AmbientSound", [{ ...props, flags: { [MODULE_ID]: { token: token.id } } }]);
+  } else if (sound.x !== x || sound.y !== y || sound.path !== props.path || sound.radius !== props.radius || sound.volume !== props.volume) {
+    await sound.update(props);
+  }
 }
 
 /**
@@ -54,22 +101,30 @@ function stateFlags(assetId, def) {
 async function getBaseActor(assetId, def) {
   let actor = game.actors.find(a => a.getFlag(MODULE_ID, "asset") === assetId);
   if (actor) {
-    if (!getData(actor.prototypeToken)) await actor.update({ "prototypeToken.flags": stateFlags(assetId, def) });
+    // Mantém o token protótipo em dia com o assets.json (novos estados, luz, som...).
+    const flags = stateFlags(assetId, def);
+    const current = getData(actor.prototypeToken);
+    if (JSON.stringify(current) !== JSON.stringify(flags[MODULE_ID].data)) {
+      const update = { [`prototypeToken.flags.${MODULE_ID}.data`]: flags[MODULE_ID].data };
+      if (def.states.some(s => s.light)) update["prototypeToken.light"] = lightFor(def.states[0]);
+      await actor.update(update);
+    }
     return actor;
   }
   let folder = game.folders.find(f => f.type === "Actor" && f.getFlag(MODULE_ID, "root"));
   folder ??= await Folder.create({ name: "Interactive Assets", type: "Actor", flags: { [MODULE_ID]: { root: true } } });
   const a = def.actor;
+  const system = { details: { cr: 0 } };
+  if (a.hp != null) {
+    system.attributes = { ac: { calc: "flat", flat: a.ac ?? 10 }, hp: { value: a.hp, max: a.hp } };
+    system.traits = { di: { value: a.immunities ?? [] } };
+  }
   return Actor.create({
     name: def.name,
     type: "npc",
     img: `${BASE}/${def.states[0].src}`,
     folder: folder.id,
-    system: {
-      attributes: { ac: { calc: "flat", flat: a.ac ?? 10 }, hp: { value: a.hp, max: a.hp } },
-      traits: { di: { value: a.immunities ?? [] } },
-      details: { cr: 0 }
-    },
+    system,
     prototypeToken: {
       name: def.name,
       width: def.size.w,
@@ -78,9 +133,11 @@ async function getBaseActor(assetId, def) {
       lockRotation: true,
       disposition: CONST.TOKEN_DISPOSITIONS.NEUTRAL,
       displayBars: CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-      bar1: { attribute: "attributes.hp" },
+      displayName: CONST.TOKEN_DISPLAY_MODES.HOVER,
+      ...(a.hp != null ? { bar1: { attribute: "attributes.hp" } } : { displayBars: CONST.TOKEN_DISPLAY_MODES.NONE }),
       sight: { enabled: false },
       texture: { src: `${BASE}/${def.states[0].src}` },
+      ...(def.states.some(s => s.light) ? { light: lightFor(def.states[0]) } : {}),
       flags: stateFlags(assetId, def)
     },
     flags: { [MODULE_ID]: { asset: assetId } }
@@ -140,8 +197,9 @@ Hooks.once("ready", async () => {
     REGISTRY = await (await fetch(`${BASE}/assets.json?v=${version}`, { cache: "no-cache" })).json();
     console.log(`${MODULE_ID} | ${Object.keys(REGISTRY).length} asset(s) carregado(s)`);
     if (isResponsibleGM()) {
+      // Garante um ator por asset na pasta "Interactive Assets", pronto para arrastar para a cena.
       for (const [id, def] of Object.entries(REGISTRY)) {
-        if (def.actor && game.actors.some(a => a.getFlag(MODULE_ID, "asset") === id)) await getBaseActor(id, def);
+        if (def.actor) await getBaseActor(id, def);
       }
     }
   } catch (err) {
@@ -156,7 +214,7 @@ Hooks.on("updateActor", async (actor, changes, options) => {
   const hp = actor.system.attributes.hp.value;
   for (const token of tokensForActor(actor)) {
     const data = getData(token);
-    if (!data?.states?.length) continue;
+    if (!data?.states?.length || !isDamageable(data)) continue;
     const broken = brokenIndex(data);
     const current = data.index ?? 0;
     if (hp <= 0 && current !== broken) {
@@ -185,7 +243,8 @@ Hooks.on("createChatMessage", async message => {
   for (const t of targets) {
     const actor = fromUuidSync(t.uuid);
     const token = actor?.token ?? actor?.getActiveTokens(false, true)[0];
-    if (!getData(token) || !actor?.system?.attributes?.hp) continue;
+    const data = getData(token);
+    if (!data || !isDamageable(data) || !actor?.system?.attributes?.hp) continue;
     await actor.applyDamage(damages);
   }
 });
@@ -213,3 +272,15 @@ function addHudButton(hud, html) {
 }
 Hooks.on("renderTileHUD", addHudButton);
 Hooks.on("renderTokenHUD", addHudButton);
+
+/** Som acompanha o token: ao criar, mover, mudar de tamanho ou de estado; e some quando o token é apagado. */
+Hooks.on("createToken", token => {
+  if (isResponsibleGM() && getData(token)) syncSound(token);
+});
+Hooks.on("updateToken", (token, changes) => {
+  if (!isResponsibleGM() || !getData(token)) return;
+  if (["x", "y", "width", "height"].some(k => k in changes) || foundry.utils.hasProperty(changes, `flags.${MODULE_ID}`)) syncSound(token);
+});
+Hooks.on("deleteToken", token => {
+  if (isResponsibleGM()) linkedSound(token)?.delete();
+});

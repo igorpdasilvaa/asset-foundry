@@ -26,9 +26,24 @@ Assets sem `actor` no `assets.json` continuam virando Tile, com o mesmo botão n
 
 Também dá pra trocar por macro: `api.nextState(tile)` / `api.setState(tile, 1)`.
 
+## Tocha (luz + som)
+Arraste o ator **Tocha** (pasta *Interactive Assets*) para a cena. Acesa, ela ilumina
+(20 ft de luz forte, 40 ft de penumbra, com animação de chama) e toca um som de fogo
+em loop num raio de 30 ft. Ao mover o token, luz e som vão junto. O botão 🔁 no HUD
+apaga/acende (desliga luz e som).
+
 ## Adicionar novos assets
-Coloque os PNGs (todos os estados com o mesmo tamanho) em `assets/<nome>/`
-e registre em `assets/assets.json`.
+Tudo fica neste mesmo módulo: coloque os arquivos em `assets/<nome>/` e registre
+o asset em `assets/assets.json`. Cada estado aceita:
+
+- `src`: imagem do estado (todas com o mesmo tamanho)
+- `light`: luz do token naquele estado (mesmos campos da aba Light do token)
+- `sound`: `{ "src", "radius", "volume" }` som ambiente que segue o token
+- `broken: true`: estado usado quando a vida chega a 0
+
+Com `"actor": {}` o asset vira um token (arrastável da barra de Atores). Com
+`"actor": { "ac", "hp" }` ele também tem vida e quebra com dano. Sem `actor`, vira Tile.
+Ao abrir o mundo, o GM cria/atualiza sozinho o ator de cada asset.
 
 ## Instalar pelo Foundry (Manifest URL)
 Em **Add-on Modules → Install Module**, cole no campo *Manifest URL*:

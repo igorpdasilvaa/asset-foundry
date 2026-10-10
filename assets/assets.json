@@ -7,5 +7,21 @@
       { "id": "inteira", "name": "Inteira", "src": "mesa/mesa_inteira.png" },
       { "id": "quebrada", "name": "Quebrada", "src": "mesa/mesa_quebrada.png", "broken": true }
     ]
+  },
+  "tocha": {
+    "name": "Tocha",
+    "size": { "w": 1, "h": 1 },
+    "actor": {},
+    "states": [
+      {
+        "id": "acesa", "name": "Acesa", "src": "tocha/tocha_acesa.png",
+        "light": {
+          "bright": 20, "dim": 40, "color": "#ff9b3d", "alpha": 0.45, "attenuation": 0.5,
+          "animation": { "type": "torch", "speed": 3, "intensity": 3 }
+        },
+        "sound": { "src": "tocha/fogo.ogg", "radius": 30, "volume": 0.6 }
+      },
+      { "id": "apagada", "name": "Apagada", "src": "tocha/tocha_apagada.png", "light": { "bright": 0, "dim": 0 } }
+    ]
   }
 }
