@@ -68,6 +68,11 @@ function stateFlags(assetId, def) {
   return { [MODULE_ID]: { data } };
 }
 
+/** Imagem do ator na barra lateral: vídeo (.webm) não aparece lá, então usa o .png de mesmo nome. */
+function thumbnail(def) {
+  return `${BASE}/${def.states[0].src.replace(/\.webm$/, ".png")}`;
+}
+
 /** Estado sem "light" apaga a luz do token. */
 function lightFor(state) {
   return state.light ?? { bright: 0, dim: 0 };
@@ -116,6 +121,7 @@ async function getBaseActor(assetId, def) {
     if (JSON.stringify(current) !== JSON.stringify(flags[MODULE_ID].data)) {
       const update = { [`prototypeToken.flags.${MODULE_ID}.data`]: flags[MODULE_ID].data };
       if (def.states.some(s => s.light)) update["prototypeToken.light"] = lightFor(def.states[0]);
+      update["prototypeToken.texture.src"] = `${BASE}/${def.states[0].src}`;
       await actor.update(update);
     }
     return actor;
@@ -131,7 +137,7 @@ async function getBaseActor(assetId, def) {
   return Actor.create({
     name: def.name,
     type: "npc",
-    img: `${BASE}/${def.states[0].src}`,
+    img: thumbnail(def),
     folder: folder.id,
     system,
     prototypeToken: {
@@ -190,7 +196,11 @@ async function refreshPlaced(assetId, def) {
         if (data?.asset !== assetId) continue;
         const index = Math.max(0, fresh.states.findIndex(s => s.id === currentState(data)?.id));
         const next = { ...fresh, index };
-        if (JSON.stringify(next) !== JSON.stringify(data)) updates.push({ _id: doc.id, [`flags.${MODULE_ID}.data`]: next });
+        if (JSON.stringify(next) === JSON.stringify(data)) continue;
+        const update = { _id: doc.id, [`flags.${MODULE_ID}.data`]: next };
+        // Se a imagem do estado atual mudou (ex.: PNG virou animação), troca também no que já está na cena.
+        if (doc.texture.src === currentState(data)?.src) update["texture.src"] = next.states[index].src;
+        updates.push(update);
       }
       if (updates.length) await scene.updateEmbeddedDocuments(collection === "tokens" ? "Token" : "Tile", updates);
     }

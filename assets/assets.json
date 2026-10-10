@@ -87,7 +87,7 @@
       {
         "id": "acesa",
         "name": "Acesa",
-        "src": "tocha/tocha_acesa.png",
+        "src": "tocha/tocha_acesa.webm",
         "light": {
           "bright": 20,
           "dim": 40,
