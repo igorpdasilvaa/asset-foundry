@@ -42,10 +42,21 @@ async function nextState(doc) {
   if (data) await setState(doc, (data.index ?? 0) + 1);
 }
 
-/** Ator base (um por asset) usado como modelo para os Tokens. */
+function stateFlags(assetId, def) {
+  const states = def.states.map(s => ({ ...s, src: `${BASE}/${s.src}` }));
+  return { [MODULE_ID]: { data: { asset: assetId, states, index: 0 } } };
+}
+
+/**
+ * Ator base (um por asset) usado como modelo para os Tokens.
+ * Os estados ficam também no token protótipo, então arrastar o ator da barra lateral já funciona.
+ */
 async function getBaseActor(assetId, def) {
   let actor = game.actors.find(a => a.getFlag(MODULE_ID, "asset") === assetId);
-  if (actor) return actor;
+  if (actor) {
+    if (!getData(actor.prototypeToken)) await actor.update({ "prototypeToken.flags": stateFlags(assetId, def) });
+    return actor;
+  }
   let folder = game.folders.find(f => f.type === "Actor" && f.getFlag(MODULE_ID, "root"));
   folder ??= await Folder.create({ name: "Interactive Assets", type: "Actor", flags: { [MODULE_ID]: { root: true } } });
   const a = def.actor;
@@ -69,7 +80,8 @@ async function getBaseActor(assetId, def) {
       displayBars: CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
       bar1: { attribute: "attributes.hp" },
       sight: { enabled: false },
-      texture: { src: `${BASE}/${def.states[0].src}` }
+      texture: { src: `${BASE}/${def.states[0].src}` },
+      flags: stateFlags(assetId, def)
     },
     flags: { [MODULE_ID]: { asset: assetId } }
   });
@@ -84,8 +96,7 @@ async function placeAsset(assetId, { x, y } = {}) {
   const height = def.size.h * g;
   const center = canvas.stage.pivot;
   const pos = { x: Math.round((x ?? center.x) - width / 2), y: Math.round((y ?? center.y) - height / 2) };
-  const states = def.states.map(s => ({ ...s, src: `${BASE}/${s.src}` }));
-  const flags = { [MODULE_ID]: { data: { asset: assetId, states, index: 0 } } };
+  const flags = stateFlags(assetId, def);
 
   if (def.actor) {
     const actor = await getBaseActor(assetId, def);
@@ -96,7 +107,7 @@ async function placeAsset(assetId, { x, y } = {}) {
 
   const [tile] = await canvas.scene.createEmbeddedDocuments("Tile", [{
     ...pos, width, height,
-    texture: { src: states[0].src },
+    texture: { src: `${BASE}/${def.states[0].src}` },
     flags
   }]);
   return tile;
@@ -128,6 +139,11 @@ Hooks.once("ready", async () => {
     const version = game.modules.get(MODULE_ID).version;
     REGISTRY = await (await fetch(`${BASE}/assets.json?v=${version}`, { cache: "no-cache" })).json();
     console.log(`${MODULE_ID} | ${Object.keys(REGISTRY).length} asset(s) carregado(s)`);
+    if (isResponsibleGM()) {
+      for (const [id, def] of Object.entries(REGISTRY)) {
+        if (def.actor && game.actors.some(a => a.getFlag(MODULE_ID, "asset") === id)) await getBaseActor(id, def);
+      }
+    }
   } catch (err) {
     console.error(`${MODULE_ID} | falha ao carregar assets.json`, err);
   }

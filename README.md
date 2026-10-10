@@ -14,7 +14,8 @@ reinicie o Foundry e ative o módulo no mundo (Manage Modules).
    ```
    Executar a macro coloca a mesa no centro da tela.
 2. A mesa entra como **Token** com CA 0 e 10 PV (ator "Mesa de madeira", pasta
-   *Interactive Assets*). Cada mesa colocada tem a própria vida.
+   *Interactive Assets*). Cada mesa colocada tem a própria vida. Depois que o
+   ator existe, também dá pra simplesmente arrastá-lo da barra de Atores para a cena.
 3. Mire na mesa e ataque normalmente pelo dnd5e. O dano é aplicado sozinho
    (configurável em *Configure Settings*) e, ao chegar a 0 PV, a imagem troca
    para **Quebrada**. Curar acima de 0 volta para **Inteira**.
