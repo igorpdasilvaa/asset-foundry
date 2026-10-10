@@ -1,6 +1,8 @@
 {
   "mesa": {
     "name": "Mesa de madeira",
+    "tipo": "movel",
+    "interacao": "jogador",
     "size": {
       "w": 2.2,
       "h": 1.2
@@ -280,6 +282,8 @@
   },
   "tocha": {
     "name": "Tocha",
+    "tipo": "movel",
+    "interacao": "jogador",
     "size": {
       "w": 1,
       "h": 1
@@ -328,6 +332,8 @@
   },
   "parede": {
     "name": "Parede de pedra",
+    "tipo": "imovel",
+    "interacao": "mestre",
     "size": {
       "w": 1,
       "h": 1
@@ -387,6 +393,8 @@
   },
   "porta": {
     "name": "Porta de madeira",
+    "tipo": "imovel",
+    "interacao": "jogador",
     "size": {
       "w": 1,
       "h": 1
@@ -400,6 +408,12 @@
       ],
       "resistances": [
         "piercing"
+      ]
+    },
+    "player": {
+      "toggle": [
+        "fechada",
+        "aberta"
       ]
     },
     "tickSeconds": 6,
@@ -514,6 +528,8 @@
   },
   "pilar": {
     "name": "Pilar de pedra",
+    "tipo": "imovel",
+    "interacao": "mestre",
     "size": {
       "w": 1,
       "h": 1
@@ -573,6 +589,8 @@
   },
   "barril": {
     "name": "Barril",
+    "tipo": "movel",
+    "interacao": "jogador",
     "size": {
       "w": 1,
       "h": 1
@@ -695,6 +713,8 @@
   },
   "caixa": {
     "name": "Caixa de madeira",
+    "tipo": "movel",
+    "interacao": "jogador",
     "size": {
       "w": 1,
       "h": 1

@@ -44,7 +44,29 @@ Cada asset diz no `assets.json`, em `"player"`, o que os jogadores podem fazer:
 - `"toggle": ["acesa", "apagada"]` mostra no HUD do jogador um botão que alterna só entre esses estados.
 
 Todo o resto (vida, imagem, estados, apagar o ator) fica com o GM ou com o dano de combate.
-Hoje a mesa só pode ser movida, e a tocha pode ser movida e acesa/apagada.
+Se o asset não tem `"move"`, o jogador não consegue arrastar o token.
+Hoje mesa, barril e caixa só podem ser movidos, a tocha pode ser movida e acesa/apagada,
+e a porta pode ser aberta e fechada (pelo HUD ou pela porta do Foundry), mas não movida.
+
+## Pastas
+
+Os atores ficam na aba de Atores em:
+
+```
+Interactive Assets/
+├─ Móveis/      Jogador · Mestre · Armadilhas
+└─ Imóveis/     Jogador · Mestre · Armadilhas
+```
+
+Cada asset escolhe a sua no `assets.json`:
+
+- `"tipo"`: `"movel"` (se carrega ou empurra durante a cena) ou `"imovel"` (parte do cenário).
+- `"interacao"`: `"jogador"` (o jogador faz algo sozinho: mover, acender, abrir), `"mestre"`
+  (só o GM, além do dano de combate) ou `"armadilha"` (escondida e controlada pelo GM, disparada pelo jogador).
+
+As imagens continuam em `assets/<asset>/`; mudar a categoria só troca a pasta no Foundry
+(o ator muda de pasta sozinho no próximo F5) e não quebra cenas salvas.
+Assets sem `actor` viram Tile e não aparecem na aba de Atores.
 
 ## Mesa: reações por tipo de dano
 CA 0, 10 PV, imune a veneno e psíquico, resistente a perfurante.

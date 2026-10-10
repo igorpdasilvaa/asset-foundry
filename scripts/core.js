@@ -17,6 +17,7 @@ let started = false;
  * "ticks" limita a duração e "then" diz para qual estado voltar ao fim.
  * "player": o que jogadores podem fazer. "move" deixa mover o token; "toggle" lista os estados
  * que eles alternam pelo HUD (ex.: acender/apagar a tocha). O resto (vida, imagem, estados) é só do GM ou do dano.
+ * "tipo" (movel | imovel) e "interacao" (jogador | mestre | armadilha) escolhem a pasta do ator no Foundry.
  */
 function getData(doc) {
   return doc?.getFlag(MODULE_ID, "data") ?? null;
@@ -117,6 +118,46 @@ async function syncSound(token) {
   }
 }
 
+/* ---------- Pastas ---------- */
+
+/**
+ * Pastas de atores no Foundry: Interactive Assets / Móveis|Imóveis / Jogador|Mestre|Armadilhas.
+ * Cada asset diz a sua em "tipo" (movel | imovel) e "interacao" (jogador | mestre | armadilha).
+ */
+const FOLDER_TIPOS = { movel: "Móveis", imovel: "Imóveis" };
+const FOLDER_INTERACOES = { jogador: "Jogador", mestre: "Mestre", armadilha: "Armadilhas" };
+
+async function rootFolder() {
+  let folder = game.folders.find(f => f.type === "Actor" && f.getFlag(MODULE_ID, "root"));
+  folder ??= await Folder.create({ name: "Interactive Assets", type: "Actor", flags: { [MODULE_ID]: { root: true } } });
+  return folder;
+}
+
+/** Subpasta marcada com a flag "folder" (= key) dentro de parent; cria se não existir. */
+async function childFolder(parent, key, name) {
+  let folder = game.folders.find(f => f.type === "Actor" && f.getFlag(MODULE_ID, "folder") === key);
+  folder ??= await Folder.create({ name, type: "Actor", folder: parent.id, sorting: "a", flags: { [MODULE_ID]: { folder: key } } });
+  return folder;
+}
+
+/** Cria a árvore inteira (mesmo pastas ainda vazias), para a estrutura ficar visível. */
+async function ensureFolders() {
+  const root = await rootFolder();
+  for (const [tipo, tipoName] of Object.entries(FOLDER_TIPOS)) {
+    const parent = await childFolder(root, tipo, tipoName);
+    for (const [interacao, name] of Object.entries(FOLDER_INTERACOES)) await childFolder(parent, `${tipo}/${interacao}`, name);
+  }
+}
+
+/** Pasta do asset pelo "tipo"/"interacao" do assets.json (sem eles, fica na raiz). */
+async function assetFolder(def) {
+  const root = await rootFolder();
+  if (!FOLDER_TIPOS[def.tipo]) return root;
+  const parent = await childFolder(root, def.tipo, FOLDER_TIPOS[def.tipo]);
+  if (!FOLDER_INTERACOES[def.interacao]) return parent;
+  return childFolder(parent, `${def.tipo}/${def.interacao}`, FOLDER_INTERACOES[def.interacao]);
+}
+
 const playerOwnership = def => def.player?.move || def.player?.toggle?.length
   ? CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER
   : CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE;
@@ -140,6 +181,9 @@ async function getBaseActor(assetId, def) {
     // Jogadores donos do ator podem mover o token (o resto é bloqueado em preUpdate*).
     const ownership = playerOwnership(def);
     if (actor.ownership.default !== ownership) await actor.update({ "ownership.default": ownership });
+    // Asset mudou de categoria no assets.json → muda de pasta.
+    const folder = await assetFolder(def);
+    if (actor.folder?.id !== folder.id) await actor.update({ folder: folder.id });
     // Imunidades/resistências em dia com o assets.json.
     if (def.actor.hp != null) {
       const same = (set, list) => JSON.stringify([...(set ?? [])].sort()) === JSON.stringify([...(list ?? [])].sort());
@@ -150,8 +194,7 @@ async function getBaseActor(assetId, def) {
     }
     return actor;
   }
-  let folder = game.folders.find(f => f.type === "Actor" && f.getFlag(MODULE_ID, "root"));
-  folder ??= await Folder.create({ name: "Interactive Assets", type: "Actor", flags: { [MODULE_ID]: { root: true } } });
+  const folder = await assetFolder(def);
   const a = def.actor;
   const system = { details: { cr: 0 } };
   if (a.hp != null) {
@@ -246,8 +289,7 @@ function testAttack(type, label) {
 /** Cria (ou completa) o NPC "Testador de Dano": um ataque à distância que sempre acerta, de 1 de dano por tipo. */
 async function ensureTestActor() {
   if (game.system.id !== "dnd5e" || !game.settings.get(MODULE_ID, "testActor")) return;
-  let folder = game.folders.find(f => f.type === "Actor" && f.getFlag(MODULE_ID, "root"));
-  folder ??= await Folder.create({ name: "Interactive Assets", type: "Actor", flags: { [MODULE_ID]: { root: true } } });
+  const folder = await rootFolder();
   let actor = game.actors.find(a => a.getFlag(MODULE_ID, "testActor"));
   actor ??= await Actor.create({
     name: "Testador de Dano",
@@ -428,7 +470,8 @@ export async function start({ base, version }) {
     REGISTRY = await (await fetch(`${BASE}/assets.json?v=${version}`, { cache: "no-cache" })).json();
     console.log(`${MODULE_ID} | ${Object.keys(REGISTRY).length} asset(s) carregado(s)`);
     if (isResponsibleGM()) {
-      // Garante um ator por asset na pasta "Interactive Assets", pronto para arrastar para a cena.
+      await ensureFolders();
+      // Garante um ator por asset na pasta da sua categoria, pronto para arrastar para a cena.
       for (const [id, def] of Object.entries(REGISTRY)) {
         if (def.actor) await getBaseActor(id, def);
         await refreshPlaced(id, def);
@@ -594,6 +637,10 @@ Hooks.on("preUpdateToken", (token, changes, options) => {
   const state = "texture" in changes || "light" in changes || foundry.utils.hasProperty(changes, `flags.${MODULE_ID}`);
   if (state && !options[MODULE_ID]?.interact) {
     ui.notifications.warn(`${token.name}: jogadores só podem mover este asset.`);
+    return false;
+  }
+  if (!getData(token).player?.move && ["x", "y", "rotation"].some(k => k in changes)) {
+    ui.notifications.warn(`${token.name}: jogadores não podem mover este asset.`);
     return false;
   }
   if ("delta" in changes && !(token.actor && legitDamage(token.actor))) {
