@@ -13,6 +13,8 @@ let started = false;
  * "onZero": qual estado quebrado usar quando a vida chega a 0 (pelo estado atual ou pelo tipo do golpe).
  * Estados com "dot" causam dano a cada "tique" (nova rodada em combate, ou a cada tickSeconds fora dele);
  * "ticks" limita a duração e "then" diz para qual estado voltar ao fim.
+ * "player": o que jogadores podem fazer. "move" deixa mover o token; "toggle" lista os estados
+ * que eles alternam pelo HUD (ex.: acender/apagar a tocha). O resto (vida, imagem, estados) é só do GM ou do dano.
  */
 function getData(doc) {
   return doc?.getFlag(MODULE_ID, "data") ?? null;
@@ -36,7 +38,7 @@ function brokenIndex(data) {
 const stateIndex = (data, flag) => data.states.findIndex(s => s[flag]);
 const currentState = data => data.states[data.index ?? 0];
 
-async function setState(doc, index, { syncHP = true } = {}) {
+async function setState(doc, index, { syncHP = true, interact = false } = {}) {
   const data = getData(doc);
   if (!data?.states?.length) return;
   const i = ((index % data.states.length) + data.states.length) % data.states.length;
@@ -46,7 +48,7 @@ async function setState(doc, index, { syncHP = true } = {}) {
     [`flags.${MODULE_ID}.data.ticksLeft`]: data.states[i].ticks ?? null
   };
   if (doc.documentName === "Token" && data.states.some(s => s.light)) update.light = lightFor(data.states[i]);
-  await doc.update(update);
+  await doc.update(update, interact ? { [MODULE_ID]: { interact: true } } : {});
   // Trocar o estado manualmente num Token também ajusta a vida: quebrada = 0 PV, inteira = PV cheio.
   const hp = doc.actor?.system?.attributes?.hp;
   // Pegando fogo mantém a vida atual (ou enche, se estava em 0).
@@ -69,7 +71,7 @@ function stateFlags(assetId, def) {
     ...(s.sound ? { sound: { ...s.sound, src: `${BASE}/${s.sound.src}` } } : {})
   }));
   const data = { asset: assetId, states, index: 0, ticksLeft: null, damageable: def.actor?.hp != null };
-  for (const key of ["reactions", "onZero", "tickSeconds"]) if (def[key] != null) data[key] = def[key];
+  for (const key of ["reactions", "onZero", "tickSeconds", "player"]) if (def[key] != null) data[key] = def[key];
   return { [MODULE_ID]: { data } };
 }
 
@@ -113,6 +115,10 @@ async function syncSound(token) {
   }
 }
 
+const playerOwnership = def => def.player?.move || def.player?.toggle?.length
+  ? CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER
+  : CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE;
+
 /**
  * Ator base (um por asset) usado como modelo para os Tokens.
  * Os estados ficam também no token protótipo, então arrastar o ator da barra lateral já funciona.
@@ -129,6 +135,9 @@ async function getBaseActor(assetId, def) {
       update["prototypeToken.texture.src"] = `${BASE}/${def.states[0].src}`;
       await actor.update(update);
     }
+    // Jogadores donos do ator podem mover o token (o resto é bloqueado em preUpdate*).
+    const ownership = playerOwnership(def);
+    if (actor.ownership.default !== ownership) await actor.update({ "ownership.default": ownership });
     // Imunidades/resistências em dia com o assets.json.
     if (def.actor.hp != null) {
       const same = (set, list) => JSON.stringify([...(set ?? [])].sort()) === JSON.stringify([...(list ?? [])].sort());
@@ -153,6 +162,7 @@ async function getBaseActor(assetId, def) {
     img: thumbnail(def),
     folder: folder.id,
     system,
+    ownership: { default: playerOwnership(def) },
     prototypeToken: {
       name: def.name,
       width: def.size.w,
@@ -507,15 +517,27 @@ Hooks.on("createChatMessage", async message => {
   }
 });
 
-/** Botão de troca de estado no HUD (Tile e Token). Funciona em v12 (jQuery) e v13 (HTMLElement). */
+/**
+ * Botão de troca de estado no HUD (Tile e Token). Funciona em v12 (jQuery) e v13 (HTMLElement).
+ * GM: passa por todos os estados. Jogador: só alterna entre os estados de "player.toggle".
+ */
 function addHudButton(hud, html) {
   const doc = hud.object?.document;
   const data = getData(doc);
-  if (!data?.states?.length || !game.user.isGM) return;
+  if (!data?.states?.length) return;
+  const current = currentState(data);
+  let nextIndex;
+  if (game.user.isGM) nextIndex = ((data.index ?? 0) + 1) % data.states.length;
+  else {
+    const toggle = data.player?.toggle ?? [];
+    const at = toggle.indexOf(current?.id);
+    if (at === -1) return;
+    nextIndex = indexOfId(data, toggle[(at + 1) % toggle.length]);
+    if (nextIndex === -1) return;
+  }
   const root = html instanceof HTMLElement ? html : html[0];
   const col = root.querySelector(".col.right") ?? root;
-  const current = data.states[data.index ?? 0];
-  const next = data.states[((data.index ?? 0) + 1) % data.states.length];
+  const next = data.states[nextIndex];
 
   const btn = document.createElement("div");
   btn.className = "control-icon ia-state";
@@ -523,7 +545,8 @@ function addHudButton(hud, html) {
   btn.innerHTML = `<i class="fas fa-repeat"></i><span class="ia-label">${current.name}</span>`;
   btn.addEventListener("click", async ev => {
     ev.preventDefault();
-    await nextState(doc);
+    if (game.user.isGM) await nextState(doc);
+    else await setState(doc, nextIndex, { syncHP: false, interact: true });
     hud.render?.();
   });
   col.appendChild(btn);
@@ -541,4 +564,38 @@ Hooks.on("updateToken", (token, changes) => {
 });
 Hooks.on("deleteToken", token => {
   if (isResponsibleGM()) linkedSound(token)?.delete();
+});
+
+/* ---------- O que jogadores podem mudar ---------- */
+
+/** Jogador acabou de aplicar dano neste ator (cálculo do dnd5e no próprio cliente)? */
+const legitDamage = actor => {
+  const hit = recentDamage.get(actor.uuid);
+  return hit && Date.now() - hit.at < 3000;
+};
+
+/** Ator de asset: o base (flag "asset") ou o sintético de um token de asset. */
+const isAssetActor = actor => actor?.getFlag(MODULE_ID, "asset") || getData(actor?.token);
+
+Hooks.on("preUpdateActor", (actor, changes) => {
+  if (game.user.isGM || !isAssetActor(actor) || legitDamage(actor)) return;
+  ui.notifications.warn(`${actor.name}: só o GM ou dano em combate podem mudar este asset.`);
+  return false;
+});
+Hooks.on("preDeleteActor", actor => {
+  if (game.user.isGM || !isAssetActor(actor)) return;
+  ui.notifications.warn(`${actor.name}: só o GM pode apagar este asset.`);
+  return false;
+});
+Hooks.on("preUpdateToken", (token, changes, options) => {
+  if (game.user.isGM || !getData(token)) return;
+  const state = "texture" in changes || "light" in changes || foundry.utils.hasProperty(changes, `flags.${MODULE_ID}`);
+  if (state && !options[MODULE_ID]?.interact) {
+    ui.notifications.warn(`${token.name}: jogadores só podem mover este asset.`);
+    return false;
+  }
+  if ("delta" in changes && !(token.actor && legitDamage(token.actor))) {
+    ui.notifications.warn(`${token.name}: só o GM ou dano em combate podem mudar este asset.`);
+    return false;
+  }
 });

@@ -16,6 +16,9 @@
         "piercing"
       ]
     },
+    "player": {
+      "move": true
+    },
     "tickSeconds": 6,
     "states": [
       {
@@ -282,6 +285,13 @@
       "h": 1
     },
     "actor": {},
+    "player": {
+      "move": true,
+      "toggle": [
+        "acesa",
+        "apagada"
+      ]
+    },
     "states": [
       {
         "id": "acesa",

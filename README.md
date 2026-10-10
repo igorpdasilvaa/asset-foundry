@@ -36,6 +36,16 @@ da branch `main` no GitHub (via jsDelivr), sem precisar apertar Atualizar no set
 - O GitHub permite 60 consultas por hora por IP; se passar disso ou o GitHub cair, o módulo usa a versão instalada e avisa.
 - Desligar o modo volta para os arquivos instalados; tokens já na cena trocam as imagens sozinhos.
 
+## O que jogadores podem fazer
+
+Cada asset diz no `assets.json`, em `"player"`, o que os jogadores podem fazer:
+
+- `"move": true` deixa o jogador mover o token (ele vira dono do ator, sem visão).
+- `"toggle": ["acesa", "apagada"]` mostra no HUD do jogador um botão que alterna só entre esses estados.
+
+Todo o resto (vida, imagem, estados, apagar o ator) fica com o GM ou com o dano de combate.
+Hoje a mesa só pode ser movida, e a tocha pode ser movida e acesa/apagada.
+
 ## Mesa: reações por tipo de dano
 CA 0, 10 PV, imune a veneno e psíquico, resistente a perfurante.
 
