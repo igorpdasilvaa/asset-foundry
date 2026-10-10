@@ -6,7 +6,7 @@ const REF = "main"; // branch do GitHub de onde vem o mapa
 const REPO = "igorpdasilvaa/asset-foundry";
 
 const api = game.modules.get("interactive-assets")?.api;
-if (!api?.buildMap) return ui.notifications.error("Ative o módulo Interactive Assets (versão com mapas) e recarregue a página.");
+if (!api?.buildMap) return ui.notifications.error("Interactive Assets desatualizado: atualize o módulo para a versão 0.7.0 ou mais nova (ou ligue o Modo desenvolvimento) e recarregue a página.");
 
 const r = await fetch(`https://api.github.com/repos/${REPO}/commits/${encodeURIComponent(REF)}`, {
   headers: { Accept: "application/vnd.github.sha" }
