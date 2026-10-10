@@ -7,6 +7,8 @@ let REGISTRY = {};
  * flags.interactive-assets.data = { asset, states: [{id,name,src,broken?}], index }
  * Assets com "actor" no assets.json viram Tokens; com "hp" eles têm PV/CA (dnd5e) e quebram ao chegar a 0 PV.
  * Cada estado pode trazer "light" (luz do token) e "sound" (som ambiente que acompanha o token).
+ * Com "burn" no asset: dano do tipo configurado acende o estado "burning", que causa dano por rodada
+ * (em combate) ou a cada N segundos (fora de combate); chegar a 0 PV queimando leva ao estado "burnt".
  */
 function getData(doc) {
   return doc?.getFlag(MODULE_ID, "data") ?? null;
@@ -23,9 +25,12 @@ function isDamageable(data) {
 }
 
 function brokenIndex(data) {
-  const i = data.states.findIndex(s => s.broken);
+  const i = data.states.findIndex(s => s.broken && !s.burnt);
   return i === -1 ? data.states.length - 1 : i;
 }
+
+const stateIndex = (data, flag) => data.states.findIndex(s => s[flag]);
+const currentState = data => data.states[data.index ?? 0];
 
 async function setState(doc, index, { syncHP = true } = {}) {
   const data = getData(doc);
@@ -39,8 +44,10 @@ async function setState(doc, index, { syncHP = true } = {}) {
   await doc.update(update);
   // Trocar o estado manualmente num Token também ajusta a vida: quebrada = 0 PV, inteira = PV cheio.
   const hp = doc.actor?.system?.attributes?.hp;
+  // Pegando fogo mantém a vida atual (ou enche, se estava em 0).
   if (syncHP && hp && isDamageable(data)) {
-    const value = data.states[i].broken ? 0 : hp.max;
+    const s = data.states[i];
+    const value = s.broken ? 0 : (s.burning && hp.value > 0 ? hp.value : hp.max);
     if (hp.value !== value) await doc.actor.update({ "system.attributes.hp.value": value }, { [MODULE_ID]: { fromState: true } });
   }
 }
@@ -56,7 +63,9 @@ function stateFlags(assetId, def) {
     src: `${BASE}/${s.src}`,
     ...(s.sound ? { sound: { ...s.sound, src: `${BASE}/${s.sound.src}` } } : {})
   }));
-  return { [MODULE_ID]: { data: { asset: assetId, states, index: 0, damageable: def.actor?.hp != null } } };
+  const data = { asset: assetId, states, index: 0, damageable: def.actor?.hp != null };
+  if (def.burn) data.burn = def.burn;
+  return { [MODULE_ID]: { data } };
 }
 
 /** Estado sem "light" apaga a luz do token. */
@@ -170,6 +179,73 @@ async function placeAsset(assetId, { x, y } = {}) {
   return tile;
 }
 
+/** Atualiza Tokens/Tiles já colocados quando o assets.json muda, mantendo o estado atual (pelo id). */
+async function refreshPlaced(assetId, def) {
+  const fresh = stateFlags(assetId, def)[MODULE_ID].data;
+  for (const scene of game.scenes) {
+    for (const collection of ["tokens", "tiles"]) {
+      const updates = [];
+      for (const doc of scene[collection]) {
+        const data = getData(doc);
+        if (data?.asset !== assetId) continue;
+        const index = Math.max(0, fresh.states.findIndex(s => s.id === currentState(data)?.id));
+        const next = { ...fresh, index };
+        if (JSON.stringify(next) !== JSON.stringify(data)) updates.push({ _id: doc.id, [`flags.${MODULE_ID}.data`]: next });
+      }
+      if (updates.length) await scene.updateEmbeddedDocuments(collection === "tokens" ? "Token" : "Tile", updates);
+    }
+  }
+}
+
+/* ---------- Fogo ---------- */
+
+/** Atores que acabaram de levar dano do tipo que incendeia (preenchido no cálculo de dano do dnd5e). */
+const recentFire = new Map();
+
+Hooks.on("dnd5e.calculateDamage", (actor, damages) => {
+  const types = new Set(damages.filter(d => d.value > 0).map(d => d.type));
+  if (types.size) recentFire.set(actor.uuid, { types, at: Date.now() });
+});
+
+function tookDamageType(actor, type) {
+  const hit = recentFire.get(actor.uuid);
+  recentFire.delete(actor.uuid);
+  return !!hit && Date.now() - hit.at < 3000 && hit.types.has(type);
+}
+
+function burningTokens(scene) {
+  return scene?.tokens.filter(t => {
+    const data = getData(t);
+    return data?.burn && currentState(data)?.burning && t.actor;
+  }) ?? [];
+}
+
+async function burnTick(token) {
+  const tick = getData(token).burn.tick ?? { damage: 2, type: "fire" };
+  await token.actor.applyDamage([{ value: tick.damage, type: tick.type, properties: new Set() }]);
+}
+
+/** Em combate: dano a cada nova rodada, nos assets queimando da cena do combate. */
+Hooks.on("updateCombat", async (combat, changes, options) => {
+  if (!isResponsibleGM() || !("round" in changes) || options?.direction < 0 || !combat.started) return;
+  for (const token of burningTokens(combat.scene ?? canvas.scene)) await burnTick(token);
+});
+
+/** Fora de combate: dano a cada N segundos (relógio real), pausado quando o jogo está pausado. */
+let burnTimer = null;
+function startBurnTimer() {
+  if (burnTimer) return;
+  const seconds = Math.min(...Object.values(REGISTRY).map(d => d.burn?.tick?.seconds ?? Infinity));
+  if (!Number.isFinite(seconds)) return;
+  burnTimer = setInterval(async () => {
+    if (!isResponsibleGM() || game.paused) return;
+    for (const scene of game.scenes) {
+      if (game.combats.some(c => c.started && c.scene?.id === scene.id)) continue;
+      for (const token of burningTokens(scene)) await burnTick(token);
+    }
+  }, seconds * 1000);
+}
+
 /** Tokens de asset afetados por uma mudança no ator (Token sem vínculo = ator sintético). */
 function tokensForActor(actor) {
   if (actor.isToken) return [actor.token];
@@ -200,14 +276,25 @@ Hooks.once("ready", async () => {
       // Garante um ator por asset na pasta "Interactive Assets", pronto para arrastar para a cena.
       for (const [id, def] of Object.entries(REGISTRY)) {
         if (def.actor) await getBaseActor(id, def);
+        await refreshPlaced(id, def);
       }
+      startBurnTimer();
     }
   } catch (err) {
     console.error(`${MODULE_ID} | falha ao carregar assets.json`, err);
   }
 });
 
-/** PV chegou a 0 → imagem quebrada. PV voltou acima de 0 → imagem inteira. */
+function say(token, text) {
+  return ChatMessage.create({ content: `<p><strong>${token.name}</strong> ${text}</p>`, speaker: ChatMessage.getSpeaker({ token }) });
+}
+
+/**
+ * Regras de estado pela vida:
+ * - 0 PV: queimando (ou atingido por fogo) → queimada; senão → quebrada.
+ * - Dano de fogo com PV > 0 → começa a pegar fogo.
+ * - Curado acima de 0 estando quebrada/queimada → inteira.
+ */
 Hooks.on("updateActor", async (actor, changes, options) => {
   if (!isResponsibleGM() || options?.[MODULE_ID]?.fromState) return;
   if (foundry.utils.getProperty(changes, "system.attributes.hp.value") === undefined) return;
@@ -215,13 +302,24 @@ Hooks.on("updateActor", async (actor, changes, options) => {
   for (const token of tokensForActor(actor)) {
     const data = getData(token);
     if (!data?.states?.length || !isDamageable(data)) continue;
-    const broken = brokenIndex(data);
-    const current = data.index ?? 0;
-    if (hp <= 0 && current !== broken) {
-      await setState(token, broken, { syncHP: false });
-      ChatMessage.create({ content: `<p><strong>${token.name}</strong> se despedaça!</p>`, speaker: ChatMessage.getSpeaker({ token }) });
-    } else if (hp > 0 && data.states[current]?.broken) {
+    const state = currentState(data);
+    const fire = data.burn ? tookDamageType(actor, data.burn.damageType ?? "fire") : false;
+    const burnt = stateIndex(data, "burnt");
+
+    if (hp <= 0) {
+      if (state?.broken) continue;
+      if (data.burn && burnt !== -1 && (state?.burning || fire)) {
+        await setState(token, burnt, { syncHP: false });
+        await say(token, "queima até virar carvão!");
+      } else {
+        await setState(token, brokenIndex(data), { syncHP: false });
+        await say(token, "se despedaça!");
+      }
+    } else if (state?.broken) {
       await setState(token, 0, { syncHP: false });
+    } else if (fire && !state?.burning && stateIndex(data, "burning") !== -1) {
+      await setState(token, stateIndex(data, "burning"), { syncHP: false });
+      await say(token, "começa a pegar fogo!");
     }
   }
 });

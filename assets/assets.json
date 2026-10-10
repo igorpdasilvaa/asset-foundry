@@ -1,27 +1,120 @@
 {
   "mesa": {
     "name": "Mesa de madeira",
-    "size": { "w": 2.2, "h": 1.2 },
-    "actor": { "ac": 0, "hp": 10, "immunities": ["poison", "psychic"] },
+    "size": {
+      "w": 2.2,
+      "h": 1.2
+    },
+    "actor": {
+      "ac": 0,
+      "hp": 10,
+      "immunities": [
+        "poison",
+        "psychic"
+      ]
+    },
     "states": [
-      { "id": "inteira", "name": "Inteira", "src": "mesa/mesa_inteira.png" },
-      { "id": "quebrada", "name": "Quebrada", "src": "mesa/mesa_quebrada.png", "broken": true }
-    ]
+      {
+        "id": "inteira",
+        "name": "Inteira",
+        "src": "mesa/mesa_inteira.png"
+      },
+      {
+        "id": "quebrada",
+        "name": "Quebrada",
+        "src": "mesa/mesa_quebrada.png",
+        "broken": true
+      },
+      {
+        "id": "queimando",
+        "name": "Pegando fogo",
+        "src": "mesa/mesa_queimando.png",
+        "burning": true,
+        "light": {
+          "bright": 10,
+          "dim": 30,
+          "color": "#ff7b2e",
+          "alpha": 0.5,
+          "attenuation": 0.6,
+          "animation": {
+            "type": "torch",
+            "speed": 4,
+            "intensity": 4
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 30,
+          "volume": 0.7
+        }
+      },
+      {
+        "id": "queimada",
+        "name": "Queimada",
+        "src": "mesa/mesa_queimada.png",
+        "broken": true,
+        "burnt": true,
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#ff5a1a",
+          "alpha": 0.35,
+          "animation": {
+            "type": "torch",
+            "speed": 1,
+            "intensity": 2
+          }
+        }
+      }
+    ],
+    "burn": {
+      "damageType": "fire",
+      "tick": {
+        "damage": 2,
+        "type": "fire",
+        "seconds": 6
+      }
+    }
   },
   "tocha": {
     "name": "Tocha",
-    "size": { "w": 1, "h": 1 },
+    "size": {
+      "w": 1,
+      "h": 1
+    },
     "actor": {},
     "states": [
       {
-        "id": "acesa", "name": "Acesa", "src": "tocha/tocha_acesa.png",
+        "id": "acesa",
+        "name": "Acesa",
+        "src": "tocha/tocha_acesa.png",
         "light": {
-          "bright": 20, "dim": 40, "color": "#ff9b3d", "alpha": 0.45, "attenuation": 0.5,
-          "animation": { "type": "torch", "speed": 3, "intensity": 3 }
+          "bright": 20,
+          "dim": 40,
+          "color": "#ff9b3d",
+          "alpha": 0.45,
+          "attenuation": 0.5,
+          "animation": {
+            "type": "torch",
+            "speed": 3,
+            "intensity": 3
+          }
         },
-        "sound": { "src": "tocha/fogo.ogg", "radius": 30, "volume": 0.6 }
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 30,
+          "volume": 0.6
+        }
       },
-      { "id": "apagada", "name": "Apagada", "src": "tocha/tocha_apagada.png", "light": { "bright": 0, "dim": 0 } }
+      {
+        "id": "apagada",
+        "name": "Apagada",
+        "src": "tocha/tocha_apagada.png",
+        "light": {
+          "bright": 0,
+          "dim": 0
+        }
+      }
     ]
   }
 }

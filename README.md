@@ -26,6 +26,17 @@ Assets sem `actor` no `assets.json` continuam virando Tile, com o mesmo botão n
 
 Também dá pra trocar por macro: `api.nextState(tile)` / `api.setState(tile, 1)`.
 
+## Mesa pegando fogo
+- Dano de **fogo** com a mesa ainda de pé: ela começa a pegar fogo (imagem, luz e som de fogo).
+- Queimando, ela leva **2 de dano de fogo** a cada nova rodada de combate na cena, ou a cada
+  **6 segundos** fora de combate (o relógio para quando o jogo está pausado).
+- Chegando a 0 PV queimando (ou com o golpe final de fogo): vira **mesa queimada**.
+  Chegando a 0 PV com outro dano: vira **mesa quebrada**.
+- O botão 🔁 no HUD passa por Inteira → Quebrada → Pegando fogo → Queimada.
+
+Isso é configurado em `assets.json` com `"burn"` no asset e `burning` / `burnt` nos estados,
+então outros objetos inflamáveis podem reaproveitar a mesma regra.
+
 ## Tocha (luz + som)
 Arraste o ator **Tocha** (pasta *Interactive Assets*) para a cena. Acesa, ela ilumina
 (20 ft de luz forte, 40 ft de penumbra, com animação de chama) e toca um som de fogo
