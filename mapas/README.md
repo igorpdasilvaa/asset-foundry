@@ -9,7 +9,8 @@ Mapas montados só com peças feitas neste repositório.
    paredes, portas e pilares quebráveis, e coloca mesas, tochas, barris e caixas do módulo.
    Com o modo desenvolvimento ligado, recarregue a página (F5) antes, para o módulo pegar a versão com mapas.
 
-Cada execução cria uma cena nova. Para outro mapa, troque `MAPA` na macro.
+Cada execução cria uma cena nova. Para outro mapa, troque `MAPA` na macro: `"lago"` monta o
+**Lago (teste)**, com água que congela, eletrifica e envenena, píer, barco a remo e uma carroça carregada.
 
 ## Como um mapa é feito
 - `mapas/pecas/`: as peças. Pisos (`piso_madeira`, `piso_pedra`), `grama`, `terra` e `parede`
@@ -17,7 +18,7 @@ Cada execução cria uma cena nova. Para outro mapa, troque `MAPA` na macro.
   1 quadrado. Gerar: `python3 tools/gen_pecas_mapa.py && NODE_PATH=$(npm root -g) node tools/render.js mapas/pecas/*.svg`
 - `mapas/<nome>/layout.txt`: o desenho do mapa, um caractere por quadrado. A legenda fica em
   `mapa.json` (na taverna: `.` madeira, `,` pedra, `"` grama, `_` terra, `#` parede,
-  `F` lareira, `P` pilar, `D` porta).
+  `F` lareira, `P` pilar, `D` porta; no lago também `~` água e `=` píer).
 - `mapas/<nome>/mapa.json`: nome da cena, escuridão, legenda, objetos interativos soltos
   (`asset`, `x`, `y` no centro, em pixels da cena com grade de 100), luzes e sons.
 - `python3 tools/gen_mapa.py <nome>` gera `<nome>.webp` (fundo, 200 px por quadrado),
@@ -29,3 +30,4 @@ Cada `#` vira um token "Parede de pedra", cada `D` uma "Porta de madeira" e cada
 (`scripts/mapa.js`) calcula a partir do que está de pé, um pouco recuadas para dentro do bloco
 (assim os jogadores conseguem mirar nele). Quando um bloco quebra, o buraco abre na hora.
 `previa_quebrada.jpg` mostra o mapa com os blocos de `preview_broken` (no `mapa.json`) quebrados.
+Cada `~` vira um token "Água". `preview_states` gera prévias com estados trocados (ex.: lago congelado).

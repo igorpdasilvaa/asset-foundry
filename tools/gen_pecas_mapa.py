@@ -108,7 +108,21 @@ def parede(w, h, seed=1):
                 noise("wl", "0.06", seed, (.14, .13, .12), 1.3, -.4))
 
 
-MATERIAIS = {"piso_madeira": piso_madeira, "piso_pedra": piso_pedra, "grama": grama, "terra": terra, "parede": parede}
+def agua(w, h, seed=1):
+    """Água funda: azul-esverdeado com manchas e reflexos de luz (caustics)."""
+    R = random.Random(seed)
+    glints = "".join(
+        f'<path d="M{(x:=R.randint(0,w))},{(y:=R.randint(0,h))} q{(r:=R.randint(8,22))},-{r//3} {2*r},0" stroke="#bfe6f2" stroke-width="2" fill="none" opacity="{R.uniform(.12,.3):.2f}"/>'
+        for _ in range(w * h // 2500))
+    return wrap(w, h, f'<rect width="{w}" height="{h}" fill="#173f52" filter="url(#ag)"/>'
+                f'<rect width="{w}" height="{h}" filter="url(#cau)" opacity=".16"/>{glints}',
+                noise("ag", "0.008", seed, (.05, .2, .25), 1.3, -.4, 4)
+                + f'<filter id="cau" x="0" y="0" width="100%" height="100%" filterUnits="userSpaceOnUse">'
+                  f'<feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="2" seed="{seed}"/>'
+                  f'<feColorMatrix type="matrix" values="0 0 0 0 .75  0 0 0 0 .92  0 0 0 0 .95  0 0 0 -2.2 1.1"/></filter>')
+
+
+MATERIAIS = {"piso_madeira": piso_madeira, "piso_pedra": piso_pedra, "grama": grama, "terra": terra, "parede": parede, "agua": agua}
 
 
 def pecas():

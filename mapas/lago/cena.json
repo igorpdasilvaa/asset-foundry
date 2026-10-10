@@ -1,0 +1,538 @@
+{
+ "name": "Lago (teste)",
+ "width": 2200,
+ "height": 1500,
+ "padding": 0,
+ "backgroundColor": "#1b1b1b",
+ "background": {
+  "src": "mapas/lago/lago.webp"
+ },
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 5,
+  "units": "ft"
+ },
+ "tokenVision": true,
+ "environment": {
+  "darknessLevel": 0,
+  "globalLight": {
+   "enabled": true
+  }
+ },
+ "lights": [],
+ "sounds": [
+  {
+   "x": 1500,
+   "y": 750,
+   "radius": 40,
+   "path": "mapas/lago/agua_loop.ogg",
+   "volume": 0.5,
+   "walls": true,
+   "easing": true
+  }
+ ],
+ "flags": {
+  "interactive-assets": {
+   "map": {
+    "cols": 22,
+    "rows": 15,
+    "fixed": [],
+    "structures": [
+     {
+      "asset": "agua",
+      "x": 12,
+      "y": 3,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 13,
+      "y": 3,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 14,
+      "y": 3,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 15,
+      "y": 3,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 16,
+      "y": 3,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 17,
+      "y": 3,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 11,
+      "y": 4,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 12,
+      "y": 4,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 13,
+      "y": 4,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 14,
+      "y": 4,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 15,
+      "y": 4,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 16,
+      "y": 4,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 17,
+      "y": 4,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 18,
+      "y": 4,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 10,
+      "y": 5,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 11,
+      "y": 5,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 12,
+      "y": 5,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 13,
+      "y": 5,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 14,
+      "y": 5,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 15,
+      "y": 5,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 16,
+      "y": 5,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 17,
+      "y": 5,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 18,
+      "y": 5,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 19,
+      "y": 5,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 10,
+      "y": 6,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 11,
+      "y": 6,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 12,
+      "y": 6,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 13,
+      "y": 6,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 14,
+      "y": 6,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 15,
+      "y": 6,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 16,
+      "y": 6,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 17,
+      "y": 6,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 18,
+      "y": 6,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 19,
+      "y": 6,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 14,
+      "y": 7,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 15,
+      "y": 7,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 16,
+      "y": 7,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 17,
+      "y": 7,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 18,
+      "y": 7,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 19,
+      "y": 7,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 20,
+      "y": 7,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 10,
+      "y": 8,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 11,
+      "y": 8,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 12,
+      "y": 8,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 13,
+      "y": 8,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 14,
+      "y": 8,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 15,
+      "y": 8,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 16,
+      "y": 8,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 17,
+      "y": 8,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 18,
+      "y": 8,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 19,
+      "y": 8,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 10,
+      "y": 9,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 11,
+      "y": 9,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 12,
+      "y": 9,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 13,
+      "y": 9,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 14,
+      "y": 9,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 15,
+      "y": 9,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 16,
+      "y": 9,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 17,
+      "y": 9,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 18,
+      "y": 9,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 19,
+      "y": 9,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 11,
+      "y": 10,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 12,
+      "y": 10,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 13,
+      "y": 10,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 14,
+      "y": 10,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 15,
+      "y": 10,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 16,
+      "y": 10,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 17,
+      "y": 10,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 18,
+      "y": 10,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 12,
+      "y": 11,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 13,
+      "y": 11,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 14,
+      "y": 11,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 15,
+      "y": 11,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 16,
+      "y": 11,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 17,
+      "y": 11,
+      "kind": "water"
+     }
+    ],
+    "objects": [
+     {
+      "asset": "carroca",
+      "x": 400,
+      "y": 350
+     },
+     {
+      "asset": "barril",
+      "x": 350,
+      "y": 350
+     },
+     {
+      "asset": "caixa",
+      "x": 450,
+      "y": 450
+     },
+     {
+      "asset": "barco",
+      "x": 1200,
+      "y": 900
+     },
+     {
+      "asset": "barril",
+      "x": 1050,
+      "y": 750
+     },
+     {
+      "asset": "tocha",
+      "x": 1350,
+      "y": 750
+     },
+     {
+      "asset": "barril",
+      "x": 650,
+      "y": 650
+     },
+     {
+      "asset": "caixa",
+      "x": 750,
+      "y": 650
+     }
+    ]
+   }
+  }
+ }
+}

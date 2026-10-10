@@ -328,6 +328,29 @@
           "dim": 0
         }
       }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "acesa"
+        ],
+        "to": "apagada",
+        "say": "se apaga."
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "apagada"
+        ],
+        "to": "acesa",
+        "say": "se acende."
+      }
     ]
   },
   "parede": {
@@ -832,6 +855,475 @@
       {
         "to": "quebrado",
         "say": "se despedaça!"
+      }
+    ]
+  },
+  "agua": {
+    "name": "Água",
+    "tipo": "imovel",
+    "interacao": "mestre",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {},
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "calma",
+        "name": "Calma",
+        "src": "agua/agua_calma.png",
+        "wet": true
+      },
+      {
+        "id": "congelada",
+        "name": "Congelada",
+        "src": "agua/agua_congelada.png",
+        "gelo": true
+      },
+      {
+        "id": "eletrificada",
+        "name": "Eletrificada",
+        "src": "agua/agua_eletrificada.webm",
+        "wet": true,
+        "ticks": 1,
+        "then": "calma",
+        "light": {
+          "bright": 0,
+          "dim": 5,
+          "color": "#8fd3ff",
+          "alpha": 0.45,
+          "animation": {
+            "type": "energy",
+            "speed": 8,
+            "intensity": 5
+          }
+        }
+      },
+      {
+        "id": "vapor",
+        "name": "Vapor",
+        "src": "agua/agua_vapor.png",
+        "wet": true,
+        "ticks": 3,
+        "then": "calma"
+      },
+      {
+        "id": "envenenada",
+        "name": "Envenenada",
+        "src": "agua/agua_envenenada.png",
+        "wet": true,
+        "ticks": 10,
+        "then": "calma",
+        "areaDot": {
+          "damage": 1,
+          "type": "poison"
+        }
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "calma",
+          "vapor",
+          "envenenada",
+          "eletrificada"
+        ],
+        "to": "congelada",
+        "spread": 1,
+        "say": "congela! Dá para andar por cima do gelo."
+      },
+      {
+        "types": [
+          "fire"
+        ],
+        "from": [
+          "congelada"
+        ],
+        "to": "calma",
+        "spread": 1,
+        "say": "derrete."
+      },
+      {
+        "types": [
+          "bludgeoning",
+          "thunder",
+          "force"
+        ],
+        "from": [
+          "congelada"
+        ],
+        "to": "calma",
+        "say": "tem o gelo partido."
+      },
+      {
+        "types": [
+          "fire"
+        ],
+        "from": [
+          "calma",
+          "envenenada"
+        ],
+        "to": "vapor",
+        "spread": 1,
+        "say": "ferve e solta uma nuvem de vapor (área com visão prejudicada)."
+      },
+      {
+        "types": [
+          "lightning"
+        ],
+        "from": [
+          "calma",
+          "vapor",
+          "envenenada"
+        ],
+        "to": "eletrificada",
+        "spread": "all",
+        "zap": true,
+        "say": "conduz o raio pelo lago inteiro!"
+      },
+      {
+        "types": [
+          "poison",
+          "acid"
+        ],
+        "from": [
+          "calma",
+          "vapor"
+        ],
+        "to": "envenenada",
+        "spread": 1,
+        "say": "fica envenenada: quem estiver dentro leva 1 de veneno por rodada."
+      },
+      {
+        "types": [
+          "radiant"
+        ],
+        "from": [
+          "envenenada"
+        ],
+        "to": "calma",
+        "spread": 1,
+        "say": "é purificada."
+      }
+    ]
+  },
+  "carroca": {
+    "name": "Carroça",
+    "tipo": "movel",
+    "interacao": "jogador",
+    "size": {
+      "w": 2,
+      "h": 3
+    },
+    "actor": {
+      "ac": 11,
+      "hp": 30,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": [
+        "piercing"
+      ]
+    },
+    "player": {
+      "move": true
+    },
+    "vehicle": {
+      "terreno": "terra"
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "inteira",
+        "name": "Inteira",
+        "src": "carroca/carroca_inteira.png"
+      },
+      {
+        "id": "roda_quebrada",
+        "name": "Roda quebrada",
+        "src": "carroca/carroca_roda_quebrada.png",
+        "travado": true,
+        "sfx": "audio/madeira_quebrando.ogg"
+      },
+      {
+        "id": "queimando",
+        "name": "Pegando fogo",
+        "src": "carroca/carroca_queimando.png",
+        "sticky": true,
+        "dot": {
+          "damage": 2,
+          "type": "fire"
+        },
+        "light": {
+          "bright": 10,
+          "dim": 25,
+          "color": "#ff7b2e",
+          "alpha": 0.5,
+          "attenuation": 0.6,
+          "animation": {
+            "type": "torch",
+            "speed": 4,
+            "intensity": 4
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 25,
+          "volume": 0.6
+        }
+      },
+      {
+        "id": "queimada",
+        "name": "Queimada",
+        "src": "carroca/carroca_queimada.png",
+        "broken": true,
+        "travado": true,
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#ff5a1a",
+          "alpha": 0.35,
+          "animation": {
+            "type": "torch",
+            "speed": 1,
+            "intensity": 2
+          }
+        }
+      },
+      {
+        "id": "destruida",
+        "name": "Destruída",
+        "src": "carroca/carroca_destruida.png",
+        "broken": true,
+        "travado": true,
+        "sfx": "audio/madeira_quebrando.ogg"
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "inteira",
+          "roda_quebrada"
+        ],
+        "to": "queimando",
+        "say": "começa a pegar fogo!"
+      },
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "queimando"
+        ],
+        "to": "inteira",
+        "say": "tem o fogo apagado pelo gelo."
+      },
+      {
+        "types": [
+          "bludgeoning",
+          "slashing",
+          "thunder",
+          "force"
+        ],
+        "from": [
+          "inteira"
+        ],
+        "below": 0.5,
+        "to": "roda_quebrada",
+        "say": "perde uma roda e não anda mais."
+      },
+      {
+        "types": [
+          "thunder",
+          "force"
+        ],
+        "effect": "push",
+        "squares": 1
+      }
+    ],
+    "onZero": [
+      {
+        "state": "queimando",
+        "to": "queimada",
+        "say": "queima até virar carvão!"
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "queimada",
+        "say": "queima até virar carvão!"
+      },
+      {
+        "to": "destruida",
+        "say": "se desmancha em tábuas e rodas soltas!"
+      }
+    ]
+  },
+  "barco": {
+    "name": "Barco a remo",
+    "tipo": "movel",
+    "interacao": "jogador",
+    "size": {
+      "w": 4,
+      "h": 2
+    },
+    "actor": {
+      "ac": 11,
+      "hp": 40,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": [
+        "piercing"
+      ]
+    },
+    "player": {
+      "move": true
+    },
+    "vehicle": {
+      "terreno": "agua"
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "inteiro",
+        "name": "Inteiro",
+        "src": "barco/barco_inteiro.png"
+      },
+      {
+        "id": "avariado",
+        "name": "Fazendo água",
+        "src": "barco/barco_avariado.png"
+      },
+      {
+        "id": "queimando",
+        "name": "Pegando fogo",
+        "src": "barco/barco_queimando.png",
+        "sticky": true,
+        "dot": {
+          "damage": 2,
+          "type": "fire"
+        },
+        "light": {
+          "bright": 10,
+          "dim": 25,
+          "color": "#ff7b2e",
+          "alpha": 0.5,
+          "attenuation": 0.6,
+          "animation": {
+            "type": "torch",
+            "speed": 4,
+            "intensity": 4
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 25,
+          "volume": 0.6
+        }
+      },
+      {
+        "id": "queimado",
+        "name": "Queimado",
+        "src": "barco/barco_queimado.png",
+        "broken": true,
+        "travado": true,
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#ff5a1a",
+          "alpha": 0.35,
+          "animation": {
+            "type": "torch",
+            "speed": 1,
+            "intensity": 2
+          }
+        }
+      },
+      {
+        "id": "afundado",
+        "name": "Afundado",
+        "src": "barco/barco_afundado.png",
+        "broken": true,
+        "travado": true
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "inteiro",
+          "avariado"
+        ],
+        "to": "queimando",
+        "say": "começa a pegar fogo!"
+      },
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "queimando"
+        ],
+        "to": "avariado",
+        "say": "tem o fogo apagado, mas ficou avariado."
+      },
+      {
+        "types": [
+          "bludgeoning",
+          "piercing",
+          "slashing",
+          "thunder",
+          "force"
+        ],
+        "from": [
+          "inteiro"
+        ],
+        "below": 0.5,
+        "to": "avariado",
+        "say": "abre um rombo e começa a fazer água!"
+      },
+      {
+        "types": [
+          "thunder",
+          "force"
+        ],
+        "effect": "push",
+        "squares": 1
+      }
+    ],
+    "onZero": [
+      {
+        "state": "queimando",
+        "to": "queimado",
+        "say": "queima até a linha d'água! Quem estava a bordo cai na água."
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "queimado",
+        "say": "queima até a linha d'água! Quem estava a bordo cai na água."
+      },
+      {
+        "to": "afundado",
+        "say": "afunda! Quem estava a bordo cai na água."
       }
     ]
   }
