@@ -30,5 +30,5 @@ https://github.com/igorpdasilvaa/asset-foundry/releases/latest/download/module.j
 ```
 
 ## Publicar nova versão
-Atualize `version` no `module.json`, faça commit e crie a tag `vX.Y.Z`.
-O GitHub Actions gera o release com o `.zip` automaticamente.
+Atualize `version` no `module.json` e faça commit na `main`.
+O GitHub Actions cria a tag e o release com o `.zip` automaticamente.

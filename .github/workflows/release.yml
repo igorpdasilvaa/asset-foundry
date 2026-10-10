@@ -1,7 +1,9 @@
 name: Release
 on:
   push:
-    tags: ["v*"]
+    branches: [main]
+    paths: ["module.json"]
+  workflow_dispatch:
 permissions:
   contents: write
 jobs:
@@ -9,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Ler versão
+        id: v
+        run: echo "version=$(jq -r .version module.json)" >> "$GITHUB_OUTPUT"
       - name: Empacotar módulo
         run: |
           mkdir -p dist/interactive-assets
@@ -16,6 +21,9 @@ jobs:
           cd dist && zip -r interactive-assets.zip interactive-assets && cp interactive-assets/module.json .
       - uses: softprops/action-gh-release@v2
         with:
+          tag_name: v${{ steps.v.outputs.version }}
+          name: v${{ steps.v.outputs.version }}
+          make_latest: true
           files: |
             dist/module.json
             dist/interactive-assets.zip
