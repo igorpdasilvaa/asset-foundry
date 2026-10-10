@@ -28,7 +28,7 @@
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "mesa/mesa_queimando.png",
+        "src": "mesa/mesa_queimando.webm",
         "burning": true,
         "light": {
           "bright": 10,
