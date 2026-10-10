@@ -66,7 +66,7 @@ Cada asset escolhe a sua no `assets.json`:
 
 As imagens continuam em `assets/<asset>/`; mudar a categoria só troca a pasta no Foundry
 (o ator muda de pasta sozinho no próximo F5) e não quebra cenas salvas.
-Assets sem `actor` (como a tocha) viram Tile e não aparecem na aba de Atores.
+Assets sem `actor` viram Tile e não aparecem na aba de Atores.
 
 ## Mesa: reações por tipo de dano
 CA 0, 10 PV, imune a veneno e psíquico, resistente a perfurante.
