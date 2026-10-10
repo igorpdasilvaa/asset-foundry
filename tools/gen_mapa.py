@@ -1,6 +1,6 @@
 """Monta um mapa a partir das peças de mapas/pecas/ e de mapas/<nome>/layout.txt + mapa.json.
 Gera mapas/<nome>/<nome>.webp (fundo, 200 px por quadrado), cena.json (cena do Foundry com
-paredes, portas, luzes e sons) e previa.jpg (fundo com as paredes desenhadas por cima).
+estruturas quebráveis, objetos, luzes e sons) e previa.jpg (a cena com as paredes calculadas pelo módulo).
 Uso: python3 tools/gen_mapa.py taverna"""
 import json, os, subprocess, sys, tempfile, pathlib
 from PIL import Image, ImageDraw
@@ -108,59 +108,25 @@ for y in range(H):
             if at(x + dx, y + dy) and not solid(x + dx, y + dy):
                 od.line(seg, fill=(20, 18, 16, 255), width=6)
 
-for y in range(H):
-    for x in range(W):
-        if at(x, y) == "pilar":
-            img.alpha_composite(piece("pilar"), (x * PX, y * PX))
-
 bg_name = f"{name}.webp"
 img.convert("RGB").save(DIR / bg_name, quality=86, method=6)
 
-# ---------- paredes do Foundry ----------
-def merge(segs):
-    """segs: {(linha, inicio)} unitários -> segmentos contínuos [(linha, a, b)]"""
-    out, by = [], {}
-    for line, s in segs:
-        by.setdefault(line, []).append(s)
-    for line, starts in by.items():
-        starts.sort()
-        a = prev = starts[0]
-        for s in starts[1:]:
-            if s != prev + 1:
-                out.append((line, a, prev + 1)); a = s
-            prev = s
-        out.append((line, a, prev + 1))
-    return out
-
-hseg, vseg = set(), set()
-for y in range(H):
-    for x in range(W):
-        if not solid(x, y):
-            continue
-        if at(x, y - 1) and not solid(x, y - 1): hseg.add((y, x))
-        if at(x, y + 1) and not solid(x, y + 1): hseg.add((y + 1, x))
-        if at(x - 1, y) and not solid(x - 1, y): vseg.add((x, y))
-        if at(x + 1, y) and not solid(x + 1, y): vseg.add((x + 1, y))
-
-walls = [{"c": [a * G, line * G, b * G, line * G]} for line, a, b in merge(hseg)]
-walls += [{"c": [line * G, a * G, line * G, b * G]} for line, a, b in merge(vseg)]
-
+# ---------- estruturas quebráveis (tokens) ----------
+# Cada bloco de parede, porta e pilar vira um token de asset; as paredes do Foundry
+# são calculadas pelo módulo (scripts/mapa.js) a partir do que está de pé.
+STRUCT = cfg.get("structures", {"parede": "wall", "porta": "door", "pilar": "pillar"})
+structures, fixed = [], []
 for y in range(H):
     for x in range(W):
         k = at(x, y)
-        if k == "porta":
-            if solid(x, y - 1) and solid(x, y + 1):
-                c = [(x + .5) * G, y * G, (x + .5) * G, (y + 1) * G]
-            else:
-                c = [x * G, (y + .5) * G, (x + 1) * G, (y + .5) * G]
-            walls.append({"c": c, "door": 1, "ds": 0, "doorSound": "woodBasic"})
-        elif k == "pilar":
-            import math
-            cx, cy, r = (x + .5) * G, (y + .5) * G, .37 * G
-            pts = [(cx + r * math.cos(math.pi / 8 + i * math.pi / 4), cy + r * math.sin(math.pi / 8 + i * math.pi / 4)) for i in range(8)]
-            for i in range(8):
-                (x1, y1), (x2, y2) = pts[i], pts[(i + 1) % 8]
-                walls.append({"c": [round(x1), round(y1), round(x2), round(y2)]})
+        if k in STRUCT:
+            s = {"asset": k, "x": x, "y": y, "kind": STRUCT[k]}
+            if STRUCT[k] == "door":
+                s["dir"] = "v" if solid(x, y - 1) and solid(x, y + 1) else "h"
+                s["rotation"] = 90 if s["dir"] == "v" else 0
+            structures.append(s)
+        elif k in SOLID:
+            fixed.append(f"{x},{y}")
 
 scene = {
     "name": cfg["name"],
@@ -170,23 +136,54 @@ scene = {
     "grid": {"type": 1, "size": G, "distance": 5, "units": "ft"},
     "tokenVision": True,
     "environment": {"darknessLevel": cfg.get("darkness", 0), "globalLight": {"enabled": True}},
-    "walls": walls,
     "lights": cfg.get("lights", []),
     "sounds": [{**s, "walls": True, "easing": True} for s in cfg.get("sounds", [])],
-    "flags": {"interactive-assets": {"objects": cfg.get("objects", [])}},
+    "flags": {"interactive-assets": {"map": {
+        "cols": W, "rows": H, "fixed": fixed, "structures": structures, "objects": cfg.get("objects", [])}}},
 }
 (DIR / "cena.json").write_text(json.dumps(scene, indent=1, ensure_ascii=False))
 
-# ---------- prévia: fundo + paredes (vermelho), portas (amarelo), objetos ----------
-k = 0.25
-prev = img.convert("RGB").resize((int(img.width * k), int(img.height * k)), Image.LANCZOS)
-pd = ImageDraw.Draw(prev)
-f = PX / G * k
-for w in walls:
-    x1, y1, x2, y2 = [v * f for v in w["c"]]
-    pd.line([(x1, y1), (x2, y2)], fill=(255, 210, 0) if w.get("door") else (230, 40, 40), width=4 if w.get("door") else 3)
-for o in cfg.get("objects", []):
-    x, y = o["x"] * f, o["y"] * f
-    pd.ellipse([x - 8, y - 8, x + 8, y + 8], outline=(80, 200, 255), width=3)
-prev.save(DIR / "previa.jpg", quality=85)
-print(f"{name}: {W}x{H} quadrados, {len(walls)} paredes, fundo {img.width}x{img.height}")
+# ---------- prévias: como a cena fica no Foundry, com as paredes calculadas pelo módulo ----------
+ASSETS = json.loads((ROOT / "assets" / "assets.json").read_text())
+
+def state_img(asset, idx):
+    return Image.open(ROOT / "assets" / ASSETS[asset]["states"][idx]["src"].replace(".webm", ".png")).convert("RGBA")
+
+def preview(out, broken=()):
+    broken = {tuple(b) for b in broken}
+    scene_img = img.copy()
+    solid_now, doors, pillars = set(fixed), [], []
+    for s in structures:
+        b = (s["x"], s["y"]) in broken
+        states = ASSETS[s["asset"]]["states"]
+        idx = next(i for i, st in enumerate(states) if st.get("broken")) if b else 0
+        tile = state_img(s["asset"], idx).rotate(-s.get("rotation", 0))
+        scene_img.alpha_composite(tile.resize((PX, PX)), (s["x"] * PX, s["y"] * PX))
+        if b:
+            continue
+        if s["kind"] == "wall": solid_now.add(f'{s["x"]},{s["y"]}')
+        elif s["kind"] == "door": doors.append({"x": s["x"], "y": s["y"], "dir": s["dir"]})
+        else: pillars.append({"x": s["x"], "y": s["y"]})
+    for o in cfg.get("objects", []):
+        d = ASSETS[o["asset"]]
+        t = state_img(o["asset"], 0)
+        w, h = int(d["size"]["w"] * PX), int(d["size"]["h"] * PX)
+        f = PX / G
+        scene_img.alpha_composite(t.resize((w, h)), (int(o["x"] * f - w / 2), int(o["y"] * f - h / 2)))
+    st = {"cols": W, "rows": H, "solid": sorted(solid_now), "doors": doors, "pillars": pillars}
+    walls = json.loads(subprocess.run(["node", str(ROOT / "tools" / "paredes.mjs")], input=json.dumps(st),
+                                      capture_output=True, text=True, check=True).stdout)
+    k = 0.25
+    prev = scene_img.convert("RGB").resize((int(img.width * k), int(img.height * k)), Image.LANCZOS)
+    pd = ImageDraw.Draw(prev)
+    f = PX * k
+    for w in walls:
+        x1, y1, x2, y2 = [v * f for v in w["c"]]
+        pd.line([(x1, y1), (x2, y2)], fill=(255, 210, 0) if w.get("door") else (230, 40, 40), width=4 if w.get("door") else 3)
+    prev.save(DIR / out, quality=85)
+    return walls
+
+walls = preview("previa.jpg")
+if cfg.get("preview_broken"):
+    preview("previa_quebrada.jpg", cfg["preview_broken"])
+print(f"{name}: {W}x{H} quadrados, {len(structures)} estruturas, {len(walls)} paredes, fundo {img.width}x{img.height}")

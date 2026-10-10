@@ -79,6 +79,21 @@ Arraste o ator **Tocha** (pasta *Interactive Assets*) para a cena. Acesa, ela il
 em loop num raio de 30 ft. Ao mover o token, luz e som vão junto. O botão 🔁 no HUD
 apaga/acende (desliga luz e som).
 
+## Construção quebrável (parede, porta, pilar) e barris/caixas
+Os mapas de `mapas/` são montados com estruturas que quebram de verdade:
+
+| Asset | CA / PV | Observação |
+|---|---|---|
+| Parede de pedra (1 bloco de 5 ft) | 17 / 40 | Resiste a perfurante e cortante; imune a veneno, psíquico, necrótico e radiante. Concussão/trovão/força racham. A 0 PV desmorona e abre um buraco por onde dá para passar e ver. |
+| Porta de madeira (dupla) | 15 / 18 | Abrir/fechar pela porta do Foundry troca a imagem. Fogo/raio põe fogo (2 de fogo por rodada). A 0 PV é arrombada (ou queima) e a passagem fica livre. |
+| Pilar de pedra | 17 / 50 | Mesmas resistências da parede. A 0 PV desmorona e deixa de bloquear visão. |
+| Barril / Caixa de madeira | 15 / 10 e 8 | Jogadores podem empurrar. Fogo põe fogo; a 0 PV quebram (ou viram cinzas). |
+
+As paredes do Foundry são recalculadas sozinhas (`scripts/mapa.js`) a partir dos blocos de pé:
+quando um bloco quebra, o buraco se abre e as bordas dele viram parede; curar o bloco (ou
+voltar o estado no HUD) fecha de novo. Estados com `"door": "open"/"closed"` seguem a porta do
+Foundry, e `"sfx"` toca um som ao entrar no estado (madeira quebrando, por exemplo).
+
 ## Adicionar novos assets
 Tudo fica neste mesmo módulo: coloque os arquivos em `assets/<nome>/` e registre
 o asset em `assets/assets.json`. Cada estado aceita:
