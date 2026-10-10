@@ -13,8 +13,15 @@ reinicie o Foundry e ative o módulo no mundo (Manage Modules).
    game.modules.get("interactive-assets").api.placeAsset("mesa");
    ```
    Executar a macro coloca a mesa no centro da tela.
-2. Na camada de Tiles, clique com o botão direito na mesa: aparece um botão
-   com o ícone 🔁 no HUD. Clicar alterna entre **Inteira** e **Quebrada**.
+2. A mesa entra como **Token** com CA 0 e 10 PV (ator "Mesa de madeira", pasta
+   *Interactive Assets*). Cada mesa colocada tem a própria vida.
+3. Mire na mesa e ataque normalmente pelo dnd5e. O dano é aplicado sozinho
+   (configurável em *Configure Settings*) e, ao chegar a 0 PV, a imagem troca
+   para **Quebrada**. Curar acima de 0 volta para **Inteira**.
+4. O GM também pode trocar o estado pelo botão 🔁 no HUD do token
+   (quebrada = 0 PV, inteira = PV cheio).
+
+Assets sem `actor` no `assets.json` continuam virando Tile, com o mesmo botão no HUD.
 
 Também dá pra trocar por macro: `api.nextState(tile)` / `api.setState(tile, 1)`.
 

@@ -2,9 +2,10 @@
   "mesa": {
     "name": "Mesa de madeira",
     "size": { "w": 2.2, "h": 1.2 },
+    "actor": { "ac": 0, "hp": 10, "immunities": ["poison", "psychic"] },
     "states": [
       { "id": "inteira", "name": "Inteira", "src": "mesa/mesa_inteira.png" },
-      { "id": "quebrada", "name": "Quebrada", "src": "mesa/mesa_quebrada.png" }
+      { "id": "quebrada", "name": "Quebrada", "src": "mesa/mesa_quebrada.png", "broken": true }
     ]
   }
 }
