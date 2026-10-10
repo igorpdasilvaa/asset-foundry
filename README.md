@@ -26,16 +26,25 @@ Assets sem `actor` no `assets.json` continuam virando Tile, com o mesmo botão n
 
 Também dá pra trocar por macro: `api.nextState(tile)` / `api.setState(tile, 1)`.
 
-## Mesa pegando fogo
-- Dano de **fogo** com a mesa ainda de pé: ela começa a pegar fogo (imagem, luz e som de fogo).
-- Queimando, ela leva **2 de dano de fogo** a cada nova rodada de combate na cena, ou a cada
-  **6 segundos** fora de combate (o relógio para quando o jogo está pausado).
-- Chegando a 0 PV queimando (ou com o golpe final de fogo): vira **mesa queimada**.
-  Chegando a 0 PV com outro dano: vira **mesa quebrada**.
-- O botão 🔁 no HUD passa por Inteira → Quebrada → Pegando fogo → Queimada.
+## Mesa: reações por tipo de dano
+CA 0, 10 PV, imune a veneno e psíquico, resistente a perfurante.
 
-Isso é configurado em `assets.json` com `"burn"` no asset e `burning` / `burnt` nos estados,
-então outros objetos inflamáveis podem reaproveitar a mesma regra.
+| Dano | Efeito |
+|---|---|
+| Fogo / Raio | Pega fogo: 2 de fogo por rodada (ou a cada 6 s fora de combate). Congelada, descongela. |
+| Gelo | Congela. Se estiver pegando fogo, apaga (fica chamuscada). |
+| Concussão / Trovão / Força em mesa congelada | Estilhaça na hora. |
+| Ácido | Corroída: 1 de ácido por rodada, por 3 rodadas. |
+| Necrótico | Apodrece e perde PV máximo igual ao dano. |
+| Radiante | Brilha (luz) por 10 rodadas / 1 minuto e depois volta ao normal. |
+| Perfurante | Fica com flechas cravadas (e leva metade do dano). |
+| Trovão / Força | Empurra a mesa 1 quadrado para longe de quem atacou. |
+
+Chegando a 0 PV: queimando ou fogo → queimada; congelada ou gelo → estilhaçada;
+cortante → cortada ao meio; outros → quebrada. O botão 🔁 do HUD passa por todos os estados.
+
+Tudo isso está em `assets.json` (`reactions`, `onZero`, e `dot`/`ticks`/`then`/`sticky` nos estados),
+então outros objetos podem ter regras próprias sem mexer no código.
 
 ## Tocha (luz + som)
 Arraste o ator **Tocha** (pasta *Interactive Assets*) para a cena. Acesa, ela ilumina

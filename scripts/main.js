@@ -7,8 +7,10 @@ let REGISTRY = {};
  * flags.interactive-assets.data = { asset, states: [{id,name,src,broken?}], index }
  * Assets com "actor" no assets.json viram Tokens; com "hp" eles têm PV/CA (dnd5e) e quebram ao chegar a 0 PV.
  * Cada estado pode trazer "light" (luz do token) e "sound" (som ambiente que acompanha o token).
- * Com "burn" no asset: dano do tipo configurado acende o estado "burning", que causa dano por rodada
- * (em combate) ou a cada N segundos (fora de combate); chegar a 0 PV queimando leva ao estado "burnt".
+ * "reactions": regras por tipo de dano (troca de estado, perda de PV máximo, empurrão).
+ * "onZero": qual estado quebrado usar quando a vida chega a 0 (pelo estado atual ou pelo tipo do golpe).
+ * Estados com "dot" causam dano a cada "tique" (nova rodada em combate, ou a cada tickSeconds fora dele);
+ * "ticks" limita a duração e "then" diz para qual estado voltar ao fim.
  */
 function getData(doc) {
   return doc?.getFlag(MODULE_ID, "data") ?? null;
@@ -25,7 +27,7 @@ function isDamageable(data) {
 }
 
 function brokenIndex(data) {
-  const i = data.states.findIndex(s => s.broken && !s.burnt);
+  const i = data.states.findIndex(s => s.broken);
   return i === -1 ? data.states.length - 1 : i;
 }
 
@@ -38,7 +40,8 @@ async function setState(doc, index, { syncHP = true } = {}) {
   const i = ((index % data.states.length) + data.states.length) % data.states.length;
   const update = {
     "texture.src": data.states[i].src,
-    [`flags.${MODULE_ID}.data.index`]: i
+    [`flags.${MODULE_ID}.data.index`]: i,
+    [`flags.${MODULE_ID}.data.ticksLeft`]: data.states[i].ticks ?? null
   };
   if (doc.documentName === "Token" && data.states.some(s => s.light)) update.light = lightFor(data.states[i]);
   await doc.update(update);
@@ -47,7 +50,7 @@ async function setState(doc, index, { syncHP = true } = {}) {
   // Pegando fogo mantém a vida atual (ou enche, se estava em 0).
   if (syncHP && hp && isDamageable(data)) {
     const s = data.states[i];
-    const value = s.broken ? 0 : (s.burning && hp.value > 0 ? hp.value : hp.max);
+    const value = s.broken ? 0 : (i !== 0 && hp.value > 0 ? hp.value : hp.max);
     if (hp.value !== value) await doc.actor.update({ "system.attributes.hp.value": value }, { [MODULE_ID]: { fromState: true } });
   }
 }
@@ -63,8 +66,8 @@ function stateFlags(assetId, def) {
     src: `${BASE}/${s.src}`,
     ...(s.sound ? { sound: { ...s.sound, src: `${BASE}/${s.sound.src}` } } : {})
   }));
-  const data = { asset: assetId, states, index: 0, damageable: def.actor?.hp != null };
-  if (def.burn) data.burn = def.burn;
+  const data = { asset: assetId, states, index: 0, ticksLeft: null, damageable: def.actor?.hp != null };
+  for (const key of ["reactions", "onZero", "tickSeconds"]) if (def[key] != null) data[key] = def[key];
   return { [MODULE_ID]: { data } };
 }
 
@@ -124,6 +127,14 @@ async function getBaseActor(assetId, def) {
       update["prototypeToken.texture.src"] = `${BASE}/${def.states[0].src}`;
       await actor.update(update);
     }
+    // Imunidades/resistências em dia com o assets.json.
+    if (def.actor.hp != null) {
+      const same = (set, list) => JSON.stringify([...(set ?? [])].sort()) === JSON.stringify([...(list ?? [])].sort());
+      const t = actor.system.traits;
+      if (!same(t.di?.value, def.actor.immunities) || !same(t.dr?.value, def.actor.resistances)) {
+        await actor.update({ "system.traits.di.value": def.actor.immunities ?? [], "system.traits.dr.value": def.actor.resistances ?? [] });
+      }
+    }
     return actor;
   }
   let folder = game.folders.find(f => f.type === "Actor" && f.getFlag(MODULE_ID, "root"));
@@ -132,7 +143,7 @@ async function getBaseActor(assetId, def) {
   const system = { details: { cr: 0 } };
   if (a.hp != null) {
     system.attributes = { ac: { calc: "flat", flat: a.ac ?? 10 }, hp: { value: a.hp, max: a.hp } };
-    system.traits = { di: { value: a.immunities ?? [] } };
+    system.traits = { di: { value: a.immunities ?? [] }, dr: { value: a.resistances ?? [] } };
   }
   return Actor.create({
     name: def.name,
@@ -195,7 +206,7 @@ async function refreshPlaced(assetId, def) {
         const data = getData(doc);
         if (data?.asset !== assetId) continue;
         const index = Math.max(0, fresh.states.findIndex(s => s.id === currentState(data)?.id));
-        const next = { ...fresh, index };
+        const next = { ...fresh, index, ticksLeft: data.ticksLeft ?? null };
         if (JSON.stringify(next) === JSON.stringify(data)) continue;
         const update = { _id: doc.id, [`flags.${MODULE_ID}.data`]: next };
         // Se a imagem do estado atual mudou (ex.: PNG virou animação), troca também no que já está na cena.
@@ -207,51 +218,108 @@ async function refreshPlaced(assetId, def) {
   }
 }
 
-/* ---------- Fogo ---------- */
+/* ---------- Reações por tipo de dano ---------- */
 
-/** Atores que acabaram de levar dano do tipo que incendeia (preenchido no cálculo de dano do dnd5e). */
-const recentFire = new Map();
+/** Tipos (e valores) de dano que cada ator acabou de levar, preenchido no cálculo de dano do dnd5e. */
+const recentDamage = new Map();
+/** Quem atacou cada ator por último (para empurrar na direção certa). */
+const recentAttacker = new Map();
 
 Hooks.on("dnd5e.calculateDamage", (actor, damages) => {
-  const types = new Set(damages.filter(d => d.value > 0).map(d => d.type));
-  if (types.size) recentFire.set(actor.uuid, { types, at: Date.now() });
+  const types = new Map();
+  for (const d of damages) if (d.value > 0) types.set(d.type, (types.get(d.type) ?? 0) + d.value);
+  if (types.size) recentDamage.set(actor.uuid, { types, at: Date.now() });
 });
 
-function tookDamageType(actor, type) {
-  const hit = recentFire.get(actor.uuid);
-  recentFire.delete(actor.uuid);
-  return !!hit && Date.now() - hit.at < 3000 && hit.types.has(type);
+function takeRecent(map, actor) {
+  const hit = map.get(actor.uuid);
+  map.delete(actor.uuid);
+  return hit && Date.now() - hit.at < 3000 ? hit : null;
 }
 
-function burningTokens(scene) {
+/** A regra vale para o estado atual? Estados "sticky" (fogo, gelo) só mudam por regras que os citam em "from". */
+function ruleAllows(rule, data) {
+  const state = currentState(data);
+  if (rule.from) return rule.from.includes(state?.id);
+  if (state?.sticky || state?.broken) return false;
+  return !rule.except?.includes(state?.id);
+}
+
+const matchesTypes = (rule, types) => !rule.types || rule.types.some(t => types.has(t));
+const indexOfId = (data, id) => data.states.findIndex(s => s.id === id);
+
+async function pushAway(token, attacker, squares) {
+  const g = token.parent.grid.size;
+  const a = tokenCenter(attacker), b = tokenCenter(token);
+  const ang = Math.atan2(b.y - a.y, b.x - a.x);
+  const dx = Math.round(Math.cos(ang)), dy = Math.round(Math.sin(ang));
+  if (!dx && !dy) return;
+  const clamp = (v, lo, hi) => Math.min(Math.max(v, lo), hi);
+  const x = clamp(token.x + dx * g * squares, 0, token.parent.dimensions.width - token.width * g);
+  const y = clamp(token.y + dy * g * squares, 0, token.parent.dimensions.height - token.height * g);
+  await token.update({ x, y });
+}
+
+async function applyEffect(rule, token, actor, types, attacker) {
+  if (rule.effect === "maxHpLoss") {
+    const loss = rule.types.reduce((n, t) => n + (types.get(t) ?? 0), 0);
+    const hp = actor.system.attributes.hp;
+    await actor.update({ "system.attributes.hp.tempmax": (hp.tempmax ?? 0) - loss }, { [MODULE_ID]: { fromState: true } });
+    await say(token, `perde ${loss} de PV máximo.`);
+  } else if (rule.effect === "push" && attacker) {
+    await pushAway(token, attacker, rule.squares ?? 1);
+  }
+}
+
+/* ---------- Tiques: dano contínuo e duração dos estados ---------- */
+
+function tickingTokens(scene) {
   return scene?.tokens.filter(t => {
     const data = getData(t);
-    return data?.burn && currentState(data)?.burning && t.actor;
+    const state = data && currentState(data);
+    return state && (state.dot || state.ticks) && t.actor && data.ticksLeft !== 0;
   }) ?? [];
 }
 
-async function burnTick(token) {
-  const tick = getData(token).burn.tick ?? { damage: 2, type: "fire" };
-  await token.actor.applyDamage([{ value: tick.damage, type: tick.type, properties: new Set() }]);
+/** Atores levando dano do próprio estado (ácido, fogo): esse dano não dispara reações de novo. */
+const tickingNow = new Set();
+
+async function tick(token) {
+  const data = getData(token);
+  const state = currentState(data);
+  if (data.ticksLeft === 0) return;
+  if (state.dot) {
+    tickingNow.add(token.actor.uuid);
+    try {
+      await token.actor.applyDamage([{ value: state.dot.damage, type: state.dot.type, properties: new Set() }]);
+    } finally {
+      tickingNow.delete(token.actor.uuid);
+    }
+  }
+  // O dano pode ter trocado o estado (ex.: queimou até 0); só conta a duração se ainda estiver nele.
+  const now = getData(token);
+  if (currentState(now)?.id !== state.id || now.ticksLeft == null) return;
+  const left = now.ticksLeft - 1;
+  if (left <= 0 && state.then) await setState(token, indexOfId(now, state.then), { syncHP: false });
+  else await token.update({ [`flags.${MODULE_ID}.data.ticksLeft`]: Math.max(left, 0) });
 }
 
-/** Em combate: dano a cada nova rodada, nos assets queimando da cena do combate. */
+/** Em combate: um tique a cada nova rodada, nos assets da cena do combate. */
 Hooks.on("updateCombat", async (combat, changes, options) => {
   if (!isResponsibleGM() || !("round" in changes) || options?.direction < 0 || !combat.started) return;
-  for (const token of burningTokens(combat.scene ?? canvas.scene)) await burnTick(token);
+  for (const token of tickingTokens(combat.scene ?? canvas.scene)) await tick(token);
 });
 
-/** Fora de combate: dano a cada N segundos (relógio real), pausado quando o jogo está pausado. */
-let burnTimer = null;
-function startBurnTimer() {
-  if (burnTimer) return;
-  const seconds = Math.min(...Object.values(REGISTRY).map(d => d.burn?.tick?.seconds ?? Infinity));
-  if (!Number.isFinite(seconds)) return;
-  burnTimer = setInterval(async () => {
+/** Fora de combate: um tique a cada tickSeconds (relógio real), parado quando o jogo está pausado. */
+let tickTimer = null;
+function startTickTimer() {
+  if (tickTimer) return;
+  const seconds = Math.min(6, ...Object.values(REGISTRY).map(d => d.tickSeconds ?? 6));
+  tickTimer = setInterval(async () => {
     if (!isResponsibleGM() || game.paused) return;
     for (const scene of game.scenes) {
       if (game.combats.some(c => c.started && c.scene?.id === scene.id)) continue;
-      for (const token of burningTokens(scene)) await burnTick(token);
+      for (const token of tickingTokens(scene)) await tick(token);
     }
   }, seconds * 1000);
 }
@@ -288,7 +356,7 @@ Hooks.once("ready", async () => {
         if (def.actor) await getBaseActor(id, def);
         await refreshPlaced(id, def);
       }
-      startBurnTimer();
+      startTickTimer();
     }
   } catch (err) {
     console.error(`${MODULE_ID} | falha ao carregar assets.json`, err);
@@ -300,37 +368,49 @@ function say(token, text) {
 }
 
 /**
- * Regras de estado pela vida:
- * - 0 PV: queimando (ou atingido por fogo) → queimada; senão → quebrada.
- * - Dano de fogo com PV > 0 → começa a pegar fogo.
- * - Curado acima de 0 estando quebrada/queimada → inteira.
+ * Regras de estado pela vida e pelo tipo de dano (definidas no assets.json):
+ * - 0 PV: primeira regra de "onZero" que bate (estado atual ou tipo do golpe).
+ * - PV > 0: primeira regra de "reactions" com "to" que bate troca o estado; regras com "effect" sempre rodam.
+ * - Curada acima de 0 estando quebrada → inteira.
  */
 Hooks.on("updateActor", async (actor, changes, options) => {
   if (!isResponsibleGM() || options?.[MODULE_ID]?.fromState) return;
   if (foundry.utils.getProperty(changes, "system.attributes.hp.value") === undefined) return;
   const hp = actor.system.attributes.hp.value;
+  const hit = takeRecent(recentDamage, actor);
+  const types = tickingNow.has(actor.uuid) ? new Map() : (hit?.types ?? new Map());
+  const zeroTypes = hit?.types ?? new Map();
+  const attacker = takeRecent(recentAttacker, actor)?.token;
   for (const token of tokensForActor(actor)) {
     const data = getData(token);
     if (!data?.states?.length || !isDamageable(data)) continue;
     const state = currentState(data);
-    const fire = data.burn ? tookDamageType(actor, data.burn.damageType ?? "fire") : false;
-    const burnt = stateIndex(data, "burnt");
 
     if (hp <= 0) {
       if (state?.broken) continue;
-      if (data.burn && burnt !== -1 && (state?.burning || fire)) {
-        await setState(token, burnt, { syncHP: false });
-        await say(token, "queima até virar carvão!");
-      } else {
-        await setState(token, brokenIndex(data), { syncHP: false });
-        await say(token, "se despedaça!");
-      }
-    } else if (state?.broken) {
-      await setState(token, 0, { syncHP: false });
-    } else if (fire && !state?.burning && stateIndex(data, "burning") !== -1) {
-      await setState(token, stateIndex(data, "burning"), { syncHP: false });
-      await say(token, "começa a pegar fogo!");
+      const rule = (data.onZero ?? [{ to: data.states[brokenIndex(data)].id, say: "se despedaça!" }])
+        .find(r => (!r.state || r.state === state?.id) && matchesTypes(r, zeroTypes));
+      const target = rule ? indexOfId(data, rule.to) : brokenIndex(data);
+      await setState(token, target === -1 ? brokenIndex(data) : target, { syncHP: false });
+      if (rule?.say) await say(token, rule.say);
+      continue;
     }
+    if (state?.broken) {
+      await setState(token, 0, { syncHP: false });
+      continue;
+    }
+    if (!types.size) continue;
+    const rules = data.reactions ?? [];
+    const change = rules.find(r => r.to && matchesTypes(r, types) && ruleAllows(r, data));
+    if (change) {
+      const target = indexOfId(data, change.to);
+      if (target !== -1) {
+        // Ir para um estado quebrado (ex.: gelo estilhaçado) zera a vida.
+        await setState(token, target, { syncHP: !!data.states[target].broken });
+        if (change.say) await say(token, change.say);
+      }
+    }
+    for (const r of rules.filter(r => r.effect && matchesTypes(r, types))) await applyEffect(r, token, actor, types, attacker);
   }
 });
 
@@ -348,11 +428,14 @@ Hooks.on("createChatMessage", async message => {
     type: r.options?.type,
     properties: new Set(r.options?.properties ?? [])
   }));
+  const speaker = message.speaker;
+  const attacker = speaker?.token ? game.scenes.get(speaker.scene)?.tokens.get(speaker.token) : null;
   for (const t of targets) {
     const actor = fromUuidSync(t.uuid);
     const token = actor?.token ?? actor?.getActiveTokens(false, true)[0];
     const data = getData(token);
     if (!data || !isDamageable(data) || !actor?.system?.attributes?.hp) continue;
+    if (attacker) recentAttacker.set(actor.uuid, { token: attacker, at: Date.now() });
     await actor.applyDamage(damages);
   }
 });

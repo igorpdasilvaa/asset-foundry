@@ -11,8 +11,12 @@
       "immunities": [
         "poison",
         "psychic"
+      ],
+      "resistances": [
+        "piercing"
       ]
     },
+    "tickSeconds": 6,
     "states": [
       {
         "id": "inteira",
@@ -26,10 +30,21 @@
         "broken": true
       },
       {
+        "id": "cortada",
+        "name": "Cortada ao meio",
+        "src": "mesa/mesa_cortada.png",
+        "broken": true
+      },
+      {
         "id": "queimando",
         "name": "Pegando fogo",
         "src": "mesa/mesa_queimando.webm",
         "burning": true,
+        "sticky": true,
+        "dot": {
+          "damage": 2,
+          "type": "fire"
+        },
         "light": {
           "bright": 10,
           "dim": 30,
@@ -53,7 +68,6 @@
         "name": "Queimada",
         "src": "mesa/mesa_queimada.png",
         "broken": true,
-        "burnt": true,
         "light": {
           "bright": 0,
           "dim": 10,
@@ -65,16 +79,201 @@
             "intensity": 2
           }
         }
+      },
+      {
+        "id": "chamuscada",
+        "name": "Chamuscada",
+        "src": "mesa/mesa_chamuscada.png"
+      },
+      {
+        "id": "congelada",
+        "name": "Congelada",
+        "src": "mesa/mesa_congelada.png",
+        "sticky": true,
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#9fdcff",
+          "alpha": 0.3
+        }
+      },
+      {
+        "id": "estilhacada",
+        "name": "Estilhaçada",
+        "src": "mesa/mesa_estilhacada.png",
+        "broken": true
+      },
+      {
+        "id": "corroida",
+        "name": "Corroída",
+        "src": "mesa/mesa_corroida.png",
+        "dot": {
+          "damage": 1,
+          "type": "acid"
+        },
+        "ticks": 3
+      },
+      {
+        "id": "flechada",
+        "name": "Com flechas",
+        "src": "mesa/mesa_flechada.png"
+      },
+      {
+        "id": "apodrecida",
+        "name": "Apodrecida",
+        "src": "mesa/mesa_apodrecida.png"
+      },
+      {
+        "id": "radiante",
+        "name": "Radiante",
+        "src": "mesa/mesa_radiante.png",
+        "ticks": 10,
+        "then": "inteira",
+        "light": {
+          "bright": 10,
+          "dim": 20,
+          "color": "#ffe27a",
+          "alpha": 0.45,
+          "animation": {
+            "type": "pulse",
+            "speed": 2,
+            "intensity": 3
+          }
+        }
       }
     ],
-    "burn": {
-      "damageType": "fire",
-      "tick": {
-        "damage": 2,
-        "type": "fire",
-        "seconds": 6
+    "reactions": [
+      {
+        "types": [
+          "bludgeoning",
+          "thunder",
+          "force"
+        ],
+        "from": [
+          "congelada"
+        ],
+        "to": "estilhacada",
+        "say": "se estilhaça em cacos de gelo!"
+      },
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "queimando"
+        ],
+        "to": "chamuscada",
+        "say": "tem o fogo apagado pelo gelo."
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "congelada"
+        ],
+        "to": "inteira",
+        "say": "descongela."
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "queimando",
+        "say": "começa a pegar fogo!"
+      },
+      {
+        "types": [
+          "cold"
+        ],
+        "to": "congelada",
+        "say": "congela!"
+      },
+      {
+        "types": [
+          "acid"
+        ],
+        "to": "corroida",
+        "say": "é corroída pelo ácido!"
+      },
+      {
+        "types": [
+          "necrotic"
+        ],
+        "to": "apodrecida",
+        "say": "apodrece."
+      },
+      {
+        "types": [
+          "radiant"
+        ],
+        "to": "radiante",
+        "say": "brilha com luz radiante!"
+      },
+      {
+        "types": [
+          "piercing"
+        ],
+        "from": [
+          "inteira"
+        ],
+        "to": "flechada"
+      },
+      {
+        "types": [
+          "necrotic"
+        ],
+        "effect": "maxHpLoss"
+      },
+      {
+        "types": [
+          "thunder",
+          "force"
+        ],
+        "effect": "push",
+        "squares": 1
       }
-    }
+    ],
+    "onZero": [
+      {
+        "state": "queimando",
+        "to": "queimada",
+        "say": "queima até virar carvão!"
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "queimada",
+        "say": "queima até virar carvão!"
+      },
+      {
+        "state": "congelada",
+        "to": "estilhacada",
+        "say": "se estilhaça em cacos de gelo!"
+      },
+      {
+        "types": [
+          "cold"
+        ],
+        "to": "estilhacada",
+        "say": "se estilhaça em cacos de gelo!"
+      },
+      {
+        "types": [
+          "slashing"
+        ],
+        "to": "cortada",
+        "say": "é partida ao meio!"
+      },
+      {
+        "to": "quebrada",
+        "say": "se despedaça!"
+      }
+    ]
   },
   "tocha": {
     "name": "Tocha",
