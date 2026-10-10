@@ -1,3 +1,5 @@
+import { buildMap, rebuildWalls } from "./mapa.js";
+
 const MODULE_ID = "interactive-assets";
 /** Pasta dos assets: local (modules/...) ou, no modo desenvolvimento, o commit mais recente no GitHub. */
 let BASE = `modules/${MODULE_ID}/assets`;
@@ -418,7 +420,7 @@ export async function start({ base, version }) {
     default: true
   });
   game.modules.get(MODULE_ID).api = {
-    placeAsset, nextState, setState,
+    placeAsset, nextState, setState, buildMap, rebuildWalls,
     get assets() { return REGISTRY; }
   };
 

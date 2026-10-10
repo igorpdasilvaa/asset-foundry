@@ -325,5 +325,494 @@
         }
       }
     ]
+  },
+  "parede": {
+    "name": "Parede de pedra",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {
+      "ac": 17,
+      "hp": 40,
+      "immunities": [
+        "poison",
+        "psychic",
+        "necrotic",
+        "radiant"
+      ],
+      "resistances": [
+        "piercing",
+        "slashing"
+      ]
+    },
+    "states": [
+      {
+        "id": "inteira",
+        "name": "Inteira",
+        "src": "parede/parede_inteira.png"
+      },
+      {
+        "id": "rachada",
+        "name": "Rachada",
+        "src": "parede/parede_rachada.png"
+      },
+      {
+        "id": "destruida",
+        "name": "Destruída",
+        "src": "parede/parede_destruida.png",
+        "broken": true
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "bludgeoning",
+          "thunder",
+          "force"
+        ],
+        "from": [
+          "inteira"
+        ],
+        "to": "rachada",
+        "say": "racha."
+      }
+    ],
+    "onZero": [
+      {
+        "to": "destruida",
+        "say": "desmorona e abre um buraco!"
+      }
+    ]
+  },
+  "porta": {
+    "name": "Porta de madeira",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {
+      "ac": 15,
+      "hp": 18,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": [
+        "piercing"
+      ]
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "fechada",
+        "name": "Fechada",
+        "src": "porta/porta_fechada.png",
+        "door": "closed"
+      },
+      {
+        "id": "aberta",
+        "name": "Aberta",
+        "src": "porta/porta_aberta.png",
+        "door": "open"
+      },
+      {
+        "id": "quebrada",
+        "name": "Arrombada",
+        "src": "porta/porta_quebrada.png",
+        "broken": true,
+        "sfx": "audio/madeira_quebrando.ogg"
+      },
+      {
+        "id": "queimando",
+        "name": "Pegando fogo",
+        "src": "porta/porta_queimando.png",
+        "sticky": true,
+        "dot": {
+          "damage": 2,
+          "type": "fire"
+        },
+        "light": {
+          "bright": 10,
+          "dim": 25,
+          "color": "#ff7b2e",
+          "alpha": 0.5,
+          "attenuation": 0.6,
+          "animation": {
+            "type": "torch",
+            "speed": 4,
+            "intensity": 4
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 25,
+          "volume": 0.6
+        }
+      },
+      {
+        "id": "queimada",
+        "name": "Queimada",
+        "src": "porta/porta_queimada.png",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#ff5a1a",
+          "alpha": 0.35,
+          "animation": {
+            "type": "torch",
+            "speed": 1,
+            "intensity": 2
+          }
+        }
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "fechada",
+          "aberta"
+        ],
+        "to": "queimando",
+        "say": "começa a pegar fogo!"
+      },
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "queimando"
+        ],
+        "to": "fechada",
+        "say": "tem o fogo apagado pelo gelo."
+      }
+    ],
+    "onZero": [
+      {
+        "state": "queimando",
+        "to": "queimada",
+        "say": "queima até cair!"
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "queimada",
+        "say": "queima até cair!"
+      },
+      {
+        "to": "quebrada",
+        "say": "é arrombada!"
+      }
+    ]
+  },
+  "pilar": {
+    "name": "Pilar de pedra",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {
+      "ac": 17,
+      "hp": 50,
+      "immunities": [
+        "poison",
+        "psychic",
+        "necrotic",
+        "radiant"
+      ],
+      "resistances": [
+        "piercing",
+        "slashing"
+      ]
+    },
+    "states": [
+      {
+        "id": "inteiro",
+        "name": "Inteiro",
+        "src": "pilar/pilar_inteiro.png"
+      },
+      {
+        "id": "rachado",
+        "name": "Rachado",
+        "src": "pilar/pilar_rachado.png"
+      },
+      {
+        "id": "destruido",
+        "name": "Desmoronado",
+        "src": "pilar/pilar_destruido.png",
+        "broken": true
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "bludgeoning",
+          "thunder",
+          "force"
+        ],
+        "from": [
+          "inteiro"
+        ],
+        "to": "rachado",
+        "say": "racha."
+      }
+    ],
+    "onZero": [
+      {
+        "to": "destruido",
+        "say": "desmorona!"
+      }
+    ]
+  },
+  "barril": {
+    "name": "Barril",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {
+      "ac": 15,
+      "hp": 10,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": [
+        "piercing"
+      ]
+    },
+    "player": {
+      "move": true
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "inteiro",
+        "name": "Inteiro",
+        "src": "barril/barril_inteiro.png"
+      },
+      {
+        "id": "quebrado",
+        "name": "Quebrado",
+        "src": "barril/barril_quebrado.png",
+        "broken": true,
+        "sfx": "audio/madeira_quebrando.ogg"
+      },
+      {
+        "id": "queimando",
+        "name": "Pegando fogo",
+        "src": "barril/barril_queimando.png",
+        "sticky": true,
+        "dot": {
+          "damage": 2,
+          "type": "fire"
+        },
+        "light": {
+          "bright": 10,
+          "dim": 25,
+          "color": "#ff7b2e",
+          "alpha": 0.5,
+          "attenuation": 0.6,
+          "animation": {
+            "type": "torch",
+            "speed": 4,
+            "intensity": 4
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 25,
+          "volume": 0.6
+        }
+      },
+      {
+        "id": "queimado",
+        "name": "Queimado",
+        "src": "barril/barril_queimado.png",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#ff5a1a",
+          "alpha": 0.35,
+          "animation": {
+            "type": "torch",
+            "speed": 1,
+            "intensity": 2
+          }
+        }
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "inteiro"
+        ],
+        "to": "queimando",
+        "say": "começa a pegar fogo!"
+      },
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "queimando"
+        ],
+        "to": "inteiro",
+        "say": "tem o fogo apagado pelo gelo."
+      }
+    ],
+    "onZero": [
+      {
+        "state": "queimando",
+        "to": "queimado",
+        "say": "vira cinzas!"
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "queimado",
+        "say": "vira cinzas!"
+      },
+      {
+        "to": "quebrado",
+        "say": "se arrebenta e derrama tudo!"
+      }
+    ]
+  },
+  "caixa": {
+    "name": "Caixa de madeira",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {
+      "ac": 15,
+      "hp": 8,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": [
+        "piercing"
+      ]
+    },
+    "player": {
+      "move": true
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "inteiro",
+        "name": "Inteiro",
+        "src": "caixa/caixa_inteira.png"
+      },
+      {
+        "id": "quebrado",
+        "name": "Quebrada",
+        "src": "caixa/caixa_quebrada.png",
+        "broken": true,
+        "sfx": "audio/madeira_quebrando.ogg"
+      },
+      {
+        "id": "queimando",
+        "name": "Pegando fogo",
+        "src": "caixa/caixa_queimando.png",
+        "sticky": true,
+        "dot": {
+          "damage": 2,
+          "type": "fire"
+        },
+        "light": {
+          "bright": 10,
+          "dim": 25,
+          "color": "#ff7b2e",
+          "alpha": 0.5,
+          "attenuation": 0.6,
+          "animation": {
+            "type": "torch",
+            "speed": 4,
+            "intensity": 4
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 25,
+          "volume": 0.6
+        }
+      },
+      {
+        "id": "queimado",
+        "name": "Queimado",
+        "src": "caixa/caixa_queimada.png",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#ff5a1a",
+          "alpha": 0.35,
+          "animation": {
+            "type": "torch",
+            "speed": 1,
+            "intensity": 2
+          }
+        }
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "inteiro"
+        ],
+        "to": "queimando",
+        "say": "começa a pegar fogo!"
+      },
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "queimando"
+        ],
+        "to": "inteiro",
+        "say": "tem o fogo apagado pelo gelo."
+      }
+    ],
+    "onZero": [
+      {
+        "state": "queimando",
+        "to": "queimado",
+        "say": "vira cinzas!"
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "queimado",
+        "say": "vira cinzas!"
+      },
+      {
+        "to": "quebrado",
+        "say": "se despedaça!"
+      }
+    ]
   }
 }

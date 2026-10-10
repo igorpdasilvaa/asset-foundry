@@ -13,18 +13,126 @@
     "D": "porta"
   },
   "objects": [
-    { "asset": "mesa", "x": 350, "y": 300 },
-    { "asset": "mesa", "x": 750, "y": 650 },
-    { "asset": "mesa", "x": 1100, "y": 1000 },
-    { "asset": "tocha", "x": 250, "y": 1050 },
-    { "asset": "tocha", "x": 1250, "y": 250 },
-    { "asset": "tocha", "x": 1750, "y": 650 }
+    {
+      "asset": "mesa",
+      "x": 350,
+      "y": 300
+    },
+    {
+      "asset": "mesa",
+      "x": 750,
+      "y": 650
+    },
+    {
+      "asset": "mesa",
+      "x": 1050,
+      "y": 1000
+    },
+    {
+      "asset": "tocha",
+      "x": 250,
+      "y": 1050
+    },
+    {
+      "asset": "tocha",
+      "x": 1250,
+      "y": 250
+    },
+    {
+      "asset": "tocha",
+      "x": 1750,
+      "y": 650
+    },
+    {
+      "asset": "barril",
+      "x": 1450,
+      "y": 250
+    },
+    {
+      "asset": "barril",
+      "x": 1550,
+      "y": 250
+    },
+    {
+      "asset": "barril",
+      "x": 1450,
+      "y": 350
+    },
+    {
+      "asset": "caixa",
+      "x": 1750,
+      "y": 450
+    },
+    {
+      "asset": "caixa",
+      "x": 1750,
+      "y": 550
+    },
+    {
+      "asset": "caixa",
+      "x": 1250,
+      "y": 1050
+    },
+    {
+      "asset": "barril",
+      "x": 1250,
+      "y": 850
+    }
   ],
   "lights": [
-    { "x": 650, "y": 215, "config": { "bright": 15, "dim": 35, "color": "#ff8a3d", "alpha": 0.5, "attenuation": 0.5, "animation": { "type": "torch", "speed": 3, "intensity": 4 } } }
+    {
+      "x": 650,
+      "y": 215,
+      "config": {
+        "bright": 15,
+        "dim": 35,
+        "color": "#ff8a3d",
+        "alpha": 0.5,
+        "attenuation": 0.5,
+        "animation": {
+          "type": "torch",
+          "speed": 3,
+          "intensity": 4
+        }
+      }
+    }
   ],
   "sounds": [
-    { "x": 650, "y": 215, "radius": 20, "path": "assets/tocha/fogo.ogg", "volume": 0.6 },
-    { "x": 700, "y": 650, "radius": 45, "path": "mapas/taverna/taverna_loop.ogg", "volume": 0.4 }
+    {
+      "x": 650,
+      "y": 215,
+      "radius": 20,
+      "path": "assets/tocha/fogo.ogg",
+      "volume": 0.6
+    },
+    {
+      "x": 700,
+      "y": 650,
+      "radius": 45,
+      "path": "mapas/taverna/taverna_loop.ogg",
+      "volume": 0.4
+    }
+  ],
+  "preview_broken": [
+    [
+      1,
+      5
+    ],
+    [
+      13,
+      9
+    ],
+    [
+      9,
+      8
+    ],
+    [
+      5,
+      11
+    ],
+    [
+      13,
+      4
+    ]
   ]
 }
