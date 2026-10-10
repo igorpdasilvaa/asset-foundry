@@ -196,6 +196,59 @@ async function placeAsset(assetId, { x, y } = {}) {
   return tile;
 }
 
+/* ---------- NPC de teste ---------- */
+
+const DAMAGE_TYPES = {
+  acid: "Ácido", bludgeoning: "Concussão", cold: "Gelo", fire: "Fogo", force: "Força", lightning: "Raio",
+  necrotic: "Necrótico", piercing: "Perfurante", poison: "Veneno", psychic: "Psíquico", radiant: "Radiante",
+  slashing: "Cortante", thunder: "Trovão"
+};
+
+function testAttack(type, label) {
+  const id = foundry.utils.randomID(16);
+  return {
+    name: `${label} (1)`,
+    type: "feat",
+    img: "icons/svg/explosion.svg",
+    system: {
+      type: { value: "monster" },
+      description: { value: `<p>Causa 1 de dano ${label.toLowerCase()}. Para testar os assets interativos.</p>` },
+      activities: {
+        [id]: {
+          _id: id,
+          type: "attack",
+          activation: { type: "action" },
+          attack: { ability: "none", bonus: "100", flat: true, type: { value: "ranged", classification: "spell" } },
+          range: { value: "120", units: "ft" },
+          target: { affects: { count: "1", type: "creature" } },
+          damage: { includeBase: false, parts: [{ custom: { enabled: true, formula: "1" }, types: [type] }] }
+        }
+      }
+    },
+    flags: { [MODULE_ID]: { testDamage: type } }
+  };
+}
+
+/** Cria (ou completa) o NPC "Testador de Dano": um ataque à distância que sempre acerta, de 1 de dano por tipo. */
+async function ensureTestActor() {
+  if (game.system.id !== "dnd5e" || !game.settings.get(MODULE_ID, "testActor")) return;
+  let folder = game.folders.find(f => f.type === "Actor" && f.getFlag(MODULE_ID, "root"));
+  folder ??= await Folder.create({ name: "Interactive Assets", type: "Actor", flags: { [MODULE_ID]: { root: true } } });
+  let actor = game.actors.find(a => a.getFlag(MODULE_ID, "testActor"));
+  actor ??= await Actor.create({
+    name: "Testador de Dano",
+    type: "npc",
+    img: "icons/svg/mystery-man.svg",
+    folder: folder.id,
+    system: { attributes: { hp: { value: 100, max: 100 } }, details: { cr: 0 } },
+    prototypeToken: { name: "Testador de Dano", disposition: CONST.TOKEN_DISPOSITIONS.FRIENDLY },
+    flags: { [MODULE_ID]: { testActor: true } }
+  });
+  const have = new Set(actor.items.map(i => i.getFlag(MODULE_ID, "testDamage")).filter(Boolean));
+  const missing = Object.entries(DAMAGE_TYPES).filter(([t]) => !have.has(t)).map(([t, l]) => testAttack(t, l));
+  if (missing.length) await actor.createEmbeddedDocuments("Item", missing);
+}
+
 /** Atualiza Tokens/Tiles já colocados quando o assets.json muda, mantendo o estado atual (pelo id). */
 async function refreshPlaced(assetId, def) {
   const fresh = stateFlags(assetId, def)[MODULE_ID].data;
@@ -339,6 +392,14 @@ Hooks.once("init", () => {
     type: Boolean,
     default: true
   });
+  game.settings.register(MODULE_ID, "testActor", {
+    name: "Criar NPC de teste",
+    hint: "Cria o NPC \"Testador de Dano\" (pasta Interactive Assets), com um ataque de 1 de dano para cada tipo.",
+    scope: "world",
+    config: true,
+    type: Boolean,
+    default: true
+  });
   game.modules.get(MODULE_ID).api = {
     placeAsset, nextState, setState,
     get assets() { return REGISTRY; }
@@ -357,6 +418,7 @@ Hooks.once("ready", async () => {
         await refreshPlaced(id, def);
       }
       startTickTimer();
+      await ensureTestActor().catch(err => console.error(`${MODULE_ID} | falha ao criar o NPC de teste`, err));
     }
   } catch (err) {
     console.error(`${MODULE_ID} | falha ao carregar assets.json`, err);

@@ -46,6 +46,13 @@ cortante → cortada ao meio; outros → quebrada. O botão 🔁 do HUD passa po
 Tudo isso está em `assets.json` (`reactions`, `onZero`, e `dot`/`ticks`/`then`/`sticky` nos estados),
 então outros objetos podem ter regras próprias sem mexer no código.
 
+## NPC de teste
+Ao abrir o mundo, o GM ganha o NPC **Testador de Dano** (pasta *Interactive Assets*), com um ataque
+para cada tipo de dano (Ácido, Concussão, Gelo, Fogo, Força, Raio, Necrótico, Perfurante, Veneno,
+Psíquico, Radiante, Cortante, Trovão). Cada ataque sempre acerta e causa 1 de dano.
+Coloque o NPC na cena, mire na mesa e use o ataque do tipo que quer testar.
+Dá para desligar em *Configure Settings* → "Criar NPC de teste".
+
 ## Tocha (luz + som)
 Arraste o ator **Tocha** (pasta *Interactive Assets*) para a cena. Acesa, ela ilumina
 (20 ft de luz forte, 40 ft de penumbra, com animação de chama) e toca um som de fogo
