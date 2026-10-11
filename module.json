@@ -1,8 +1,8 @@
 {
   "id": "interactive-assets",
   "title": "Interactive Assets (POC)",
-  "description": "Assets com múltiplos estados que reagem a dano: mesa, tocha, construção quebrável, água e veículos.",
-  "version": "0.9.4",
+  "description": "Assets com múltiplos estados que reagem a dano: mesa, tocha, construção quebrável, água, veículos, relevo e armadilhas.",
+  "version": "0.10.0",
   "authors": [
     {
       "name": "Igor Silva"

@@ -1,0 +1,44 @@
+{
+  "name": "Emboscada na estrada (teste)",
+  "grid": 100,
+  "darkness": 0,
+  "seed": 11,
+  "step": 5,
+  "climbDC": 12,
+  "legend": {
+    "\"": "grama",
+    "_": "estrada",
+    "t": "trilha",
+    "%": "cascalho",
+    ":": "mato",
+    "^": "rocha",
+    "T": "arvore",
+    "R": "pedra",
+    "=": "tronco"
+  },
+  "difficult": {
+    "encosta": { "name": "Encosta íngreme", "type": "slope", "color": "#c8a050" },
+    "mato": { "name": "Mato fechado", "type": "plants", "color": "#5f9a3a" },
+    "cascalho": { "name": "Cascalho solto", "type": "rocks", "color": "#9a9a9a" },
+    "tronco": { "name": "Tronco caído", "type": "", "color": "#8a5a2a" }
+  },
+  "objects": [
+    { "asset": "carroca", "x": 1500, "y": 950 },
+    { "asset": "barril", "x": 1350, "y": 850 },
+    { "asset": "caixa", "x": 1350, "y": 1150 },
+    { "asset": "barril", "x": 1650, "y": 1150 },
+    { "asset": "caixa", "x": 1650, "y": 750 },
+
+    { "asset": "pedregulho", "x": 1150, "y": 550, "flags": { "roll": { "x": 17, "y": 5 } } },
+    { "asset": "pedregulho", "x": 1150, "y": 950, "flags": { "roll": { "x": 17, "y": 9 } } },
+    { "asset": "pedregulho", "x": 2550, "y": 550, "flags": { "roll": { "x": 16, "y": 2 } } },
+
+    { "asset": "armadilha_urso", "x": 1250, "y": 1550, "hidden": true },
+    { "asset": "fosso", "x": 1050, "y": 1250, "hidden": true },
+    { "asset": "fosso", "x": 1250, "y": 850, "hidden": true },
+    { "asset": "armadilha_urso", "x": 2050, "y": 450, "hidden": true },
+    { "asset": "fio", "x": 2150, "y": 350, "hidden": true, "flags": { "link": { "x": 25, "y": 5 } } }
+  ],
+  "lights": [],
+  "sounds": []
+}

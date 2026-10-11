@@ -2,6 +2,7 @@ import { buildMap, rebuildWalls } from "./mapa.js";
 import * as agua from "./agua.js";
 import * as veiculo from "./veiculo.js";
 import * as template from "./template.js";
+import * as relevo from "./relevo.js";
 
 const MODULE_ID = "interactive-assets";
 /** Pasta dos assets: local (modules/...) ou, no modo desenvolvimento, o commit mais recente no GitHub. */
@@ -21,7 +22,8 @@ let started = false;
  * "player": o que jogadores podem fazer. "move" deixa mover o token; "toggle" lista os estados
  * que eles alternam pelo HUD (ex.: acender/apagar a tocha). O resto (vida, imagem, estados) é só do GM ou do dano.
  * "tipo" (movel | imovel) e "interacao" (jogador | mestre | armadilha) escolhem a pasta do ator no Foundry.
- * Água (scripts/agua.js) e veículos (scripts/veiculo.js) usam o mesmo esquema, com campos próprios.
+ * Água (scripts/agua.js), veículos (scripts/veiculo.js), armadilhas e pedregulhos (scripts/relevo.js)
+ * usam o mesmo esquema, com campos próprios.
  */
 function getData(doc) {
   return doc?.getFlag(MODULE_ID, "data") ?? null;
@@ -84,7 +86,7 @@ function stateFlags(assetId, def) {
     ...(s.sound ? { sound: { ...s.sound, src: `${BASE}/${s.sound.src}` } } : {})
   }));
   const data = { asset: assetId, states, index: 0, ticksLeft: null, damageable: def.actor?.hp != null };
-  for (const key of ["reactions", "onZero", "tickSeconds", "player", "vehicle"]) if (def[key] != null) data[key] = def[key];
+  for (const key of ["reactions", "onZero", "tickSeconds", "player", "vehicle", "trap", "boulder"]) if (def[key] != null) data[key] = def[key];
   return { [MODULE_ID]: { data } };
 }
 
@@ -515,6 +517,7 @@ export async function start({ base, version }) {
   const ctx = { registry: () => REGISTRY, getData, posOf, currentState, ruleAllows, matchesTypes, indexOfId, stateUpdate, setState, say, tokenCenter, isResponsibleGM, MODULE_ID };
   agua.init(ctx);
   veiculo.init(ctx);
+  relevo.init(ctx);
   template.init();
   game.modules.get(MODULE_ID).api = {
     placeAsset, nextState, setState, buildMap, rebuildWalls,

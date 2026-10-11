@@ -11,6 +11,11 @@ Mapas montados só com peças feitas neste repositório.
 
 Cada execução cria uma cena nova. Para outro mapa, troque `MAPA` na macro: `"lago"` monta o
 **Lago (teste)**, com água que congela, eletrifica e envenena, píer, barco a remo e uma carroça carregada.
+`"emboscada"` monta a **Emboscada na estrada (teste)**: uma carroça parada por um tronco caído na estrada,
+entre dois morros com penhascos. Para chegar no alto é preciso escalar, subir encosta e mato (terreno difícil)
+ou ir pelas trilhas, que têm armadilhas escondidas. Lá em cima há pedregulhos prontos para rolar na estrada.
+`previa_mestre.jpg` mostra as alturas, o terreno difícil, os penhascos (vermelho), as armadilhas e para onde
+cada pedregulho rola.
 
 ## Como um mapa é feito
 - `mapas/pecas/`: as peças. Pisos (`piso_madeira`, `piso_pedra`), `grama`, `terra` e `parede`
@@ -31,3 +36,16 @@ Cada `#` vira um token "Parede de pedra", cada `D` uma "Porta de madeira" e cada
 (assim os jogadores conseguem mirar nele). Quando um bloco quebra, o buraco abre na hora.
 `previa_quebrada.jpg` mostra o mapa com os blocos de `preview_broken` (no `mapa.json`) quebrados.
 Cada `~` vira um token "Água". `preview_states` gera prévias com estados trocados (ex.: lago congelado).
+
+### Mapas com relevo (`tools/gen_relevo.py`)
+- `mapas/<nome>/altura.txt`: um dígito por quadrado, do mesmo tamanho do `layout.txt`; cada ponto vale
+  `step` pés (5 no `mapa.json`). Vizinhos com 1 ponto de diferença são encosta (o de cima vira terreno
+  difícil); com 2 ou mais, penhasco.
+- Legenda do layout: `"` grama, `_` estrada, `t` trilha, `%` cascalho, `:` mato, `^` borda rochosa,
+  `T` árvore, `R` pedra, `=` tronco caído. Árvores e pedras bloqueiam movimento (paredes do Foundry,
+  mas sem bloquear visão).
+- `mapa.json`: `difficult` diz o tipo de terreno difícil de cada categoria (`slope`, `plants`, `rocks`),
+  `climbDC` a CD de escalar. Objetos aceitam `"hidden": true` (armadilhas) e `"flags"`: `link` liga o fio
+  ao pedregulho (quadrado `{x, y}`), `roll` é onde o pedregulho para.
+- `python3 tools/gen_relevo.py <nome>` gera o fundo (sombreado, curvas de nível, penhascos, árvores),
+  `cena.json` com a altura e as regiões de terreno difícil, `previa.jpg` e `previa_mestre.jpg`.

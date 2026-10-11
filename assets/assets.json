@@ -1327,5 +1327,134 @@
         "say": "afunda! Quem estava a bordo cai na água."
       }
     ]
+  },
+  "armadilha_urso": {
+    "name": "Armadilha de urso",
+    "tipo": "imovel",
+    "interacao": "armadilha",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {},
+    "states": [
+      {
+        "id": "armada",
+        "name": "Armada",
+        "src": "armadilhas/urso_armada.png",
+        "armed": true
+      },
+      {
+        "id": "fechada",
+        "name": "Fechada",
+        "src": "armadilhas/urso_fechada.png"
+      },
+      {
+        "id": "desarmada",
+        "name": "Desarmada",
+        "src": "armadilhas/urso_fechada.png"
+      }
+    ],
+    "trap": {
+      "to": "fechada",
+      "say": "pisa numa armadilha de urso! [[/save dex 13]]; se falhar: [[/damage 2d4 piercing]] e fica impedido (preso) até se soltar com uma ação: [[/skill athletics 13]]."
+    }
+  },
+  "fosso": {
+    "name": "Fosso camuflado",
+    "tipo": "imovel",
+    "interacao": "armadilha",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {},
+    "states": [
+      {
+        "id": "coberto",
+        "name": "Coberto",
+        "src": "armadilhas/fosso_coberto.png",
+        "armed": true
+      },
+      {
+        "id": "aberto",
+        "name": "Aberto",
+        "src": "armadilhas/fosso_aberto.png",
+        "altura": -10
+      }
+    ],
+    "trap": {
+      "to": "aberto",
+      "say": "pisa em galhos que cedem e cai num fosso de 10 pés! [[/save dex 12]] para se agarrar na borda; se falhar: [[/damage 1d6 bludgeoning]] + [[/damage 1d4 piercing]] das estacas. Para sair, escale (10 pés)."
+    }
+  },
+  "fio": {
+    "name": "Fio de tropeço",
+    "tipo": "imovel",
+    "interacao": "armadilha",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {},
+    "states": [
+      {
+        "id": "armado",
+        "name": "Armado",
+        "src": "armadilhas/fio_armado.png",
+        "armed": true
+      },
+      {
+        "id": "disparado",
+        "name": "Disparado",
+        "src": "armadilhas/fio_cortado.png"
+      }
+    ],
+    "trap": {
+      "to": "disparado",
+      "roll": true,
+      "say": "arrebenta um fio escondido... os sininhos tocam e algo se solta lá em cima!"
+    }
+  },
+  "pedregulho": {
+    "name": "Pedregulho",
+    "tipo": "movel",
+    "interacao": "mestre",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {},
+    "states": [
+      {
+        "id": "parado",
+        "name": "Parado",
+        "src": "armadilhas/pedregulho.png"
+      },
+      {
+        "id": "rolou",
+        "name": "Rolou",
+        "src": "armadilhas/pedregulho.png",
+        "rolls": true
+      }
+    ],
+    "boulder": {
+      "dc": 14,
+      "damage": "3d10"
+    },
+    "reactions": [
+      {
+        "types": [
+          "thunder",
+          "force",
+          "bludgeoning"
+        ],
+        "from": [
+          "parado"
+        ],
+        "to": "rolou",
+        "say": "se solta com o impacto!"
+      }
+    ]
   }
 }

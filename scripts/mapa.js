@@ -11,6 +11,8 @@
  * Estados de porta com "door": "open" | "closed" seguem a porta do Foundry (e vice-versa).
  * Estados com "sfx" tocam um som ao entrar neles.
  */
+import { groundFn } from "./relevo.js";
+
 const MODULE_ID = "interactive-assets";
 /** Quanto a parede do Foundry fica recuada para dentro do bloco (fração do quadrado).
  * Assim o centro do token de parede fica visível para os jogadores e eles conseguem mirar nele. */
@@ -204,6 +206,7 @@ export async function buildMap(data, root) {
   for (const s of sceneData.sounds ?? []) s.path = `${root}/${s.path}`;
   delete sceneData.flags[MODULE_ID].map.structures;
   delete sceneData.flags[MODULE_ID].map.objects;
+  delete sceneData.regions; // criadas depois, com o comportamento de terreno difícil que o sistema tiver
   const scene = await Scene.create(sceneData);
   const g = scene.grid.size;
 
@@ -220,16 +223,44 @@ export async function buildMap(data, root) {
     });
     tokens.push(td.toObject());
   }
+  // Objetos: "hidden" (armadilhas escondidas), "flags" extras (ligações de armadilha, destino do pedregulho)
+  // e a altura do chão onde ficam (mapas com relevo).
+  const ground = groundFn(scene);
   for (const o of map.objects ?? []) {
     const actor = actorFor(o.asset);
     const def = api.assets[o.asset];
     if (!actor || !def) { missing.add(o.asset); continue; }
-    const td = await actor.getTokenDocument({ x: Math.round(o.x - def.size.w * g / 2), y: Math.round(o.y - def.size.h * g / 2) });
+    const td = await actor.getTokenDocument({
+      x: Math.round(o.x - def.size.w * g / 2), y: Math.round(o.y - def.size.h * g / 2),
+      elevation: ground(Math.floor(o.x / g), Math.floor(o.y / g)),
+      ...(o.hidden ? { hidden: true } : {}),
+      ...(o.flags ? { flags: { [MODULE_ID]: o.flags } } : {})
+    });
     tokens.push(td.toObject());
   }
   if (tokens.length) await scene.createEmbeddedDocuments("Token", tokens);
+  await createRegions(scene, data.regions ?? []);
   await rebuildWalls(scene);
   if (missing.size) ui.notifications.warn(`Assets não encontrados: ${[...missing].join(", ")}. Recarregue a página (F5) e rode de novo.`);
   await scene.view();
   return scene;
+}
+
+/**
+ * Regiões de terreno difícil (flags.interactive-assets.terreno = tipo do dnd5e: "slope", "plants", "rocks"...).
+ * Usa o terreno difícil do dnd5e; sem ele, o custo de movimento dobrado do próprio Foundry.
+ */
+async function createRegions(scene, regions) {
+  if (!regions.length) return;
+  const dnd = CONFIG.RegionBehavior?.dataModels?.["dnd5e.difficultTerrain"];
+  const behavior = type => dnd
+    ? { type: "dnd5e.difficultTerrain", system: { types: type ? [type] : [] } }
+    : { type: "modifyMovementCost", system: { difficulties: { walk: 2, swim: 2, burrow: 2, fly: 1 } } };
+  const docs = regions.map(r => ({ ...r, behaviors: [behavior(r.flags?.[MODULE_ID]?.terreno)] }));
+  try {
+    await scene.createEmbeddedDocuments("Region", docs);
+  } catch (e) {
+    console.error(`${MODULE_ID} | regiões de terreno difícil`, e);
+    ui.notifications.warn("Mapa: não deu para criar as regiões de terreno difícil (veja o console).");
+  }
 }

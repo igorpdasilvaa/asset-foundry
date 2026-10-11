@@ -159,6 +159,35 @@ desenhado, porque a água calma já está pintada no fundo do mapa; só os quadr
 - Conta como dentro o token com qualquer quadrado destacado pelo template. Quadrados de água viram alvo
   (para reagirem ao dano), mas não são selecionados.
 
+## Relevo, armadilhas e pedregulhos (mapa da emboscada)
+Mapas com relevo guardam a altura de cada quadrado na cena (o mapa **Emboscada na estrada** tem dois
+morros com penhascos virados para a estrada). O módulo usa essa altura assim:
+
+- **Altura do token**: quem anda fica na altura do chão de cada quadrado (o *elevation* do token muda sozinho).
+  Voando, nada muda.
+- **Encosta**: o quadrado mais alto de um degrau de 5 pés é terreno difícil (regiões do dnd5e, como o mato
+  fechado, o cascalho solto e o tronco caído). As trilhas não são.
+- **Penhasco** (10 pés ou mais entre dois quadrados): andando, o jogador não passa. Escolha a ação de
+  movimento **Escalar** (o chat pede um teste de Atletismo; se falhar, cai) ou, para descer, **Pular**
+  (cai: 1d6 de concussão a cada 10 pés, aplicado na hora, e fica caído). O GM move para qualquer lugar.
+- **Armadilhas** (*Imóveis / Armadilha*), escondidas no mapa: quem passa por cima para no quadrado, a
+  armadilha aparece e o chat mostra o teste e o dano para clicar. Tokens hostis (os bandidos que armaram)
+  passam sem disparar.
+
+| Asset | Ao disparar |
+|---|---|
+| Armadilha de urso | Fecha. Destreza CD 13, 2d4 perfurante e preso (Atletismo CD 13 para soltar). |
+| Fosso camuflado | Abre: o chão vira -10 pés e quem caiu desce junto. Destreza CD 12 para se agarrar; 1d6 + 1d4 das estacas. |
+| Fio de tropeço | Arrebenta e solta o pedregulho ligado a ele (flag `link`). |
+
+- **Pedregulho** (*Móveis / Mestre*): rola quando o fio dispara, quando leva dano de concussão, trovão ou
+  força (um empurrão), ou quando o GM troca o estado para *Rolou*. Vai até o quadrado da flag `roll`, deixa o
+  rastro como um template de linha e marca como alvo quem estava no caminho; o chat pede Destreza CD 14 e
+  3d10 de concussão. No mapa, os bandidos podem derrubar pedregulhos do alto dos penhascos na estrada.
+
+No `assets.json`: `"trap": { "to", "say", "roll" }` e estados com `"armed": true` (armada) e
+`"altura"` (muda o chão do quadrado, em pés); `"boulder": { "dc", "damage" }` e estados com `"rolls": true`.
+
 ## Adicionar novos assets
 Tudo fica neste mesmo módulo: coloque os arquivos em `assets/<nome>/` e registre
 o asset em `assets/assets.json`. Cada estado aceita:
