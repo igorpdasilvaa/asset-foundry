@@ -521,6 +521,8 @@ export async function start({ base, version }) {
   template.init();
   game.modules.get(MODULE_ID).api = {
     placeAsset, nextState, setState, buildMap, rebuildWalls,
+    /** Ator do asset (cria se faltar), para quem monta um mapa antes do GM principal ter o asset novo. */
+    actorFor: id => REGISTRY[id]?.actor ? getBaseActor(id, REGISTRY[id]) : null,
     /** De onde o código veio: commit do GitHub (modo desenvolvimento) ou a pasta instalada. A macro dos mapas usa isso. */
     root: base.replace(/\/assets$/, ""),
     get assets() { return REGISTRY; }

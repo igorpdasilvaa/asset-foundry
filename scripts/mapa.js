@@ -210,7 +210,13 @@ export async function buildMap(data, root) {
   const scene = await Scene.create(sceneData);
   const g = scene.grid.size;
 
-  const actorFor = asset => game.actors.find(a => a.getFlag(MODULE_ID, "asset") === asset);
+  // O ator falta quando o GM principal ainda roda uma versão sem o asset: o GM que monta o mapa cria.
+  const actors = new Map();
+  for (const asset of new Set([...(map.structures ?? []), ...(map.objects ?? [])].map(o => o.asset))) {
+    const found = game.actors.find(a => a.getFlag(MODULE_ID, "asset") === asset);
+    actors.set(asset, found ?? (game.user.isGM ? await api.actorFor?.(asset)?.catch?.(() => null) : null));
+  }
+  const actorFor = asset => actors.get(asset);
   const missing = new Set();
   const tokens = [];
   for (const s of map.structures ?? []) {
