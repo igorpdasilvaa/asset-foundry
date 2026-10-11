@@ -200,10 +200,21 @@ o asset em `assets/assets.json`. Cada estado aceita:
 - `light`: luz do token naquele estado (mesmos campos da aba Light do token)
 - `sound`: `{ "src", "radius", "volume" }` som ambiente que segue o token
 - `broken: true`: estado usado quando a vida chega a 0
+- `sfx`: som tocado uma vez ao entrar no estado (ex.: `audio/madeira_quebrando.ogg`)
 
 Com `"actor": {}` o asset vira um token (arrastável da barra de Atores). Com
 `"actor": { "ac", "hp" }` ele também tem vida e quebra com dano. Sem `actor`, vira Tile.
 Ao abrir o mundo, o GM cria/atualiza sozinho o ator de cada asset.
+
+## Arquivos de terceiros (CC0)
+Sons, efeitos e texturas que não fizemos à mão vêm de acervos CC0 (domínio público), listados
+com autor e origem em [`assets/CREDITOS.md`](assets/CREDITOS.md). Só entram aqui arquivos CC0
+ou domínio público; pacotes "grátis para uso pessoal" ou "não comercial" não podem ir para o repositório.
+
+- `assets/audio/`: sons de quebra (madeira, pedra), armadilha fechando, pedregulho rolando, água espirrando.
+- `assets/efeitos/`: máscaras brancas (queimadura, fumaça, faísca, sujeira, respingo, neblina) para pintar
+  com a cor certa e sobrepor num asset. Exemplo em `docs/exemplo_efeitos.jpg`.
+- `assets/texturas/`: madeira escura, lava e água para preencher formas desenhadas em SVG.
 
 ## Instalar pelo Foundry (Manifest URL)
 Em **Add-on Modules → Install Module**, cole no campo *Manifest URL*:
