@@ -43,7 +43,8 @@ export function groundFn(scene) {
   const g = scene.grid.size;
   const extra = new Map();
   for (const t of scene.tokens) {
-    const alt = C.currentState(C.getData(t) ?? {})?.altura;
+    const data = C.getData(t);
+    const alt = data && C.currentState(data)?.altura;
     if (alt == null) continue;
     for (const k of cellsAt(t, C.posOf(t), g)) extra.set(k, (extra.get(k) ?? 0) + alt);
   }
