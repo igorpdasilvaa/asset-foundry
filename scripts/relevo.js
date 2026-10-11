@@ -4,7 +4,8 @@
  *
  * - Quem para num quadrado fica na altura do chão dele (elevation do token), a não ser que esteja voando.
  * - Subir custa movimento (a régua mostra): encosta +5 pés a cada 5 pés subidos (na trilha não);
- *   penhasco é escalada, +2 pés por pé de altura, subindo ou descendo (15 pés = +30). Voando, nada muda.
+ *   penhasco é escalada, +2 pés por pé de altura, subindo ou descendo (15 pés: 10 do passo escalando + 30 = 40).
+ *   Voando, nada muda.
  * - Penhasco: dois quadrados vizinhos com 10 pés ou mais de diferença. Andando, jogadores não passam;
  *   com a ação Escalar passam e o chat pede um teste de Atletismo; pulando para baixo (ação Pular), caem e
  *   levam 1d6 de dano por 10 pés, e ficam caídos. O GM move para qualquer lugar.
