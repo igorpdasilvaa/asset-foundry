@@ -103,9 +103,13 @@ function linkedSound(token) {
   return token.parent?.sounds.find(s => s.getFlag(MODULE_ID, "token") === token.id);
 }
 
+/** Posição salva do token. No Foundry v13, token.x/y anda junto com a animação; _source já tem o destino. */
+const posOf = token => token._source ?? token;
+
 function tokenCenter(token) {
   const g = token.parent.grid.size;
-  return { x: token.x + (token.width * g) / 2, y: token.y + (token.height * g) / 2 };
+  const { x, y } = posOf(token);
+  return { x: x + (token.width * g) / 2, y: y + (token.height * g) / 2 };
 }
 
 /** Cria, move, troca ou remove o AmbientSound ligado ao token conforme o estado atual. */
@@ -167,6 +171,20 @@ async function assetFolder(def) {
   return childFolder(parent, `${def.tipo}/${def.interacao}`, FOLDER_INTERACOES[def.interacao]);
 }
 
+/**
+ * No dnd5e 5.x (Foundry v13), todo NPC conta como criatura e bloqueia o movimento de quem não é do mesmo lado.
+ * Os assets ganham este status (incluído em CONFIG.DND5E.neverBlockStatuses): não bloqueiam ninguém e
+ * também não são bloqueados (o barco entra na água, o personagem sobe na carroça).
+ */
+const OBJECT_STATUS = "interactiveAssetObject";
+const objectEffect = () => ({
+  name: "Objeto (não bloqueia movimento)",
+  img: "icons/svg/item-bag.svg",
+  statuses: [OBJECT_STATUS],
+  showIcon: CONST.ACTIVE_EFFECT_SHOW_ICON?.NEVER ?? 0,
+  flags: { [MODULE_ID]: { object: true } }
+});
+
 const playerOwnership = def => def.player?.move || def.player?.toggle?.length
   ? CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER
   : CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE;
@@ -187,6 +205,7 @@ async function getBaseActor(assetId, def) {
       update["prototypeToken.texture.src"] = `${BASE}/${def.states[0].src}`;
       await actor.update(update);
     }
+    if (!actor.effects.some(e => e.statuses?.has(OBJECT_STATUS))) await actor.createEmbeddedDocuments("ActiveEffect", [objectEffect()]);
     // Jogadores donos do ator podem mover o token (o resto é bloqueado em preUpdate*).
     const ownership = playerOwnership(def);
     if (actor.ownership.default !== ownership) await actor.update({ "ownership.default": ownership });
@@ -232,6 +251,7 @@ async function getBaseActor(assetId, def) {
       ...(def.states.some(s => s.light) ? { light: lightFor(def.states[0]) } : {}),
       flags: stateFlags(assetId, def)
     },
+    effects: [objectEffect()],
     flags: { [MODULE_ID]: { asset: assetId } }
   });
 }
@@ -373,8 +393,8 @@ async function pushAway(token, attacker, squares) {
   const dx = Math.round(Math.cos(ang)), dy = Math.round(Math.sin(ang));
   if (!dx && !dy) return;
   const clamp = (v, lo, hi) => Math.min(Math.max(v, lo), hi);
-  const x = clamp(token.x + dx * g * squares, 0, token.parent.dimensions.width - token.width * g);
-  const y = clamp(token.y + dy * g * squares, 0, token.parent.dimensions.height - token.height * g);
+  const x = clamp(posOf(token).x + dx * g * squares, 0, token.parent.dimensions.width - token.width * g);
+  const y = clamp(posOf(token).y + dy * g * squares, 0, token.parent.dimensions.height - token.height * g);
   await token.update({ x, y });
 }
 
@@ -472,7 +492,8 @@ export async function start({ base, version }) {
     type: Boolean,
     default: true
   });
-  const ctx = { getData, currentState, ruleAllows, matchesTypes, indexOfId, stateUpdate, setState, say, tokenCenter, isResponsibleGM, MODULE_ID };
+  CONFIG.DND5E?.neverBlockStatuses?.add?.(OBJECT_STATUS);
+  const ctx = { getData, posOf, currentState, ruleAllows, matchesTypes, indexOfId, stateUpdate, setState, say, tokenCenter, isResponsibleGM, MODULE_ID };
   agua.init(ctx);
   veiculo.init(ctx);
   game.modules.get(MODULE_ID).api = {

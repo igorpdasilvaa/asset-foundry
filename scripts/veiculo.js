@@ -18,10 +18,12 @@ const movedAt = new Map();
 export function init(ctx) {
   C = ctx;
   if (!C.isResponsibleGM()) return;
-  for (const scene of game.scenes) for (const t of scene.tokens) lastPos.set(t.uuid, { x: t.x, y: t.y });
+  for (const scene of game.scenes) for (const t of scene.tokens) lastPos.set(t.uuid, { ...pos(t) });
 }
 
 const vehicleOf = t => C.getData(t)?.vehicle ?? null;
+/** Posição salva (no v13, token.x/y é a posição animada). */
+const pos = t => ({ x: t._source?.x ?? t.x, y: t._source?.y ?? t.y });
 const inside = (p, r) => p.x > r.x && p.x < r.x + r.w && p.y > r.y && p.y < r.y + r.h;
 const centerAt = (t, pos) => {
   const g = t.parent.grid.size;
@@ -57,7 +59,7 @@ Hooks.on("preUpdateToken", (token, changes) => {
     ui.notifications.warn(`${token.name}: ${state.name.toLowerCase()}, não dá para mover.`);
     return false;
   }
-  const why = blocked(token, { x: changes.x ?? token.x, y: changes.y ?? token.y });
+  const why = blocked(token, { x: changes.x ?? pos(token).x, y: changes.y ?? pos(token).y });
   if (why) {
     ui.notifications.warn(why);
     return false;
@@ -75,21 +77,23 @@ function passengersAt(vehicle, from) {
 Hooks.on("updateToken", async (token, changes, options) => {
   if (!C?.isResponsibleGM() || !("x" in changes || "y" in changes)) return;
   const from = lastPos.get(token.uuid);
-  lastPos.set(token.uuid, { x: token.x, y: token.y });
+  const to = pos(token);
+  lastPos.set(token.uuid, to);
   if (options?.[MODULE_ID]?.carried) return;
   movedAt.set(token.uuid, Date.now());
 
   if (vehicleOf(token)) {
     if (!from) return;
-    const dx = token.x - from.x, dy = token.y - from.y;
+    const dx = to.x - from.x, dy = to.y - from.y;
     if (!dx && !dy) return;
     movedAt.delete(token.uuid);
     // Espera os outros tokens do mesmo arrasto chegarem (se o jogador arrastou o veículo junto com alguém).
     await new Promise(r => setTimeout(r, 50));
     const riders = passengersAt(token, from);
     if (!riders.length) return;
-    for (const t of riders) lastPos.set(t.uuid, { x: t.x + dx, y: t.y + dy });
-    await token.parent.updateEmbeddedDocuments("Token", riders.map(t => ({ _id: t.id, x: t.x + dx, y: t.y + dy })),
+    const moves = riders.map(t => ({ _id: t.id, x: pos(t).x + dx, y: pos(t).y + dy }));
+    riders.forEach((t, i) => lastPos.set(t.uuid, { x: moves[i].x, y: moves[i].y }));
+    await token.parent.updateEmbeddedDocuments("Token", moves,
       { [MODULE_ID]: { carried: true } });
     return;
   }
@@ -109,7 +113,7 @@ Hooks.on("updateToken", async (token, changes, options) => {
 });
 
 Hooks.on("createToken", token => {
-  if (C?.isResponsibleGM()) lastPos.set(token.uuid, { x: token.x, y: token.y });
+  if (C?.isResponsibleGM()) lastPos.set(token.uuid, pos(token));
 });
 Hooks.on("deleteToken", token => {
   lastPos.delete(token.uuid);

@@ -37,7 +37,7 @@ export function waterStateAt(scene, px, py, cells = waterCells(scene)) {
 }
 
 /** Retângulo do token em pixels. */
-export function rectOf(token, pos = token) {
+export function rectOf(token, pos = token._source ?? token) {
   const g = token.parent.grid.size;
   return { x: pos.x, y: pos.y, w: token.width * g, h: token.height * g };
 }
