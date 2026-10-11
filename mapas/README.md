@@ -14,6 +14,7 @@ Cada execução cria uma cena nova. Para outro mapa, troque `MAPA` na macro: `"l
 `"emboscada"` monta a **Emboscada na estrada (teste)**: uma carroça parada por um tronco caído na estrada,
 entre dois morros com penhascos. Para chegar no alto é preciso escalar, subir encosta e mato (terreno difícil)
 ou ir pelas trilhas, que têm armadilhas escondidas. Lá em cima há pedregulhos prontos para rolar na estrada.
+`"lobisomens"` monta **Caminho do Leão: a caçada (lobisomens)**: o mesmo terreno da emboscada no crepúsculo, com 16 armadilhas (fossos e armadilhas de urso nas margens da estrada, fios na estrada e nas trilhas) e 6 pedregulhos nas bordas dos penhascos, para um encontro em que a matilha usa as armadilhas durante todo o combate.
 `previa_mestre.jpg` mostra as alturas, o terreno difícil, os penhascos (vermelho), as armadilhas e para onde
 cada pedregulho rola.
 

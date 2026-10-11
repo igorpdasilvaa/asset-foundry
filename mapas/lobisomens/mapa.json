@@ -1,0 +1,250 @@
+{
+  "name": "Caminho do Leão: a caçada (lobisomens)",
+  "grid": 100,
+  "darkness": 0.35,
+  "seed": 11,
+  "step": 5,
+  "climbDC": 12,
+  "legend": {
+    "\"": "grama",
+    "_": "estrada",
+    "t": "trilha",
+    "%": "cascalho",
+    ":": "mato",
+    "^": "rocha",
+    "T": "arvore",
+    "R": "pedra",
+    "=": "tronco"
+  },
+  "difficult": {
+    "mato": {
+      "name": "Mato fechado",
+      "type": "plants",
+      "color": "#5f9a3a"
+    },
+    "cascalho": {
+      "name": "Cascalho solto",
+      "type": "rocks",
+      "color": "#9a9a9a"
+    },
+    "tronco": {
+      "name": "Tronco caído",
+      "type": "",
+      "color": "#8a5a2a"
+    }
+  },
+  "objects": [
+    {
+      "asset": "carroca",
+      "x": 1500,
+      "y": 950
+    },
+    {
+      "asset": "barril",
+      "x": 1350,
+      "y": 850
+    },
+    {
+      "asset": "caixa",
+      "x": 1350,
+      "y": 1150
+    },
+    {
+      "asset": "barril",
+      "x": 1650,
+      "y": 1150
+    },
+    {
+      "asset": "caixa",
+      "x": 1650,
+      "y": 750
+    },
+    {
+      "asset": "tocha",
+      "x": 1650,
+      "y": 950
+    },
+    {
+      "asset": "pedregulho",
+      "x": 1150,
+      "y": 550,
+      "flags": {
+        "roll": {
+          "x": 17,
+          "y": 5
+        }
+      }
+    },
+    {
+      "asset": "pedregulho",
+      "x": 1150,
+      "y": 950,
+      "flags": {
+        "roll": {
+          "x": 17,
+          "y": 9
+        }
+      }
+    },
+    {
+      "asset": "pedregulho",
+      "x": 1150,
+      "y": 1250,
+      "flags": {
+        "roll": {
+          "x": 17,
+          "y": 12
+        }
+      }
+    },
+    {
+      "asset": "pedregulho",
+      "x": 1850,
+      "y": 750,
+      "flags": {
+        "roll": {
+          "x": 12,
+          "y": 7
+        }
+      }
+    },
+    {
+      "asset": "pedregulho",
+      "x": 1850,
+      "y": 1150,
+      "flags": {
+        "roll": {
+          "x": 12,
+          "y": 11
+        }
+      }
+    },
+    {
+      "asset": "pedregulho",
+      "x": 2550,
+      "y": 550,
+      "flags": {
+        "roll": {
+          "x": 16,
+          "y": 2
+        }
+      }
+    },
+    {
+      "asset": "fosso",
+      "x": 1250,
+      "y": 850,
+      "hidden": true
+    },
+    {
+      "asset": "fosso",
+      "x": 1750,
+      "y": 850,
+      "hidden": true
+    },
+    {
+      "asset": "armadilha_urso",
+      "x": 1350,
+      "y": 1050,
+      "hidden": true
+    },
+    {
+      "asset": "armadilha_urso",
+      "x": 1750,
+      "y": 1150,
+      "hidden": true
+    },
+    {
+      "asset": "fio",
+      "x": 1550,
+      "y": 1250,
+      "hidden": true,
+      "flags": {
+        "link": {
+          "x": 11,
+          "y": 12
+        }
+      }
+    },
+    {
+      "asset": "fio",
+      "x": 1450,
+      "y": 1450,
+      "hidden": true,
+      "flags": {
+        "link": {
+          "x": 18,
+          "y": 11
+        }
+      }
+    },
+    {
+      "asset": "armadilha_urso",
+      "x": 1450,
+      "y": 1750,
+      "hidden": true
+    },
+    {
+      "asset": "armadilha_urso",
+      "x": 850,
+      "y": 1150,
+      "hidden": true
+    },
+    {
+      "asset": "fosso",
+      "x": 1050,
+      "y": 1250,
+      "hidden": true
+    },
+    {
+      "asset": "armadilha_urso",
+      "x": 1250,
+      "y": 1550,
+      "hidden": true
+    },
+    {
+      "asset": "fosso",
+      "x": 2150,
+      "y": 350,
+      "hidden": true
+    },
+    {
+      "asset": "armadilha_urso",
+      "x": 2050,
+      "y": 450,
+      "hidden": true
+    },
+    {
+      "asset": "fio",
+      "x": 2350,
+      "y": 450,
+      "hidden": true,
+      "flags": {
+        "link": {
+          "x": 25,
+          "y": 5
+        }
+      }
+    },
+    {
+      "asset": "fosso",
+      "x": 950,
+      "y": 350,
+      "hidden": true
+    },
+    {
+      "asset": "armadilha_urso",
+      "x": 2350,
+      "y": 1350,
+      "hidden": true
+    },
+    {
+      "asset": "armadilha_urso",
+      "x": 2050,
+      "y": 1550,
+      "hidden": true
+    }
+  ],
+  "lights": [],
+  "sounds": []
+}
