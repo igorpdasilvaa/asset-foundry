@@ -148,7 +148,8 @@ colocar o token em cima; o chat avisa quem sobe, desce ou pula na água.
 Trovão e força empurram o veículo 1 quadrado, com quem está em cima. O GM pode mover para qualquer lugar.
 No `assets.json`: `"vehicle": { "terreno": "agua" | "terra" }`, estados com `"travado": true` não andam,
 e regras com `"below": 0.5` só valem com metade da vida ou menos. Na água, `"spread"` (quadrados ou `"all"`)
-e `"zap"` nas regras, e `"wet"`, `"gelo"` e `"areaDot"` nos estados.
+e `"zap"` nas regras, e `"wet"`, `"gelo"`, `"areaDot"` e `"oculto"` nos estados (`"oculto"`: o token não é
+desenhado, porque a água calma já está pintada no fundo do mapa; só os quadrados que mudam de estado aparecem).
 
 ## Adicionar novos assets
 Tudo fica neste mesmo módulo: coloque os arquivos em `assets/<nome>/` e registre

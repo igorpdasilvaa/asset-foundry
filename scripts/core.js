@@ -179,9 +179,9 @@ async function assetFolder(def) {
 const OBJECT_STATUS = "interactiveAssetObject";
 const objectEffect = () => ({
   name: "Objeto (não bloqueia movimento)",
-  img: "icons/svg/item-bag.svg",
+  // Sem imagem: o Foundry não desenha o ícone no token (com 75 quadrados de água, os ícones derrubavam o FPS).
+  img: null,
   statuses: [OBJECT_STATUS],
-  showIcon: CONST.ACTIVE_EFFECT_SHOW_ICON?.NEVER ?? 0,
   flags: { [MODULE_ID]: { object: true } }
 });
 
@@ -205,7 +205,9 @@ async function getBaseActor(assetId, def) {
       update["prototypeToken.texture.src"] = `${BASE}/${def.states[0].src}`;
       await actor.update(update);
     }
-    if (!actor.effects.some(e => e.statuses?.has(OBJECT_STATUS))) await actor.createEmbeddedDocuments("ActiveEffect", [objectEffect()]);
+    const objEffect = actor.effects.find(e => e.statuses?.has(OBJECT_STATUS));
+    if (!objEffect) await actor.createEmbeddedDocuments("ActiveEffect", [objectEffect()]);
+    else if (objEffect.img) await objEffect.update({ img: null });
     // Jogadores donos do ator podem mover o token (o resto é bloqueado em preUpdate*).
     const ownership = playerOwnership(def);
     if (actor.ownership.default !== ownership) await actor.update({ "ownership.default": ownership });

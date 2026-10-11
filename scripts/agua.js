@@ -6,7 +6,8 @@
  * - nas regras de "reactions": "spread": quantos quadrados a mudança se espalha pela água ligada ("all" = o lago todo);
  *   "zap": true faz quem está nos quadrados atingidos levar o mesmo dano de raio do golpe.
  * - nos estados: "wet" (água líquida: apaga o que entra pegando fogo e o barco navega), "gelo" (dá para andar por cima,
- *   o barco fica preso), "areaDot" (dano por tique em quem está dentro).
+ *   o barco fica preso), "areaDot" (dano por tique em quem está dentro), "oculto" (o token não é desenhado:
+ *   a água calma já está pintada no fundo do mapa, e 75 imagens a mais no canvas pesam no FPS).
  */
 const MODULE_ID = "interactive-assets";
 let C = null;
@@ -18,6 +19,15 @@ export function init(ctx) {
 const key = (x, y) => `${x},${y}`;
 const isCell = t => !!t.getFlag(MODULE_ID, "cell");
 const isWater = t => t.getFlag(MODULE_ID, "cell")?.kind === "water";
+
+/** Estado "oculto": esconde a imagem do token (ele continua lá para as regras e para o GM clicar). */
+Hooks.on("refreshToken", token => {
+  if (!C || !isWater(token.document) || !token.mesh) return;
+  token.mesh.visible = token.visible && token.renderable && !C.currentState(C.getData(token.document))?.oculto;
+});
+Hooks.on("updateToken", token => {
+  if (isWater(token)) token.object?.renderFlags.set({ refreshVisibility: true });
+});
 
 /** Quadrados de água da cena: "x,y" → token. */
 export function waterCells(scene) {

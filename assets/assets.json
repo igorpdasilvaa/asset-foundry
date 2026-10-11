@@ -873,7 +873,8 @@
         "id": "calma",
         "name": "Calma",
         "src": "agua/agua_calma.png",
-        "wet": true
+        "wet": true,
+        "oculto": true
       },
       {
         "id": "congelada",
