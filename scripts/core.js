@@ -185,6 +185,14 @@ const objectEffect = () => ({
   flags: { [MODULE_ID]: { object: true } }
 });
 
+/**
+ * Assets não mostram a dica de altitude do token. Cada dica é uma textura de texto separada, o que quebra o
+ * desenho em lotes do canvas: num mapa com dezenas de assets isso dobrava o número de desenhos por frame.
+ */
+Hooks.on("refreshToken", token => {
+  if (token.tooltip && getData(token.document)) token.tooltip.visible = false;
+});
+
 /** Asset sem vida (água, tocha) não fica "Bloodied": o dnd5e lê 0 de 0 PV como metade da vida. */
 Hooks.on("preCreateActiveEffect", effect => {
   const actor = effect.parent;

@@ -28,8 +28,9 @@ Hooks.on("refreshToken", token => {
   // Lê também o assets.json atual: o token pode ter sido criado antes do campo existir.
   const live = C.registry()[data.asset]?.states?.find(s => s.id === state?.id);
   token.mesh.visible = token.visible && token.renderable && !(live ?? state)?.oculto;
-  // Ícones de status (ex.: "Bloodied" do dnd5e) não fazem sentido na água e pesam no canvas.
-  if (token.effects) token.effects.visible = false;
+  // Ícones de status (ex.: "Bloodied" do dnd5e) e as cópias da imagem que o Foundry usa para tokens invisíveis
+  // ou detectados por outros sentidos não fazem sentido na água, e cada uma é mais um desenho por frame.
+  for (const part of [token.effects, token.voidMesh, token.detectionFilterMesh]) if (part) part.visible = false;
 });
 Hooks.on("updateToken", token => {
   if (isWater(token)) token.object?.renderFlags.set({ refreshVisibility: true });
