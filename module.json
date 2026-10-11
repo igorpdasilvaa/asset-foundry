@@ -1,8 +1,8 @@
 {
   "id": "interactive-assets",
   "title": "Interactive Assets (POC)",
-  "description": "Assets com múltiplos estados (ex.: mesa inteira / quebrada) que o GM troca com um clique no HUD do Tile.",
-  "version": "0.8.0",
+  "description": "Assets com múltiplos estados que reagem a dano: mesa, tocha, construção quebrável, água e veículos.",
+  "version": "0.9.0",
   "authors": [
     {
       "name": "Igor Silva"

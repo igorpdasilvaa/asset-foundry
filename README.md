@@ -46,7 +46,8 @@ Cada asset diz no `assets.json`, em `"player"`, o que os jogadores podem fazer:
 Todo o resto (vida, imagem, estados, apagar o ator) fica com o GM ou com o dano de combate.
 Se o asset não tem `"move"`, o jogador não consegue arrastar o token.
 Hoje mesa, barril e caixa só podem ser movidos, a tocha pode ser movida e acesa/apagada,
-e a porta pode ser aberta e fechada (pelo HUD ou pela porta do Foundry), mas não movida.
+a porta pode ser aberta e fechada (pelo HUD ou pela porta do Foundry), mas não movida,
+e carroça e barco podem ser movidos levando quem está em cima.
 
 ## Pastas
 
@@ -115,6 +116,37 @@ As paredes do Foundry são recalculadas sozinhas (`scripts/mapa.js`) a partir do
 quando um bloco quebra, o buraco se abre e as bordas dele viram parede; curar o bloco (ou
 voltar o estado no HUD) fecha de novo. Estados com `"door": "open"/"closed"` seguem a porta do
 Foundry, e `"sfx"` toca um som ao entrar no estado (madeira quebrando, por exemplo).
+
+## Água (lago)
+Cada quadrado de água é um token "Água" (pasta *Imóveis / Mestre*), montado pelo mapa como as paredes.
+A água não tem vida: ela só reage ao tipo do dano quando é alvo de um ataque ou magia, e a mudança se
+espalha pela água ligada.
+
+| Dano | Efeito |
+|---|---|
+| Gelo | Congela o quadrado e os vizinhos. Dá para andar por cima; o barco fica preso. |
+| Fogo | Derrete o gelo. Na água solta vapor por 3 rodadas (visão prejudicada). |
+| Concussão / Trovão / Força no gelo | Parte o gelo daquele quadrado. |
+| Raio | Eletrifica o lago inteiro (o gelo não conduz) e todo mundo dentro da água leva o mesmo dano de raio. Quem está num barco não leva. |
+| Veneno / Ácido | Envenena o quadrado e os vizinhos por 10 rodadas: 1 de veneno por rodada em quem estiver dentro. |
+| Radiante na água envenenada | Purifica. |
+
+Objetos pegando fogo (mesa, barril, caixa, porta) e a tocha acesa se apagam ao entrar na água.
+
+## Veículos (carroça e barco)
+Ficam em *Móveis / Jogador*: os jogadores podem mover. Tudo que está em cima do veículo
+(o centro do token dentro dele) anda junto: personagens, barris, caixas. Para embarcar, é só
+colocar o token em cima; o chat avisa quem sobe, desce ou pula na água.
+
+| Asset | CA / PV | Observação |
+|---|---|---|
+| Carroça (2 x 3) | 11 / 30 | Não entra na água, mas passa por cima do gelo. Abaixo da metade da vida, concussão/corte/trovão/força quebram uma roda e ela trava. Pega fogo; a 0 PV queima ou se desmancha. |
+| Barco a remo (4 x 2) | 11 / 40 | Só navega em água livre (o gelo prende). Abaixo da metade, um golpe abre um rombo e ele faz água. Pega fogo; a 0 PV afunda ou queima, e quem estava a bordo cai na água. |
+
+Trovão e força empurram o veículo 1 quadrado, com quem está em cima. O GM pode mover para qualquer lugar.
+No `assets.json`: `"vehicle": { "terreno": "agua" | "terra" }`, estados com `"travado": true` não andam,
+e regras com `"below": 0.5` só valem com metade da vida ou menos. Na água, `"spread"` (quadrados ou `"all"`)
+e `"zap"` nas regras, e `"wet"`, `"gelo"` e `"areaDot"` nos estados.
 
 ## Adicionar novos assets
 Tudo fica neste mesmo módulo: coloque os arquivos em `assets/<nome>/` e registre

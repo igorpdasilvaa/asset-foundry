@@ -1,4 +1,6 @@
 import { buildMap, rebuildWalls } from "./mapa.js";
+import * as agua from "./agua.js";
+import * as veiculo from "./veiculo.js";
 
 const MODULE_ID = "interactive-assets";
 /** Pasta dos assets: local (modules/...) ou, no modo desenvolvimento, o commit mais recente no GitHub. */
@@ -18,6 +20,7 @@ let started = false;
  * "player": o que jogadores podem fazer. "move" deixa mover o token; "toggle" lista os estados
  * que eles alternam pelo HUD (ex.: acender/apagar a tocha). O resto (vida, imagem, estados) é só do GM ou do dano.
  * "tipo" (movel | imovel) e "interacao" (jogador | mestre | armadilha) escolhem a pasta do ator no Foundry.
+ * Água (scripts/agua.js) e veículos (scripts/veiculo.js) usam o mesmo esquema, com campos próprios.
  */
 function getData(doc) {
   return doc?.getFlag(MODULE_ID, "data") ?? null;
@@ -41,17 +44,23 @@ function brokenIndex(data) {
 const stateIndex = (data, flag) => data.states.findIndex(s => s[flag]);
 const currentState = data => data.states[data.index ?? 0];
 
-async function setState(doc, index, { syncHP = true, interact = false } = {}) {
+/** Campos que mudam ao entrar no estado i (imagem, índice, duração e luz). */
+function stateUpdate(doc, i) {
   const data = getData(doc);
-  if (!data?.states?.length) return;
-  const i = ((index % data.states.length) + data.states.length) % data.states.length;
   const update = {
     "texture.src": data.states[i].src,
     [`flags.${MODULE_ID}.data.index`]: i,
     [`flags.${MODULE_ID}.data.ticksLeft`]: data.states[i].ticks ?? null
   };
   if (doc.documentName === "Token" && data.states.some(s => s.light)) update.light = lightFor(data.states[i]);
-  await doc.update(update, interact ? { [MODULE_ID]: { interact: true } } : {});
+  return update;
+}
+
+async function setState(doc, index, { syncHP = true, interact = false } = {}) {
+  const data = getData(doc);
+  if (!data?.states?.length) return;
+  const i = ((index % data.states.length) + data.states.length) % data.states.length;
+  await doc.update(stateUpdate(doc, i), interact ? { [MODULE_ID]: { interact: true } } : {});
   // Trocar o estado manualmente num Token também ajusta a vida: quebrada = 0 PV, inteira = PV cheio.
   const hp = doc.actor?.system?.attributes?.hp;
   // Pegando fogo mantém a vida atual (ou enche, se estava em 0).
@@ -74,7 +83,7 @@ function stateFlags(assetId, def) {
     ...(s.sound ? { sound: { ...s.sound, src: `${BASE}/${s.sound.src}` } } : {})
   }));
   const data = { asset: assetId, states, index: 0, ticksLeft: null, damageable: def.actor?.hp != null };
-  for (const key of ["reactions", "onZero", "tickSeconds", "player"]) if (def[key] != null) data[key] = def[key];
+  for (const key of ["reactions", "onZero", "tickSeconds", "player", "vehicle"]) if (def[key] != null) data[key] = def[key];
   return { [MODULE_ID]: { data } };
 }
 
@@ -386,7 +395,7 @@ function tickingTokens(scene) {
   return scene?.tokens.filter(t => {
     const data = getData(t);
     const state = data && currentState(data);
-    return state && (state.dot || state.ticks) && t.actor && data.ticksLeft !== 0;
+    return state && (state.dot || state.areaDot || state.ticks) && t.actor && data.ticksLeft !== 0;
   }) ?? [];
 }
 
@@ -405,6 +414,8 @@ async function tick(token) {
       tickingNow.delete(token.actor.uuid);
     }
   }
+  // "areaDot": o dano é em quem está dentro (ex.: água envenenada), não no próprio asset.
+  if (state.areaDot) await agua.damageOccupants(token, state.areaDot.damage, state.areaDot.type);
   // O dano pode ter trocado o estado (ex.: queimou até 0); só conta a duração se ainda estiver nele.
   const now = getData(token);
   if (currentState(now)?.id !== state.id || now.ticksLeft == null) return;
@@ -461,6 +472,9 @@ export async function start({ base, version }) {
     type: Boolean,
     default: true
   });
+  const ctx = { getData, currentState, ruleAllows, matchesTypes, indexOfId, stateUpdate, setState, say, tokenCenter, isResponsibleGM, MODULE_ID };
+  agua.init(ctx);
+  veiculo.init(ctx);
   game.modules.get(MODULE_ID).api = {
     placeAsset, nextState, setState, buildMap, rebuildWalls,
     get assets() { return REGISTRY; }
@@ -521,20 +535,34 @@ Hooks.on("updateActor", async (actor, changes, options) => {
       await setState(token, 0, { syncHP: false });
       continue;
     }
-    if (!types.size) continue;
-    const rules = data.reactions ?? [];
-    const change = rules.find(r => r.to && matchesTypes(r, types) && ruleAllows(r, data));
-    if (change) {
-      const target = indexOfId(data, change.to);
-      if (target !== -1) {
-        // Ir para um estado quebrado (ex.: gelo estilhaçado) zera a vida.
-        await setState(token, target, { syncHP: !!data.states[target].broken });
-        if (change.say) await say(token, change.say);
-      }
-    }
-    for (const r of rules.filter(r => r.effect && matchesTypes(r, types))) await applyEffect(r, token, actor, types, attacker);
+    if (types.size) await react(token, actor, types, attacker);
   }
 });
+
+/**
+ * Aplica as "reactions" do asset para os tipos de dano recebidos.
+ * "below": a regra só vale com a vida nessa fração ou menos (ex.: 0.5 = metade).
+ * Depois da troca, água e veículos podem completar (espalhar pelo lago, choque em quem está na água).
+ */
+async function react(token, actor, types, attacker) {
+  const data = getData(token);
+  const rules = data.reactions ?? [];
+  const hp = actor?.system?.attributes?.hp;
+  const frac = hp?.max ? hp.value / hp.max : 1;
+  const change = rules.find(r => r.to && matchesTypes(r, types) && ruleAllows(r, data) && (r.below == null || frac <= r.below));
+  if (change) {
+    const target = indexOfId(data, change.to);
+    if (target !== -1) {
+      // Ir para um estado quebrado (ex.: gelo estilhaçado) zera a vida.
+      await setState(token, target, { syncHP: !!data.states[target].broken });
+      if (change.say) await say(token, change.say);
+      await agua.afterReaction(token, change, types);
+    }
+  }
+  if (actor?.system?.attributes?.hp) {
+    for (const r of rules.filter(r => r.effect && matchesTypes(r, types))) await applyEffect(r, token, actor, types, attacker);
+  }
+}
 
 /** Rolagem de dano do dnd5e com um asset como alvo → aplica o dano nele. */
 Hooks.on("createChatMessage", async message => {
@@ -556,7 +584,15 @@ Hooks.on("createChatMessage", async message => {
     const actor = fromUuidSync(t.uuid);
     const token = actor?.token ?? actor?.getActiveTokens(false, true)[0];
     const data = getData(token);
-    if (!data || !isDamageable(data) || !actor?.system?.attributes?.hp) continue;
+    if (!data) continue;
+    // Sem vida (água, tocha): não leva dano, só reage ao tipo do golpe.
+    if (!isDamageable(data)) {
+      const types = new Map();
+      for (const d of damages) if (d.value > 0 && d.type) types.set(d.type, (types.get(d.type) ?? 0) + d.value);
+      if (types.size && data.reactions) await react(token, actor, types, attacker);
+      continue;
+    }
+    if (!actor?.system?.attributes?.hp) continue;
     if (attacker) recentAttacker.set(actor.uuid, { token: attacker, at: Date.now() });
     await actor.applyDamage(damages);
   }

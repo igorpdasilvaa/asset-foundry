@@ -18,12 +18,15 @@ assert all(len(r) == W for r in rows), "todas as linhas do layout precisam ter o
 G = cfg["grid"]
 kind = lambda c: cfg["legend"][c]
 SOLID = {"parede", "lareira"}
+WET = {"agua", "pier"}  # o píer é desenhado por cima da água
 
 sys.path.insert(0, str(ROOT / "tools"))
 from gen_pecas_mapa import MATERIAIS
 
 # cada material usado é desenhado no tamanho do mapa inteiro (sem emendas entre quadrados)
 used = {kind(c) for r in rows for c in r}
+if "pier" in used:
+    used |= {"agua", "piso_madeira"}
 tex = {}
 with tempfile.TemporaryDirectory() as tmp:
     files = []
@@ -65,6 +68,9 @@ for y in range(H):
         if k == "pilar":
             img.alpha_composite(material(floor_under(x, y), x, y), pos)
             continue  # o pilar entra depois das sombras
+        if k == "pier":
+            img.alpha_composite(material("agua", x, y), pos)
+            continue  # o deck entra depois da margem
         if k in ("porta", "lareira"):
             img.alpha_composite(material("parede", x, y), pos)
         if k == "porta":
@@ -79,6 +85,45 @@ for y in range(H):
             img.alpha_composite(tile, pos)
         else:
             img.alpha_composite(material(k, x, y), pos)
+
+# margem da água: lama e espuma onde a água encosta na terra
+water = lambda x, y: at(x, y) in WET
+shore = Image.new("RGBA", img.size)
+sh = ImageDraw.Draw(shore)
+M = 34
+for y in range(H):
+    for x in range(W):
+        if at(x, y) != "agua":
+            continue
+        X, Y = x * PX, y * PX
+        for i in range(M):
+            a = int(235 * (1 - i / M) ** 1.2)
+            c = (88, 72, 46, a) if i > 3 else (210, 228, 224, 140)
+            if at(x, y - 1) and not water(x, y - 1): sh.line([(X, Y + i), (X + PX, Y + i)], fill=c)
+            if at(x, y + 1) and not water(x, y + 1): sh.line([(X, Y + PX - 1 - i), (X + PX, Y + PX - 1 - i)], fill=c)
+            if at(x - 1, y) and not water(x - 1, y): sh.line([(X + i, Y), (X + i, Y + PX)], fill=c)
+            if at(x + 1, y) and not water(x + 1, y): sh.line([(X + PX - 1 - i, Y), (X + PX - 1 - i, Y + PX)], fill=c)
+img.alpha_composite(shore)
+
+# píer: tábuas (o piso de madeira) um pouco mais estreitas que o quadrado, com postes nas pontas
+for y in range(H):
+    for x in range(W):
+        if at(x, y) != "pier":
+            continue
+        X, Y = x * PX, y * PX
+        horiz = water(x - 1, y) or water(x + 1, y) or not water(x, y - 1)
+        deck = material("piso_madeira", x, y)
+        box = (0, 24, PX, PX - 24) if horiz else (24, 0, PX - 24, PX)
+        mask = Image.new("L", (PX, PX))
+        ImageDraw.Draw(mask).rectangle(box, fill=255)
+        shadow_box = Image.new("RGBA", (PX, PX))
+        ImageDraw.Draw(shadow_box).rectangle(box, fill=(0, 0, 0, 110))
+        img.alpha_composite(shadow_box, (X + 8, Y + 10))
+        img.paste(deck, (X, Y), mask)
+        od0 = ImageDraw.Draw(img)
+        od0.rectangle((X + box[0], Y + box[1], X + box[2] - 1, Y + box[3] - 1), outline=(42, 24, 10, 255), width=4)
+        for px_, py_ in ((box[0], box[1]), (box[2], box[1]), (box[0], box[3]), (box[2], box[3])):
+            od0.ellipse((X + px_ - 11, Y + py_ - 11, X + px_ + 11, Y + py_ + 11), fill=(74, 52, 32, 255), outline=(30, 18, 8, 255), width=3)
 
 # sombra das paredes sobre o chão + contorno escuro
 shadow = Image.new("RGBA", img.size)
@@ -114,7 +159,7 @@ img.convert("RGB").save(DIR / bg_name, quality=86, method=6)
 # ---------- estruturas quebráveis (tokens) ----------
 # Cada bloco de parede, porta e pilar vira um token de asset; as paredes do Foundry
 # são calculadas pelo módulo (scripts/mapa.js) a partir do que está de pé.
-STRUCT = cfg.get("structures", {"parede": "wall", "porta": "door", "pilar": "pillar"})
+STRUCT = cfg.get("structures", {"parede": "wall", "porta": "door", "pilar": "pillar", "agua": "water"})
 structures, fixed = [], []
 for y in range(H):
     for x in range(W):
@@ -149,24 +194,34 @@ ASSETS = json.loads((ROOT / "assets" / "assets.json").read_text())
 def state_img(asset, idx):
     return Image.open(ROOT / "assets" / ASSETS[asset]["states"][idx]["src"].replace(".webm", ".png")).convert("RGBA")
 
-def preview(out, broken=()):
+def preview(out, broken=(), states=()):
+    """states: [{"asset", "state", "cells"?}] troca o estado das estruturas (todas daquele asset, ou só "cells")
+    e dos objetos daquele asset."""
     broken = {tuple(b) for b in broken}
+    override, obj_override = {}, {}
+    for st_ in states:
+        ids = [s_["id"] for s_ in ASSETS[st_["asset"]]["states"]]
+        obj_override[st_["asset"]] = ids.index(st_["state"])
+        cells = {tuple(c) for c in st_["cells"]} if st_.get("cells") else None
+        for s in structures:
+            if s["asset"] == st_["asset"] and (cells is None or (s["x"], s["y"]) in cells):
+                override[(s["x"], s["y"])] = ids.index(st_["state"])
     scene_img = img.copy()
     solid_now, doors, pillars = set(fixed), [], []
     for s in structures:
         b = (s["x"], s["y"]) in broken
         states = ASSETS[s["asset"]]["states"]
-        idx = next(i for i, st in enumerate(states) if st.get("broken")) if b else 0
+        idx = next(i for i, st in enumerate(states) if st.get("broken")) if b else override.get((s["x"], s["y"]), 0)
         tile = state_img(s["asset"], idx).rotate(-s.get("rotation", 0))
         scene_img.alpha_composite(tile.resize((PX, PX)), (s["x"] * PX, s["y"] * PX))
         if b:
             continue
         if s["kind"] == "wall": solid_now.add(f'{s["x"]},{s["y"]}')
         elif s["kind"] == "door": doors.append({"x": s["x"], "y": s["y"], "dir": s["dir"]})
-        else: pillars.append({"x": s["x"], "y": s["y"]})
+        elif s["kind"] == "pillar": pillars.append({"x": s["x"], "y": s["y"]})
     for o in cfg.get("objects", []):
         d = ASSETS[o["asset"]]
-        t = state_img(o["asset"], 0)
+        t = state_img(o["asset"], obj_override.get(o["asset"], 0))
         w, h = int(d["size"]["w"] * PX), int(d["size"]["h"] * PX)
         f = PX / G
         scene_img.alpha_composite(t.resize((w, h)), (int(o["x"] * f - w / 2), int(o["y"] * f - h / 2)))
@@ -186,4 +241,6 @@ def preview(out, broken=()):
 walls = preview("previa.jpg")
 if cfg.get("preview_broken"):
     preview("previa_quebrada.jpg", cfg["preview_broken"])
+for name_, states_ in cfg.get("preview_states", {}).items():
+    preview(name_, states=states_)
 print(f"{name}: {W}x{H} quadrados, {len(structures)} estruturas, {len(walls)} paredes, fundo {img.width}x{img.height}")

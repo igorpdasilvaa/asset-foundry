@@ -1,0 +1,41 @@
+{
+  "name": "Lago (teste)",
+  "grid": 100,
+  "darkness": 0,
+  "seed": 3,
+  "legend": {
+    "\"": "grama",
+    "_": "terra",
+    "~": "agua",
+    "=": "pier"
+  },
+  "objects": [
+    { "asset": "carroca", "x": 400, "y": 350 },
+    { "asset": "barril", "x": 350, "y": 350 },
+    { "asset": "caixa", "x": 450, "y": 450 },
+    { "asset": "barco", "x": 1200, "y": 900 },
+    { "asset": "barril", "x": 1050, "y": 750 },
+    { "asset": "tocha", "x": 1350, "y": 750 },
+    { "asset": "barril", "x": 650, "y": 650 },
+    { "asset": "caixa", "x": 750, "y": 650 }
+  ],
+  "lights": [],
+  "sounds": [
+    { "x": 1500, "y": 750, "radius": 40, "path": "mapas/lago/agua_loop.ogg", "volume": 0.5 }
+  ],
+  "preview_states": {
+    "previa_gelo.jpg": [
+      { "asset": "agua", "state": "congelada" },
+      { "asset": "carroca", "state": "roda_quebrada" }
+    ],
+    "previa_raio.jpg": [
+      { "asset": "agua", "state": "eletrificada" },
+      { "asset": "barco", "state": "queimando" }
+    ],
+    "previa_veneno.jpg": [
+      { "asset": "agua", "state": "envenenada", "cells": [[10, 9], [11, 9], [12, 9], [10, 10], [11, 10], [9, 8], [10, 8], [9, 9], [12, 10], [13, 10]] },
+      { "asset": "agua", "state": "vapor", "cells": [[16, 4], [17, 4], [16, 5], [17, 5], [18, 5], [15, 5]] },
+      { "asset": "barco", "state": "afundado" }
+    ]
+  }
+}
