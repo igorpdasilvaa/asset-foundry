@@ -1,6 +1,7 @@
 import { buildMap, rebuildWalls } from "./mapa.js";
 import * as agua from "./agua.js";
 import * as veiculo from "./veiculo.js";
+import * as template from "./template.js";
 
 const MODULE_ID = "interactive-assets";
 /** Pasta dos assets: local (modules/...) ou, no modo desenvolvimento, o commit mais recente no GitHub. */
@@ -514,6 +515,7 @@ export async function start({ base, version }) {
   const ctx = { registry: () => REGISTRY, getData, posOf, currentState, ruleAllows, matchesTypes, indexOfId, stateUpdate, setState, say, tokenCenter, isResponsibleGM, MODULE_ID };
   agua.init(ctx);
   veiculo.init(ctx);
+  template.init();
   game.modules.get(MODULE_ID).api = {
     placeAsset, nextState, setState, buildMap, rebuildWalls,
     /** De onde o código veio: commit do GitHub (modo desenvolvimento) ou a pasta instalada. A macro dos mapas usa isso. */

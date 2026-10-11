@@ -151,6 +151,14 @@ e regras com `"below": 0.5` só valem com metade da vida ou menos. Na água, `"s
 e `"zap"` nas regras, e `"wet"`, `"gelo"`, `"areaDot"` e `"oculto"` nos estados (`"oculto"`: o token não é
 desenhado, porque a água calma já está pintada no fundo do mapa; só os quadrados que mudam de estado aparecem).
 
+## Tokens dentro de um template
+- Ao colocar um template (bola de fogo, cone, linha...), os tokens dentro dele viram seus alvos.
+  Dá para desligar em *Configurações > Alvos automáticos nos templates* (vale para cada usuário).
+- **Alt+T** com o mouse sobre um template, ou o botão *Selecionar tokens no template* nas ferramentas de
+  template: seleciona e marca como alvo todos os tokens dentro, prontos para aplicar o dano pelo chat.
+- Conta como dentro o token com qualquer quadrado destacado pelo template. Quadrados de água viram alvo
+  (para reagirem ao dano), mas não são selecionados.
+
 ## Adicionar novos assets
 Tudo fica neste mesmo módulo: coloque os arquivos em `assets/<nome>/` e registre
 o asset em `assets/assets.json`. Cada estado aceita:
