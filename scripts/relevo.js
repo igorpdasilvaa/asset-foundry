@@ -258,8 +258,7 @@ async function roll(token, data) {
   const from = { x: Math.floor((p.x + g / 2) / g), y: Math.floor((p.y + g / 2) / g) };
   const cells = scene.grid.getDirectPath([{ i: from.y, j: from.x }, { i: to.y, j: to.x }]).map(c => key(c.j, c.i));
   const line = new Set(cells.slice(1));
-  const hit = scene.tokens.filter(t => t.id !== token.id && !isCell(t) && t.actor?.system?.attributes?.hp
-    && cellsAt(t, C.posOf(t), g).some(k => line.has(k)));
+  const hit = scene.tokens.filter(t => t.id !== token.id && isCreature(t) && cellsAt(t, C.posOf(t), g).some(k => line.has(k)));
 
   // Rastro do pedregulho (modelo de linha), para todos verem o caminho; os atingidos viram alvo do GM.
   const a = { x: p.x + g / 2, y: p.y + g / 2 }, b = { x: to.x * g + g / 2, y: to.y * g + g / 2 };
