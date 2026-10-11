@@ -477,6 +477,8 @@ export async function start({ base, version }) {
   veiculo.init(ctx);
   game.modules.get(MODULE_ID).api = {
     placeAsset, nextState, setState, buildMap, rebuildWalls,
+    /** De onde o código veio: commit do GitHub (modo desenvolvimento) ou a pasta instalada. A macro dos mapas usa isso. */
+    root: base.replace(/\/assets$/, ""),
     get assets() { return REGISTRY; }
   };
 

@@ -8,11 +8,17 @@ const REPO = "igorpdasilvaa/asset-foundry";
 const api = game.modules.get("interactive-assets")?.api;
 if (!api?.buildMap) return ui.notifications.error("Interactive Assets desatualizado: atualize o módulo para a versão 0.7.0 ou mais nova (ou ligue o Modo desenvolvimento) e recarregue a página.");
 
-const r = await fetch(`https://api.github.com/repos/${REPO}/commits/${encodeURIComponent(REF)}`, {
-  headers: { Accept: "application/vnd.github.sha" }
-});
-if (!r.ok) return ui.notifications.error(`Não consegui ler o GitHub (${r.status}).`);
-const root = `https://cdn.jsdelivr.net/gh/${REPO}@${(await r.text()).trim()}`;
+// Com o modo desenvolvimento, usa o mesmo commit que o módulo carregou (sem gastar consulta ao GitHub).
+let root = REF === "main" && api.root?.startsWith("http") ? api.root : null;
+if (!root) {
+  // O GitHub libera 60 consultas por hora; se passar disso (erro 403), lê os arquivos direto do repositório.
+  const r = await fetch(`https://api.github.com/repos/${REPO}/commits/${encodeURIComponent(REF)}`, {
+    headers: { Accept: "application/vnd.github.sha" }
+  }).catch(() => null);
+  root = r?.ok
+    ? `https://cdn.jsdelivr.net/gh/${REPO}@${(await r.text()).trim()}`
+    : `https://raw.githubusercontent.com/${REPO}/${REF}`;
+}
 const data = await (await fetch(`${root}/mapas/${MAPA}/cena.json`)).json();
 
 const scene = await api.buildMap(data, root);

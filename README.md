@@ -34,6 +34,8 @@ da branch `main` no GitHub (via jsDelivr), sem precisar apertar Atualizar no set
 
 - Mudanças no `module.json` (nome, versão, novos arquivos de estilo) ainda pedem atualização normal.
 - O GitHub permite 60 consultas por hora por IP; se passar disso ou o GitHub cair, o módulo usa a versão instalada e avisa.
+  A macro dos mapas usa o mesmo commit que o módulo carregou e, sem ele, lê os arquivos direto do repositório,
+  então funciona mesmo com o limite estourado (mantenha o módulo instalado atualizado para esse caso).
 - Desligar o modo volta para os arquivos instalados; tokens já na cena trocam as imagens sozinhos.
 
 ## O que jogadores podem fazer
