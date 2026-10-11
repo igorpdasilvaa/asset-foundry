@@ -165,11 +165,14 @@ morros com penhascos virados para a estrada). O módulo usa essa altura assim:
 
 - **Altura do token**: quem anda fica na altura do chão de cada quadrado (o *elevation* do token muda sozinho).
   Voando, nada muda.
-- **Encosta**: o quadrado mais alto de um degrau de 5 pés é terreno difícil (regiões do dnd5e, como o mato
-  fechado, o cascalho solto e o tronco caído). As trilhas não são.
+- **Subir custa movimento** (a régua já mostra o custo): cada 5 pés de encosta subidos custam 5 pés a mais;
+  descer é normal. Na trilha, subir não custa extra. Mato fechado, cascalho solto e o tronco caído são
+  terreno difícil (regiões do dnd5e).
 - **Penhasco** (10 pés ou mais entre dois quadrados): andando, o jogador não passa. Escolha a ação de
-  movimento **Escalar** (o chat pede um teste de Atletismo; se falhar, cai) ou, para descer, **Pular**
-  (cai: 1d6 de concussão a cada 10 pés, aplicado na hora, e fica caído). O GM move para qualquer lugar.
+  movimento **Escalar**: custa 2 pés por pé de altura, subindo ou descendo (o penhasco de 15 pés custa
+  5 + 30 = 35 pés), e o chat pede um teste de Atletismo (se falhar, cai). Para descer rápido, **Pular**: não
+  custa extra, mas cai (1d6 de concussão a cada 10 pés, aplicado na hora) e fica caído. O GM move para
+  qualquer lugar.
 - **Armadilhas** (*Imóveis / Armadilha*), escondidas no mapa: quem passa por cima para no quadrado, a
   armadilha aparece e o chat mostra o teste e o dano para clicar. Tokens hostis (os bandidos que armaram)
   passam sem disparar.

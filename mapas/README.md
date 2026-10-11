@@ -39,12 +39,12 @@ Cada `~` vira um token "Água". `preview_states` gera prévias com estados troca
 
 ### Mapas com relevo (`tools/gen_relevo.py`)
 - `mapas/<nome>/altura.txt`: um dígito por quadrado, do mesmo tamanho do `layout.txt`; cada ponto vale
-  `step` pés (5 no `mapa.json`). Vizinhos com 1 ponto de diferença são encosta (o de cima vira terreno
-  difícil); com 2 ou mais, penhasco.
+  `step` pés (5 no `mapa.json`). Vizinhos com 1 ponto de diferença são encosta (subir custa mais
+  movimento, menos na trilha); com 2 ou mais, penhasco (só escalando).
 - Legenda do layout: `"` grama, `_` estrada, `t` trilha, `%` cascalho, `:` mato, `^` borda rochosa,
   `T` árvore, `R` pedra, `=` tronco caído. Árvores e pedras bloqueiam movimento (paredes do Foundry,
   mas sem bloquear visão).
-- `mapa.json`: `difficult` diz o tipo de terreno difícil de cada categoria (`slope`, `plants`, `rocks`),
+- `mapa.json`: `difficult` diz o tipo de terreno difícil de cada categoria (`plants`, `rocks`...),
   `climbDC` a CD de escalar. Objetos aceitam `"hidden": true` (armadilhas) e `"flags"`: `link` liga o fio
   ao pedregulho (quadrado `{x, y}`), `roll` é onde o pedregulho para.
 - `python3 tools/gen_relevo.py <nome>` gera o fundo (sombreado, curvas de nível, penhascos, árvores),

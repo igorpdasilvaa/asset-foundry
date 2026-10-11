@@ -17,7 +17,6 @@
     "=": "tronco"
   },
   "difficult": {
-    "encosta": { "name": "Encosta íngreme", "type": "slope", "color": "#c8a050" },
     "mato": { "name": "Mato fechado", "type": "plants", "color": "#5f9a3a" },
     "cascalho": { "name": "Cascalho solto", "type": "rocks", "color": "#9a9a9a" },
     "tronco": { "name": "Tronco caído", "type": "", "color": "#8a5a2a" }

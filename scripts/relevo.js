@@ -3,6 +3,8 @@
  * "height" é uma linha de texto por fileira de quadrados, um dígito por quadrado (vezes "step" pés).
  *
  * - Quem para num quadrado fica na altura do chão dele (elevation do token), a não ser que esteja voando.
+ * - Subir custa movimento (a régua mostra): encosta +5 pés a cada 5 pés subidos (na trilha não);
+ *   penhasco é escalada, +2 pés por pé de altura, subindo ou descendo (15 pés = +30). Voando, nada muda.
  * - Penhasco: dois quadrados vizinhos com 10 pés ou mais de diferença. Andando, jogadores não passam;
  *   com a ação Escalar passam e o chat pede um teste de Atletismo; pulando para baixo (ação Pular), caem e
  *   levam 1d6 de dano por 10 pés, e ficam caídos. O GM move para qualquer lugar.
@@ -16,6 +18,7 @@ let C = null;
 
 export function init(ctx) {
   C = ctx;
+  patchMovementCost();
 }
 
 const relevo = scene => scene?.getFlag(MODULE_ID, "map")?.relevo ?? null;
@@ -93,6 +96,47 @@ function cliffs(scene, steps, ground) {
 }
 
 const FREE = new Set(["fly", "blink", "displace"]);
+
+/** Quadrados de trilha ("x,y"): sobem sem custo extra. */
+function trailCells(r) {
+  const out = new Set();
+  (r.trail ?? []).forEach((row, y) => [...row].forEach((c, x) => { if (c === "1") out.add(key(x, y)); }));
+  return out;
+}
+
+/**
+ * Custo de movimento com a altura do chão, usado pela régua, pelo caminho automático e pelo movimento:
+ * conta só o deslocamento no plano (a mudança de elevation que o módulo põe nos pontos não soma de novo)
+ * e acrescenta a subida: encosta +1 pé por pé subido, penhasco +2 por pé (escalar, subindo ou descendo;
+ * pular para baixo não custa). Voar, teleportar e empurrar não mudam.
+ */
+function patchMovementCost() {
+  const proto = CONFIG.Token.objectClass?.prototype;
+  if (!proto?._getMovementCostFunction || proto[`${MODULE_ID}Relevo`]) return;
+  const original = proto._getMovementCostFunction;
+  proto._getMovementCostFunction = function (options) {
+    const cost = original.call(this, options);
+    const doc = this.document;
+    const scene = doc?.parent;
+    const r = relevo(scene);
+    if (!r || !C || isCell(doc)) return cost;
+    const ground = groundFn(scene);
+    const trail = trailCells(r);
+    const ox = Math.floor(doc.width / 2), oy = Math.floor(doc.height / 2);
+    const unit = scene.grid.distance;
+    return (from, to, distance, segment) => {
+      if (FREE.has(segment.action)) return cost(from, to, distance, segment);
+      if (from.i === to.i && from.j === to.j) return 0; // só subiu/desceu no mesmo quadrado
+      const flat = from.k === to.k ? distance : unit;
+      const c = cost(from, { ...to, k: from.k }, flat, segment);
+      const dh = ground(to.j + ox, to.i + oy) - ground(from.j + ox, from.i + oy);
+      if (Math.abs(dh) >= 2 * r.step) return c + (dh > 0 || segment.action === "climb" ? 2 * Math.abs(dh) : 0);
+      if (dh > 0 && !trail.has(key(to.j + ox, to.i + oy))) return c + dh;
+      return c;
+    };
+  };
+  proto[`${MODULE_ID}Relevo`] = true;
+}
 
 /** Armadilhas armadas da cena: "x,y" → token. */
 function armedCells(scene) {

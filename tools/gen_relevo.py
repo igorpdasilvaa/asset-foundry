@@ -7,7 +7,8 @@ Gera:
   e os objetos (armadilhas escondidas, pedregulhos, carroça...);
 - previa.jpg (o que os jogadores veem) e previa_mestre.jpg (armadilhas, terreno difícil, penhascos e alturas).
 
-Dois quadrados vizinhos com 1 degrau de diferença são encosta (terreno difícil); com 2 ou mais, penhasco.
+Dois quadrados vizinhos com 1 degrau de diferença são encosta (subir custa mais movimento, ver scripts/relevo.js);
+com 2 ou mais, penhasco. Mato, cascalho e tronco viram regiões de terreno difícil.
 Uso: python3 tools/gen_relevo.py emboscada"""
 import json, math, os, random, subprocess, sys, tempfile, pathlib
 import numpy as np
@@ -544,7 +545,6 @@ def rects(cellset):
     return out
 
 DIFF = cfg.get("difficult", {})
-walkway = {"estrada", "trilha"}
 cat = {}
 for y in range(H):
     for x in range(W):
@@ -555,8 +555,6 @@ for y in range(H):
             cat[(x, y)] = "mato"
         elif k == "cascalho":
             cat[(x, y)] = "cascalho"
-        elif k not in walkway and any(inside(x + dx, y + dy) and hg[y + dy, x + dx] == hg[y, x] - 1 for dx, dy in N4):
-            cat[(x, y)] = "encosta"
 regions = []
 for c, info in DIFF.items():
     cs = {p for p, v in cat.items() if v == c}
@@ -595,7 +593,8 @@ scene = {
     "regions": regions,
     "flags": {"interactive-assets": {"map": {
         "cols": W, "rows": H, "fixed": [], "structures": [], "objects": cfg.get("objects", []),
-        "relevo": {"step": STEP, "height": alt, "climbDC": cfg.get("climbDC", 12)}}}},
+        "relevo": {"step": STEP, "height": alt, "climbDC": cfg.get("climbDC", 12),
+                   "trail": ["".join("1" if kind(x, y) == "trilha" else "0" for x in range(W)) for y in range(H)]}}}},
 }
 (DIR / "cena.json").write_text(json.dumps(scene, indent=1, ensure_ascii=False))
 
