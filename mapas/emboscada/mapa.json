@@ -37,7 +37,7 @@
     { "asset": "fosso", "x": 1050, "y": 1250, "hidden": true },
     { "asset": "fosso", "x": 1250, "y": 850, "hidden": true },
     { "asset": "armadilha_urso", "x": 2050, "y": 450, "hidden": true },
-    { "asset": "fio", "x": 2150, "y": 350, "hidden": true, "flags": { "link": { "x": 25, "y": 5 } } }
+    { "asset": "fio", "x": 2350, "y": 450, "hidden": true, "flags": { "link": { "x": 25, "y": 5 } } }
   ],
   "lights": [],
   "sounds": []

@@ -101,6 +101,7 @@ window.addEventListener("keydown", event => {
 
 /** Alvos automáticos: quando o template que este usuário colocou ou mexeu termina de desenhar. */
 const track = (doc, userId) => {
+  if (doc.getFlag(MODULE_ID, "rockfall")) return; // rastro do pedregulho: os alvos são marcados por ele
   if (userId === game.user.id && game.settings.get(MODULE_ID, "autoTarget")) pending.add(doc.id);
 };
 Hooks.on("createMeasuredTemplate", (doc, options, userId) => track(doc, userId));
