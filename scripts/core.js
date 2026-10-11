@@ -185,6 +185,14 @@ const objectEffect = () => ({
   flags: { [MODULE_ID]: { object: true } }
 });
 
+/** Asset sem vida (água, tocha) não fica "Bloodied": o dnd5e lê 0 de 0 PV como metade da vida. */
+Hooks.on("preCreateActiveEffect", effect => {
+  const actor = effect.parent;
+  if (!(actor instanceof Actor) || !effect.statuses?.has("bloodied")) return;
+  const data = getData(actor.token) ?? getData(actor.prototypeToken);
+  if (data && !isDamageable(data)) return false;
+});
+
 const playerOwnership = def => def.player?.move || def.player?.toggle?.length
   ? CONST.DOCUMENT_OWNERSHIP_LEVELS.OWNER
   : CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE;
@@ -495,7 +503,7 @@ export async function start({ base, version }) {
     default: true
   });
   CONFIG.DND5E?.neverBlockStatuses?.add?.(OBJECT_STATUS);
-  const ctx = { getData, posOf, currentState, ruleAllows, matchesTypes, indexOfId, stateUpdate, setState, say, tokenCenter, isResponsibleGM, MODULE_ID };
+  const ctx = { registry: () => REGISTRY, getData, posOf, currentState, ruleAllows, matchesTypes, indexOfId, stateUpdate, setState, say, tokenCenter, isResponsibleGM, MODULE_ID };
   agua.init(ctx);
   veiculo.init(ctx);
   game.modules.get(MODULE_ID).api = {
@@ -508,6 +516,8 @@ export async function start({ base, version }) {
   try {
     REGISTRY = await (await fetch(`${BASE}/assets.json?v=${version}`, { cache: "no-cache" })).json();
     console.log(`${MODULE_ID} | ${Object.keys(REGISTRY).length} asset(s) carregado(s)`);
+    // O canvas pode ter sido desenhado antes do assets.json chegar (estado "oculto" da água).
+    for (const t of canvas.tokens?.placeables ?? []) if (getData(t.document)) t.renderFlags.set({ refreshVisibility: true });
     if (isResponsibleGM()) {
       await ensureFolders();
       // Garante um ator por asset na pasta da sua categoria, pronto para arrastar para a cena.

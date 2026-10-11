@@ -23,7 +23,13 @@ const isWater = t => t.getFlag(MODULE_ID, "cell")?.kind === "water";
 /** Estado "oculto": esconde a imagem do token (ele continua lá para as regras e para o GM clicar). */
 Hooks.on("refreshToken", token => {
   if (!C || !isWater(token.document) || !token.mesh) return;
-  token.mesh.visible = token.visible && token.renderable && !C.currentState(C.getData(token.document))?.oculto;
+  const data = C.getData(token.document);
+  const state = C.currentState(data);
+  // Lê também o assets.json atual: o token pode ter sido criado antes do campo existir.
+  const live = C.registry()[data.asset]?.states?.find(s => s.id === state?.id);
+  token.mesh.visible = token.visible && token.renderable && !(live ?? state)?.oculto;
+  // Ícones de status (ex.: "Bloodied" do dnd5e) não fazem sentido na água e pesam no canvas.
+  if (token.effects) token.effects.visible = false;
 });
 Hooks.on("updateToken", token => {
   if (isWater(token)) token.object?.renderFlags.set({ refreshVisibility: true });
