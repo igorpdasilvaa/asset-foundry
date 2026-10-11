@@ -1456,5 +1456,261 @@
         "say": "se solta com o impacto!"
       }
     ]
+  },
+  "arvore_grande": {
+    "name": "Árvore grande",
+    "tipo": "imovel",
+    "interacao": "mestre",
+    "size": {
+      "w": 3,
+      "h": 3
+    },
+    "actor": {
+      "ac": 13,
+      "hp": 45,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": [
+        "piercing"
+      ]
+    },
+    "tree": {
+      "r": 0.32
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "inteira",
+        "name": "Inteira",
+        "src": "arvore_grande/arvore_grande_inteira.webp"
+      },
+      {
+        "id": "queimando",
+        "name": "Pegando fogo",
+        "src": "arvore_grande/arvore_grande_queimando.webp",
+        "burning": true,
+        "sticky": true,
+        "dot": {
+          "damage": 5,
+          "type": "fire"
+        },
+        "light": {
+          "bright": 15,
+          "dim": 45,
+          "color": "#ff7b2e",
+          "alpha": 0.5,
+          "attenuation": 0.6,
+          "animation": {
+            "type": "torch",
+            "speed": 4,
+            "intensity": 5
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 40,
+          "volume": 0.8
+        }
+      },
+      {
+        "id": "chamuscada",
+        "name": "Chamuscada",
+        "src": "arvore_grande/arvore_grande_chamuscada.webp"
+      },
+      {
+        "id": "queimada",
+        "name": "Queimada",
+        "src": "arvore_grande/arvore_grande_queimada.webp",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#ff5a1a",
+          "alpha": 0.3,
+          "animation": {
+            "type": "torch",
+            "speed": 1,
+            "intensity": 2
+          }
+        }
+      },
+      {
+        "id": "derrubada",
+        "name": "Derrubada",
+        "src": "arvore_grande/arvore_grande_derrubada.webp",
+        "broken": true,
+        "solid": false,
+        "sfx": "audio/madeira_quebrando.ogg"
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "queimando"
+        ],
+        "to": "chamuscada",
+        "say": "tem o fogo apagado pelo gelo."
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "queimando",
+        "say": "pega fogo! As folhas estalam e a fumaça sobe."
+      }
+    ],
+    "onZero": [
+      {
+        "state": "queimando",
+        "to": "queimada",
+        "say": "queima até sobrar só o tronco preto."
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "queimada",
+        "say": "é consumida pelo fogo."
+      },
+      {
+        "to": "derrubada",
+        "say": "range e desaba!"
+      }
+    ]
+  },
+  "arvore_pequena": {
+    "name": "Árvore pequena",
+    "tipo": "imovel",
+    "interacao": "mestre",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {
+      "ac": 12,
+      "hp": 15,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": [
+        "piercing"
+      ]
+    },
+    "tree": {
+      "r": 0.16
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "inteira",
+        "name": "Inteira",
+        "src": "arvore_pequena/arvore_pequena_inteira.webp"
+      },
+      {
+        "id": "queimando",
+        "name": "Pegando fogo",
+        "src": "arvore_pequena/arvore_pequena_queimando.webp",
+        "burning": true,
+        "sticky": true,
+        "dot": {
+          "damage": 3,
+          "type": "fire"
+        },
+        "light": {
+          "bright": 5,
+          "dim": 15,
+          "color": "#ff7b2e",
+          "alpha": 0.5,
+          "attenuation": 0.6,
+          "animation": {
+            "type": "torch",
+            "speed": 4,
+            "intensity": 5
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 20,
+          "volume": 0.8
+        }
+      },
+      {
+        "id": "chamuscada",
+        "name": "Chamuscada",
+        "src": "arvore_pequena/arvore_pequena_chamuscada.webp"
+      },
+      {
+        "id": "queimada",
+        "name": "Queimada",
+        "src": "arvore_pequena/arvore_pequena_queimada.webp",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#ff5a1a",
+          "alpha": 0.3,
+          "animation": {
+            "type": "torch",
+            "speed": 1,
+            "intensity": 2
+          }
+        }
+      },
+      {
+        "id": "derrubada",
+        "name": "Derrubada",
+        "src": "arvore_pequena/arvore_pequena_derrubada.webp",
+        "broken": true,
+        "solid": false,
+        "sfx": "audio/madeira_quebrando.ogg"
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "queimando"
+        ],
+        "to": "chamuscada",
+        "say": "tem o fogo apagado pelo gelo."
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "queimando",
+        "say": "pega fogo! As folhas estalam e a fumaça sobe."
+      }
+    ],
+    "onZero": [
+      {
+        "state": "queimando",
+        "to": "queimada",
+        "say": "queima até sobrar só o tronco preto."
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "queimada",
+        "say": "é consumida pelo fogo."
+      },
+      {
+        "to": "derrubada",
+        "say": "range e desaba!"
+      }
+    ]
   }
 }

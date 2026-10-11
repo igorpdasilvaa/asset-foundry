@@ -119,6 +119,24 @@ quando um bloco quebra, o buraco se abre e as bordas dele viram parede; curar o 
 voltar o estado no HUD) fecha de novo. Estados com `"door": "open"/"closed"` seguem a porta do
 Foundry, e `"sfx"` toca um som ao entrar no estado (madeira quebrando, por exemplo).
 
+## Árvores (grande e pequena)
+Ficam em *Imóveis / Mestre*. As imagens são montadas a partir de fotos CC0 (`tools/gen_arvores.py`, créditos em
+[`mapas/CREDITOS.md`](mapas/CREDITOS.md)). O tronco bloqueia movimento, mas não a visão (dá para ver por baixo da copa).
+
+| Asset | Tamanho | CA / PV | Observação |
+|---|---|---|---|
+| Árvore grande | 3 x 3 | 13 / 45 | Fogo pega de 5 em 5 por rodada |
+| Árvore pequena | 1 x 1 | 12 / 15 | Fogo pega de 3 em 3 por rodada |
+
+| Dano | Efeito |
+|---|---|
+| Fogo / Raio | Pega fogo (luz e som de fogo). A 0 PV vira só o tronco preto, que continua bloqueando. |
+| Gelo numa árvore pegando fogo | Apaga; fica chamuscada. |
+| Outros, a 0 PV | Desaba: sobra o toco e o tronco caído, e a passagem fica livre. |
+
+Resistentes a perfurante, imunes a veneno e psíquico. Nos mapas, as árvores entram giradas ao acaso para não
+ficarem todas iguais; o GM pode arrastar uma árvore e o tronco vai junto.
+
 ## Água (lago)
 Cada quadrado de água é um token "Água" (pasta *Imóveis / Mestre*), montado pelo mapa como as paredes.
 A água não tem vida: ela só reage ao tipo do dano quando é alvo de um ataque ou magia, e a mudança se
