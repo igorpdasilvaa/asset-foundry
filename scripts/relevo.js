@@ -172,8 +172,8 @@ Hooks.on("preMoveToken", (token, move, options) => {
     for (const s of cliffs(scene, steps, ground)) {
       if (FREE.has(s.action) || s.action === "climb" || (s.action === "jump" && s.dh < 0)) continue;
       ui.notifications.warn(s.dh > 0
-        ? `Penhasco de ${s.dh} pés: para subir, escolha Escalar nas ações de movimento do token (custa o dobro e pede Atletismo).`
-        : `Queda de ${-s.dh} pés: escolha Escalar para descer com cuidado, ou Pular para pular (cai e leva dano).`);
+        ? `Penhasco de ${s.dh} pés: para subir, clique com o botão direito no token, clique no ícone de movimento (o bonequinho andando) e escolha Escalar. Custa o dobro e pede Atletismo.`
+        : `Queda de ${-s.dh} pés: clique com o botão direito no token, clique no ícone de movimento (o bonequinho andando) e escolha Escalar para descer com cuidado, ou Pular para pular (cai e leva dano).`);
       return false;
     }
   }
