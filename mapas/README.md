@@ -14,6 +14,10 @@ Cada execução cria uma cena nova. Para outro mapa, troque `MAPA` na macro: `"l
 `"emboscada"` monta a **Emboscada na estrada (teste)**: uma carroça parada por um tronco caído na estrada,
 entre dois morros com penhascos. Para chegar no alto é preciso escalar, subir encosta e mato (terreno difícil)
 ou ir pelas trilhas, que têm armadilhas escondidas. Lá em cima há pedregulhos prontos para rolar na estrada.
+`"lobisomens"` monta **Caminho do Leão: a caçada (lobisomens)**: 300 pés de estrada serpenteando entre dois morros,
+no crepúsculo. O alto só se alcança escalando os penhascos ou subindo as três encostas (não há trilhas), e as encostas,
+as margens da estrada e o alto estão cheios de armadilhas (19) e pedregulhos (7). As árvores são interativas, e o
+chão, as pedras e o mato são feitos com fotos CC0.
 `previa_mestre.jpg` mostra as alturas, o terreno difícil, os penhascos (vermelho), as armadilhas e para onde
 cada pedregulho rola.
 
@@ -38,6 +42,10 @@ Cada `#` vira um token "Parede de pedra", cada `D` uma "Porta de madeira" e cada
 Cada `~` vira um token "Água". `preview_states` gera prévias com estados trocados (ex.: lago congelado).
 
 ### Mapas com relevo (`tools/gen_relevo.py`)
+- `"fotos"` no `mapa.json` troca as texturas desenhadas por fotos CC0 de `mapas/pecas/fotos/` (créditos em
+  [`CREDITOS.md`](CREDITOS.md)): cada material (`grama`, `estrada`, `rocha`, `cascalho`, `alto`) é uma lista de fotos
+  misturadas em manchas. Arbustos, pedras e o tronco caído passam a ser feitos com as fotos de `tools/fontes/`.
+- Na legenda, `arvore_grande` e `arvore_pequena` viram árvores interativas (tokens do módulo) centradas no quadrado.
 - `mapas/<nome>/altura.txt`: um dígito por quadrado, do mesmo tamanho do `layout.txt`; cada ponto vale
   `step` pés (5 no `mapa.json`). Vizinhos com 1 ponto de diferença são encosta (subir custa mais
   movimento, menos na trilha); com 2 ou mais, penhasco (só escalando).

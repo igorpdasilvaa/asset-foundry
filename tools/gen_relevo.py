@@ -12,7 +12,7 @@ com 2 ou mais, penhasco. Mato, cascalho e tronco viram regiões de terreno difí
 Uso: python3 tools/gen_relevo.py emboscada"""
 import json, math, os, random, subprocess, sys, tempfile, pathlib
 import numpy as np
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
@@ -24,6 +24,7 @@ OUT_PX = 150   # pixels por quadrado no fundo final (mais leve para o canvas)
 name = sys.argv[1] if len(sys.argv) > 1 else "emboscada"
 DIR = ROOT / "mapas" / name
 cfg = json.loads((DIR / "mapa.json").read_text())
+OUT_PX = cfg.get("out_px", OUT_PX)  # mapas compridos: o fundo não pode passar de 8192 px (limite de textura de muitas placas)
 rows = [r for r in (DIR / "layout.txt").read_text().splitlines() if r]
 alt = [r for r in (DIR / "altura.txt").read_text().splitlines() if r]
 H, W = len(rows), len(rows[0])
@@ -135,7 +136,10 @@ print("texturas...")
 CACHE = pathlib.Path(tempfile.gettempdir()) / "gen_relevo_cache"
 CACHE.mkdir(exist_ok=True)
 tex, todo = {}, {}
+FOTOS = cfg.get("fotos")
 for i, (k, fn) in enumerate(TEX.items()):
+    if FOTOS and k in FOTOS:
+        continue  # vem das fotos, logo abaixo
     f = CACHE / f"{k}_{FW}x{FH}_{SEED + i}.png"
     if f.exists():
         tex[k] = Image.open(f).convert("RGBA")
@@ -145,6 +149,39 @@ for k, im in render_svgs(todo).items() if todo else []:
     im.save(CACHE / f"{k}_{FW}x{FH}_{SEED + list(TEX).index(k)}.png")
     tex[k] = im
 tex = {k: np.asarray(v.convert("RGB"), dtype=np.float32) / 255 for k, v in tex.items()}
+
+# Mapas com "fotos" no mapa.json usam fotos CC0 (mapas/pecas/fotos/, créditos em mapas/CREDITOS.md) no lugar das
+# texturas desenhadas: cada material é uma ou mais fotos repetidas lado a lado e misturadas por manchas de ruído.
+def foto(nome, escala):
+    """Foto repetida lado a lado cobrindo o mapa; 'escala' = quantos quadrados cada repetição cobre."""
+    im = Image.open(ROOT / "mapas" / "pecas" / "fotos" / f"{nome}.jpg").convert("RGB")
+    s_ = max(8, int(PX * escala))
+    im = im.resize((s_, s_), Image.LANCZOS)
+    a = np.asarray(im, np.float32) / 255
+    a = a * (np.array([.5, .5, .5], np.float32) / a.reshape(-1, 3).mean(0)) ** .35  # aproxima o brilho das fotos
+    return np.tile(a, (FH // s_ + 1, FW // s_ + 1, 1))[:FH, :FW]
+
+
+def foto_mix(nomes, escala, manchas):
+    out = foto(nomes[0], escala)
+    for i, n in enumerate(nomes[1:]):
+        m = smooth(fnoise(FW // 4, FH // 4, manchas, 3), fnoise(FW // 4, FH // 4, manchas * 3, 2), soft=3, amount=.6)
+        m = resize(m, FW, FH)[..., None]
+        out = out * (1 - m) + foto(n, escala * (1.15 + .2 * i)) * m
+    return out.astype(np.float32)
+
+
+if FOTOS:
+    esc = FOTOS.get("escala", 1.0)
+    for k in ("grama", "estrada", "trilha", "rocha", "cascalho", "alto"):
+        if k in FOTOS:
+            tex[k] = foto_mix(FOTOS[k], esc * (1.6 if k == "rocha" else 1), 5 if k == "grama" else 8)
+            if k in FOTOS.get("tons", {}):
+                tex[k] *= np.array(FOTOS["tons"][k], np.float32)
+    # variação de cor em manchas grandes (grama mais verde ou mais seca), para esconder a repetição da foto
+    var = resize(fnoise(FW // 8, FH // 8, 4, 3), FW, FH)[..., None]
+    tex["grama"] *= (1 - var) * np.array([.92, 1.0, .9], np.float32) + var * np.array([1.06, 1.02, .9], np.float32)
+    del var
 
 # ---------- penhascos (vizinhos com 2 degraus ou mais) ----------
 cliffs = []  # (x, y, dx, dy, steps): quadrado alto (x,y), lado baixo na direção (dx,dy)
@@ -164,9 +201,11 @@ def cell_weights(fn):
     return m
 
 road_cols = {x for x in range(W) if all(kind(x, y) in ("estrada", "tronco") for y in range(H))}
+# tronco em cima da estrada: o chão embaixo é estrada (vizinho de cima ou de baixo é estrada)
+on_road = lambda x, y: kind(x, y) == "tronco" and any(inside(x, y + d) and kind(x, y + d) == "estrada" for d in (-1, 1))
 wt = {
     "cascalho": cell_weights(lambda x, y: 1 if kind(x, y) == "cascalho" else 0),
-    "estrada": cell_weights(lambda x, y: 1 if kind(x, y) == "estrada" or (kind(x, y) == "tronco" and x in road_cols) else 0),
+    "estrada": cell_weights(lambda x, y: 1 if kind(x, y) == "estrada" or on_road(x, y) else 0),
 }
 
 
@@ -232,7 +271,19 @@ for k, m in wt.items():
 a = smooth(trail_mask(), fnoise(FW, FH, 16), soft=4, amount=.5) * .92
 img = img * (1 - a[..., None]) + tex["trilha"] * a[..., None]
 
-# sulcos das rodas na estrada
+# sulcos das rodas na estrada (estrada reta: colunas fixas; estrada que serpenteia: centro de cada linha, suavizado)
+road_rows = {y: [x for x in range(W) if kind(x, y) == "estrada"] for y in range(H)}
+if not road_cols and all(road_rows.values()):
+    cy_ = np.array([(min(v) + max(v) + 1) / 2 * PX for v in road_rows.values()], np.float32)
+    cy_ = np.convolve(np.pad(cy_, 3, mode="edge"), np.ones(7) / 7, mode="valid")
+    centre = np.interp(np.arange(FH, dtype=np.float32), (np.arange(H) + .5) * PX, cy_).astype(np.float32)[:, None]
+    xx = np.arange(FW, dtype=np.float32)[None, :]
+    wob = (fnoise(FW, FH, 3, 2) - .5) * 30
+    road_a = resize(np.pad(wt["estrada"], 1, mode="edge"), (W + 2) * PX, (H + 2) * PX)[PX:-PX, PX:-PX]
+    for off in (-52, 52):
+        rut = np.clip(1 - np.abs(xx - (centre + off + wob)) / 9, 0, 1) * .28 * np.clip(road_a * 2 - 1, 0, 1)
+        img *= 1 - rut[..., None]
+    del xx, wob, road_a, rut, centre
 if road_cols:
     xx = np.arange(FW, dtype=np.float32)[None, :]
     wob = (fnoise(FW, FH, 3, 2) - .5) * 30
@@ -278,7 +329,7 @@ def jit(v, salt):
 print("relevo...")
 Q = 50  # pixels por quadrado no cálculo do relevo
 Hs = resize(np.pad(hg.astype(np.float32), 1, mode="edge"), (W + 2) * Q, (H + 2) * Q)[Q:-Q, Q:-Q]
-Hs = blur(Hs, Q * .12) + (fnoise(W * Q, H * Q, 7, 3) - .5) * .46
+Hs = blur(Hs, Q * cfg.get("suave", .12))  # "suave" no mapa.json: encostas mais arredondadas + (fnoise(W * Q, H * Q, 7, 3) - .5) * .46
 # perto dos penhascos o relevo suave vira o desenho do penhasco (sem sombreado nem curvas empilhadas)
 near = Image.new("L", (W * Q, H * Q))
 nd = ImageDraw.Draw(near)
@@ -301,10 +352,18 @@ top = max(1, int(hg.max()))
 t = np.clip(Hs / top, 0, 1)
 fac_full = resize(fac, FW, FH)
 img *= fac_full[..., None]
+fac_full_keep = fac_full
 # mais alto = grama mais clara e seca; baixada = mais escura
 t_full = resize(t, FW, FH)[..., None]
-img *= (1 - t_full) * np.array([.9, .94, .9], np.float32) + t_full * np.array([1.14, 1.1, .88], np.float32)
-del fac_full, t_full
+if FOTOS and "alto" in tex:
+    road_full = resize(np.pad(wt["estrada"], 1, mode="edge"), (W + 2) * PX, (H + 2) * PX)[PX:-PX, PX:-PX][..., None]
+    m_alto = np.clip((t_full - .25) * 1.6, 0, .85) * (1 - road_full)
+    img = img * (1 - m_alto) + tex["alto"] * fac_full_keep[..., None] * m_alto
+    img *= (1 - t_full) * np.array([.94, .96, .94], np.float32) + t_full * np.array([1.06, 1.04, .96], np.float32)
+    del road_full, m_alto
+else:
+    img *= (1 - t_full) * np.array([.9, .94, .9], np.float32) + t_full * np.array([1.14, 1.1, .88], np.float32)
+del fac_full, t_full, fac_full_keep
 
 # curvas de nível no meio de cada degrau (entre um quadrado e o de cima), finas e com recorte do ruído
 g = np.sqrt(gx ** 2 + gy ** 2) + 1e-5
@@ -401,11 +460,84 @@ del rim_a, base_a, base_l, rim
 img = np.clip(img, 0, 1)
 
 # ---------- árvores, rochas, mato, cascalho e tronco (SVG por cima) ----------
+def pedra_foto(rx, ry, R, rock):
+    """Pedra vista de cima: recorte irregular da foto de rocha, com luz de cúpula e sombra em volta."""
+    w, h = int(rx * 2 + 30), int(ry * 2 + 30)
+    m = Image.new("L", (w, h))
+    pts = [(w / 2 + rx * R.uniform(.78, 1.05) * math.cos(a), h / 2 + ry * R.uniform(.78, 1.05) * math.sin(a))
+           for a in [i / 11 * 2 * math.pi + R.uniform(-.1, .1) for i in range(11)]]
+    ImageDraw.Draw(m).polygon(pts, fill=255)
+    m = m.filter(ImageFilter.GaussianBlur(1.2))
+    ox, oy = R.randint(0, max(0, rock.width - w)), R.randint(0, max(0, rock.height - h))
+    tx = np.asarray(rock.crop((ox, oy, ox + w, oy + h)).convert("RGB"), np.float32)
+    yy, xx = np.mgrid[0:h, 0:w].astype(np.float32)
+    nx, ny = (xx - w / 2) / max(rx, 1), (yy - h / 2) / max(ry, 1)
+    z = np.sqrt(np.clip(1 - nx ** 2 - ny ** 2, 0, 1))
+    light = np.clip(.55 + .55 * (z * .75 - nx * .3 - ny * .35), .35, 1.25)
+    tx = np.clip(tx * light[..., None], 0, 255)
+    im = Image.fromarray(tx.astype(np.uint8), "RGB").convert("RGBA")
+    im.putalpha(m)
+    sh = Image.new("RGBA", (w + 24, h + 24), (0, 0, 0, 0))
+    sm = Image.new("L", sh.size)
+    sm.paste(m, (12 + int(rx * .12), 12 + int(ry * .18)))
+    sh.putalpha(sm.filter(ImageFilter.GaussianBlur(max(3, rx * .15))).point(lambda v: int(v * .55)))
+    sh.alpha_composite(im, (12, 12))
+    return sh
+
+
+def detalhes_foto(base):
+    """Mato (tufos feitos com a foto do galho), pedras e cascalho (foto de rocha) e o tronco caído (foto de casca)."""
+    import gen_arvores as GA
+    R = random.Random(SEED + 7)
+    rock = Image.open(ROOT / "mapas" / "pecas" / "fotos" / "rocha_2.jpg").convert("RGB").resize((900, 900))
+    stone = Image.open(ROOT / "mapas" / "pecas" / "fotos" / "rocha.jpg").convert("RGB").resize((700, 700))
+
+    def put(sprite, x, y):
+        base.alpha_composite(sprite, (int(x - sprite.width / 2), int(y - sprite.height / 2)))
+
+    # arbustos: alguns modelos, colados girados
+    bushes = []
+    for i in range(8):
+        r = R.uniform(.28, .42) * PX
+        size = int(r * 2.6)
+        c = GA.canopy(size, r, SEED * 31 + i, [(.85, .95, .7), (.8, .9, .8), (.95, .95, .65)],
+                      [(14, .55, .55), (10, .45, .8), (6, .36, 1.0)], bumps=6)
+        bushes.append(GA.with_shadow(c, r * .12, .55, 1.05))
+    for x, y in cells:
+        k = kind(x, y)
+        cx, cy = (x + .5) * PX, (y + .5) * PX
+        if k == "mato":
+            for _ in range(R.randint(3, 5)):
+                put(R.choice(bushes).rotate(R.uniform(0, 360)), cx + R.uniform(-70, 70), cy + R.uniform(-70, 70))
+        elif k == "cascalho":
+            for _ in range(R.randint(4, 7)):
+                put(pedra_foto(R.uniform(6, 14), R.uniform(5, 11), R, stone), cx + R.uniform(-90, 90), cy + R.uniform(-90, 90))
+        elif k == "rocha":
+            for _ in range(R.randint(1, 3)):
+                put(pedra_foto(R.uniform(18, 34), R.uniform(15, 28), R, rock), cx + R.uniform(-60, 60), cy + R.uniform(-60, 60))
+        elif k == "pedra":
+            put(pedra_foto(R.uniform(64, 80), R.uniform(56, 72), R, rock), cx, cy)
+    for bx, by, rx, ry, ang in scree:
+        put(pedra_foto(rx * 1.1, ry * 1.1, R, stone), bx, by)
+    # tronco caído: uma tora de ponta a ponta dos quadrados "=" de cada linha
+    by_row = {}
+    for x, y in cells:
+        if kind(x, y) == "tronco":
+            by_row.setdefault(y, []).append(x)
+    for y, xs in by_row.items():
+        x0, x1 = min(xs) * PX + 30, (max(xs) + 1) * PX - 30
+        lg, L_ = GA.log(x1 - x0, 76, 0)
+        sh = GA.tint(lg, (0, 0, 0))
+        sh.putalpha(sh.getchannel("A").filter(ImageFilter.GaussianBlur(10)).point(lambda v: int(v * .5)))
+        base.alpha_composite(sh, (int(x0 - L_ + 12), int((y + .5) * PX - L_ + 16)))
+        base.alpha_composite(lg, (int(x0 - L_), int((y + .5) * PX - L_)))
+
+
 print("detalhes...")
 R = random.Random(SEED + 7)
 parts, shadows = [], []
 cells = [(x, y) for y in range(H) for x in range(W)]
-for x, y in cells:
+for x, y in ([] if FOTOS else cells):  # com fotos, os detalhes são colados depois (detalhes_foto)
     k = kind(x, y)
     cx, cy = (x + .5) * PX, (y + .5) * PX
     if k == "mato":
@@ -441,12 +573,12 @@ for x, y in cells:
             bx, by = cx + R.uniform(-40, 40), cy + R.uniform(-40, 40)
             parts.append(f'<path d="M{bx:.0f},{by:.0f} l{R.randint(-24,24)},{R.randint(10,24)}" stroke="#3a3732" stroke-width="2.5" opacity=".7"/>')
 
-for bx, by, rx, ry, ang in scree:
+for bx, by, rx, ry, ang in ([] if FOTOS else scree):
     parts.append(f'<ellipse cx="{bx+3:.0f}" cy="{by+4:.0f}" rx="{rx:.0f}" ry="{ry:.0f}" fill="#000" opacity=".35" transform="rotate({ang:.0f} {bx:.0f} {by:.0f})"/>'
                  f'<ellipse cx="{bx:.0f}" cy="{by:.0f}" rx="{rx:.0f}" ry="{ry:.0f}" fill="{R.choice(["#8d897f","#77736a","#a19c91"])}" stroke="#3c3a35" stroke-width="1.5" transform="rotate({ang:.0f} {bx:.0f} {by:.0f})"/>')
 
 # tronco caído: uma tora só, de ponta a ponta dos quadrados "="
-logs = [(x, y) for x, y in cells if kind(x, y) == "tronco"]
+logs = [] if FOTOS else [(x, y) for x, y in cells if kind(x, y) == "tronco"]
 if logs:
     y = logs[0][1]
     x0, x1 = min(x for x, _ in logs) * PX + 30, (max(x for x, _ in logs) + 1) * PX - 30
@@ -462,7 +594,7 @@ if logs:
                  f'<ellipse cx="{x1-6}" cy="{cy}" rx="12" ry="20" fill="none" stroke="#7a5a32" stroke-width="2"/>')
 
 # árvores por último: a copa cobre um pouco os vizinhos
-for x, y in cells:
+for x, y in ([] if FOTOS else cells):
     if kind(x, y) != "arvore":
         continue
     cx, cy = (x + .5) * PX, (y + .5) * PX
@@ -486,12 +618,14 @@ over = render_svgs({"over": over_svg})["over"]
 base = Image.fromarray((img * 255).astype(np.uint8), "RGB").convert("RGBA")
 del img
 base.alpha_composite(over)
+if FOTOS:
+    detalhes_foto(base)
 
 # ---------- altura escrita nos platôs ----------
 font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 44)
 draw = ImageDraw.Draw(base)
 seen = set()
-BUSY = {"arvore", "pedra", "mato", "cascalho", "tronco"}
+BUSY = {"arvore", "arvore_grande", "arvore_pequena", "pedra", "mato", "cascalho", "tronco"}
 for y0 in range(H):
     for x0 in range(W):
         if (x0, y0) in seen or hg[y0, x0] < 2:
@@ -516,7 +650,7 @@ for y0 in range(H):
 
 bg_name = f"{name}.webp"
 final = base.convert("RGB").resize((W * OUT_PX, H * OUT_PX), Image.LANCZOS)
-final.save(DIR / bg_name, quality=86, method=6)
+final.save(DIR / bg_name, quality=cfg.get("quality", 86), method=6)
 print("fundo", final.size)
 
 # ---------- cena ----------
@@ -579,6 +713,20 @@ for x, y in cells:
     elif kind(x, y) == "pedra":
         walls += octagon((x + .5) * G, (y + .5) * G, .38 * G)
 
+# Árvores interativas ("arvore_grande" / "arvore_pequena" na legenda): viram tokens do módulo, centrados no
+# quadrado, girados ao acaso para não ficarem iguais. O tronco bloqueia movimento pelas paredes que o módulo calcula
+# (flag "cell" com kind "tree"), então elas não entram em "walls" aqui.
+ASSETS = json.loads((ROOT / "assets" / "assets.json").read_text())
+objects = list(cfg.get("objects", []))
+RT = random.Random(SEED + 99)
+for x, y in cells:
+    k = kind(x, y)
+    if k in ("arvore_grande", "arvore_pequena"):
+        d = ASSETS[k]
+        n = d["size"]["w"]
+        objects.append({"asset": k, "x": (x + .5) * G, "y": (y + .5) * G, "rotation": RT.choice(range(0, 360, 15)),
+                        "flags": {"cell": {"x": x - n // 2, "y": y - n // 2, "kind": "tree", "size": n, "r": d["tree"]["r"]}}})
+
 scene = {
     "name": cfg["name"],
     "width": W * G, "height": H * G, "padding": 0,
@@ -592,26 +740,27 @@ scene = {
     "walls": walls,
     "regions": regions,
     "flags": {"interactive-assets": {"map": {
-        "cols": W, "rows": H, "fixed": [], "structures": [], "objects": cfg.get("objects", []),
+        "cols": W, "rows": H, "fixed": [], "structures": [], "objects": objects,
         "relevo": {"step": STEP, "height": alt, "climbDC": cfg.get("climbDC", 12),
                    "trail": ["".join("1" if kind(x, y) == "trilha" else "0" for x in range(W)) for y in range(H)]}}}},
 }
 (DIR / "cena.json").write_text(json.dumps(scene, indent=1, ensure_ascii=False))
 
 # ---------- prévias ----------
-ASSETS = json.loads((ROOT / "assets" / "assets.json").read_text())
 K = .25
 f = PX * K
 
 
 def put_objects(im, gm):
-    for o in cfg.get("objects", []):
+    for o in objects:
         if o.get("hidden") and not gm:
             continue
         d = ASSETS[o["asset"]]
         t = Image.open(ROOT / "assets" / d["states"][0]["src"].replace(".webm", ".png")).convert("RGBA")
         w, h = int(d["size"]["w"] * f), int(d["size"]["h"] * f)
         t = t.resize((w, h))
+        if o.get("rotation"):
+            t = t.rotate(-o["rotation"], resample=Image.BICUBIC)
         if o.get("hidden"):
             t.putalpha(t.getchannel("A").point(lambda v: int(v * .75)))
         im.alpha_composite(t, (int(o["x"] / G * f - w / 2), int(o["y"] / G * f - h / 2)))

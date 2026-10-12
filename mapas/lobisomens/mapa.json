@@ -1,0 +1,321 @@
+{
+  "name": "Caminho do Leão: a caçada (lobisomens)",
+  "grid": 100,
+  "darkness": 0.35,
+  "seed": 21,
+  "step": 5,
+  "climbDC": 12,
+  "legend": {
+    "\"": "grama",
+    "_": "estrada",
+    "%": "cascalho",
+    ":": "mato",
+    "^": "rocha",
+    "R": "pedra",
+    "=": "tronco",
+    "A": "arvore_grande",
+    "a": "arvore_pequena"
+  },
+  "difficult": {
+    "mato": {
+      "name": "Mato fechado",
+      "type": "plants",
+      "color": "#5f9a3a"
+    },
+    "cascalho": {
+      "name": "Cascalho solto",
+      "type": "rocks",
+      "color": "#9a9a9a"
+    },
+    "tronco": {
+      "name": "Tronco caído",
+      "type": "",
+      "color": "#8a5a2a"
+    }
+  },
+  "objects": [
+    {
+      "asset": "carroca",
+      "x": 1300,
+      "y": 3250
+    },
+    {
+      "asset": "barril",
+      "x": 1250,
+      "y": 3150
+    },
+    {
+      "asset": "caixa",
+      "x": 1450,
+      "y": 3350
+    },
+    {
+      "asset": "barril",
+      "x": 1450,
+      "y": 3250
+    },
+    {
+      "asset": "caixa",
+      "x": 1150,
+      "y": 3450
+    },
+    {
+      "asset": "tocha",
+      "x": 1550,
+      "y": 3150
+    },
+    {
+      "asset": "pedregulho",
+      "x": 1350,
+      "y": 1550,
+      "flags": {
+        "roll": {
+          "x": 17,
+          "y": 15
+        }
+      }
+    },
+    {
+      "asset": "pedregulho",
+      "x": 1250,
+      "y": 2750,
+      "flags": {
+        "roll": {
+          "x": 16,
+          "y": 27
+        }
+      }
+    },
+    {
+      "asset": "pedregulho",
+      "x": 1050,
+      "y": 3450,
+      "flags": {
+        "roll": {
+          "x": 14,
+          "y": 34
+        }
+      }
+    },
+    {
+      "asset": "pedregulho",
+      "x": 850,
+      "y": 4750,
+      "flags": {
+        "roll": {
+          "x": 12,
+          "y": 47
+        }
+      }
+    },
+    {
+      "asset": "pedregulho",
+      "x": 1850,
+      "y": 1850,
+      "flags": {
+        "roll": {
+          "x": 14,
+          "y": 18
+        }
+      }
+    },
+    {
+      "asset": "pedregulho",
+      "x": 1550,
+      "y": 3550,
+      "flags": {
+        "roll": {
+          "x": 11,
+          "y": 35
+        }
+      }
+    },
+    {
+      "asset": "pedregulho",
+      "x": 1450,
+      "y": 4050,
+      "flags": {
+        "roll": {
+          "x": 10,
+          "y": 40
+        }
+      }
+    },
+    {
+      "asset": "fosso",
+      "x": 1150,
+      "y": 3250,
+      "hidden": true
+    },
+    {
+      "asset": "armadilha_urso",
+      "x": 1450,
+      "y": 3450,
+      "hidden": true
+    },
+    {
+      "asset": "armadilha_urso",
+      "x": 1250,
+      "y": 3050,
+      "hidden": true
+    },
+    {
+      "asset": "fosso",
+      "x": 1550,
+      "y": 3050,
+      "hidden": true
+    },
+    {
+      "asset": "fio",
+      "x": 1250,
+      "y": 3550,
+      "hidden": true,
+      "flags": {
+        "link": {
+          "x": 15,
+          "y": 35
+        }
+      }
+    },
+    {
+      "asset": "fio",
+      "x": 1550,
+      "y": 2750,
+      "hidden": true,
+      "flags": {
+        "link": {
+          "x": 12,
+          "y": 27
+        }
+      }
+    },
+    {
+      "asset": "fio",
+      "x": 1050,
+      "y": 4150,
+      "hidden": true,
+      "flags": {
+        "link": {
+          "x": 14,
+          "y": 40
+        }
+      }
+    },
+    {
+      "asset": "armadilha_urso",
+      "x": 1350,
+      "y": 2150,
+      "hidden": true
+    },
+    {
+      "asset": "fosso",
+      "x": 1150,
+      "y": 2350,
+      "hidden": true
+    },
+    {
+      "asset": "armadilha_urso",
+      "x": 850,
+      "y": 4150,
+      "hidden": true
+    },
+    {
+      "asset": "fosso",
+      "x": 750,
+      "y": 4350,
+      "hidden": true
+    },
+    {
+      "asset": "armadilha_urso",
+      "x": 1750,
+      "y": 2950,
+      "hidden": true
+    },
+    {
+      "asset": "fosso",
+      "x": 1750,
+      "y": 3150,
+      "hidden": true
+    },
+    {
+      "asset": "armadilha_urso",
+      "x": 1150,
+      "y": 5350,
+      "hidden": true
+    },
+    {
+      "asset": "fosso",
+      "x": 1550,
+      "y": 1050,
+      "hidden": true
+    },
+    {
+      "asset": "fosso",
+      "x": 550,
+      "y": 2750,
+      "hidden": true
+    },
+    {
+      "asset": "armadilha_urso",
+      "x": 2250,
+      "y": 3750,
+      "hidden": true
+    },
+    {
+      "asset": "fosso",
+      "x": 450,
+      "y": 4450,
+      "hidden": true
+    },
+    {
+      "asset": "fosso",
+      "x": 2150,
+      "y": 2150,
+      "hidden": true
+    }
+  ],
+  "lights": [],
+  "sounds": [],
+  "fotos": {
+    "escala": 1.0,
+    "grama": [
+      "grama_1",
+      "grama_2",
+      "grama_3"
+    ],
+    "estrada": [
+      "terra",
+      "grama_pedras"
+    ],
+    "trilha": [
+      "terra"
+    ],
+    "rocha": [
+      "rocha",
+      "rocha_2"
+    ],
+    "cascalho": [
+      "pedras",
+      "grama_pedras"
+    ],
+    "alto": [
+      "grama_seca",
+      "grama_pedras"
+    ],
+    "tons": {
+      "estrada": [
+        1.18,
+        1.0,
+        0.76
+      ],
+      "trilha": [
+        1.18,
+        1.0,
+        0.76
+      ]
+    }
+  },
+  "out_px": 120,
+  "quality": 80,
+  "suave": 0.4
+}

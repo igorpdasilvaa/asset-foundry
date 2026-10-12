@@ -4,7 +4,10 @@
  * A cena guarda o layout em flags.interactive-assets.map = { cols, rows, fixed: ["x,y", ...] }
  * ("fixed" = quadrados que bloqueiam e nunca quebram, como a lareira). Paredes, portas e pilares
  * quebráveis são Tokens de asset com flags.interactive-assets.cell = { x, y, kind, dir }
- * (kind: "wall" | "door" | "pillar"; dir da porta: "h" se a parede corre na horizontal, "v" na vertical).
+ * (kind: "wall" | "door" | "pillar" | "tree"; dir da porta: "h" se a parede corre na horizontal, "v" na vertical).
+ * Árvores ("tree") são tokens maiores que um quadrado: x, y é o canto do token, "size" o lado em quadrados e "r" o raio
+ * do tronco. O tronco só bloqueia movimento (dá para ver por baixo da copa) e deixa de bloquear quando o estado
+ * tem "solid": false (árvore derrubada); queimada, o tronco preto continua de pé.
  *
  * As paredes do Foundry são recalculadas a partir do que está de pé: um bloco de parede quebrado
  * (estado com "broken") vira chão, e as paredes do Foundry se fecham em volta do buraco.
@@ -32,7 +35,7 @@ const isResponsibleGM = () => game.user.isGM && (game.users.activeGM ? game.user
  * solid: Set de "x,y" que bloqueiam; doors: [{x,y,dir,key}]; pillars: [{x,y}].
  * Devolve [{ c: [x1,y1,x2,y2], door?: "x,y" }].
  */
-export function computeWalls({ cols, rows, solid, doors = [], pillars = [] }) {
+export function computeWalls({ cols, rows, solid, doors = [], pillars = [], trees = [] }) {
   const d = INSET;
   const S = (x, y) => x >= 0 && y >= 0 && x < cols && y < rows && solid.has(key(x, y));
   const h = [], v = []; // faces horizontais [y, x1, x2] e verticais [x, y1, y2]
@@ -78,6 +81,14 @@ export function computeWalls({ cols, rows, solid, doors = [], pillars = [] }) {
     });
     pts.forEach((p, i) => walls.push({ c: [...p, ...pts[(i + 1) % 8]] }));
   }
+  for (const { x, y, size = 1, r = 0.2 } of trees) {
+    const cx = x + size / 2, cy = y + size / 2;
+    const pts = Array.from({ length: 8 }, (_, i) => {
+      const a = Math.PI / 8 + i * Math.PI / 4;
+      return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
+    });
+    pts.forEach((p, i) => walls.push({ c: [...p, ...pts[(i + 1) % 8]], moveOnly: true }));
+  }
   return walls;
 }
 
@@ -86,18 +97,25 @@ function standing(scene) {
   const map = scene.getFlag(MODULE_ID, "map");
   if (!map) return null;
   const solid = new Set(map.fixed ?? []);
-  const doors = [], pillars = [];
+  const doors = [], pillars = [], trees = [];
   for (const t of scene.tokens) {
     const cell = t.getFlag(MODULE_ID, "cell");
-    if (!cell || stateOf(t)?.broken) continue;
+    if (!cell) continue;
+    if (cell.kind === "tree") {
+      // a árvore anda com o token (o GM pode arrastar), então o tronco sai da posição atual
+      const g = scene.grid.size;
+      if (stateOf(t)?.solid !== false) trees.push({ ...cell, x: t.x / g, y: t.y / g });
+      continue;
+    }
+    if (stateOf(t)?.broken) continue;
     if (cell.kind === "wall") solid.add(key(cell.x, cell.y));
     else if (cell.kind === "door") doors.push(cell);
     else if (cell.kind === "pillar") pillars.push(cell);
   }
-  return { cols: map.cols, rows: map.rows, solid, doors, pillars };
+  return { cols: map.cols, rows: map.rows, solid, doors, pillars, trees };
 }
 
-const wallKey = w => `${w.c.map(Math.round).join(",")}|${w.door ?? ""}`;
+const wallKey = w => `${w.c.map(Math.round).join(",")}|${w.door ?? ""}|${w.moveOnly ? "m" : ""}`;
 
 /** Refaz as paredes do Foundry da cena: só cria/apaga o que mudou e mantém portas abertas abertas. */
 const queues = new Map();
@@ -114,14 +132,16 @@ async function doRebuild(scene) {
   const g = scene.grid.size;
   const want = computeWalls(st).map(w => ({ ...w, c: w.c.map(n => Math.round(n * g)) }));
   const existing = scene.walls.filter(w => w.getFlag(MODULE_ID, "generated"));
-  const have = new Map(existing.map(w => [wallKey({ c: w.c, door: w.getFlag(MODULE_ID, "door") }), w]));
+  const keyOf = w => wallKey({ c: w.c, door: w.getFlag(MODULE_ID, "door"), moveOnly: w.getFlag(MODULE_ID, "moveOnly") });
+  const have = new Map(existing.map(w => [keyOf(w), w]));
   const doorState = new Map(existing.filter(w => w.door).map(w => [w.getFlag(MODULE_ID, "door"), w.ds]));
   const wantKeys = new Set(want.map(wallKey));
-  const remove = existing.filter(w => !wantKeys.has(wallKey({ c: w.c, door: w.getFlag(MODULE_ID, "door") }))).map(w => w.id);
+  const remove = existing.filter(w => !wantKeys.has(keyOf(w))).map(w => w.id);
   const create = want.filter(w => !have.has(wallKey(w))).map(w => ({
     c: w.c,
     ...(w.door ? { door: CONST.WALL_DOOR_TYPES.DOOR, ds: doorState.get(w.door) ?? doorStateFromToken(scene, w.door), doorSound: "woodBasic" } : {}),
-    flags: { [MODULE_ID]: { generated: true, ...(w.door ? { door: w.door } : {}) } }
+    ...(w.moveOnly ? { sight: 0, light: 0, sound: 0 } : {}),
+    flags: { [MODULE_ID]: { generated: true, ...(w.door ? { door: w.door } : {}), ...(w.moveOnly ? { moveOnly: true } : {}) } }
   }));
   if (remove.length) await scene.deleteEmbeddedDocuments("Wall", remove);
   if (create.length) await scene.createEmbeddedDocuments("Wall", create);
@@ -172,6 +192,12 @@ Hooks.on("updateToken", async (token, changes, options) => {
     const ds = state.door === "open" ? CONST.WALL_DOOR_STATES.OPEN : CONST.WALL_DOOR_STATES.CLOSED;
     if (wall && wall.ds !== ds && wall.ds !== CONST.WALL_DOOR_STATES.LOCKED) await wall.update({ ds });
   }
+});
+
+/** Árvore arrastada pelo GM: o tronco vai junto. */
+Hooks.on("updateToken", (token, changes) => {
+  if (!isResponsibleGM() || token.getFlag(MODULE_ID, "cell")?.kind !== "tree" || !("x" in changes || "y" in changes)) return;
+  rebuildWalls(token.parent);
 });
 
 Hooks.on("deleteToken", token => {
@@ -239,6 +265,7 @@ export async function buildMap(data, root) {
     const td = await actor.getTokenDocument({
       x: Math.round(o.x - def.size.w * g / 2), y: Math.round(o.y - def.size.h * g / 2),
       elevation: ground(Math.floor(o.x / g), Math.floor(o.y / g)),
+      ...(o.rotation ? { rotation: o.rotation } : {}),
       ...(o.hidden ? { hidden: true } : {}),
       ...(o.flags ? { flags: { [MODULE_ID]: o.flags } } : {})
     });
