@@ -187,7 +187,7 @@ morros com penhascos virados para a estrada). O módulo usa essa altura assim:
   descer é normal. Na trilha, subir não custa extra. Mato fechado, cascalho solto e o tronco caído são
   terreno difícil (regiões do dnd5e).
 - **Penhasco** (10 pés ou mais entre dois quadrados): andando, o jogador não passa. Escolha a ação de
-  movimento **Escalar**: cada pé de altura custa 2, subindo ou descendo, além do passo (que escalando já
+  movimento **Escalar** (botão direito no token, ícone de movimento no HUD): cada pé de altura custa 2, subindo ou descendo, além do passo (que escalando já
   custa o dobro). O penhasco de 15 pés custa 40 pés de movimento e o de 10 pés, 30. O chat pede um teste
   de Atletismo (se falhar, cai). Para descer rápido, **Pular**: não
   custa extra, mas cai (1d6 de concussão a cada 10 pés, aplicado na hora) e fica caído. O GM move para
