@@ -17,7 +17,7 @@ ou ir pelas trilhas, que têm armadilhas escondidas. Lá em cima há pedregulhos
 `"lobisomens"` monta **Caminho do Leão: a caçada (lobisomens)**: 300 pés de estrada serpenteando entre dois morros,
 no crepúsculo. O alto só se alcança escalando os penhascos ou subindo as três encostas (não há trilhas), e as encostas,
 as margens da estrada e o alto estão cheios de armadilhas (19) e pedregulhos (7). As árvores são interativas, e o
-chão, as pedras e o mato são feitos com fotos CC0.
+chão, as pedras e o mato são feitos com fotos CC0. A trilha de combate `cacada_loop.ogg` toca em loop no mapa inteiro.
 `previa_mestre.jpg` mostra as alturas, o terreno difícil, os penhascos (vermelho), as armadilhas e para onde
 cada pedregulho rola.
 
