@@ -275,7 +275,15 @@
     }
   ],
   "lights": [],
-  "sounds": [],
+  "sounds": [
+    {
+      "x": 1400,
+      "y": 3000,
+      "radius": 400,
+      "path": "mapas/lobisomens/cacada_loop.ogg",
+      "volume": 0.4
+    }
+  ],
   "fotos": {
     "escala": 1.0,
     "grama": [
