@@ -250,7 +250,8 @@ def porta_esmeralda():
 
 
 # ======================= Definições (fragmento do assets.json) =======================
-LUZ_ESM = {"bright": 0, "dim": 15, "color": "#3fd38a", "alpha": .35, "animation": {"type": "pulse", "speed": 2, "intensity": 3}}
+# brilho fraco: são 3 quadrados lado a lado, as luzes se somam
+LUZ_ESM = {"bright": 0, "dim": 7, "color": "#3fd38a", "alpha": .25, "attenuation": .8, "animation": {"type": "pulse", "speed": 1, "intensity": 2}}
 
 FRAGMENTO = {
     "muralha": {

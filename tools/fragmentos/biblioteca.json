@@ -881,10 +881,11 @@
         "name": "Acesa",
         "src": "lampada/lampada_acesa.png",
         "light": {
-          "bright": 15,
-          "dim": 30,
-          "color": "#fff1c9",
-          "alpha": 0.3
+          "bright": 6,
+          "dim": 20,
+          "color": "#ffd9a0",
+          "alpha": 0.2,
+          "attenuation": 0.7
         }
       },
       {

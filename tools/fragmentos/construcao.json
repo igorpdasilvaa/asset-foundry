@@ -132,13 +132,14 @@
         "door": "locked",
         "light": {
           "bright": 0,
-          "dim": 15,
+          "dim": 7,
           "color": "#3fd38a",
-          "alpha": 0.35,
+          "alpha": 0.25,
+          "attenuation": 0.8,
           "animation": {
             "type": "pulse",
-            "speed": 2,
-            "intensity": 3
+            "speed": 1,
+            "intensity": 2
           }
         }
       },
@@ -149,13 +150,14 @@
         "door": "open",
         "light": {
           "bright": 0,
-          "dim": 15,
+          "dim": 7,
           "color": "#3fd38a",
-          "alpha": 0.35,
+          "alpha": 0.25,
+          "attenuation": 0.8,
           "animation": {
             "type": "pulse",
-            "speed": 2,
-            "intensity": 3
+            "speed": 1,
+            "intensity": 2
           }
         }
       }
