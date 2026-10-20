@@ -1,0 +1,73 @@
+{
+  "name": "Candlekeep",
+  "inicio": "candlekeep_portao",
+  "mapas": [
+    "candlekeep_portao",
+    "candlekeep_patio",
+    "candlekeep_hearth",
+    "candlekeep_repouso",
+    "candlekeep_banhos",
+    "candlekeep_encadernador",
+    "candlekeep_pilares",
+    "candlekeep_templo",
+    "candlekeep_alfaiataria",
+    "candlekeep_ferraria",
+    "lobisomens"
+  ],
+  "playlist": [
+    {
+      "nome": "Portão (vento e mar)",
+      "path": "mapas/candlekeep/musica/portao.ogg"
+    },
+    {
+      "nome": "Pátio do Ar",
+      "path": "mapas/candlekeep/musica/patio.ogg"
+    },
+    {
+      "nome": "Hearth",
+      "path": "mapas/candlekeep/musica/hearth.ogg"
+    },
+    {
+      "nome": "Casa do Repouso",
+      "path": "mapas/candlekeep/musica/repouso.ogg"
+    },
+    {
+      "nome": "Banhos",
+      "path": "mapas/candlekeep/musica/banhos.ogg"
+    },
+    {
+      "nome": "Casa do Encadernador",
+      "path": "mapas/candlekeep/musica/encadernador.ogg"
+    },
+    {
+      "nome": "Pilares da Pedagogia",
+      "path": "mapas/candlekeep/musica/pilares.ogg"
+    },
+    {
+      "nome": "Templo de Oghma",
+      "path": "mapas/candlekeep/musica/templo.ogg"
+    },
+    {
+      "nome": "Erudite Outfitters",
+      "path": "mapas/candlekeep/musica/alfaiataria.ogg"
+    },
+    {
+      "nome": "Ferraria e Estábulos",
+      "path": "mapas/candlekeep/musica/ferraria.ogg"
+    },
+    {
+      "nome": "Combate em Candlekeep",
+      "path": "mapas/candlekeep/musica/combate.ogg"
+    },
+    {
+      "nome": "Cântico Sem Fim",
+      "path": "mapas/candlekeep/musica/cantico.ogg",
+      "repetir": false
+    },
+    {
+      "nome": "Canção do bardo do Hearth",
+      "path": "mapas/candlekeep/musica/bardo_hearth.ogg",
+      "repetir": false
+    }
+  ]
+}

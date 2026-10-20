@@ -1,0 +1,1113 @@
+{
+  "estante": {
+    "name": "Estante de livros",
+    "tipo": "imovel",
+    "interacao": "mestre",
+    "size": {
+      "w": 2,
+      "h": 1
+    },
+    "conhecimento": true,
+    "actor": {
+      "ac": 13,
+      "hp": 20,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": [
+        "piercing"
+      ]
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "inteira",
+        "name": "Inteira",
+        "src": "estante/estante_inteira.png"
+      },
+      {
+        "id": "tombada",
+        "name": "Tombada",
+        "src": "estante/estante_tombada.png",
+        "sfx": "audio/madeira_quebrando.ogg"
+      },
+      {
+        "id": "cortada",
+        "name": "Partida ao meio",
+        "src": "estante/estante_cortada.png",
+        "broken": true,
+        "sfx": "audio/madeira_quebrando.ogg"
+      },
+      {
+        "id": "molhada",
+        "name": "Molhada",
+        "src": "estante/estante_molhada.png"
+      },
+      {
+        "id": "chamuscada",
+        "name": "Chamuscada",
+        "src": "estante/estante_chamuscada.png"
+      },
+      {
+        "id": "queimando",
+        "name": "Pegando fogo",
+        "src": "estante/estante_queimando.png",
+        "burning": true,
+        "sticky": true,
+        "dot": {
+          "damage": 2,
+          "type": "fire"
+        },
+        "light": {
+          "bright": 10,
+          "dim": 30,
+          "color": "#ff7b2e",
+          "alpha": 0.5,
+          "attenuation": 0.6,
+          "animation": {
+            "type": "torch",
+            "speed": 4,
+            "intensity": 4
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 30,
+          "volume": 0.7
+        }
+      },
+      {
+        "id": "cinzas",
+        "name": "Cinzas",
+        "src": "estante/estante_cinzas.png",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#ff5a1a",
+          "alpha": 0.35,
+          "animation": {
+            "type": "torch",
+            "speed": 1,
+            "intensity": 2
+          }
+        }
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "queimando"
+        ],
+        "to": "chamuscada",
+        "say": "tem o fogo apagado pelo gelo."
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "inteira",
+          "tombada",
+          "chamuscada"
+        ],
+        "to": "queimando",
+        "say": "começa a pegar fogo!"
+      },
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "inteira",
+          "tombada",
+          "chamuscada"
+        ],
+        "to": "molhada",
+        "say": "fica encharcada e os livros se arruínam."
+      },
+      {
+        "types": [
+          "thunder",
+          "force"
+        ],
+        "from": [
+          "inteira"
+        ],
+        "to": "tombada",
+        "say": "tomba e espalha livros pelo chão!"
+      }
+    ],
+    "onZero": [
+      {
+        "state": "queimando",
+        "to": "cinzas",
+        "say": "vira cinzas!"
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "cinzas",
+        "say": "vira cinzas!"
+      },
+      {
+        "types": [
+          "slashing"
+        ],
+        "to": "cortada",
+        "say": "é partida ao meio!"
+      },
+      {
+        "to": "cortada",
+        "say": "desaba e se parte ao meio!"
+      }
+    ]
+  },
+  "pilha_livros": {
+    "name": "Pilha de livros",
+    "tipo": "movel",
+    "interacao": "jogador",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "conhecimento": true,
+    "actor": {
+      "ac": 10,
+      "hp": 4,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": []
+    },
+    "player": {
+      "move": true
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "inteira",
+        "name": "Empilhada",
+        "src": "pilha_livros/pilha_livros_inteira.png"
+      },
+      {
+        "id": "espalhada",
+        "name": "Espalhada",
+        "src": "pilha_livros/pilha_livros_espalhada.png",
+        "broken": true
+      },
+      {
+        "id": "molhada",
+        "name": "Molhada",
+        "src": "pilha_livros/pilha_livros_molhada.png"
+      },
+      {
+        "id": "queimando",
+        "name": "Pegando fogo",
+        "src": "pilha_livros/pilha_livros_queimando.png",
+        "burning": true,
+        "sticky": true,
+        "dot": {
+          "damage": 2,
+          "type": "fire"
+        },
+        "light": {
+          "bright": 10,
+          "dim": 25,
+          "color": "#ff7b2e",
+          "alpha": 0.5,
+          "attenuation": 0.6,
+          "animation": {
+            "type": "torch",
+            "speed": 4,
+            "intensity": 4
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 25,
+          "volume": 0.6
+        }
+      },
+      {
+        "id": "cinzas",
+        "name": "Cinzas",
+        "src": "pilha_livros/pilha_livros_cinzas.png",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#ff5a1a",
+          "alpha": 0.35,
+          "animation": {
+            "type": "torch",
+            "speed": 1,
+            "intensity": 2
+          }
+        }
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "queimando"
+        ],
+        "to": "molhada",
+        "say": "tem o fogo apagado pelo gelo."
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "inteira"
+        ],
+        "to": "queimando",
+        "say": "começa a pegar fogo!"
+      },
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "inteira"
+        ],
+        "to": "molhada",
+        "say": "fica encharcada e as páginas se arruínam."
+      },
+      {
+        "types": [
+          "thunder",
+          "force"
+        ],
+        "effect": "push",
+        "squares": 1
+      }
+    ],
+    "onZero": [
+      {
+        "state": "queimando",
+        "to": "cinzas",
+        "say": "vira cinzas!"
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "cinzas",
+        "say": "vira cinzas!"
+      },
+      {
+        "to": "espalhada",
+        "say": "se espalha pelo chão!"
+      }
+    ]
+  },
+  "atril": {
+    "name": "Atril de leitura",
+    "tipo": "movel",
+    "interacao": "mestre",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "conhecimento": true,
+    "actor": {
+      "ac": 12,
+      "hp": 6,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": [
+        "piercing"
+      ]
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "inteiro",
+        "name": "Inteiro",
+        "src": "atril/atril_inteiro.png"
+      },
+      {
+        "id": "tombado",
+        "name": "Tombado",
+        "src": "atril/atril_tombado.png"
+      },
+      {
+        "id": "quebrado",
+        "name": "Quebrado",
+        "src": "atril/atril_quebrado.png",
+        "broken": true,
+        "sfx": "audio/madeira_quebrando.ogg"
+      },
+      {
+        "id": "chamuscado",
+        "name": "Chamuscado",
+        "src": "atril/atril_chamuscado.png"
+      },
+      {
+        "id": "queimando",
+        "name": "Pegando fogo",
+        "src": "atril/atril_queimando.png",
+        "burning": true,
+        "sticky": true,
+        "dot": {
+          "damage": 2,
+          "type": "fire"
+        },
+        "light": {
+          "bright": 10,
+          "dim": 25,
+          "color": "#ff7b2e",
+          "alpha": 0.5,
+          "attenuation": 0.6,
+          "animation": {
+            "type": "torch",
+            "speed": 4,
+            "intensity": 4
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 25,
+          "volume": 0.6
+        }
+      },
+      {
+        "id": "queimado",
+        "name": "Queimado",
+        "src": "atril/atril_queimado.png",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#ff5a1a",
+          "alpha": 0.35,
+          "animation": {
+            "type": "torch",
+            "speed": 1,
+            "intensity": 2
+          }
+        }
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "queimando"
+        ],
+        "to": "chamuscado",
+        "say": "tem o fogo apagado pelo gelo."
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "inteiro",
+          "tombado",
+          "chamuscado"
+        ],
+        "to": "queimando",
+        "say": "começa a pegar fogo!"
+      },
+      {
+        "types": [
+          "thunder",
+          "force"
+        ],
+        "from": [
+          "inteiro"
+        ],
+        "to": "tombado",
+        "say": "tomba e o livro cai no chão!"
+      },
+      {
+        "types": [
+          "thunder",
+          "force"
+        ],
+        "effect": "push",
+        "squares": 1
+      }
+    ],
+    "onZero": [
+      {
+        "state": "queimando",
+        "to": "queimado",
+        "say": "vira cinzas!"
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "queimado",
+        "say": "vira cinzas!"
+      },
+      {
+        "to": "quebrado",
+        "say": "se despedaça!"
+      }
+    ]
+  },
+  "escrivaninha": {
+    "name": "Escrivaninha de escriba",
+    "tipo": "movel",
+    "interacao": "jogador",
+    "size": {
+      "w": 2,
+      "h": 1
+    },
+    "conhecimento": true,
+    "actor": {
+      "ac": 12,
+      "hp": 10,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": [
+        "piercing"
+      ]
+    },
+    "player": {
+      "move": true
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "inteira",
+        "name": "Inteira",
+        "src": "escrivaninha/escrivaninha_inteira.png"
+      },
+      {
+        "id": "tinta_derramada",
+        "name": "Tinta derramada",
+        "src": "escrivaninha/escrivaninha_tinta_derramada.png"
+      },
+      {
+        "id": "quebrada",
+        "name": "Quebrada",
+        "src": "escrivaninha/escrivaninha_quebrada.png",
+        "broken": true,
+        "sfx": "audio/madeira_quebrando.ogg"
+      },
+      {
+        "id": "chamuscada",
+        "name": "Chamuscada",
+        "src": "escrivaninha/escrivaninha_chamuscada.png"
+      },
+      {
+        "id": "queimando",
+        "name": "Pegando fogo",
+        "src": "escrivaninha/escrivaninha_queimando.png",
+        "burning": true,
+        "sticky": true,
+        "dot": {
+          "damage": 2,
+          "type": "fire"
+        },
+        "light": {
+          "bright": 10,
+          "dim": 30,
+          "color": "#ff7b2e",
+          "alpha": 0.5,
+          "attenuation": 0.6,
+          "animation": {
+            "type": "torch",
+            "speed": 4,
+            "intensity": 4
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 30,
+          "volume": 0.7
+        }
+      },
+      {
+        "id": "queimada",
+        "name": "Queimada",
+        "src": "escrivaninha/escrivaninha_queimada.png",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#ff5a1a",
+          "alpha": 0.35,
+          "animation": {
+            "type": "torch",
+            "speed": 1,
+            "intensity": 2
+          }
+        }
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "queimando"
+        ],
+        "to": "chamuscada",
+        "say": "tem o fogo apagado pelo gelo."
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "inteira",
+          "tinta_derramada",
+          "chamuscada"
+        ],
+        "to": "queimando",
+        "say": "começa a pegar fogo!"
+      },
+      {
+        "types": [
+          "bludgeoning",
+          "thunder",
+          "force"
+        ],
+        "from": [
+          "inteira"
+        ],
+        "to": "tinta_derramada",
+        "say": "derruba o tinteiro e a tinta se espalha!"
+      },
+      {
+        "types": [
+          "thunder",
+          "force"
+        ],
+        "effect": "push",
+        "squares": 1
+      }
+    ],
+    "onZero": [
+      {
+        "state": "queimando",
+        "to": "queimada",
+        "say": "queima até virar carvão!"
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "queimada",
+        "say": "queima até virar carvão!"
+      },
+      {
+        "to": "quebrada",
+        "say": "se despedaça!"
+      }
+    ]
+  },
+  "carrinho_livros": {
+    "name": "Carrinho de livros",
+    "tipo": "movel",
+    "interacao": "jogador",
+    "size": {
+      "w": 1,
+      "h": 2
+    },
+    "conhecimento": true,
+    "actor": {
+      "ac": 11,
+      "hp": 12,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": [
+        "piercing"
+      ]
+    },
+    "player": {
+      "move": true
+    },
+    "vehicle": {
+      "terreno": "terra"
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "inteiro",
+        "name": "Inteiro",
+        "src": "carrinho_livros/carrinho_livros_inteiro.png"
+      },
+      {
+        "id": "quebrado",
+        "name": "Quebrado",
+        "src": "carrinho_livros/carrinho_livros_quebrado.png",
+        "broken": true,
+        "travado": true,
+        "sfx": "audio/madeira_quebrando.ogg"
+      },
+      {
+        "id": "queimando",
+        "name": "Pegando fogo",
+        "src": "carrinho_livros/carrinho_livros_queimando.png",
+        "burning": true,
+        "sticky": true,
+        "dot": {
+          "damage": 2,
+          "type": "fire"
+        },
+        "light": {
+          "bright": 10,
+          "dim": 25,
+          "color": "#ff7b2e",
+          "alpha": 0.5,
+          "attenuation": 0.6,
+          "animation": {
+            "type": "torch",
+            "speed": 4,
+            "intensity": 4
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 25,
+          "volume": 0.6
+        }
+      },
+      {
+        "id": "queimado",
+        "name": "Queimado",
+        "src": "carrinho_livros/carrinho_livros_queimado.png",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#ff5a1a",
+          "alpha": 0.35,
+          "animation": {
+            "type": "torch",
+            "speed": 1,
+            "intensity": 2
+          }
+        },
+        "travado": true
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "inteiro"
+        ],
+        "to": "queimando",
+        "say": "começa a pegar fogo!"
+      },
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "queimando"
+        ],
+        "to": "inteiro",
+        "say": "tem o fogo apagado pelo gelo."
+      },
+      {
+        "types": [
+          "thunder",
+          "force"
+        ],
+        "effect": "push",
+        "squares": 1
+      }
+    ],
+    "onZero": [
+      {
+        "state": "queimando",
+        "to": "queimado",
+        "say": "queima até virar carvão!"
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "queimado",
+        "say": "queima até virar carvão!"
+      },
+      {
+        "to": "quebrado",
+        "say": "perde uma roda e espalha os livros!"
+      }
+    ]
+  },
+  "vela": {
+    "name": "Candelabro",
+    "tipo": "movel",
+    "interacao": "jogador",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {
+      "ac": 10,
+      "hp": 2,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": []
+    },
+    "player": {
+      "move": true,
+      "toggle": [
+        "acesa",
+        "apagada"
+      ]
+    },
+    "states": [
+      {
+        "id": "acesa",
+        "name": "Acesa",
+        "src": "vela/vela_acesa.png",
+        "light": {
+          "bright": 5,
+          "dim": 15,
+          "color": "#ffb860",
+          "alpha": 0.35,
+          "animation": {
+            "type": "torch",
+            "speed": 2,
+            "intensity": 2
+          }
+        }
+      },
+      {
+        "id": "apagada",
+        "name": "Apagada",
+        "src": "vela/vela_apagada.png",
+        "light": {
+          "bright": 0,
+          "dim": 0
+        }
+      },
+      {
+        "id": "derrubado",
+        "name": "Derrubado",
+        "src": "vela/vela_derrubado.png",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 0
+        }
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "acesa"
+        ],
+        "to": "apagada",
+        "say": "se apaga."
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "apagada"
+        ],
+        "to": "acesa",
+        "say": "se acende."
+      }
+    ],
+    "onZero": [
+      {
+        "to": "derrubado",
+        "say": "tomba e as velas rolam pelo chão."
+      }
+    ]
+  },
+  "lampada": {
+    "name": "Lâmpada de chama contínua",
+    "tipo": "imovel",
+    "interacao": "mestre",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {
+      "ac": 13,
+      "hp": 5,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": []
+    },
+    "states": [
+      {
+        "id": "acesa",
+        "name": "Acesa",
+        "src": "lampada/lampada_acesa.png",
+        "light": {
+          "bright": 15,
+          "dim": 30,
+          "color": "#fff1c9",
+          "alpha": 0.3
+        }
+      },
+      {
+        "id": "quebrada",
+        "name": "Quebrada",
+        "src": "lampada/lampada_quebrada.png",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 0
+        }
+      }
+    ],
+    "onZero": [
+      {
+        "to": "quebrada",
+        "say": "se parte e a chama mágica some."
+      }
+    ]
+  },
+  "globo": {
+    "name": "Globo flutuante",
+    "tipo": "movel",
+    "interacao": "jogador",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {
+      "ac": 15,
+      "hp": 3,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": []
+    },
+    "player": {
+      "move": true,
+      "toggle": [
+        "aceso",
+        "apagado"
+      ]
+    },
+    "states": [
+      {
+        "id": "aceso",
+        "name": "Aceso",
+        "src": "globo/globo_aceso.png",
+        "light": {
+          "bright": 20,
+          "dim": 40,
+          "color": "#f4f8ff",
+          "alpha": 0.3
+        }
+      },
+      {
+        "id": "apagado",
+        "name": "Apagado",
+        "src": "globo/globo_apagado.png",
+        "light": {
+          "bright": 0,
+          "dim": 0
+        }
+      },
+      {
+        "id": "quebrado",
+        "name": "Quebrado",
+        "src": "globo/globo_quebrado.png",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 0
+        }
+      }
+    ],
+    "onZero": [
+      {
+        "to": "quebrado",
+        "say": "cai e se estilhaça!"
+      }
+    ]
+  },
+  "sino": {
+    "name": "Sino de bronze",
+    "tipo": "imovel",
+    "interacao": "mestre",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {
+      "ac": 19,
+      "hp": 30,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": [
+        "piercing",
+        "slashing"
+      ]
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "parado",
+        "name": "Parado",
+        "src": "sino/sino_parado.png"
+      },
+      {
+        "id": "tocando",
+        "name": "Tocando",
+        "src": "sino/sino_tocando.png",
+        "alarme": true,
+        "ticks": 3,
+        "then": "parado"
+      },
+      {
+        "id": "rachado",
+        "name": "Rachado",
+        "src": "sino/sino_rachado.png",
+        "broken": true
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "thunder",
+          "bludgeoning"
+        ],
+        "from": [
+          "parado"
+        ],
+        "to": "tocando",
+        "say": "toca alto!"
+      }
+    ],
+    "onZero": [
+      {
+        "to": "rachado",
+        "say": "racha com um som rouco!"
+      }
+    ]
+  },
+  "altar": {
+    "name": "Altar de Oghma",
+    "tipo": "imovel",
+    "interacao": "mestre",
+    "size": {
+      "w": 2,
+      "h": 1
+    },
+    "actor": {
+      "ac": 15,
+      "hp": 25,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": [
+        "piercing",
+        "slashing"
+      ]
+    },
+    "states": [
+      {
+        "id": "inteiro",
+        "name": "Inteiro",
+        "src": "altar/altar_inteiro.png"
+      },
+      {
+        "id": "profanado",
+        "name": "Profanado",
+        "src": "altar/altar_profanado.png"
+      },
+      {
+        "id": "quebrado",
+        "name": "Quebrado",
+        "src": "altar/altar_quebrado.png",
+        "broken": true
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "necrotic"
+        ],
+        "from": [
+          "inteiro"
+        ],
+        "to": "profanado",
+        "say": "é profanado!"
+      }
+    ],
+    "onZero": [
+      {
+        "to": "quebrado",
+        "say": "se parte em blocos de pedra!"
+      }
+    ]
+  },
+  "gargula": {
+    "name": "Gárgula de pedra",
+    "tipo": "imovel",
+    "interacao": "mestre",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {},
+    "states": [
+      {
+        "id": "estatua",
+        "name": "Estátua",
+        "src": "gargula/gargula_estatua.png"
+      },
+      {
+        "id": "desperta",
+        "name": "Desperta",
+        "src": "gargula/gargula_desperta.png",
+        "npc": "gargula_oghma"
+      }
+    ]
+  }
+}

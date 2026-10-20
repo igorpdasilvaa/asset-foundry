@@ -1,0 +1,856 @@
+{
+  "comentario": "Sons gerados localmente no ia-orc (Stable Audio 3 e ACE-Step). tools/gen_sons.py converte, normaliza e faz os loops; tools/juntar_fragmentos.py liga os efeitos aos estados.",
+  "sfx": {
+    "fogo_acende": {
+      "prompt": "Dry wood catching fire with a sudden whoosh and rising crackle, close, small room",
+      "seconds": 3
+    },
+    "fogo_apaga": {
+      "prompt": "Flames doused by ice, sharp steam hiss fading out, close",
+      "seconds": 3
+    },
+    "brasas": {
+      "prompt": "Campfire dying down to embers, soft low crackle and faint hiss",
+      "seconds": 3
+    },
+    "gelo_congela": {
+      "prompt": "Water rapidly freezing into ice, crackling and creaking ice forming, close",
+      "seconds": 3
+    },
+    "gelo_quebra": {
+      "prompt": "Block of ice shattering into many shards on a stone floor",
+      "seconds": 3
+    },
+    "vidro_quebra": {
+      "prompt": "Glass sphere shattering with tinkling shards scattering on a wooden floor, close",
+      "seconds": 3
+    },
+    "cristal_racha": {
+      "prompt": "Loud sharp crack of a large glass crystal ball fracturing, bright glassy snap followed by a short ringing magical hum, close and dry",
+      "seconds": 2
+    },
+    "colapso": {
+      "prompt": "Magical room collapsing, deep implosion rumble, glass shattering, wooden beams groaning, debris falling",
+      "seconds": 6
+    },
+    "pedra_racha": {
+      "prompt": "Heavy stone wall cracking under a blow, gritty crunch and trickling dust",
+      "seconds": 3
+    },
+    "pedra_desaba": {
+      "prompt": "Stone wall collapsing into rubble, heavy blocks crashing down and dust falling",
+      "seconds": 5
+    },
+    "metal_desaba": {
+      "prompt": "Massive iron gate buckling, groaning metal then crashing to the ground with a huge clang",
+      "seconds": 5
+    },
+    "livros_caem": {
+      "prompt": "Tall wooden bookshelf toppling over, many heavy books thudding onto a wooden floor",
+      "seconds": 4
+    },
+    "livros_espalham": {
+      "prompt": "Stack of heavy books knocked over, thuds and fluttering pages",
+      "seconds": 2
+    },
+    "agua_espirra": {
+      "prompt": "Bucket of water splashing and pouring onto a wooden floor",
+      "seconds": 3
+    },
+    "tinta": {
+      "prompt": "Small glass ink pot knocked over, glass clink and liquid splash",
+      "seconds": 2
+    },
+    "vela_acende": {
+      "prompt": "Wooden match struck against a box with a clear scratch and fizz, then a candle flame catching with a soft whoosh, close",
+      "seconds": 2
+    },
+    "vela_apaga": {
+      "prompt": "Candle blown out, soft breath puff",
+      "seconds": 1
+    },
+    "metal_cai": {
+      "prompt": "Brass candlestick falling and clattering on a stone floor",
+      "seconds": 2
+    },
+    "sino": {
+      "prompt": "Large bronze bell tolling three times in a stone tower, long reverb",
+      "seconds": 8
+    },
+    "sino_racha": {
+      "prompt": "Cracked bronze bell struck, dull broken clang with a metallic crack",
+      "seconds": 3
+    },
+    "gargula": {
+      "prompt": "Stone statue coming to life, grinding stone, cracking rock, deep rumble and heavy wing flap",
+      "seconds": 4
+    },
+    "bigorna_racha": {
+      "prompt": "Iron anvil cracking with a loud ringing metallic clang",
+      "seconds": 2
+    },
+    "feno": {
+      "prompt": "Hay bale bursting apart, straw rustling and scattering",
+      "seconds": 2
+    },
+    "tecido": {
+      "prompt": "Thick cloth tearing sharply",
+      "seconds": 2
+    },
+    "esmagado": {
+      "prompt": "Small wooden tray crushed underfoot, wet crunch",
+      "seconds": 2
+    },
+    "profano": {
+      "prompt": "Dark ominous whoosh with a low rumble and whispering wind",
+      "seconds": 3
+    },
+    "eletrico": {
+      "prompt": "Electric arc crackling and zapping over water, buzzing",
+      "seconds": 3
+    },
+    "veneno": {
+      "prompt": "Toxic liquid bubbling and hissing",
+      "seconds": 2
+    },
+    "vapor": {
+      "prompt": "Burst of hot steam hissing",
+      "seconds": 2
+    },
+    "acido": {
+      "prompt": "Acid sizzling and eating into wood",
+      "seconds": 2
+    },
+    "radiante": {
+      "prompt": "Bright magical shimmer, rising chime and sparkle",
+      "seconds": 2
+    },
+    "flechas": {
+      "prompt": "Several arrows thudding into a wooden table",
+      "seconds": 2
+    },
+    "armadilha_urso": {
+      "prompt": "Steel bear trap snapping shut with a loud metallic clack",
+      "seconds": 1
+    },
+    "fosso": {
+      "prompt": "Wooden pit cover cracking and breaking, dirt sliding and a body falling onto stakes",
+      "seconds": 3
+    },
+    "fio": {
+      "prompt": "Taut rope snapping with a sharp twang",
+      "seconds": 1
+    },
+    "pedregulho": {
+      "prompt": "Huge boulder rolling and rumbling down a rocky slope, gravel scattering",
+      "seconds": 6
+    }
+  },
+  "loops": {
+    "amb_mar": {
+      "prompt": "Ocean waves crashing on volcanic cliffs with strong coastal wind, wide and distant",
+      "seconds": 60
+    },
+    "amb_patio": {
+      "prompt": "Large stone courtyard ambience, distant footsteps, soft murmuring crowd, birds chirping",
+      "seconds": 60
+    },
+    "amb_forja": {
+      "prompt": "Blacksmith forge, hammer striking an anvil rhythmically, bellows pumping, crackling coals",
+      "seconds": 40
+    },
+    "amb_estabulo": {
+      "prompt": "Stable ambience, horses snorting, hooves shuffling on straw, occasional whinny",
+      "seconds": 45
+    },
+    "amb_banhos": {
+      "prompt": "Indoor thermal bath, water lapping and dripping, steam hiss, echoing tiled room",
+      "seconds": 45
+    },
+    "amb_scriptorium": {
+      "prompt": "Quiet scriptorium, quills scratching parchment, pages turning, soft room tone",
+      "seconds": 45
+    },
+    "amb_biblioteca": {
+      "prompt": "Quiet library, pages turning, soft footsteps on wooden floor, distant cough",
+      "seconds": 45
+    },
+    "amb_templo": {
+      "prompt": "Large empty stone temple, soft wind, candles crackling, distant footsteps, long reverb",
+      "seconds": 45
+    },
+    "amb_repouso": {
+      "prompt": "Quiet inn at night, creaking wooden floorboards, distant snoring, soft wind outside",
+      "seconds": 45
+    },
+    "amb_tear": {
+      "prompt": "Wooden weaving loom clacking rhythmically, scissors snipping cloth",
+      "seconds": 40
+    },
+    "amb_amplificador": {
+      "prompt": "Continuous steady magical drone of a glowing crystal orb, low warm hum with constant soft clockwork ticking, no pauses, sustained",
+      "seconds": 20
+    }
+  },
+  "musicas": {
+    "portao": {
+      "prompt": "Fantasy tabletop ambient score, solo cello and low strings over soft wind pads, distant bells, mysterious and grand, slow. BPM: 70",
+      "seconds": 150
+    },
+    "patio": {
+      "prompt": "Medieval fantasy tabletop music, gentle lute and recorder over warm string pads and soft choir pads, serene monastery courtyard, contemplative. BPM: 80",
+      "seconds": 150
+    },
+    "hearth": {
+      "prompt": "Lively medieval tavern folk music, fiddle, lute, accordion and bodhran, cozy and cheerful, tabletop RPG inn. BPM: 112",
+      "seconds": 150
+    },
+    "repouso": {
+      "prompt": "Soft fantasy lullaby, harp and music box with quiet strings, sleepy and peaceful, tabletop RPG inn at night. BPM: 60",
+      "seconds": 150
+    },
+    "banhos": {
+      "prompt": "Tranquil fantasy spa music, harp, wooden flute and soft water chimes, relaxing and warm. BPM: 66",
+      "seconds": 150
+    },
+    "encadernador": {
+      "prompt": "Quiet scholarly fantasy music, harpsichord and pizzicato strings with soft woodwinds, focused and curious. BPM: 76",
+      "seconds": 150
+    },
+    "pilares": {
+      "prompt": "Mysterious library fantasy music, celesta, soft piano and airy pads, secrets and quiet wonder, very calm. BPM: 60",
+      "seconds": 150
+    },
+    "templo": {
+      "prompt": "Sacred fantasy temple music, pipe organ and choir pads with soft strings, reverent and luminous, slow. BPM: 58",
+      "seconds": 150
+    },
+    "alfaiataria": {
+      "prompt": "Light playful medieval music, plucked strings, flute and woodwinds, busy craftsman workshop, charming. BPM: 96",
+      "seconds": 150
+    },
+    "ferraria": {
+      "prompt": "Rustic medieval folk music, hammered dulcimer, frame drum and low strings, steady working rhythm, earthy. BPM: 100",
+      "seconds": 150
+    },
+    "combate": {
+      "prompt": "Epic fantasy battle music, driving strings, brass stabs, war drums and choir pads, urgent and heroic, tabletop RPG combat. BPM: 140",
+      "seconds": 150
+    }
+  },
+  "cancoes": {
+    "cantico": {
+      "prompt": "Gregorian chant, male monk choir singing in unison, slow and solemn, stone cathedral reverb, no instruments",
+      "bpm": 60,
+      "keyscale": "D minor",
+      "language": "pt",
+      "seconds": 120,
+      "lyrics": "[Verse]\nAlaundo viu o que virá\nA vela arde e não se apaga\nO livro guarda o que já foi\nE o que será há de chegar\n\n[Verse]\nQuem lê com calma ouve o tempo\nQuem queima o saber se perde\nA torre guarda a voz do sábio\nE a profecia ainda canta\n\n[Outro]\nAlaundo viu o que virá"
+    },
+    "bardo_hearth": {
+      "prompt": "Medieval tavern folk song, lute, fiddle and hand drum, warm male bard voice with a rowdy crowd singing along on the chorus, cheerful",
+      "bpm": 118,
+      "keyscale": "G major",
+      "language": "pt",
+      "seconds": 150,
+      "lyrics": "[Verse]\nSubi o Caminho do Leão\nCom um livro velho na mão\nO guarda olhou, torceu o nariz\nMas era receita de pão\n\n[Chorus]\nÔ Candlekeep, Candlekeep\nMil velas no alto do mar\nTraga um livro que ninguém leu\nE um lugar no Hearth vai ganhar\n\n[Verse]\nO ogro lê perto do fogo\nO orbe gira sobre o balcão\nSe alguém quebrar o tal cristal\nA sala some num trovão\n\n[Chorus]\nÔ Candlekeep, Candlekeep\nMil velas no alto do mar\nTraga um livro que ninguém leu\nE um lugar no Hearth vai ganhar"
+    }
+  },
+  "jobs": {
+    "bardo_hearth": {
+      "job": "e72abcc9-9b9a-481e-9534-f52a5010be81",
+      "variacao": "A"
+    },
+    "cantico": {
+      "job": "ed4e5c9f-4e74-46a6-a8a5-2b85a10fff5f",
+      "variacao": "B"
+    },
+    "combate": {
+      "job": "1e138d0b-062b-457f-9606-a95a8508e28c",
+      "variacao": "A"
+    },
+    "ferraria": {
+      "job": "ad922e25-299e-437a-b331-fbc199abf6b6",
+      "variacao": "B"
+    },
+    "alfaiataria": {
+      "job": "ea96976b-5810-4cc2-a505-beab23b22c40",
+      "variacao": "B"
+    },
+    "templo": {
+      "job": "b7eb4016-7c39-4ac2-88eb-a35fcec33838",
+      "variacao": "A"
+    },
+    "pilares": {
+      "job": "8d5a8894-584e-410f-91b8-2aa9b815235c",
+      "variacao": "A"
+    },
+    "encadernador": {
+      "job": "89c6e1f5-e16a-4f50-aa27-99f467d62e40",
+      "variacao": "B"
+    },
+    "banhos": {
+      "job": "aff6e49d-2b68-485d-b9c6-ef3b0a99a3bd",
+      "variacao": "B"
+    },
+    "repouso": {
+      "job": "a16a43a4-eb1a-4d29-a576-adabd437aba7",
+      "variacao": "A"
+    },
+    "hearth": {
+      "job": "3ab821a0-1fb2-43ce-bd36-7bd10e5773f1",
+      "variacao": "A"
+    },
+    "patio": {
+      "job": "e4123a5e-59ad-4408-96f7-965b520eb850",
+      "variacao": "A"
+    },
+    "portao": {
+      "job": "0d827944-a71b-4b85-b1a2-f8b026a0a909",
+      "variacao": "B"
+    },
+    "amb_tear": {
+      "job": "7ca83173-7a0b-4740-bdfb-06225fdbf65d",
+      "variacao": "A"
+    },
+    "amb_repouso": {
+      "job": "819442b7-1ac4-4bbe-89f0-0957b3a774d6",
+      "variacao": "A"
+    },
+    "amb_templo": {
+      "job": "2c86d20d-b86a-4050-ae0b-ab2826706a6a",
+      "variacao": "A"
+    },
+    "amb_biblioteca": {
+      "job": "09f54046-c2ea-4c93-abfc-c82d7b6fd019",
+      "variacao": "A"
+    },
+    "amb_scriptorium": {
+      "job": "b624ffba-bee6-4796-89cb-8f91ad50c326",
+      "variacao": "A"
+    },
+    "amb_banhos": {
+      "job": "1086f37f-d912-4f78-87cb-ce7021a9bd60",
+      "variacao": "A"
+    },
+    "amb_estabulo": {
+      "job": "d6017fca-8b95-4833-a377-92fcfa9f0f5a",
+      "variacao": "A"
+    },
+    "amb_forja": {
+      "job": "4ed94e9f-09b6-405e-a493-b8b873064d50",
+      "variacao": "A"
+    },
+    "amb_patio": {
+      "job": "8197b188-f942-4afc-8d1a-00341363d148",
+      "variacao": "A"
+    },
+    "amb_mar": {
+      "job": "65afd683-5636-4c78-804e-891c9622cfdc",
+      "variacao": "A"
+    },
+    "pedregulho": {
+      "job": "e44e6e1e-ba49-402e-bd26-9292573a2d74",
+      "variacao": "A"
+    },
+    "fio": {
+      "job": "2d088abf-7f11-4042-9642-9621657a4060",
+      "variacao": "A"
+    },
+    "fosso": {
+      "job": "a34c2b2e-a7fd-47f4-b89e-0bfbacc8d5f8",
+      "variacao": "A"
+    },
+    "armadilha_urso": {
+      "job": "3a189aaf-5926-4fc0-b2b2-c8bad15ec1ee",
+      "variacao": "A"
+    },
+    "flechas": {
+      "job": "4b0a0cb9-7724-46d3-a89f-26547064ab93",
+      "variacao": "B"
+    },
+    "radiante": {
+      "job": "8259470c-7389-4528-9481-4e3230f036fc",
+      "variacao": "A"
+    },
+    "acido": {
+      "job": "90b43019-2017-4f9d-bcdc-fbabc8044f08",
+      "variacao": "A"
+    },
+    "vapor": {
+      "job": "5815876d-c3f5-43f3-a7dd-67629d8db2c4",
+      "variacao": "B"
+    },
+    "veneno": {
+      "job": "525e5cf4-f488-47a5-bb68-0e5dcd1679e8",
+      "variacao": "A"
+    },
+    "eletrico": {
+      "job": "1c304aa2-1126-43ee-b670-d0c97820a062",
+      "variacao": "B"
+    },
+    "profano": {
+      "job": "badca94e-3984-44c7-8099-dde33fe1f2bd",
+      "variacao": "A"
+    },
+    "esmagado": {
+      "job": "fd07c913-ffd7-4c43-b8dd-de1884926742",
+      "variacao": "B"
+    },
+    "tecido": {
+      "job": "d2bfc6f6-b687-45f0-aed0-c6d0158f45dd",
+      "variacao": "B"
+    },
+    "feno": {
+      "job": "0d1deb21-66fb-4bd1-93c2-a4fed038fc94",
+      "variacao": "A"
+    },
+    "bigorna_racha": {
+      "job": "3bc05004-eed5-487b-9e2a-5aedb21429bc",
+      "variacao": "B"
+    },
+    "gargula": {
+      "job": "bee7f5b5-91fc-4515-8c9d-1440d6bee9e1",
+      "variacao": "A"
+    },
+    "sino_racha": {
+      "job": "d7eb1c15-ac10-467d-9e68-a6cc1bbe4b21",
+      "variacao": "B"
+    },
+    "sino": {
+      "job": "636b9deb-2cf7-46af-9166-391f7e7c9889",
+      "variacao": "A"
+    },
+    "metal_cai": {
+      "job": "db172973-5e60-4cde-a67d-d1db6c98313f",
+      "variacao": "A"
+    },
+    "vela_apaga": {
+      "job": "69d57063-d933-4c0c-a04c-5f7660764126",
+      "variacao": "A"
+    },
+    "tinta": {
+      "job": "516407a5-35c4-41e1-b9d5-d200d186c487",
+      "variacao": "A"
+    },
+    "agua_espirra": {
+      "job": "97ef39db-30f7-4d02-97bc-b44bc8cdea9b",
+      "variacao": "A"
+    },
+    "livros_espalham": {
+      "job": "9bc9ceab-a6c8-4cdd-8245-bb9037c5462f",
+      "variacao": "A"
+    },
+    "livros_caem": {
+      "job": "56ce771a-2395-4e81-a815-ff34dd91c881",
+      "variacao": "A"
+    },
+    "metal_desaba": {
+      "job": "520c4fcb-a620-48a2-916c-daf3771ea870",
+      "variacao": "B"
+    },
+    "pedra_desaba": {
+      "job": "20d5ffaa-6855-473c-8dd0-91be343646dc",
+      "variacao": "B"
+    },
+    "pedra_racha": {
+      "job": "7d9948ef-ee65-4d76-8e1a-7e1825e07bc4",
+      "variacao": "B"
+    },
+    "colapso": {
+      "job": "788df943-0ff8-41d7-8698-8e25dde9b6d6",
+      "variacao": "B"
+    },
+    "vidro_quebra": {
+      "job": "159f99d5-d1ef-4bc6-b50a-a0893e267143",
+      "variacao": "A"
+    },
+    "gelo_quebra": {
+      "job": "99c7dc7f-64df-45db-83ec-a0b52f66110a",
+      "variacao": "A"
+    },
+    "gelo_congela": {
+      "job": "6403c437-a3c4-4ea3-8f80-b8be402b860f",
+      "variacao": "B"
+    },
+    "brasas": {
+      "job": "912ff303-dc5c-4d0b-935c-15f9e593099b",
+      "variacao": "B"
+    },
+    "fogo_apaga": {
+      "job": "26d661d2-992f-4253-9d7d-ced2d62ff819",
+      "variacao": "A"
+    },
+    "fogo_acende": {
+      "job": "fa4137cd-7fb3-4fe5-bce4-afbb344014d0",
+      "variacao": "A"
+    },
+    "cristal_racha": {
+      "job": "4eb572b8-46ab-4383-8354-5c3d60c0eb79",
+      "variacao": "A"
+    },
+    "vela_acende": {
+      "job": "346a307c-cc12-41f7-89e0-7cf87541ceba",
+      "variacao": "A"
+    },
+    "amb_amplificador": {
+      "job": "e6a0b202-eb78-4026-a8b4-926b552fb5ef",
+      "variacao": "B"
+    }
+  },
+  "estados": {
+    "mesa": {
+      "queimando": {
+        "sfx": "audio/fogo_acende.ogg"
+      },
+      "chamuscada": {
+        "sfx": "audio/fogo_apaga.ogg"
+      },
+      "congelada": {
+        "sfx": "audio/gelo_congela.ogg"
+      },
+      "estilhacada": {
+        "sfx": "audio/gelo_quebra.ogg"
+      },
+      "corroida": {
+        "sfx": "audio/acido.ogg"
+      },
+      "flechada": {
+        "sfx": "audio/flechas.ogg"
+      },
+      "apodrecida": {
+        "sfx": "audio/profano.ogg"
+      },
+      "radiante": {
+        "sfx": "audio/radiante.ogg"
+      },
+      "quebrada": {
+        "sfx": "audio/madeira_quebrando.ogg"
+      },
+      "cortada": {
+        "sfx": "audio/madeira_quebrando.ogg"
+      }
+    },
+    "porta": {
+      "queimando": {
+        "sfx": "audio/fogo_acende.ogg"
+      }
+    },
+    "barril": {
+      "queimando": {
+        "sfx": "audio/fogo_acende.ogg"
+      }
+    },
+    "caixa": {
+      "queimando": {
+        "sfx": "audio/fogo_acende.ogg"
+      }
+    },
+    "agua": {
+      "congelada": {
+        "sfx": "audio/gelo_congela.ogg"
+      },
+      "eletrificada": {
+        "sfx": "audio/eletrico.ogg"
+      },
+      "vapor": {
+        "sfx": "audio/vapor.ogg"
+      },
+      "envenenada": {
+        "sfx": "audio/veneno.ogg"
+      }
+    },
+    "carroca": {
+      "queimando": {
+        "sfx": "audio/fogo_acende.ogg"
+      }
+    },
+    "barco": {
+      "queimando": {
+        "sfx": "audio/fogo_acende.ogg"
+      },
+      "avariado": {
+        "sfx": "audio/madeira_quebrando.ogg"
+      },
+      "afundado": {
+        "sfx": "audio/agua_espirra.ogg"
+      }
+    },
+    "arvore_grande": {
+      "queimando": {
+        "sfx": "audio/fogo_acende.ogg"
+      },
+      "chamuscada": {
+        "sfx": "audio/fogo_apaga.ogg"
+      }
+    },
+    "arvore_pequena": {
+      "queimando": {
+        "sfx": "audio/fogo_acende.ogg"
+      },
+      "chamuscada": {
+        "sfx": "audio/fogo_apaga.ogg"
+      }
+    },
+    "balcao": {
+      "chamuscado": {
+        "sfx": "audio/fogo_apaga.ogg"
+      },
+      "queimando": {
+        "sfx": "audio/fogo_acende.ogg"
+      }
+    },
+    "cadeira": {
+      "queimando": {
+        "sfx": "audio/fogo_acende.ogg"
+      }
+    },
+    "poltrona": {
+      "queimando": {
+        "sfx": "audio/fogo_acende.ogg"
+      }
+    },
+    "banco": {
+      "queimando": {
+        "sfx": "audio/fogo_acende.ogg"
+      }
+    },
+    "cama": {
+      "queimando": {
+        "sfx": "audio/fogo_acende.ogg"
+      }
+    },
+    "feno": {
+      "queimando": {
+        "sfx": "audio/fogo_acende.ogg"
+      },
+      "espalhado": {
+        "sfx": "audio/feno.ogg"
+      }
+    },
+    "cocho": {
+      "congelado": {
+        "sfx": "audio/gelo_congela.ogg"
+      },
+      "vazio": {
+        "sfx": "audio/agua_espirra.ogg"
+      }
+    },
+    "tear": {
+      "queimando": {
+        "sfx": "audio/fogo_acende.ogg"
+      },
+      "cortado": {
+        "sfx": "audio/tecido.ogg"
+      }
+    },
+    "estante": {
+      "molhada": {
+        "sfx": "audio/agua_espirra.ogg"
+      },
+      "chamuscada": {
+        "sfx": "audio/fogo_apaga.ogg"
+      },
+      "queimando": {
+        "sfx": "audio/fogo_acende.ogg"
+      },
+      "tombada": {
+        "sfx": "audio/livros_caem.ogg"
+      }
+    },
+    "pilha_livros": {
+      "molhada": {
+        "sfx": "audio/agua_espirra.ogg"
+      },
+      "queimando": {
+        "sfx": "audio/fogo_acende.ogg"
+      },
+      "espalhada": {
+        "sfx": "audio/livros_espalham.ogg"
+      }
+    },
+    "atril": {
+      "chamuscado": {
+        "sfx": "audio/fogo_apaga.ogg"
+      },
+      "queimando": {
+        "sfx": "audio/fogo_acende.ogg"
+      },
+      "tombado": {
+        "sfx": "audio/livros_espalham.ogg"
+      }
+    },
+    "escrivaninha": {
+      "chamuscada": {
+        "sfx": "audio/fogo_apaga.ogg"
+      },
+      "queimando": {
+        "sfx": "audio/fogo_acende.ogg"
+      },
+      "tinta_derramada": {
+        "sfx": "audio/tinta.ogg"
+      }
+    },
+    "carrinho_livros": {
+      "queimando": {
+        "sfx": "audio/fogo_acende.ogg"
+      }
+    },
+    "parede": {
+      "rachada": {
+        "sfx": "audio/pedra_racha.ogg"
+      },
+      "destruida": {
+        "sfx": "audio/pedra_desaba.ogg"
+      }
+    },
+    "muralha": {
+      "rachada": {
+        "sfx": "audio/pedra_racha.ogg"
+      },
+      "destruida": {
+        "sfx": "audio/pedra_desaba.ogg"
+      }
+    },
+    "pilar": {
+      "rachado": {
+        "sfx": "audio/pedra_racha.ogg"
+      },
+      "destruido": {
+        "sfx": "audio/pedra_desaba.ogg"
+      }
+    },
+    "tocha": {
+      "acesa": {
+        "sfx": "audio/vela_acende.ogg"
+      },
+      "apagada": {
+        "sfx": "audio/vela_apaga.ogg"
+      }
+    },
+    "armadilha_urso": {
+      "fechada": {
+        "sfx": "audio/armadilha_urso.ogg"
+      }
+    },
+    "fosso": {
+      "aberto": {
+        "sfx": "audio/fosso.ogg"
+      }
+    },
+    "fio": {
+      "disparado": {
+        "sfx": "audio/fio.ogg"
+      }
+    },
+    "pedregulho": {
+      "rolou": {
+        "sfx": "audio/pedregulho.ogg"
+      }
+    },
+    "portao": {
+      "arrombado": {
+        "sfx": "audio/metal_desaba.ogg"
+      }
+    },
+    "amplificador": {
+      "rachado": {
+        "sfx": "audio/cristal_racha.ogg",
+        "sound": {
+          "src": "audio/amb_amplificador.ogg",
+          "radius": 15,
+          "volume": 0.5
+        }
+      },
+      "estilhacado": {
+        "sfx": "audio/colapso.ogg"
+      },
+      "brilhando": {
+        "sound": {
+          "src": "audio/amb_amplificador.ogg",
+          "radius": 15,
+          "volume": 0.4
+        }
+      }
+    },
+    "fogueira": {
+      "brasas": {
+        "sfx": "audio/brasas.ogg"
+      },
+      "acesa": {
+        "sfx": "audio/fogo_acende.ogg"
+      }
+    },
+    "forja": {
+      "acesa": {
+        "sfx": "audio/fogo_acende.ogg",
+        "sound": {
+          "src": "audio/amb_forja.ogg",
+          "radius": 30,
+          "volume": 0.6
+        }
+      },
+      "apagada": {
+        "sfx": "audio/fogo_apaga.ogg"
+      }
+    },
+    "bigorna": {
+      "rachada": {
+        "sfx": "audio/bigorna_racha.ogg"
+      }
+    },
+    "casulario": {
+      "esmagado": {
+        "sfx": "audio/esmagado.ogg"
+      }
+    },
+    "vela": {
+      "acesa": {
+        "sfx": "audio/vela_acende.ogg"
+      },
+      "apagada": {
+        "sfx": "audio/vela_apaga.ogg"
+      },
+      "derrubado": {
+        "sfx": "audio/metal_cai.ogg"
+      }
+    },
+    "lampada": {
+      "quebrada": {
+        "sfx": "audio/vidro_quebra.ogg"
+      }
+    },
+    "globo": {
+      "aceso": {
+        "sfx": "audio/radiante.ogg"
+      },
+      "apagado": {
+        "sfx": "audio/vela_apaga.ogg"
+      },
+      "quebrado": {
+        "sfx": "audio/vidro_quebra.ogg"
+      }
+    },
+    "sino": {
+      "tocando": {
+        "sfx": "audio/sino.ogg"
+      },
+      "rachado": {
+        "sfx": "audio/sino_racha.ogg"
+      }
+    },
+    "altar": {
+      "profanado": {
+        "sfx": "audio/profano.ogg"
+      },
+      "quebrado": {
+        "sfx": "audio/pedra_desaba.ogg"
+      }
+    },
+    "gargula": {
+      "desperta": {
+        "sfx": "audio/gargula.ogg"
+      }
+    }
+  }
+}

@@ -1,0 +1,1275 @@
+{
+  "amplificador": {
+    "name": "Amplificador geométrico",
+    "tipo": "imovel",
+    "interacao": "mestre",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {
+      "ac": 15,
+      "hp": 10,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": []
+    },
+    "states": [
+      {
+        "id": "brilhando",
+        "name": "Brilhando",
+        "src": "amplificador/amplificador_brilhando.png",
+        "light": {
+          "bright": 10,
+          "dim": 25,
+          "color": "#9fd8ff",
+          "alpha": 0.35,
+          "animation": {
+            "type": "energy",
+            "speed": 3,
+            "intensity": 3
+          }
+        }
+      },
+      {
+        "id": "rachado",
+        "name": "Rachado",
+        "src": "amplificador/amplificador_rachado.png",
+        "light": {
+          "bright": 6,
+          "dim": 18,
+          "color": "#9fd8ff",
+          "alpha": 0.3,
+          "animation": {
+            "type": "flame",
+            "speed": 6,
+            "intensity": 6
+          }
+        }
+      },
+      {
+        "id": "estilhacado",
+        "name": "Estilhaçado",
+        "src": "amplificador/amplificador_estilhacado.png",
+        "broken": true,
+        "colapso": {
+          "dc": 15,
+          "damage": "2d6",
+          "type": "bludgeoning"
+        }
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "bludgeoning",
+          "force",
+          "thunder"
+        ],
+        "from": [
+          "brilhando"
+        ],
+        "to": "rachado",
+        "say": "racha, e a luz começa a piscar!"
+      }
+    ],
+    "onZero": [
+      {
+        "to": "estilhacado",
+        "say": "se estilhaça! O espaço extradimensional desaba!"
+      }
+    ]
+  },
+  "fogueira": {
+    "name": "Fogueira do Hearth",
+    "tipo": "imovel",
+    "interacao": "mestre",
+    "size": {
+      "w": 2,
+      "h": 2
+    },
+    "fogoPermitido": true,
+    "actor": {},
+    "states": [
+      {
+        "id": "acesa",
+        "name": "Acesa",
+        "src": "fogueira/fogueira_acesa.png",
+        "chama": true,
+        "light": {
+          "bright": 15,
+          "dim": 35,
+          "color": "#ff8a3d",
+          "alpha": 0.5,
+          "attenuation": 0.5,
+          "animation": {
+            "type": "torch",
+            "speed": 3,
+            "intensity": 3
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 25,
+          "volume": 0.6
+        }
+      },
+      {
+        "id": "brasas",
+        "name": "Brasas",
+        "src": "fogueira/fogueira_brasas.png",
+        "light": {
+          "bright": 0,
+          "dim": 12,
+          "color": "#ff5a1a",
+          "alpha": 0.4,
+          "animation": {
+            "type": "torch",
+            "speed": 1,
+            "intensity": 2
+          }
+        }
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "acesa"
+        ],
+        "to": "brasas",
+        "say": "vira brasas por um instante."
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "brasas"
+        ],
+        "to": "acesa",
+        "say": "volta a arder."
+      }
+    ]
+  },
+  "balcao": {
+    "name": "Balcão do bar",
+    "tipo": "imovel",
+    "interacao": "mestre",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {
+      "ac": 13,
+      "hp": 15,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": [
+        "piercing"
+      ]
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "inteiro",
+        "name": "Inteiro",
+        "src": "balcao/balcao_inteiro.png"
+      },
+      {
+        "id": "chamuscado",
+        "name": "Chamuscado",
+        "src": "balcao/balcao_chamuscado.png"
+      },
+      {
+        "id": "quebrado",
+        "name": "Quebrado",
+        "src": "balcao/balcao_quebrado.png",
+        "broken": true,
+        "sfx": "audio/madeira_quebrando.ogg"
+      },
+      {
+        "id": "queimando",
+        "name": "Pegando fogo",
+        "src": "balcao/balcao_queimando.png",
+        "burning": true,
+        "sticky": true,
+        "dot": {
+          "damage": 2,
+          "type": "fire"
+        },
+        "light": {
+          "bright": 10,
+          "dim": 25,
+          "color": "#ff7b2e",
+          "alpha": 0.5,
+          "attenuation": 0.6,
+          "animation": {
+            "type": "torch",
+            "speed": 4,
+            "intensity": 4
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 25,
+          "volume": 0.6
+        }
+      },
+      {
+        "id": "queimado",
+        "name": "Queimado",
+        "src": "balcao/balcao_queimado.png",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#ff5a1a",
+          "alpha": 0.35,
+          "animation": {
+            "type": "torch",
+            "speed": 1,
+            "intensity": 2
+          }
+        }
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "inteiro",
+          "chamuscado"
+        ],
+        "to": "queimando",
+        "say": "começa a pegar fogo!"
+      },
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "queimando"
+        ],
+        "to": "chamuscado",
+        "say": "tem o fogo apagado pelo gelo."
+      }
+    ],
+    "onZero": [
+      {
+        "state": "queimando",
+        "to": "queimado",
+        "say": "vira cinzas!"
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "queimado",
+        "say": "vira cinzas!"
+      },
+      {
+        "to": "quebrado",
+        "say": "se arrebenta, espalhando canecas e cacos!"
+      }
+    ]
+  },
+  "cadeira": {
+    "name": "Cadeira",
+    "tipo": "movel",
+    "interacao": "jogador",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {
+      "ac": 10,
+      "hp": 3,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": []
+    },
+    "player": {
+      "move": true
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "inteira",
+        "name": "Inteira",
+        "src": "cadeira/cadeira_inteira.png"
+      },
+      {
+        "id": "quebrada",
+        "name": "Quebrada",
+        "src": "cadeira/cadeira_quebrada.png",
+        "broken": true,
+        "sfx": "audio/madeira_quebrando.ogg"
+      },
+      {
+        "id": "queimando",
+        "name": "Pegando fogo",
+        "src": "cadeira/cadeira_queimando.png",
+        "burning": true,
+        "sticky": true,
+        "dot": {
+          "damage": 2,
+          "type": "fire"
+        },
+        "light": {
+          "bright": 10,
+          "dim": 25,
+          "color": "#ff7b2e",
+          "alpha": 0.5,
+          "attenuation": 0.6,
+          "animation": {
+            "type": "torch",
+            "speed": 4,
+            "intensity": 4
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 25,
+          "volume": 0.6
+        }
+      },
+      {
+        "id": "queimada",
+        "name": "Queimada",
+        "src": "cadeira/cadeira_queimada.png",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#ff5a1a",
+          "alpha": 0.35,
+          "animation": {
+            "type": "torch",
+            "speed": 1,
+            "intensity": 2
+          }
+        }
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "inteira"
+        ],
+        "to": "queimando",
+        "say": "começa a pegar fogo!"
+      },
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "queimando"
+        ],
+        "to": "inteira",
+        "say": "tem o fogo apagado pelo gelo."
+      }
+    ],
+    "onZero": [
+      {
+        "state": "queimando",
+        "to": "queimada",
+        "say": "vira cinzas!"
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "queimada",
+        "say": "vira cinzas!"
+      },
+      {
+        "to": "quebrada",
+        "say": "se despedaça!"
+      }
+    ]
+  },
+  "poltrona": {
+    "name": "Poltrona de couro",
+    "tipo": "movel",
+    "interacao": "jogador",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {
+      "ac": 10,
+      "hp": 5,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": []
+    },
+    "player": {
+      "move": true
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "inteira",
+        "name": "Inteira",
+        "src": "poltrona/poltrona_inteira.png"
+      },
+      {
+        "id": "quebrada",
+        "name": "Quebrada",
+        "src": "poltrona/poltrona_quebrada.png",
+        "broken": true,
+        "sfx": "audio/madeira_quebrando.ogg"
+      },
+      {
+        "id": "queimando",
+        "name": "Pegando fogo",
+        "src": "poltrona/poltrona_queimando.png",
+        "burning": true,
+        "sticky": true,
+        "dot": {
+          "damage": 2,
+          "type": "fire"
+        },
+        "light": {
+          "bright": 10,
+          "dim": 25,
+          "color": "#ff7b2e",
+          "alpha": 0.5,
+          "attenuation": 0.6,
+          "animation": {
+            "type": "torch",
+            "speed": 4,
+            "intensity": 4
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 25,
+          "volume": 0.6
+        }
+      },
+      {
+        "id": "queimada",
+        "name": "Queimada",
+        "src": "poltrona/poltrona_queimada.png",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#ff5a1a",
+          "alpha": 0.35,
+          "animation": {
+            "type": "torch",
+            "speed": 1,
+            "intensity": 2
+          }
+        }
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "inteira"
+        ],
+        "to": "queimando",
+        "say": "começa a pegar fogo!"
+      },
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "queimando"
+        ],
+        "to": "inteira",
+        "say": "tem o fogo apagado pelo gelo."
+      }
+    ],
+    "onZero": [
+      {
+        "state": "queimando",
+        "to": "queimada",
+        "say": "vira cinzas!"
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "queimada",
+        "say": "vira cinzas!"
+      },
+      {
+        "to": "quebrada",
+        "say": "se despedaça!"
+      }
+    ]
+  },
+  "banco": {
+    "name": "Banco comprido",
+    "tipo": "movel",
+    "interacao": "jogador",
+    "size": {
+      "w": 2,
+      "h": 1
+    },
+    "actor": {
+      "ac": 10,
+      "hp": 5,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": []
+    },
+    "player": {
+      "move": true
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "inteiro",
+        "name": "Inteiro",
+        "src": "banco/banco_inteiro.png"
+      },
+      {
+        "id": "quebrado",
+        "name": "Quebrado",
+        "src": "banco/banco_quebrado.png",
+        "broken": true,
+        "sfx": "audio/madeira_quebrando.ogg"
+      },
+      {
+        "id": "queimando",
+        "name": "Pegando fogo",
+        "src": "banco/banco_queimando.png",
+        "burning": true,
+        "sticky": true,
+        "dot": {
+          "damage": 2,
+          "type": "fire"
+        },
+        "light": {
+          "bright": 10,
+          "dim": 25,
+          "color": "#ff7b2e",
+          "alpha": 0.5,
+          "attenuation": 0.6,
+          "animation": {
+            "type": "torch",
+            "speed": 4,
+            "intensity": 4
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 25,
+          "volume": 0.6
+        }
+      },
+      {
+        "id": "queimado",
+        "name": "Queimado",
+        "src": "banco/banco_queimado.png",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#ff5a1a",
+          "alpha": 0.35,
+          "animation": {
+            "type": "torch",
+            "speed": 1,
+            "intensity": 2
+          }
+        }
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "inteiro"
+        ],
+        "to": "queimando",
+        "say": "começa a pegar fogo!"
+      },
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "queimando"
+        ],
+        "to": "inteiro",
+        "say": "tem o fogo apagado pelo gelo."
+      }
+    ],
+    "onZero": [
+      {
+        "state": "queimando",
+        "to": "queimado",
+        "say": "vira cinzas!"
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "queimado",
+        "say": "vira cinzas!"
+      },
+      {
+        "to": "quebrado",
+        "say": "se despedaça!"
+      }
+    ]
+  },
+  "cama": {
+    "name": "Cama",
+    "tipo": "movel",
+    "interacao": "mestre",
+    "size": {
+      "w": 1,
+      "h": 2
+    },
+    "actor": {
+      "ac": 10,
+      "hp": 8,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": []
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "arrumada",
+        "name": "Arrumada",
+        "src": "cama/cama_arrumada.png"
+      },
+      {
+        "id": "desarrumada",
+        "name": "Desarrumada",
+        "src": "cama/cama_desarrumada.png"
+      },
+      {
+        "id": "quebrada",
+        "name": "Quebrada",
+        "src": "cama/cama_quebrada.png",
+        "broken": true,
+        "sfx": "audio/madeira_quebrando.ogg"
+      },
+      {
+        "id": "queimando",
+        "name": "Pegando fogo",
+        "src": "cama/cama_queimando.png",
+        "burning": true,
+        "sticky": true,
+        "dot": {
+          "damage": 2,
+          "type": "fire"
+        },
+        "light": {
+          "bright": 10,
+          "dim": 25,
+          "color": "#ff7b2e",
+          "alpha": 0.5,
+          "attenuation": 0.6,
+          "animation": {
+            "type": "torch",
+            "speed": 4,
+            "intensity": 4
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 25,
+          "volume": 0.6
+        }
+      },
+      {
+        "id": "queimada",
+        "name": "Queimada",
+        "src": "cama/cama_queimada.png",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#ff5a1a",
+          "alpha": 0.35,
+          "animation": {
+            "type": "torch",
+            "speed": 1,
+            "intensity": 2
+          }
+        }
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "arrumada",
+          "desarrumada"
+        ],
+        "to": "queimando",
+        "say": "começa a pegar fogo!"
+      },
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "queimando"
+        ],
+        "to": "desarrumada",
+        "say": "tem o fogo apagado pelo gelo."
+      }
+    ],
+    "onZero": [
+      {
+        "state": "queimando",
+        "to": "queimada",
+        "say": "vira cinzas!"
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "queimada",
+        "say": "vira cinzas!"
+      },
+      {
+        "to": "quebrada",
+        "say": "desaba com um estalo!"
+      }
+    ]
+  },
+  "forja": {
+    "name": "Forja",
+    "tipo": "imovel",
+    "interacao": "mestre",
+    "size": {
+      "w": 2,
+      "h": 2
+    },
+    "fogoPermitido": true,
+    "actor": {
+      "ac": 17,
+      "hp": 40,
+      "immunities": [
+        "fire",
+        "poison",
+        "psychic"
+      ],
+      "resistances": []
+    },
+    "states": [
+      {
+        "id": "acesa",
+        "name": "Acesa",
+        "src": "forja/forja_acesa.png",
+        "chama": true,
+        "light": {
+          "bright": 15,
+          "dim": 30,
+          "color": "#ff7a2a",
+          "alpha": 0.55,
+          "attenuation": 0.5,
+          "animation": {
+            "type": "torch",
+            "speed": 3,
+            "intensity": 4
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 25,
+          "volume": 0.6
+        }
+      },
+      {
+        "id": "apagada",
+        "name": "Apagada",
+        "src": "forja/forja_apagada.png",
+        "light": {
+          "bright": 0,
+          "dim": 0
+        }
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "acesa"
+        ],
+        "to": "apagada",
+        "say": "tem o braseiro apagado pelo gelo."
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "apagada"
+        ],
+        "to": "acesa",
+        "say": "volta a arder."
+      }
+    ]
+  },
+  "bigorna": {
+    "name": "Bigorna",
+    "tipo": "movel",
+    "interacao": "jogador",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {
+      "ac": 19,
+      "hp": 50,
+      "immunities": [
+        "fire",
+        "poison",
+        "psychic"
+      ],
+      "resistances": [
+        "bludgeoning",
+        "piercing",
+        "slashing"
+      ]
+    },
+    "player": {
+      "move": true
+    },
+    "states": [
+      {
+        "id": "inteira",
+        "name": "Inteira",
+        "src": "bigorna/bigorna_inteira.png"
+      },
+      {
+        "id": "rachada",
+        "name": "Rachada",
+        "src": "bigorna/bigorna_rachada.png",
+        "broken": true
+      }
+    ],
+    "onZero": [
+      {
+        "to": "rachada",
+        "say": "racha ao meio com um estalo metálico!"
+      }
+    ]
+  },
+  "feno": {
+    "name": "Fardo de feno",
+    "tipo": "movel",
+    "interacao": "jogador",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {
+      "ac": 8,
+      "hp": 4,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": []
+    },
+    "player": {
+      "move": true
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "inteiro",
+        "name": "Inteiro",
+        "src": "feno/feno_inteiro.png"
+      },
+      {
+        "id": "espalhado",
+        "name": "Espalhado",
+        "src": "feno/feno_espalhado.png",
+        "broken": true
+      },
+      {
+        "id": "queimando",
+        "name": "Pegando fogo",
+        "src": "feno/feno_queimando.png",
+        "burning": true,
+        "sticky": true,
+        "dot": {
+          "damage": 3,
+          "type": "fire"
+        },
+        "light": {
+          "bright": 10,
+          "dim": 25,
+          "color": "#ff7b2e",
+          "alpha": 0.5,
+          "attenuation": 0.6,
+          "animation": {
+            "type": "torch",
+            "speed": 4,
+            "intensity": 4
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 25,
+          "volume": 0.6
+        }
+      },
+      {
+        "id": "cinzas",
+        "name": "Cinzas",
+        "src": "feno/feno_cinzas.png",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#ff5a1a",
+          "alpha": 0.35,
+          "animation": {
+            "type": "torch",
+            "speed": 1,
+            "intensity": 2
+          }
+        }
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "inteiro"
+        ],
+        "to": "queimando",
+        "say": "começa a pegar fogo!"
+      },
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "queimando"
+        ],
+        "to": "inteiro",
+        "say": "tem o fogo apagado pelo gelo."
+      }
+    ],
+    "onZero": [
+      {
+        "state": "queimando",
+        "to": "cinzas",
+        "say": "vira cinzas num instante!"
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "cinzas",
+        "say": "vira cinzas num instante!"
+      },
+      {
+        "to": "espalhado",
+        "say": "se desfaz e espalha palha para todo lado!"
+      }
+    ]
+  },
+  "cocho": {
+    "name": "Cocho d'água",
+    "tipo": "imovel",
+    "interacao": "mestre",
+    "size": {
+      "w": 2,
+      "h": 1
+    },
+    "actor": {
+      "ac": 12,
+      "hp": 10,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": []
+    },
+    "states": [
+      {
+        "id": "cheio",
+        "name": "Cheio",
+        "src": "cocho/cocho_cheio.png",
+        "wet": true
+      },
+      {
+        "id": "congelado",
+        "name": "Congelado",
+        "src": "cocho/cocho_congelado.png",
+        "gelo": true,
+        "light": {
+          "bright": 0,
+          "dim": 8,
+          "color": "#9fdcff",
+          "alpha": 0.3
+        }
+      },
+      {
+        "id": "vazio",
+        "name": "Vazio",
+        "src": "cocho/cocho_vazio.png",
+        "broken": true,
+        "sfx": "audio/madeira_quebrando.ogg"
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "cheio"
+        ],
+        "to": "congelado",
+        "say": "congela!"
+      },
+      {
+        "types": [
+          "fire"
+        ],
+        "from": [
+          "congelado"
+        ],
+        "to": "cheio",
+        "say": "derrete."
+      }
+    ],
+    "onZero": [
+      {
+        "to": "vazio",
+        "say": "racha e derrama a água pelo chão!"
+      }
+    ]
+  },
+  "tear": {
+    "name": "Tear",
+    "tipo": "imovel",
+    "interacao": "mestre",
+    "size": {
+      "w": 2,
+      "h": 1
+    },
+    "actor": {
+      "ac": 10,
+      "hp": 6,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": []
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "inteiro",
+        "name": "Inteiro",
+        "src": "tear/tear_inteiro.png"
+      },
+      {
+        "id": "cortado",
+        "name": "Cortado",
+        "src": "tear/tear_cortado.png"
+      },
+      {
+        "id": "quebrado",
+        "name": "Quebrado",
+        "src": "tear/tear_quebrado.png",
+        "broken": true,
+        "sfx": "audio/madeira_quebrando.ogg"
+      },
+      {
+        "id": "queimando",
+        "name": "Pegando fogo",
+        "src": "tear/tear_queimando.png",
+        "burning": true,
+        "sticky": true,
+        "dot": {
+          "damage": 2,
+          "type": "fire"
+        },
+        "light": {
+          "bright": 10,
+          "dim": 25,
+          "color": "#ff7b2e",
+          "alpha": 0.5,
+          "attenuation": 0.6,
+          "animation": {
+            "type": "torch",
+            "speed": 4,
+            "intensity": 4
+          }
+        },
+        "sound": {
+          "src": "tocha/fogo.ogg",
+          "radius": 25,
+          "volume": 0.6
+        }
+      },
+      {
+        "id": "queimado",
+        "name": "Queimado",
+        "src": "tear/tear_queimado.png",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#ff5a1a",
+          "alpha": 0.35,
+          "animation": {
+            "type": "torch",
+            "speed": 1,
+            "intensity": 2
+          }
+        }
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "from": [
+          "inteiro",
+          "cortado"
+        ],
+        "to": "queimando",
+        "say": "começa a pegar fogo!"
+      },
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "queimando"
+        ],
+        "to": "inteiro",
+        "say": "tem o fogo apagado pelo gelo."
+      },
+      {
+        "types": [
+          "slashing"
+        ],
+        "from": [
+          "inteiro"
+        ],
+        "to": "cortado",
+        "say": "tem os fios e o tecido cortados!"
+      }
+    ],
+    "onZero": [
+      {
+        "state": "queimando",
+        "to": "queimado",
+        "say": "vira cinzas!"
+      },
+      {
+        "types": [
+          "fire",
+          "lightning"
+        ],
+        "to": "queimado",
+        "say": "vira cinzas!"
+      },
+      {
+        "to": "quebrado",
+        "say": "desmonta num emaranhado de fios!"
+      }
+    ]
+  },
+  "casulario": {
+    "name": "Casulário",
+    "tipo": "movel",
+    "interacao": "jogador",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {
+      "ac": 8,
+      "hp": 2,
+      "immunities": [
+        "psychic"
+      ],
+      "resistances": []
+    },
+    "player": {
+      "move": true
+    },
+    "states": [
+      {
+        "id": "vivo",
+        "name": "Vivo",
+        "src": "casulario/casulario_vivo.png"
+      },
+      {
+        "id": "esmagado",
+        "name": "Esmagado",
+        "src": "casulario/casulario_esmagado.png",
+        "broken": true
+      }
+    ],
+    "onZero": [
+      {
+        "to": "esmagado",
+        "say": "é esmagado, com casulos e tudo."
+      }
+    ]
+  }
+}

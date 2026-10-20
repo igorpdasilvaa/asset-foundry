@@ -1,0 +1,596 @@
+{
+  "name": "Candlekeep: Pátio do Ar",
+  "grid": 100,
+  "px": 120,
+  "darkness": 0.05,
+  "seed": 41,
+  "legend": {
+    ",": "paralelepipedo",
+    "W": "muralha",
+    "X": {
+      "nome": "muralha_fixa",
+      "chao": "muralha",
+      "solido": true
+    },
+    "R": "telhado_ardosia",
+    "r": "telhado_telha",
+    "D": "porta",
+    "E": {
+      "nome": "porta_esmeralda",
+      "chao": "muralha",
+      "asset": "porta_esmeralda",
+      "kind": "door"
+    },
+    "m": "marmore",
+    "_": "terra",
+    "\"": "grama",
+    "~": "agua",
+    "p": "piso_pedra"
+  },
+  "protecoes": {
+    "alarme": 1,
+    "resposta": [
+      {
+        "npc": "avowed_arquimago",
+        "n": 1
+      },
+      {
+        "npc": "avowed_mago",
+        "n": 4
+      }
+    ]
+  },
+  "saidas": [
+    {
+      "id": "portao",
+      "nome": "Portão",
+      "x": 79,
+      "y": 26,
+      "w": 1,
+      "h": 4,
+      "pouso": {
+        "x": 76,
+        "y": 26,
+        "w": 2,
+        "h": 4
+      },
+      "para": "candlekeep_portao",
+      "chegada": "patio"
+    },
+    {
+      "id": "porta_encadernador",
+      "nome": "Casa do Encadernador",
+      "x": 21,
+      "y": 11,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 20,
+        "y": 12,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_encadernador",
+      "chegada": "rua"
+    },
+    {
+      "id": "porta_banhos",
+      "nome": "Casa de Banho e Vapor",
+      "x": 34,
+      "y": 9,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 33,
+        "y": 10,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_banhos",
+      "chegada": "rua"
+    },
+    {
+      "id": "porta_hearth",
+      "nome": "Hearth",
+      "x": 47,
+      "y": 9,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 46,
+        "y": 10,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_hearth",
+      "chegada": "rua"
+    },
+    {
+      "id": "porta_repouso",
+      "nome": "Casa do Repouso",
+      "x": 60,
+      "y": 11,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 59,
+        "y": 12,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_repouso",
+      "chegada": "rua"
+    },
+    {
+      "id": "porta_ferraria",
+      "nome": "Ferraria e Estábulos",
+      "x": 73,
+      "y": 12,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 72,
+        "y": 13,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_ferraria",
+      "chegada": "rua"
+    },
+    {
+      "id": "porta_alfaiataria",
+      "nome": "Erudite Outfitters",
+      "x": 21,
+      "y": 45,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 20,
+        "y": 44,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_alfaiataria",
+      "chegada": "rua"
+    },
+    {
+      "id": "porta_pilares1",
+      "nome": "Pilares: torre do oeste",
+      "x": 32,
+      "y": 46,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 31,
+        "y": 45,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_pilares",
+      "chegada": "rua1"
+    },
+    {
+      "id": "porta_pilares2",
+      "nome": "Pilares: torre alta",
+      "x": 39,
+      "y": 43,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 38,
+        "y": 42,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_pilares",
+      "chegada": "rua2"
+    },
+    {
+      "id": "porta_pilares3",
+      "nome": "Pilares: torre do leste",
+      "x": 46,
+      "y": 47,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 45,
+        "y": 46,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_pilares",
+      "chegada": "rua3"
+    },
+    {
+      "id": "porta_templo",
+      "nome": "Templo de Oghma",
+      "x": 58,
+      "y": 42,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 57,
+        "y": 41,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_templo",
+      "chegada": "rua"
+    }
+  ],
+  "objects": [
+    {
+      "asset": "banco",
+      "x": 4500,
+      "y": 2250
+    },
+    {
+      "asset": "banco",
+      "x": 4500,
+      "y": 3350
+    },
+    {
+      "asset": "banco",
+      "x": 4900,
+      "y": 2250
+    },
+    {
+      "asset": "banco",
+      "x": 4900,
+      "y": 3350
+    },
+    {
+      "asset": "lampada",
+      "x": 4150,
+      "y": 2350
+    },
+    {
+      "asset": "lampada",
+      "x": 5250,
+      "y": 2350
+    },
+    {
+      "asset": "lampada",
+      "x": 4150,
+      "y": 3250
+    },
+    {
+      "asset": "lampada",
+      "x": 5250,
+      "y": 3250
+    },
+    {
+      "asset": "lampada",
+      "x": 6550,
+      "y": 2550
+    },
+    {
+      "asset": "lampada",
+      "x": 6550,
+      "y": 3050
+    },
+    {
+      "asset": "lampada",
+      "x": 1650,
+      "y": 2550
+    },
+    {
+      "asset": "lampada",
+      "x": 1650,
+      "y": 2950
+    },
+    {
+      "asset": "lampada",
+      "x": 2150,
+      "y": 1350
+    },
+    {
+      "asset": "lampada",
+      "x": 4750,
+      "y": 1150
+    },
+    {
+      "asset": "lampada",
+      "x": 6050,
+      "y": 1350
+    },
+    {
+      "asset": "lampada",
+      "x": 5850,
+      "y": 4050
+    },
+    {
+      "asset": "lampada",
+      "x": 2150,
+      "y": 4350
+    },
+    {
+      "asset": "carroca",
+      "x": 6900,
+      "y": 1850
+    },
+    {
+      "asset": "barril",
+      "x": 6950,
+      "y": 1450
+    },
+    {
+      "asset": "barril",
+      "x": 7050,
+      "y": 1450
+    },
+    {
+      "asset": "feno",
+      "x": 7150,
+      "y": 1350
+    },
+    {
+      "asset": "feno",
+      "x": 7250,
+      "y": 1350
+    },
+    {
+      "asset": "cocho",
+      "x": 7500,
+      "y": 1450
+    },
+    {
+      "asset": "caixa",
+      "x": 7750,
+      "y": 1450
+    },
+    {
+      "asset": "caixa",
+      "x": 6650,
+      "y": 1950
+    },
+    {
+      "asset": "barril",
+      "x": 6650,
+      "y": 2050
+    },
+    {
+      "asset": "arvore_pequena",
+      "x": 6850,
+      "y": 4350,
+      "rotation": 356
+    },
+    {
+      "asset": "arvore_pequena",
+      "x": 7550,
+      "y": 4350,
+      "rotation": 255
+    },
+    {
+      "asset": "arvore_pequena",
+      "x": 6850,
+      "y": 5250,
+      "rotation": 356
+    },
+    {
+      "asset": "arvore_pequena",
+      "x": 7650,
+      "y": 5150,
+      "rotation": 292
+    },
+    {
+      "asset": "gargula",
+      "x": 5250,
+      "y": 4250
+    },
+    {
+      "asset": "gargula",
+      "x": 6450,
+      "y": 4250
+    },
+    {
+      "asset": "gargula",
+      "x": 5250,
+      "y": 5450
+    },
+    {
+      "asset": "gargula",
+      "x": 6450,
+      "y": 5450
+    },
+    {
+      "asset": "mesa",
+      "x": 2450,
+      "y": 1350
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 2450,
+      "y": 1450
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 2550,
+      "y": 1350
+    }
+  ],
+  "npcs": [
+    {
+      "npc": "guardiao_porta_esmeralda",
+      "x": 1550,
+      "y": 2750
+    },
+    {
+      "npc": "benedora_stoneforge",
+      "x": 3250,
+      "y": 2750
+    },
+    {
+      "npc": "fembris_larlancer",
+      "x": 2250,
+      "y": 1450
+    },
+    {
+      "npc": "nax_olossis",
+      "x": 4650,
+      "y": 3450
+    }
+  ],
+  "multidao": [
+    {
+      "area": [
+        29,
+        24,
+        3,
+        7
+      ],
+      "n": 6,
+      "oficios": [
+        "acolito"
+      ]
+    },
+    {
+      "area": [
+        16,
+        13,
+        52,
+        8
+      ],
+      "n": 9,
+      "oficios": [
+        "buscador",
+        "peregrino",
+        "servo",
+        "mercador"
+      ]
+    },
+    {
+      "area": [
+        16,
+        34,
+        48,
+        7
+      ],
+      "n": 7,
+      "oficios": [
+        "buscador",
+        "aventureiro",
+        "peregrino",
+        "escriba"
+      ]
+    },
+    {
+      "area": [
+        60,
+        21,
+        13,
+        13
+      ],
+      "n": 5,
+      "oficios": [
+        "mercador",
+        "caravaneiro",
+        "servo"
+      ]
+    },
+    {
+      "area": [
+        67,
+        42,
+        10,
+        12
+      ],
+      "n": 2,
+      "oficios": [
+        "buscador",
+        "peregrino"
+      ]
+    }
+  ],
+  "notas": [
+    {
+      "x": 21,
+      "y": 13,
+      "titulo": "Casa do Encadernador",
+      "texto": "<p>Scriptorium e encadernação. Cópias por encomenda, pagas adiantado, prontas em semanas ou meses. Gancho: <em>The Price of Beauty</em>.</p>"
+    },
+    {
+      "x": 34,
+      "y": 11,
+      "titulo": "Casa de Banho e Vapor",
+      "texto": "<p>Piscinas aquecidas pelo vulcão, saunas e massagens, para buscadores e Avowed.</p>"
+    },
+    {
+      "x": 47,
+      "y": 11,
+      "titulo": "Hearth",
+      "texto": "<p>Taverna três vezes maior por dentro. O amplificador geométrico sobre o balcão sustenta o espaço: se quebrar, tudo desaba. Gancho: <em>Alkazaar's Appendix</em>.</p>"
+    },
+    {
+      "x": 60,
+      "y": 13,
+      "titulo": "Casa do Repouso",
+      "texto": "<p>Hospedagem de três andares. Silêncio obrigatório: barulhentos vão para o Hearth. Por baixo, o Porão dos Vaga-lumes (<em>Shemshime's Bedtime Rhyme</em>).</p>"
+    },
+    {
+      "x": 73,
+      "y": 14,
+      "titulo": "Ferraria e Estábulos",
+      "texto": "<p>Khe'ril Hammerbind. Baias de cavalo e baias reforçadas para hipogrifos, grifos e serpes.</p>"
+    },
+    {
+      "x": 21,
+      "y": 43,
+      "titulo": "Erudite Outfitters & Clothiers",
+      "texto": "<p>Feldmar Bisset III, alfaiate e criador de bichos-da-seda.</p>"
+    },
+    {
+      "x": 39,
+      "y": 41,
+      "titulo": "Pilares da Pedagogia",
+      "texto": "<p>Torres de leitura com salas de silêncio permanente. Os adjuntos trazem os livros da Grande Biblioteca. Ganchos: <em>The Joy of Extradimensional Spaces</em>, <em>Mazfroth's Mighty Digressions</em>.</p>"
+    },
+    {
+      "x": 58,
+      "y": 40,
+      "titulo": "Templo de Oghma",
+      "texto": "<p>Lorekeeper Kei Tigersteel. As quatro gárgulas dos beirais são golens de pedra.</p>"
+    },
+    {
+      "x": 16,
+      "y": 27,
+      "titulo": "Porta Esmeralda",
+      "texto": "<p>Só passa quem tem carta de admissão selada (Guardião dos Tomos, Primeiro Leitor ou um Grande Leitor), válida por um decêndio. Carta falsa: banimento do Pátio Interno.</p>"
+    },
+    {
+      "x": 47,
+      "y": 27,
+      "titulo": "Cântico Sem Fim",
+      "texto": "<p>Benedora Stoneforge e os acólitos andam em procissão pelo Pátio, dia e noite, recitando as profecias de Alaundo.</p>"
+    }
+  ],
+  "lights": [],
+  "sounds": [
+    {
+      "x": 4700,
+      "y": 2800,
+      "radius": 25,
+      "path": "mapas/lago/agua_loop.ogg",
+      "volume": 0.4
+    },
+    {
+      "x": 4000,
+      "y": 2800,
+      "radius": 70,
+      "path": "assets/audio/amb_patio.ogg",
+      "volume": 0.3,
+      "walls": false
+    },
+    {
+      "x": 3200,
+      "y": 2750,
+      "radius": 18,
+      "path": "mapas/candlekeep/musica/cantico.ogg",
+      "volume": 0.5
+    }
+  ],
+  "musica": {
+    "path": "mapas/candlekeep/musica/patio.ogg",
+    "volume": 0.3
+  }
+}

@@ -57,3 +57,37 @@ Cada `~` vira um token "Água". `preview_states` gera prévias com estados troca
   ao pedregulho (quadrado `{x, y}`), `roll` é onde o pedregulho para.
 - `python3 tools/gen_relevo.py <nome>` gera o fundo (sombreado, curvas de nível, penhascos, árvores),
   `cena.json` com a altura e as regiões de terreno difícil, `previa.jpg` e `previa_mestre.jpg`.
+
+### Cidades, saídas, NPCs e proteções (`tools/extras.py`, nos dois geradores)
+- `mapas/<cidade>/cidade.json`: `{ "name", "mapas": [...], "inicio"? }`. A macro com `MAPA = "<cidade>"` monta tudo.
+- `"saidas"` (em quadrados): `{ "id", "nome", "x", "y", "w", "h", "pouso": { "x", "y", "w", "h" }, "para", "chegada", "perguntar"? }`.
+  O retângulo leva ao `pouso` da saída `chegada` do mapa `para` (pode ser o próprio mapa, para escadas). O `pouso` fica fora
+  da saída. Montado sozinho, o mapa cria as regiões, mas a saída para outro mapa fica sem destino.
+- `"npcs"`: `{ "npc", "x", "y" }` (pixels, centro), com os ids de `assets/npcs.json`.
+- `"multidao"`: `{ "area": [x, y, w, h], "n", "oficios": [...] }`: plebeus sorteados nos quadrados livres da área
+  (sem paredes, objetos, água, saídas nem chegadas).
+- `"notas"`: `{ "x", "y", "titulo", "texto" }` viram páginas de um diário só do mestre, com alfinetes no mapa.
+- `"protecoes"`: `true` ou `{ "alarme": 1, "resposta": [{ "npc": "avowed_mago", "n": 4 }] }` (fogo abafado e alarme).
+- `"px"`: pixels por quadrado no fundo (padrão 200); mapas grandes usam menos.
+- A prévia desenha as saídas (azul), as chegadas (verde), os NPCs nomeados (círculo com a inicial), a multidão (laranja)
+  e as notas.
+
+### Legenda com propriedades e mapas grandes
+- Na legenda, um caractere pode apontar para um objeto em vez de um nome:
+  `{ "nome", "chao"?, "peca"?, "rot"?, "asset"?, "kind"?, "solido"? }`. `chao` é o material desenhado (padrão: o nome),
+  `peca` uma peça de `mapas/pecas/` por cima (ex.: `escada`, girada `rot` graus), `asset` + `kind` faz o quadrado virar token
+  de estrutura (ex.: `{"nome": "portao", "chao": "muralha", "asset": "portao", "kind": "door"}`) e `solido` bloqueia sem token
+  (ex.: `{"nome": "muralha_fixa", "chao": "muralha", "solido": true}` para trechos de muralha que ninguém alcança).
+- Já são sólidos sem token: `telhado_ardosia`, `telhado_telha` (prédios vistos de fora), `vazio` (em volta de andares e
+  demiplanos) e `lareira`. A `muralha` vira token de parede como `parede`.
+- Paredes encostadas no `vazio` ficam fixas (`"vazio_fixo": false` desliga), para não encher a cena de tokens que não levam a lugar nenhum.
+- Mapas com mais de 2000 quadrados desenham cada material só no retângulo onde ele aparece (`"recorte"` força ligado ou desligado):
+  o Chrome não aguenta os filtros de textura no tamanho do mapa inteiro.
+- Portas lado a lado (o portão de 4 quadrados) contam umas às outras como batente.
+
+### Candlekeep
+`MAPA = "candlekeep"` monta os 10 mapas da cidade e o Caminho do Leão (lobisomens), começando pelo Portão:
+`candlekeep_portao` → `candlekeep_patio` (Pátio do Ar) → Hearth, Casa do Repouso, Banhos, Casa do Encadernador, Pilares da
+Pedagogia (3 torres), Templo de Oghma, Erudite Outfitters e Ferraria e Estábulos. Lore, NPCs e decisões em
+[`candlekeep/PLANO.md`](candlekeep/PLANO.md). Todos os mapas têm proteções (fogo abafado e alarme com 1 arquimago e 4 magos).
+

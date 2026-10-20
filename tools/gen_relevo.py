@@ -17,6 +17,7 @@ from PIL import Image, ImageDraw, ImageFilter, ImageFont
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools"))
 from gen_pecas_mapa import MATERIAIS, wrap, noise as svg_noise, shade
+import extras
 
 PX = 200       # pixels por quadrado ao desenhar
 OUT_PX = 150   # pixels por quadrado no fundo final (mais leve para o canvas)
@@ -124,7 +125,8 @@ def render_svgs(svgs):
             f = pathlib.Path(tmp) / f"{k}.svg"
             f.write_text(s)
             files.append(f)
-        env = {**os.environ, "NODE_PATH": subprocess.run(["npm", "root", "-g"], capture_output=True, text=True).stdout.strip()}
+        env = {**os.environ}
+        env.setdefault("NODE_PATH", subprocess.run(["npm", "root", "-g"], capture_output=True, text=True).stdout.strip())
         subprocess.run(["node", str(ROOT / "tools" / "render.js"), *map(str, files)], check=True, env=env)
         for f in files:
             out[f.stem] = Image.open(f.with_suffix(".png")).convert("RGBA")
@@ -736,7 +738,7 @@ scene = {
     "tokenVision": True,
     "environment": {"darknessLevel": cfg.get("darkness", 0), "globalLight": {"enabled": True}},
     "lights": cfg.get("lights", []),
-    "sounds": [{**s, "walls": True, "easing": True} for s in cfg.get("sounds", [])],
+    "sounds": [{"walls": True, "easing": True, **s} for s in cfg.get("sounds", [])] + extras.musica(cfg, W, H, G),
     "walls": walls,
     "regions": regions,
     "flags": {"interactive-assets": {"map": {
@@ -744,6 +746,10 @@ scene = {
         "relevo": {"step": STEP, "height": alt, "climbDC": cfg.get("climbDC", 12),
                    "trail": ["".join("1" if kind(x, y) == "trilha" else "0" for x in range(W)) for y in range(H)]}}}},
 }
+_m, _p = extras.scene_flags(cfg)
+scene["flags"]["interactive-assets"]["map"].update(_m)
+if _p:
+    scene["flags"]["interactive-assets"]["protecoes"] = _p
 (DIR / "cena.json").write_text(json.dumps(scene, indent=1, ensure_ascii=False))
 
 # ---------- prévias ----------
@@ -806,5 +812,6 @@ for o in cfg.get("objects", []):
     link = (o.get("flags") or {}).get("link")
     if link:
         gd.line([(o["x"] / G * f, o["y"] / G * f), ((link["x"] + .5) * f, (link["y"] + .5) * f)], fill=(255, 120, 200), width=2)
+extras.desenha(gm, cfg, f, G)
 gm.convert("RGB").save(DIR / "previa_mestre.jpg", quality=85)
 print(f"{name}: {W}x{H} quadrados, {len(cliffs)} bordas de penhasco, {len(regions)} regiões, {len(walls)} paredes")

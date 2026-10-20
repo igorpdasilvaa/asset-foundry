@@ -1,0 +1,634 @@
+{
+  "name": "Candlekeep: Casa de Banho e Vapor",
+  "grid": 100,
+  "darkness": 0.3,
+  "seed": 53,
+  "legend": {
+    ".": "azulejo",
+    "~": "agua",
+    "m": "piso_madeira",
+    "k": "madeira_escura",
+    "t": "piso_madeira",
+    "p": "piso_pedra",
+    ",": "paralelepipedo",
+    "#": "parede",
+    "D": "porta",
+    "P": "pilar"
+  },
+  "protecoes": {
+    "alarme": 1,
+    "resposta": [
+      {
+        "npc": "avowed_arquimago",
+        "n": 1
+      },
+      {
+        "npc": "avowed_mago",
+        "n": 4
+      }
+    ]
+  },
+  "saidas": [
+    {
+      "id": "rua",
+      "nome": "Pátio do Ar",
+      "x": 13,
+      "y": 18,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 12,
+        "y": 17,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_patio",
+      "chegada": "porta_banhos"
+    }
+  ],
+  "objects": [
+    {
+      "asset": "banco",
+      "x": 200,
+      "y": 150
+    },
+    {
+      "asset": "banco",
+      "x": 400,
+      "y": 150
+    },
+    {
+      "asset": "banco",
+      "x": 200,
+      "y": 450
+    },
+    {
+      "asset": "banco",
+      "x": 400,
+      "y": 450
+    },
+    {
+      "asset": "barril",
+      "x": 550,
+      "y": 450
+    },
+    {
+      "asset": "lampada",
+      "x": 550,
+      "y": 150
+    },
+    {
+      "asset": "banco",
+      "x": 200,
+      "y": 650
+    },
+    {
+      "asset": "banco",
+      "x": 400,
+      "y": 650
+    },
+    {
+      "asset": "banco",
+      "x": 200,
+      "y": 1050
+    },
+    {
+      "asset": "banco",
+      "x": 400,
+      "y": 1050
+    },
+    {
+      "asset": "barril",
+      "x": 550,
+      "y": 1050
+    },
+    {
+      "asset": "lampada",
+      "x": 550,
+      "y": 650
+    },
+    {
+      "asset": "cama",
+      "x": 2450,
+      "y": 300
+    },
+    {
+      "asset": "caixa",
+      "x": 2650,
+      "y": 150
+    },
+    {
+      "asset": "lampada",
+      "x": 2650,
+      "y": 450
+    },
+    {
+      "asset": "banco",
+      "x": 2300,
+      "y": 450
+    },
+    {
+      "asset": "cama",
+      "x": 2450,
+      "y": 800
+    },
+    {
+      "asset": "caixa",
+      "x": 2650,
+      "y": 650
+    },
+    {
+      "asset": "lampada",
+      "x": 2650,
+      "y": 1050
+    },
+    {
+      "asset": "banco",
+      "x": 2300,
+      "y": 1050
+    },
+    {
+      "asset": "lampada",
+      "x": 750,
+      "y": 150
+    },
+    {
+      "asset": "lampada",
+      "x": 2050,
+      "y": 150
+    },
+    {
+      "asset": "lampada",
+      "x": 750,
+      "y": 950
+    },
+    {
+      "asset": "lampada",
+      "x": 2050,
+      "y": 1050
+    },
+    {
+      "asset": "banco",
+      "x": 1200,
+      "y": 150
+    },
+    {
+      "asset": "banco",
+      "x": 1600,
+      "y": 150
+    },
+    {
+      "asset": "banco",
+      "x": 1200,
+      "y": 950
+    },
+    {
+      "asset": "banco",
+      "x": 1600,
+      "y": 950
+    },
+    {
+      "asset": "caixa",
+      "x": 2050,
+      "y": 550
+    },
+    {
+      "asset": "banco",
+      "x": 300,
+      "y": 1450
+    },
+    {
+      "asset": "banco",
+      "x": 300,
+      "y": 1550
+    },
+    {
+      "asset": "caixa",
+      "x": 150,
+      "y": 1750
+    },
+    {
+      "asset": "caixa",
+      "x": 250,
+      "y": 1750
+    },
+    {
+      "asset": "caixa",
+      "x": 350,
+      "y": 1750
+    },
+    {
+      "asset": "caixa",
+      "x": 450,
+      "y": 1750
+    },
+    {
+      "asset": "caixa",
+      "x": 550,
+      "y": 1750
+    },
+    {
+      "asset": "caixa",
+      "x": 150,
+      "y": 1250
+    },
+    {
+      "asset": "caixa",
+      "x": 250,
+      "y": 1250
+    },
+    {
+      "asset": "lampada",
+      "x": 650,
+      "y": 1250
+    },
+    {
+      "asset": "balcao",
+      "x": 1050,
+      "y": 1350
+    },
+    {
+      "asset": "balcao",
+      "x": 1150,
+      "y": 1350
+    },
+    {
+      "asset": "balcao",
+      "x": 1250,
+      "y": 1350
+    },
+    {
+      "asset": "poltrona",
+      "x": 1650,
+      "y": 1650
+    },
+    {
+      "asset": "poltrona",
+      "x": 1650,
+      "y": 1550
+    },
+    {
+      "asset": "poltrona",
+      "x": 950,
+      "y": 1650
+    },
+    {
+      "asset": "lampada",
+      "x": 950,
+      "y": 1250
+    },
+    {
+      "asset": "lampada",
+      "x": 1750,
+      "y": 1250
+    },
+    {
+      "asset": "caixa",
+      "x": 1050,
+      "y": 1250
+    },
+    {
+      "asset": "banco",
+      "x": 2100,
+      "y": 1750
+    },
+    {
+      "asset": "banco",
+      "x": 2500,
+      "y": 1750
+    },
+    {
+      "asset": "lampada",
+      "x": 2650,
+      "y": 1250
+    },
+    {
+      "asset": "lampada",
+      "x": 2650,
+      "y": 1750
+    }
+  ],
+  "npcs": [],
+  "multidao": [
+    {
+      "area": [
+        9,
+        14,
+        9,
+        2
+      ],
+      "n": 1,
+      "oficios": [
+        "atendente"
+      ]
+    },
+    {
+      "area": [
+        7,
+        1,
+        14,
+        10
+      ],
+      "n": 2,
+      "oficios": [
+        "atendente"
+      ]
+    },
+    {
+      "area": [
+        7,
+        1,
+        14,
+        10
+      ],
+      "n": 3,
+      "oficios": [
+        "buscador",
+        "aventureiro"
+      ]
+    },
+    {
+      "area": [
+        19,
+        12,
+        8,
+        6
+      ],
+      "n": 1,
+      "oficios": [
+        "buscador",
+        "aventureiro"
+      ]
+    }
+  ],
+  "notas": [
+    {
+      "x": 13,
+      "y": 5,
+      "titulo": "As piscinas termais",
+      "texto": "<p>Água aquecida pelo rochedo vulcânico, sempre soltando vapor. Funciona como a água do lago: frio congela, raio eletrifica quem estiver dentro e veneno contamina a piscina inteira. Buscadores e Avowed dividem as águas; brigas aqui disparam o alarme como em qualquer lugar.</p>"
+    },
+    {
+      "x": 3,
+      "y": 3,
+      "titulo": "Saunas",
+      "texto": "<p>Duas saunas de madeira, com bancos e um barril para jogar água nas pedras quentes. O vapor deixa a área levemente obscurecida (visão prejudicada). Bom lugar para conversas reservadas: Avowed falam mais do que deviam depois de uma hora de calor.</p>"
+    },
+    {
+      "x": 24,
+      "y": 3,
+      "titulo": "Salas de massagem",
+      "texto": "<p>Os atendentes trabalham com óleos de Amn. Quem está deitado ali está desarmado e sem armadura.</p>"
+    }
+  ],
+  "lights": [
+    {
+      "x": 1350,
+      "y": 550,
+      "config": {
+        "bright": 8,
+        "dim": 22,
+        "color": "#ffb070",
+        "alpha": 0.25,
+        "attenuation": 0.6,
+        "animation": {
+          "type": "torch",
+          "speed": 1,
+          "intensity": 1
+        }
+      }
+    },
+    {
+      "x": 2250,
+      "y": 1450,
+      "config": {
+        "bright": 4,
+        "dim": 12,
+        "color": "#ffb070",
+        "alpha": 0.25,
+        "attenuation": 0.6,
+        "animation": {
+          "type": "torch",
+          "speed": 1,
+          "intensity": 1
+        }
+      }
+    },
+    {
+      "x": 300,
+      "y": 300,
+      "config": {
+        "bright": 3,
+        "dim": 8,
+        "color": "#ffb070",
+        "alpha": 0.25,
+        "attenuation": 0.6,
+        "animation": {
+          "type": "torch",
+          "speed": 1,
+          "intensity": 1
+        }
+      }
+    },
+    {
+      "x": 300,
+      "y": 850,
+      "config": {
+        "bright": 3,
+        "dim": 8,
+        "color": "#ffb070",
+        "alpha": 0.25,
+        "attenuation": 0.6,
+        "animation": {
+          "type": "torch",
+          "speed": 1,
+          "intensity": 1
+        }
+      }
+    }
+  ],
+  "sounds": [
+    {
+      "x": 1350,
+      "y": 550,
+      "radius": 25,
+      "path": "mapas/lago/agua_loop.ogg",
+      "volume": 0.5
+    },
+    {
+      "x": 2250,
+      "y": 1450,
+      "radius": 12,
+      "path": "mapas/lago/agua_loop.ogg",
+      "volume": 0.4
+    },
+    {
+      "x": 1400,
+      "y": 1000,
+      "radius": 92,
+      "path": "assets/audio/amb_banhos.ogg",
+      "volume": 0.4,
+      "walls": false
+    }
+  ],
+  "preview_states": {
+    "previa_gelo.jpg": [
+      {
+        "asset": "agua",
+        "state": "congelada",
+        "cells": [
+          [
+            10,
+            3
+          ],
+          [
+            10,
+            4
+          ],
+          [
+            10,
+            5
+          ],
+          [
+            10,
+            6
+          ],
+          [
+            10,
+            7
+          ],
+          [
+            11,
+            3
+          ],
+          [
+            11,
+            4
+          ],
+          [
+            11,
+            5
+          ],
+          [
+            11,
+            6
+          ],
+          [
+            11,
+            7
+          ],
+          [
+            12,
+            3
+          ],
+          [
+            12,
+            4
+          ],
+          [
+            12,
+            5
+          ],
+          [
+            12,
+            6
+          ],
+          [
+            12,
+            7
+          ],
+          [
+            13,
+            3
+          ],
+          [
+            13,
+            4
+          ],
+          [
+            13,
+            5
+          ],
+          [
+            13,
+            6
+          ],
+          [
+            13,
+            7
+          ],
+          [
+            14,
+            3
+          ],
+          [
+            14,
+            4
+          ],
+          [
+            14,
+            5
+          ],
+          [
+            14,
+            6
+          ],
+          [
+            14,
+            7
+          ],
+          [
+            15,
+            3
+          ],
+          [
+            15,
+            4
+          ],
+          [
+            15,
+            5
+          ],
+          [
+            15,
+            6
+          ],
+          [
+            15,
+            7
+          ],
+          [
+            16,
+            3
+          ],
+          [
+            16,
+            4
+          ],
+          [
+            16,
+            5
+          ],
+          [
+            16,
+            6
+          ],
+          [
+            16,
+            7
+          ]
+        ]
+      }
+    ],
+    "previa_vapor.jpg": [
+      {
+        "asset": "agua",
+        "state": "vapor"
+      }
+    ]
+  },
+  "musica": {
+    "path": "mapas/candlekeep/musica/banhos.ogg",
+    "volume": 0.25
+  }
+}

@@ -1,0 +1,877 @@
+{
+ "name": "Candlekeep: Erudite Outfitters & Clothiers",
+ "width": 2000,
+ "height": 1600,
+ "padding": 0,
+ "backgroundColor": "#1b1b1b",
+ "background": {
+  "src": "mapas/candlekeep_alfaiataria/candlekeep_alfaiataria.webp"
+ },
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 5,
+  "units": "ft"
+ },
+ "tokenVision": true,
+ "environment": {
+  "darknessLevel": 0.25,
+  "globalLight": {
+   "enabled": true
+  }
+ },
+ "lights": [],
+ "sounds": [
+  {
+   "walls": false,
+   "easing": true,
+   "x": 1000,
+   "y": 800,
+   "radius": 70,
+   "path": "assets/audio/amb_tear.ogg",
+   "volume": 0.25
+  },
+  {
+   "x": 1000,
+   "y": 800,
+   "radius": 75,
+   "path": "mapas/candlekeep/musica/alfaiataria.ogg",
+   "volume": 0.22,
+   "walls": false,
+   "easing": true,
+   "flags": {
+    "interactive-assets": {
+     "musica": true
+    }
+   }
+  }
+ ],
+ "flags": {
+  "interactive-assets": {
+   "map": {
+    "cols": 20,
+    "rows": 16,
+    "fixed": [],
+    "structures": [
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 1,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 2,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 3,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 4,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 5,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "porta",
+      "x": 6,
+      "y": 1,
+      "kind": "door",
+      "dir": "h",
+      "rotation": 0
+     },
+     {
+      "asset": "parede",
+      "x": 7,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 8,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 9,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 10,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 11,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 12,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 13,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 14,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 16,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 17,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 18,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 19,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 2,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 12,
+      "y": 2,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 19,
+      "y": 2,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 3,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 12,
+      "y": 3,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 19,
+      "y": 3,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 4,
+      "kind": "wall"
+     },
+     {
+      "asset": "porta",
+      "x": 12,
+      "y": 4,
+      "kind": "door",
+      "dir": "v",
+      "rotation": 90
+     },
+     {
+      "asset": "parede",
+      "x": 19,
+      "y": 4,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 12,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 19,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 12,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 19,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 7,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 12,
+      "y": 7,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 19,
+      "y": 7,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 1,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 2,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 3,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 4,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 5,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 6,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 7,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 8,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 9,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "porta",
+      "x": 10,
+      "y": 8,
+      "kind": "door",
+      "dir": "h",
+      "rotation": 0
+     },
+     {
+      "asset": "parede",
+      "x": 11,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 12,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 19,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 12,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 19,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 10,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 12,
+      "y": 10,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 19,
+      "y": 10,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 11,
+      "kind": "wall"
+     },
+     {
+      "asset": "porta",
+      "x": 12,
+      "y": 11,
+      "kind": "door",
+      "dir": "v",
+      "rotation": 90
+     },
+     {
+      "asset": "parede",
+      "x": 19,
+      "y": 11,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 12,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 12,
+      "y": 12,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 19,
+      "y": 12,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 13,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 12,
+      "y": 13,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 19,
+      "y": 13,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 14,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 12,
+      "y": 14,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 19,
+      "y": 14,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 1,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 2,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 3,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 4,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 5,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 6,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 7,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 8,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 9,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 10,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 11,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 12,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 13,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 14,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 16,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 17,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 18,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 19,
+      "y": 15,
+      "kind": "wall"
+     }
+    ],
+    "objects": [
+     {
+      "asset": "poltrona",
+      "x": 150,
+      "y": 250
+     },
+     {
+      "asset": "poltrona",
+      "x": 150,
+      "y": 350
+     },
+     {
+      "asset": "poltrona",
+      "x": 150,
+      "y": 550
+     },
+     {
+      "asset": "mesa",
+      "x": 400,
+      "y": 450
+     },
+     {
+      "asset": "mesa",
+      "x": 400,
+      "y": 650
+     },
+     {
+      "asset": "balcao",
+      "x": 850,
+      "y": 550
+     },
+     {
+      "asset": "balcao",
+      "x": 950,
+      "y": 550
+     },
+     {
+      "asset": "balcao",
+      "x": 1050,
+      "y": 550
+     },
+     {
+      "asset": "caixa",
+      "x": 1150,
+      "y": 750
+     },
+     {
+      "asset": "caixa",
+      "x": 1150,
+      "y": 650
+     },
+     {
+      "asset": "lampada",
+      "x": 150,
+      "y": 750
+     },
+     {
+      "asset": "lampada",
+      "x": 1150,
+      "y": 250
+     },
+     {
+      "asset": "tear",
+      "x": 200,
+      "y": 1050
+     },
+     {
+      "asset": "tear",
+      "x": 200,
+      "y": 1350
+     },
+     {
+      "asset": "cadeira",
+      "x": 350,
+      "y": 1050
+     },
+     {
+      "asset": "cadeira",
+      "x": 350,
+      "y": 1350
+     },
+     {
+      "asset": "mesa",
+      "x": 700,
+      "y": 1150
+     },
+     {
+      "asset": "cadeira",
+      "x": 650,
+      "y": 1250
+     },
+     {
+      "asset": "cadeira",
+      "x": 750,
+      "y": 1250
+     },
+     {
+      "asset": "cadeira",
+      "x": 650,
+      "y": 1050
+     },
+     {
+      "asset": "caixa",
+      "x": 1150,
+      "y": 1450
+     },
+     {
+      "asset": "caixa",
+      "x": 1050,
+      "y": 1450
+     },
+     {
+      "asset": "barril",
+      "x": 1150,
+      "y": 1350
+     },
+     {
+      "asset": "lampada",
+      "x": 550,
+      "y": 1450
+     },
+     {
+      "asset": "lampada",
+      "x": 1150,
+      "y": 950
+     },
+     {
+      "asset": "arvore_pequena",
+      "x": 1450,
+      "y": 350
+     },
+     {
+      "asset": "arvore_pequena",
+      "x": 1750,
+      "y": 750
+     },
+     {
+      "asset": "arvore_pequena",
+      "x": 1450,
+      "y": 1050
+     },
+     {
+      "asset": "arvore_pequena",
+      "x": 1750,
+      "y": 1350
+     },
+     {
+      "asset": "casulario",
+      "x": 1550,
+      "y": 350
+     },
+     {
+      "asset": "casulario",
+      "x": 1450,
+      "y": 450
+     },
+     {
+      "asset": "casulario",
+      "x": 1850,
+      "y": 750
+     },
+     {
+      "asset": "casulario",
+      "x": 1750,
+      "y": 850
+     },
+     {
+      "asset": "casulario",
+      "x": 1550,
+      "y": 1050
+     },
+     {
+      "asset": "casulario",
+      "x": 1450,
+      "y": 1150
+     },
+     {
+      "asset": "casulario",
+      "x": 1850,
+      "y": 1350
+     },
+     {
+      "asset": "casulario",
+      "x": 1650,
+      "y": 1350
+     }
+    ],
+    "saidas": [
+     {
+      "id": "rua",
+      "nome": "Pátio do Ar",
+      "x": 6,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+       "x": 5,
+       "y": 2,
+       "w": 3,
+       "h": 1
+      },
+      "para": "candlekeep_patio",
+      "chegada": "porta_alfaiataria"
+     }
+    ],
+    "npcs": [
+     {
+      "npc": "feldmar_bisset",
+      "x": 950,
+      "y": 650
+     }
+    ],
+    "multidao": [
+     {
+      "area": [
+       1,
+       2,
+       11,
+       6
+      ],
+      "n": 2,
+      "oficios": [
+       "buscador",
+       "servo"
+      ]
+     },
+     {
+      "area": [
+       1,
+       9,
+       11,
+       6
+      ],
+      "n": 1,
+      "oficios": [
+       "servo"
+      ]
+     }
+    ],
+    "notas": [
+     {
+      "x": 9,
+      "y": 3,
+      "titulo": "Erudite Outfitters & Clothiers",
+      "texto": "<p>Feldmar Bisset III, alfaiate e acólito de Gond, atende no balcão. Roupas de viagem, mantos de estudo e reparos rápidos. Todo adjunto Avowed passa por aqui: Feldmar dá aula obrigatória de costura, e os teares da oficina vivem ocupados por aprendizes desajeitados.</p>"
+     },
+     {
+      "x": 15,
+      "y": 8,
+      "titulo": "O átrio dos bichos-da-seda",
+      "texto": "<p>Pátio a céu aberto com amoreiras e casulários. A seda daqui é o orgulho de Feldmar. Esmagar os casulos (ou deixar um bicho escapar para o Pátio) é a forma mais rápida de perder um aliado. Gancho: alguém anda roubando casulos à noite.</p>"
+     }
+    ]
+   },
+   "protecoes": {
+    "ativas": true,
+    "alarme": 1,
+    "dano": 0,
+    "tocado": false,
+    "resposta": [
+     {
+      "npc": "avowed_arquimago",
+      "n": 1
+     },
+     {
+      "npc": "avowed_mago",
+      "n": 4
+     }
+    ]
+   }
+  }
+ }
+}

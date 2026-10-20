@@ -1,0 +1,1177 @@
+{
+  "name": "Candlekeep: Pilares da Pedagogia",
+  "grid": 100,
+  "px": 150,
+  "darkness": 0.3,
+  "seed": 73,
+  "legend": {
+    "v": "vazio",
+    "_": "paralelepipedo",
+    "#": "parede",
+    "D": "porta",
+    "p": "piso_pedra",
+    "m": "piso_madeira",
+    ".": "madeira_escura",
+    "S": {
+      "nome": "escada_sobe",
+      "peca": "escada",
+      "rot": 0,
+      "chao": "piso_pedra"
+    },
+    "U": {
+      "nome": "escada_sobe_alto",
+      "peca": "escada",
+      "rot": 0,
+      "chao": "piso_madeira"
+    },
+    "s": {
+      "nome": "escada_desce",
+      "peca": "escada",
+      "rot": 180,
+      "chao": "piso_madeira"
+    }
+  },
+  "protecoes": {
+    "alarme": 1,
+    "resposta": [
+      {
+        "npc": "avowed_arquimago",
+        "n": 1
+      },
+      {
+        "npc": "avowed_mago",
+        "n": 4
+      }
+    ]
+  },
+  "saidas": [
+    {
+      "id": "rua1",
+      "nome": "Pátio do Ar",
+      "x": 7,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 6,
+        "y": 2,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_patio",
+      "chegada": "porta_pilares1"
+    },
+    {
+      "id": "rua2",
+      "nome": "Pátio do Ar",
+      "x": 23,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 22,
+        "y": 2,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_patio",
+      "chegada": "porta_pilares2"
+    },
+    {
+      "id": "rua3",
+      "nome": "Pátio do Ar",
+      "x": 39,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 38,
+        "y": 2,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_patio",
+      "chegada": "porta_pilares3"
+    },
+    {
+      "id": "sobe_oeste",
+      "nome": "Escada: sobe (1º andar)",
+      "x": 13,
+      "y": 10,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 12,
+        "y": 10,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_pilares",
+      "chegada": "desce_oeste"
+    },
+    {
+      "id": "desce_oeste",
+      "nome": "Escada: desce (térreo)",
+      "x": 1,
+      "y": 22,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 2,
+        "y": 22,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_pilares",
+      "chegada": "sobe_oeste"
+    },
+    {
+      "id": "sobe_alta1",
+      "nome": "Escada: sobe (1º andar)",
+      "x": 29,
+      "y": 10,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 28,
+        "y": 10,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_pilares",
+      "chegada": "desce_alta1"
+    },
+    {
+      "id": "desce_alta1",
+      "nome": "Escada: desce (térreo)",
+      "x": 17,
+      "y": 22,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 18,
+        "y": 22,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_pilares",
+      "chegada": "sobe_alta1"
+    },
+    {
+      "id": "sobe_alta2",
+      "nome": "Escada: sobe (2º andar)",
+      "x": 29,
+      "y": 22,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 28,
+        "y": 22,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_pilares",
+      "chegada": "desce_alta2"
+    },
+    {
+      "id": "desce_alta2",
+      "nome": "Escada: desce (1º andar)",
+      "x": 17,
+      "y": 34,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 18,
+        "y": 34,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_pilares",
+      "chegada": "sobe_alta2"
+    },
+    {
+      "id": "sobe_leste",
+      "nome": "Escada: sobe (1º andar)",
+      "x": 45,
+      "y": 10,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 44,
+        "y": 10,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_pilares",
+      "chegada": "desce_leste"
+    },
+    {
+      "id": "desce_leste",
+      "nome": "Escada: desce (térreo)",
+      "x": 33,
+      "y": 22,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 34,
+        "y": 22,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_pilares",
+      "chegada": "sobe_leste"
+    }
+  ],
+  "objects": [
+    {
+      "asset": "escrivaninha",
+      "x": 200,
+      "y": 250
+    },
+    {
+      "asset": "cadeira",
+      "x": 150,
+      "y": 350
+    },
+    {
+      "asset": "vela",
+      "x": 350,
+      "y": 250
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 150,
+      "y": 450
+    },
+    {
+      "asset": "escrivaninha",
+      "x": 200,
+      "y": 850
+    },
+    {
+      "asset": "cadeira",
+      "x": 150,
+      "y": 750
+    },
+    {
+      "asset": "vela",
+      "x": 350,
+      "y": 850
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 150,
+      "y": 650
+    },
+    {
+      "asset": "escrivaninha",
+      "x": 1300,
+      "y": 250
+    },
+    {
+      "asset": "cadeira",
+      "x": 1350,
+      "y": 350
+    },
+    {
+      "asset": "vela",
+      "x": 1150,
+      "y": 250
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 1350,
+      "y": 450
+    },
+    {
+      "asset": "escrivaninha",
+      "x": 1300,
+      "y": 850
+    },
+    {
+      "asset": "cadeira",
+      "x": 1350,
+      "y": 750
+    },
+    {
+      "asset": "vela",
+      "x": 1150,
+      "y": 850
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 1350,
+      "y": 650
+    },
+    {
+      "asset": "lampada",
+      "x": 550,
+      "y": 250
+    },
+    {
+      "asset": "lampada",
+      "x": 950,
+      "y": 250
+    },
+    {
+      "asset": "globo",
+      "x": 750,
+      "y": 450
+    },
+    {
+      "asset": "atril",
+      "x": 750,
+      "y": 650
+    },
+    {
+      "asset": "estante",
+      "x": 400,
+      "y": 1050
+    },
+    {
+      "asset": "estante",
+      "x": 1100,
+      "y": 1050
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 550,
+      "y": 950
+    },
+    {
+      "asset": "escrivaninha",
+      "x": 200,
+      "y": 1450
+    },
+    {
+      "asset": "cadeira",
+      "x": 150,
+      "y": 1550
+    },
+    {
+      "asset": "vela",
+      "x": 350,
+      "y": 1450
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 150,
+      "y": 1650
+    },
+    {
+      "asset": "mesa",
+      "x": 200,
+      "y": 2050
+    },
+    {
+      "asset": "cadeira",
+      "x": 150,
+      "y": 1950
+    },
+    {
+      "asset": "vela",
+      "x": 350,
+      "y": 2050
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 150,
+      "y": 1850
+    },
+    {
+      "asset": "mesa",
+      "x": 1300,
+      "y": 1450
+    },
+    {
+      "asset": "cadeira",
+      "x": 1350,
+      "y": 1550
+    },
+    {
+      "asset": "vela",
+      "x": 1150,
+      "y": 1450
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 1350,
+      "y": 1650
+    },
+    {
+      "asset": "escrivaninha",
+      "x": 1300,
+      "y": 2050
+    },
+    {
+      "asset": "cadeira",
+      "x": 1350,
+      "y": 1950
+    },
+    {
+      "asset": "vela",
+      "x": 1150,
+      "y": 2050
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 1350,
+      "y": 1850
+    },
+    {
+      "asset": "lampada",
+      "x": 550,
+      "y": 1450
+    },
+    {
+      "asset": "lampada",
+      "x": 950,
+      "y": 1450
+    },
+    {
+      "asset": "globo",
+      "x": 750,
+      "y": 1650
+    },
+    {
+      "asset": "atril",
+      "x": 750,
+      "y": 1850
+    },
+    {
+      "asset": "estante",
+      "x": 400,
+      "y": 2250
+    },
+    {
+      "asset": "estante",
+      "x": 1100,
+      "y": 2250
+    },
+    {
+      "asset": "poltrona",
+      "x": 550,
+      "y": 2150
+    },
+    {
+      "asset": "poltrona",
+      "x": 950,
+      "y": 2150
+    },
+    {
+      "asset": "escrivaninha",
+      "x": 1800,
+      "y": 250
+    },
+    {
+      "asset": "cadeira",
+      "x": 1750,
+      "y": 350
+    },
+    {
+      "asset": "vela",
+      "x": 1950,
+      "y": 250
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 1750,
+      "y": 450
+    },
+    {
+      "asset": "escrivaninha",
+      "x": 1800,
+      "y": 850
+    },
+    {
+      "asset": "cadeira",
+      "x": 1750,
+      "y": 750
+    },
+    {
+      "asset": "vela",
+      "x": 1950,
+      "y": 850
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 1750,
+      "y": 650
+    },
+    {
+      "asset": "escrivaninha",
+      "x": 2900,
+      "y": 250
+    },
+    {
+      "asset": "cadeira",
+      "x": 2950,
+      "y": 350
+    },
+    {
+      "asset": "vela",
+      "x": 2750,
+      "y": 250
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 2950,
+      "y": 450
+    },
+    {
+      "asset": "mesa",
+      "x": 2900,
+      "y": 850
+    },
+    {
+      "asset": "cadeira",
+      "x": 2950,
+      "y": 750
+    },
+    {
+      "asset": "vela",
+      "x": 2750,
+      "y": 850
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 2950,
+      "y": 650
+    },
+    {
+      "asset": "lampada",
+      "x": 2150,
+      "y": 250
+    },
+    {
+      "asset": "lampada",
+      "x": 2550,
+      "y": 250
+    },
+    {
+      "asset": "globo",
+      "x": 2350,
+      "y": 450
+    },
+    {
+      "asset": "atril",
+      "x": 2350,
+      "y": 650
+    },
+    {
+      "asset": "estante",
+      "x": 2000,
+      "y": 1050
+    },
+    {
+      "asset": "estante",
+      "x": 2700,
+      "y": 1050
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 2150,
+      "y": 950
+    },
+    {
+      "asset": "mesa",
+      "x": 1800,
+      "y": 1450
+    },
+    {
+      "asset": "cadeira",
+      "x": 1750,
+      "y": 1550
+    },
+    {
+      "asset": "vela",
+      "x": 1950,
+      "y": 1450
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 1750,
+      "y": 1650
+    },
+    {
+      "asset": "escrivaninha",
+      "x": 1800,
+      "y": 2050
+    },
+    {
+      "asset": "cadeira",
+      "x": 1750,
+      "y": 1950
+    },
+    {
+      "asset": "vela",
+      "x": 1950,
+      "y": 2050
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 1750,
+      "y": 1850
+    },
+    {
+      "asset": "escrivaninha",
+      "x": 2900,
+      "y": 1450
+    },
+    {
+      "asset": "cadeira",
+      "x": 2950,
+      "y": 1550
+    },
+    {
+      "asset": "vela",
+      "x": 2750,
+      "y": 1450
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 2950,
+      "y": 1650
+    },
+    {
+      "asset": "mesa",
+      "x": 2900,
+      "y": 2050
+    },
+    {
+      "asset": "cadeira",
+      "x": 2950,
+      "y": 1950
+    },
+    {
+      "asset": "vela",
+      "x": 2750,
+      "y": 2050
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 2950,
+      "y": 1850
+    },
+    {
+      "asset": "lampada",
+      "x": 2150,
+      "y": 1450
+    },
+    {
+      "asset": "lampada",
+      "x": 2550,
+      "y": 1450
+    },
+    {
+      "asset": "globo",
+      "x": 2350,
+      "y": 1650
+    },
+    {
+      "asset": "atril",
+      "x": 2350,
+      "y": 1850
+    },
+    {
+      "asset": "estante",
+      "x": 2000,
+      "y": 2250
+    },
+    {
+      "asset": "estante",
+      "x": 2700,
+      "y": 2250
+    },
+    {
+      "asset": "poltrona",
+      "x": 2150,
+      "y": 2150
+    },
+    {
+      "asset": "poltrona",
+      "x": 2550,
+      "y": 2150
+    },
+    {
+      "asset": "escrivaninha",
+      "x": 1800,
+      "y": 2650
+    },
+    {
+      "asset": "cadeira",
+      "x": 1750,
+      "y": 2750
+    },
+    {
+      "asset": "vela",
+      "x": 1950,
+      "y": 2650
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 1750,
+      "y": 2850
+    },
+    {
+      "asset": "escrivaninha",
+      "x": 1800,
+      "y": 3250
+    },
+    {
+      "asset": "cadeira",
+      "x": 1750,
+      "y": 3150
+    },
+    {
+      "asset": "vela",
+      "x": 1950,
+      "y": 3250
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 1750,
+      "y": 3050
+    },
+    {
+      "asset": "mesa",
+      "x": 2900,
+      "y": 2650
+    },
+    {
+      "asset": "cadeira",
+      "x": 2950,
+      "y": 2750
+    },
+    {
+      "asset": "vela",
+      "x": 2750,
+      "y": 2650
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 2950,
+      "y": 2850
+    },
+    {
+      "asset": "escrivaninha",
+      "x": 2900,
+      "y": 3250
+    },
+    {
+      "asset": "cadeira",
+      "x": 2950,
+      "y": 3150
+    },
+    {
+      "asset": "vela",
+      "x": 2750,
+      "y": 3250
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 2950,
+      "y": 3050
+    },
+    {
+      "asset": "lampada",
+      "x": 2150,
+      "y": 2650
+    },
+    {
+      "asset": "lampada",
+      "x": 2550,
+      "y": 2650
+    },
+    {
+      "asset": "globo",
+      "x": 2350,
+      "y": 2850
+    },
+    {
+      "asset": "atril",
+      "x": 2350,
+      "y": 3050
+    },
+    {
+      "asset": "estante",
+      "x": 2000,
+      "y": 3450
+    },
+    {
+      "asset": "estante",
+      "x": 2700,
+      "y": 3450
+    },
+    {
+      "asset": "poltrona",
+      "x": 2150,
+      "y": 3350
+    },
+    {
+      "asset": "poltrona",
+      "x": 2550,
+      "y": 3350
+    },
+    {
+      "asset": "mesa",
+      "x": 3400,
+      "y": 250
+    },
+    {
+      "asset": "cadeira",
+      "x": 3350,
+      "y": 350
+    },
+    {
+      "asset": "vela",
+      "x": 3550,
+      "y": 250
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 3350,
+      "y": 450
+    },
+    {
+      "asset": "escrivaninha",
+      "x": 3400,
+      "y": 850
+    },
+    {
+      "asset": "cadeira",
+      "x": 3350,
+      "y": 750
+    },
+    {
+      "asset": "vela",
+      "x": 3550,
+      "y": 850
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 3350,
+      "y": 650
+    },
+    {
+      "asset": "escrivaninha",
+      "x": 4500,
+      "y": 250
+    },
+    {
+      "asset": "cadeira",
+      "x": 4550,
+      "y": 350
+    },
+    {
+      "asset": "vela",
+      "x": 4350,
+      "y": 250
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 4550,
+      "y": 450
+    },
+    {
+      "asset": "escrivaninha",
+      "x": 4500,
+      "y": 850
+    },
+    {
+      "asset": "cadeira",
+      "x": 4550,
+      "y": 750
+    },
+    {
+      "asset": "vela",
+      "x": 4350,
+      "y": 850
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 4550,
+      "y": 650
+    },
+    {
+      "asset": "lampada",
+      "x": 3750,
+      "y": 250
+    },
+    {
+      "asset": "lampada",
+      "x": 4150,
+      "y": 250
+    },
+    {
+      "asset": "globo",
+      "x": 3950,
+      "y": 450
+    },
+    {
+      "asset": "atril",
+      "x": 3950,
+      "y": 650
+    },
+    {
+      "asset": "estante",
+      "x": 3600,
+      "y": 1050
+    },
+    {
+      "asset": "estante",
+      "x": 4300,
+      "y": 1050
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 3750,
+      "y": 950
+    },
+    {
+      "asset": "escrivaninha",
+      "x": 3400,
+      "y": 1450
+    },
+    {
+      "asset": "cadeira",
+      "x": 3350,
+      "y": 1550
+    },
+    {
+      "asset": "vela",
+      "x": 3550,
+      "y": 1450
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 3350,
+      "y": 1650
+    },
+    {
+      "asset": "mesa",
+      "x": 3400,
+      "y": 2050
+    },
+    {
+      "asset": "cadeira",
+      "x": 3350,
+      "y": 1950
+    },
+    {
+      "asset": "vela",
+      "x": 3550,
+      "y": 2050
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 3350,
+      "y": 1850
+    },
+    {
+      "asset": "escrivaninha",
+      "x": 4500,
+      "y": 1450
+    },
+    {
+      "asset": "cadeira",
+      "x": 4550,
+      "y": 1550
+    },
+    {
+      "asset": "vela",
+      "x": 4350,
+      "y": 1450
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 4550,
+      "y": 1650
+    },
+    {
+      "asset": "mesa",
+      "x": 4500,
+      "y": 2050
+    },
+    {
+      "asset": "cadeira",
+      "x": 4550,
+      "y": 1950
+    },
+    {
+      "asset": "vela",
+      "x": 4350,
+      "y": 2050
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 4550,
+      "y": 1850
+    },
+    {
+      "asset": "lampada",
+      "x": 3750,
+      "y": 1450
+    },
+    {
+      "asset": "lampada",
+      "x": 4150,
+      "y": 1450
+    },
+    {
+      "asset": "globo",
+      "x": 3950,
+      "y": 1650
+    },
+    {
+      "asset": "atril",
+      "x": 3950,
+      "y": 1850
+    },
+    {
+      "asset": "estante",
+      "x": 3600,
+      "y": 2250
+    },
+    {
+      "asset": "estante",
+      "x": 4300,
+      "y": 2250
+    },
+    {
+      "asset": "poltrona",
+      "x": 3750,
+      "y": 2150
+    },
+    {
+      "asset": "poltrona",
+      "x": 4150,
+      "y": 2150
+    }
+  ],
+  "npcs": [
+    {
+      "npc": "sprig_summerfoot",
+      "x": 650,
+      "y": 550
+    },
+    {
+      "npc": "garlyth_graystock",
+      "x": 2450,
+      "y": 550
+    },
+    {
+      "npc": "vooshadi_moonriver",
+      "x": 3850,
+      "y": 550
+    },
+    {
+      "npc": "matreous",
+      "x": 1850,
+      "y": 2750
+    }
+  ],
+  "multidao": [
+    {
+      "area": [
+        5,
+        2,
+        5,
+        8
+      ],
+      "n": 2,
+      "oficios": [
+        "buscador"
+      ]
+    },
+    {
+      "area": [
+        21,
+        2,
+        5,
+        8
+      ],
+      "n": 2,
+      "oficios": [
+        "buscador"
+      ]
+    },
+    {
+      "area": [
+        37,
+        2,
+        5,
+        8
+      ],
+      "n": 1,
+      "oficios": [
+        "buscador"
+      ]
+    },
+    {
+      "area": [
+        43,
+        14,
+        3,
+        3
+      ],
+      "n": 1,
+      "oficios": [
+        "buscador"
+      ]
+    },
+    {
+      "area": [
+        27,
+        18,
+        3,
+        3
+      ],
+      "n": 1,
+      "oficios": [
+        "buscador"
+      ]
+    }
+  ],
+  "notas": [
+    {
+      "x": 7,
+      "y": 7,
+      "titulo": "Como pedir livros",
+      "texto": "<p>O buscador diz a um adjunto (Sprig Summerfoot, Garlyth Graystock ou Vooshadi Moonriver) o que procura. O adjunto vai buscar as obras na Grande Biblioteca, atrás da Porta Esmeralda, e as entrega numa sala de leitura: pode levar horas ou dias. As obras não saem das torres, e copiar é proibido (cópias, só por encomenda na Casa do Encadernador).</p>"
+    },
+    {
+      "x": 2,
+      "y": 15,
+      "titulo": "Salas de leitura: silêncio",
+      "texto": "<p>Cada sala de leitura tem <em>silence</em> permanente: nenhum som entra nem sai, quem está dentro fica ensurdecido e não lança magias com componente verbal. Uma briga numa sala não se ouve no saguão. A cena não aplica o silêncio sozinha: o mestre aplica.</p>"
+    },
+    {
+      "x": 18,
+      "y": 26,
+      "titulo": "Sala de Matreous",
+      "texto": "<p>Matreous, sábio especialista em maldições, lê aqui sozinho, longe de todos. Gancho de <em>The Joy of Extradimensional Spaces</em>: ele some da sala e só fica o livro aberto na mesa.</p>"
+    },
+    {
+      "x": 28,
+      "y": 7,
+      "titulo": "Mazfroth's Mighty Digressions",
+      "texto": "<p>Este gancho começa numa sala de leitura dos Pilares: o livro que o adjunto traz ataca o leitor. Depois a investigação segue para a Casa do Encadernador e o Pátio.</p>"
+    }
+  ],
+  "lights": [],
+  "sounds": [
+    {
+      "x": 2350,
+      "y": 1800,
+      "radius": 154,
+      "path": "assets/audio/amb_biblioteca.ogg",
+      "volume": 0.3,
+      "walls": false
+    }
+  ],
+  "musica": {
+    "path": "mapas/candlekeep/musica/pilares.ogg",
+    "volume": 0.2
+  }
+}

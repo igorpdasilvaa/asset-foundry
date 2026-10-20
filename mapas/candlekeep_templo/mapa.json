@@ -1,0 +1,319 @@
+{
+  "name": "Candlekeep: Templo de Oghma",
+  "grid": 100,
+  "darkness": 0.25,
+  "seed": 83,
+  "legend": {
+    "m": "marmore",
+    "t": "tapete",
+    ",": "piso_pedra",
+    "_": "paralelepipedo",
+    "#": "parede",
+    "D": "porta",
+    "P": "pilar"
+  },
+  "protecoes": {
+    "alarme": 1,
+    "resposta": [
+      {
+        "npc": "avowed_arquimago",
+        "n": 1
+      },
+      {
+        "npc": "avowed_mago",
+        "n": 4
+      }
+    ]
+  },
+  "saidas": [
+    {
+      "id": "rua",
+      "nome": "Pátio do Ar",
+      "x": 9,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 8,
+        "y": 2,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_patio",
+      "chegada": "porta_templo"
+    }
+  ],
+  "objects": [
+    {
+      "asset": "banco",
+      "x": 800,
+      "y": 450
+    },
+    {
+      "asset": "banco",
+      "x": 1200,
+      "y": 450
+    },
+    {
+      "asset": "banco",
+      "x": 800,
+      "y": 650
+    },
+    {
+      "asset": "banco",
+      "x": 1200,
+      "y": 650
+    },
+    {
+      "asset": "banco",
+      "x": 800,
+      "y": 850
+    },
+    {
+      "asset": "banco",
+      "x": 1200,
+      "y": 850
+    },
+    {
+      "asset": "banco",
+      "x": 800,
+      "y": 1050
+    },
+    {
+      "asset": "banco",
+      "x": 1200,
+      "y": 1050
+    },
+    {
+      "asset": "banco",
+      "x": 800,
+      "y": 1250
+    },
+    {
+      "asset": "banco",
+      "x": 1200,
+      "y": 1250
+    },
+    {
+      "asset": "banco",
+      "x": 800,
+      "y": 1450
+    },
+    {
+      "asset": "banco",
+      "x": 1200,
+      "y": 1450
+    },
+    {
+      "asset": "banco",
+      "x": 400,
+      "y": 650
+    },
+    {
+      "asset": "banco",
+      "x": 400,
+      "y": 850
+    },
+    {
+      "asset": "banco",
+      "x": 400,
+      "y": 1050
+    },
+    {
+      "asset": "banco",
+      "x": 400,
+      "y": 1250
+    },
+    {
+      "asset": "banco",
+      "x": 400,
+      "y": 1450
+    },
+    {
+      "asset": "banco",
+      "x": 1600,
+      "y": 850
+    },
+    {
+      "asset": "banco",
+      "x": 1600,
+      "y": 1050
+    },
+    {
+      "asset": "banco",
+      "x": 1600,
+      "y": 1250
+    },
+    {
+      "asset": "banco",
+      "x": 1600,
+      "y": 1450
+    },
+    {
+      "asset": "lampada",
+      "x": 150,
+      "y": 450
+    },
+    {
+      "asset": "lampada",
+      "x": 150,
+      "y": 1050
+    },
+    {
+      "asset": "lampada",
+      "x": 150,
+      "y": 1650
+    },
+    {
+      "asset": "lampada",
+      "x": 1850,
+      "y": 950
+    },
+    {
+      "asset": "lampada",
+      "x": 1850,
+      "y": 1550
+    },
+    {
+      "asset": "lampada",
+      "x": 1250,
+      "y": 250
+    },
+    {
+      "asset": "lampada",
+      "x": 750,
+      "y": 250
+    },
+    {
+      "asset": "estante",
+      "x": 200,
+      "y": 2350
+    },
+    {
+      "asset": "atril",
+      "x": 350,
+      "y": 2250
+    },
+    {
+      "asset": "altar",
+      "x": 1000,
+      "y": 2150
+    },
+    {
+      "asset": "vela",
+      "x": 850,
+      "y": 2150
+    },
+    {
+      "asset": "vela",
+      "x": 1150,
+      "y": 2150
+    },
+    {
+      "asset": "lampada",
+      "x": 750,
+      "y": 2250
+    },
+    {
+      "asset": "lampada",
+      "x": 1250,
+      "y": 2250
+    },
+    {
+      "asset": "sino",
+      "x": 1650,
+      "y": 350
+    },
+    {
+      "asset": "mesa",
+      "x": 1700,
+      "y": 2250
+    },
+    {
+      "asset": "cadeira",
+      "x": 1650,
+      "y": 2150
+    },
+    {
+      "asset": "vela",
+      "x": 1850,
+      "y": 2250
+    },
+    {
+      "asset": "caixa",
+      "x": 1750,
+      "y": 1850
+    },
+    {
+      "asset": "caixa",
+      "x": 1850,
+      "y": 1850
+    },
+    {
+      "asset": "caixa",
+      "x": 1850,
+      "y": 2350
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 1550,
+      "y": 2350
+    }
+  ],
+  "npcs": [
+    {
+      "npc": "kei_tigersteel",
+      "x": 1050,
+      "y": 2250
+    }
+  ],
+  "multidao": [
+    {
+      "area": [
+        1,
+        7,
+        18,
+        10
+      ],
+      "n": 5,
+      "oficios": [
+        "peregrino"
+      ]
+    }
+  ],
+  "notas": [
+    {
+      "x": 9,
+      "y": 19,
+      "titulo": "Lorekeeper Kei Tigersteel",
+      "texto": "<p>Sacerdote shou de Oghma, cuida do templo e recebe os peregrinos (de Oghma, Deneir, Milil e Gond). Não é Avowed, mas é um dos poucos que podem entrar na biblioteca sem escolta: um aliado valioso para quem precisa passar da Porta Esmeralda.</p>"
+    },
+    {
+      "x": 16,
+      "y": 4,
+      "titulo": "O sino de bronze",
+      "texto": "<p>Na torre do sino. Se alguém o tocar (ou se um trovão o atingir), o alarme da cena dispara e aparecem 1 arquimago e 4 magos Avowed. O mestre toca e para o sino pelo token.</p>"
+    },
+    {
+      "x": 3,
+      "y": 7,
+      "titulo": "As gárgulas dos beirais",
+      "texto": "<p>As quatro gárgulas nos cantos do telhado são golens de pedra. Ficam no mapa do Pátio, nos beirais do templo: \"Despertar\" troca a estátua por um golem, que desce planando.</p>"
+    }
+  ],
+  "lights": [],
+  "sounds": [
+    {
+      "x": 1000,
+      "y": 1250,
+      "radius": 86,
+      "path": "assets/audio/amb_templo.ogg",
+      "volume": 0.35,
+      "walls": false
+    }
+  ],
+  "musica": {
+    "path": "mapas/candlekeep/musica/templo.ogg",
+    "volume": 0.28
+  }
+}

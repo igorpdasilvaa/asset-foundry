@@ -1,0 +1,16 @@
+,,,,,,,,,,,,,,,,,,,,
+######D#############
+#ttttttttttt#gggggg#
+#ttttttttttt#gggggg#
+#tttttttttttDgggggg#
+#ttttttttttt#g__ggg#
+#ttttttttttt#gg__gg#
+#ttttttttttt#gggggg#
+##########D##__gggg#
+#mmmmmmmmmmm#gggggg#
+#mmmmmmmmmmm#ggg__g#
+#mmmmmmmmmmmDgggg_g#
+#mmmmmmmmmmm#g__ggg#
+#mmmmmmmmmmm#gggggg#
+#mmmmmmmmmmm#gggggg#
+####################

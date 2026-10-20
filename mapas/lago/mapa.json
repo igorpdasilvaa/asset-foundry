@@ -19,6 +19,12 @@
     { "asset": "barril", "x": 650, "y": 650 },
     { "asset": "caixa", "x": 750, "y": 650 }
   ],
+  "saidas": [
+    { "id": "estrada", "nome": "Taverna", "x": 3, "y": 0, "w": 2, "h": 1, "pouso": { "x": 3, "y": 1, "w": 2, "h": 1 }, "para": "taverna", "chegada": "estrada" }
+  ],
+  "multidao": [
+    { "area": [0, 11, 10, 4], "n": 3, "oficios": ["mercador", "caravaneiro"] }
+  ],
   "lights": [],
   "sounds": [
     { "x": 1500, "y": 750, "radius": 40, "path": "mapas/lago/agua_loop.ogg", "volume": 0.5 }

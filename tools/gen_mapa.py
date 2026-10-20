@@ -7,7 +7,7 @@ from PIL import Image, ImageDraw
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PECAS = ROOT / "mapas" / "pecas"
-PX = 200  # pixels por quadrado na imagem de fundo
+PX = 200  # pixels por quadrado na imagem de fundo ("px" no mapa.json: mapas grandes usam menos)
 
 name = sys.argv[1] if len(sys.argv) > 1 else "taverna"
 DIR = ROOT / "mapas" / name
@@ -16,34 +16,72 @@ rows = [r for r in (DIR / "layout.txt").read_text().splitlines() if r]
 H, W = len(rows), len(rows[0])
 assert all(len(r) == W for r in rows), "todas as linhas do layout precisam ter o mesmo tamanho"
 G = cfg["grid"]
-kind = lambda c: cfg["legend"][c]
-SOLID = {"parede", "lareira"}
-WET = {"agua", "pier"}  # o píer é desenhado por cima da água
+PX = cfg.get("px", PX)
+# Legenda: "c": "nome" ou "c": { "nome", "chao"?, "peca"?, "rot"?, "asset"?, "kind"?, "solido"? }
+#   chao: material desenhado no quadrado (padrão: o próprio nome); peca: peça de mapas/pecas/ por cima (girada "rot" graus);
+#   asset + kind: o quadrado vira token de estrutura (wall | door | pillar | water); solido: bloqueia (paredes fixas do Foundry).
+LEG = {c: (v if isinstance(v, dict) else {"nome": v}) for c, v in cfg["legend"].items()}
+PROPS = {v["nome"]: v for v in LEG.values()}
+kind = lambda c: LEG[c]["nome"]
+SOLID = {"parede", "lareira", "muralha", "telhado_ardosia", "telhado_telha", "vazio"}
+SOLID = (SOLID | {n for n, v in PROPS.items() if v.get("solido")}) - {n for n, v in PROPS.items() if v.get("solido") is False}
+WET = {"agua", "pier"} | {n for n, v in PROPS.items() if v.get("chao") == "agua"}  # o píer é desenhado por cima da água
+chao = lambda n: PROPS.get(n, {}).get("chao", n)
+ESCALA = PX / 200  # peças e materiais são desenhados com 200 px por quadrado
 
 sys.path.insert(0, str(ROOT / "tools"))
 from gen_pecas_mapa import MATERIAIS
+import extras
 
-# cada material usado é desenhado no tamanho do mapa inteiro (sem emendas entre quadrados)
-used = {kind(c) for r in rows for c in r}
+# cada material usado é desenhado inteiro e recortado por quadrado (sem emendas entre quadrados)
+used = {chao(kind(c)) for r in rows for c in r}
+used |= {PROPS[n].get("chao", "parede") for n in {kind(c) for r in rows for c in r} if PROPS[n].get("kind") == "door"}
+if used & {"porta", "lareira"}:
+    used.add("parede")  # a porta e a lareira são desenhadas sobre a parede
 if "pier" in used:
     used |= {"agua", "piso_madeira"}
+# Mapas grandes ("recorte"): cada material é desenhado só no retângulo onde aparece (com 1 quadrado de folga).
+# O Chrome não aguenta os filtros de textura num SVG do tamanho do mapa inteiro (fica lento e corta o fim).
+RECORTE = cfg.get("recorte", W * H > 2000)
+caixa = {}  # material -> (x0, y0, x1, y1) em quadrados
+if RECORTE:
+    for y_, r in enumerate(rows):
+        for x_, c in enumerate(r):
+            n = kind(c)
+            ms = {chao(n)}
+            if PROPS[n].get("kind") == "door": ms.add(PROPS[n].get("chao", "parede"))
+            if n in ("porta", "lareira"): ms.add("parede")
+            for m in ms:
+                b0 = caixa.get(m, (x_, y_, x_, y_))
+                caixa[m] = (min(b0[0], x_), min(b0[1], y_), max(b0[2], x_), max(b0[3], y_))
+    caixa = {m: (max(0, a0 - 1), max(0, b0 - 1), min(W - 1, a1 + 1), min(H - 1, b1 + 1)) for m, (a0, b0, a1, b1) in caixa.items()}
+origem = {}
 tex = {}
 with tempfile.TemporaryDirectory() as tmp:
     files = []
     for i, m in enumerate(sorted(used & MATERIAIS.keys())):
         f = pathlib.Path(tmp) / f"{m}.svg"
-        f.write_text(MATERIAIS[m](W * PX, H * PX, cfg.get("seed", 1) + i))
+        x0, y0, x1, y1 = caixa.get(m, (0, 0, W - 1, H - 1))
+        bw, bh = x1 - x0 + 1, y1 - y0 + 1
+        origem[m] = (x0, y0)
+        # desenhado na escala de 200 por quadrado e renderizado com PX por quadrado
+        svg_ = MATERIAIS[m](bw * 200, bh * 200, cfg.get("seed", 1) + i)
+        svg_ = svg_.replace(f'width="{bw * 100}" height="{bh * 100}"', f'width="{bw * PX // 2}" height="{bh * PX // 2}"', 1)
+        f.write_text(svg_)
         files.append(f)
-    env = {**os.environ, "NODE_PATH": subprocess.run(["npm", "root", "-g"], capture_output=True, text=True).stdout.strip()}
+    env = {**os.environ}
+    env.setdefault("NODE_PATH", subprocess.run(["npm", "root", "-g"], capture_output=True, text=True).stdout.strip())
     subprocess.run(["node", str(ROOT / "tools" / "render.js"), *map(str, files)], check=True, env=env)
     for f in files:
         tex[f.stem] = Image.open(f.with_suffix(".png")).convert("RGBA")
 
 def piece(name):
-    return Image.open(PECAS / f"{name}.png").convert("RGBA")
+    im = Image.open(PECAS / f"{name}.png").convert("RGBA")
+    return im if im.size == (PX, PX) else im.resize((PX, PX), Image.LANCZOS)
 
 def material(name, x, y):
-    return tex[name].crop((x * PX, y * PX, (x + 1) * PX, (y + 1) * PX))
+    ox, oy = origem[name]
+    return tex[name].crop(((x - ox) * PX, (y - oy) * PX, (x - ox + 1) * PX, (y - oy + 1) * PX))
 
 def at(x, y):
     return kind(rows[y][x]) if 0 <= x < W and 0 <= y < H else None
@@ -56,7 +94,7 @@ N4 = [(0, -1), (1, 0), (0, 1), (-1, 0)]  # cima, direita, baixo, esquerda
 def floor_under(x, y):
     """Piso mais comum em volta (para desenhar embaixo do pilar)."""
     around = [at(x + dx, y + dy) for dx in (-1, 0, 1) for dy in (-1, 0, 1)]
-    around = [k for k in around if k and k not in SOLID | {"pilar", "porta"}]
+    around = [k for k in around if k and k not in SOLID | {"pilar", "porta"} and not PROPS.get(k, {}).get("peca") and not PROPS.get(k, {}).get("kind")]
     return max(set(around), key=around.count) if around else "piso_pedra"
 
 # ---------- imagem de fundo ----------
@@ -65,9 +103,17 @@ for y in range(H):
     for x in range(W):
         k = at(x, y)
         pos = (x * PX, y * PX)
+        p = PROPS.get(k, {})
         if k == "pilar":
             img.alpha_composite(material(floor_under(x, y), x, y), pos)
             continue  # o pilar entra depois das sombras
+        if p.get("peca"):
+            img.alpha_composite(material(p["chao"] if "chao" in p else floor_under(x, y), x, y), pos)
+            img.alpha_composite(piece(p["peca"]).rotate(-p.get("rot", 0)), pos)
+            continue
+        if p.get("kind") == "door":  # portão, porta esmeralda: o token cobre o quadrado
+            img.alpha_composite(material(p.get("chao", "parede"), x, y), pos)
+            continue
         if k == "pier":
             img.alpha_composite(material("agua", x, y), pos)
             continue  # o deck entra depois da margem
@@ -84,16 +130,16 @@ for y in range(H):
             tile = tile.rotate({(0, 1): 0, (1, 0): 90, (0, -1): 180, (-1, 0): -90}[open_side])
             img.alpha_composite(tile, pos)
         else:
-            img.alpha_composite(material(k, x, y), pos)
+            img.alpha_composite(material(chao(k), x, y), pos)
 
 # margem da água: lama e espuma onde a água encosta na terra
 water = lambda x, y: at(x, y) in WET
 shore = Image.new("RGBA", img.size)
 sh = ImageDraw.Draw(shore)
-M = 34
+M = int(34 * ESCALA)
 for y in range(H):
     for x in range(W):
-        if at(x, y) != "agua":
+        if at(x, y) not in WET or at(x, y) == "pier":
             continue
         X, Y = x * PX, y * PX
         for i in range(M):
@@ -128,7 +174,7 @@ for y in range(H):
 # sombra das paredes sobre o chão + contorno escuro
 shadow = Image.new("RGBA", img.size)
 sd = ImageDraw.Draw(shadow)
-S = 50
+S = int(50 * ESCALA)
 for y in range(H):
     for x in range(W):
         if solid(x, y):
@@ -151,7 +197,7 @@ for y in range(H):
         for (dx, dy), seg in zip(N4, [((X, Y), (X + PX, Y)), ((X + PX, Y), (X + PX, Y + PX)),
                                       ((X, Y + PX), (X + PX, Y + PX)), ((X, Y), (X, Y + PX))]):
             if at(x + dx, y + dy) and not solid(x + dx, y + dy):
-                od.line(seg, fill=(20, 18, 16, 255), width=6)
+                od.line(seg, fill=(20, 18, 16, 255), width=max(2, int(6 * ESCALA)))
 
 bg_name = f"{name}.webp"
 img.convert("RGB").save(DIR / bg_name, quality=86, method=6)
@@ -159,15 +205,21 @@ img.convert("RGB").save(DIR / bg_name, quality=86, method=6)
 # ---------- estruturas quebráveis (tokens) ----------
 # Cada bloco de parede, porta e pilar vira um token de asset; as paredes do Foundry
 # são calculadas pelo módulo (scripts/mapa.js) a partir do que está de pé.
-STRUCT = cfg.get("structures", {"parede": "wall", "porta": "door", "pilar": "pillar", "agua": "water"})
+STRUCT = cfg.get("structures", {"parede": "wall", "porta": "door", "pilar": "pillar", "agua": "water", "muralha": "wall"})
+STRUCT = {**STRUCT, **{n: v["kind"] for n, v in PROPS.items() if v.get("kind")}}
 structures, fixed = [], []
 for y in range(H):
     for x in range(W):
         k = at(x, y)
-        if k in STRUCT:
-            s = {"asset": k, "x": x, "y": y, "kind": STRUCT[k]}
+        # parede encostada no vazio (andares e demiplanos): quebrar não levaria a lugar nenhum, então fica fixa (menos tokens)
+        if STRUCT.get(k) == "wall" and cfg.get("vazio_fixo", True) and any(at(x + dx, y + dy) == "vazio" for dx, dy in N4):
+            fixed.append(f"{x},{y}")
+        elif k in STRUCT:
+            s = {"asset": PROPS.get(k, {}).get("asset", k), "x": x, "y": y, "kind": STRUCT[k]}
             if STRUCT[k] == "door":
-                s["dir"] = "v" if solid(x, y - 1) and solid(x, y + 1) else "h"
+                # portas largas (portão de 4 quadrados): a porta vizinha conta como batente
+                bat = lambda x_, y_: solid(x_, y_) or STRUCT.get(at(x_, y_)) == "door"
+                s["dir"] = "v" if bat(x, y - 1) and bat(x, y + 1) and not (bat(x - 1, y) and bat(x + 1, y)) else "h"
                 s["rotation"] = 90 if s["dir"] == "v" else 0
             structures.append(s)
         elif k in SOLID:
@@ -182,10 +234,14 @@ scene = {
     "tokenVision": True,
     "environment": {"darknessLevel": cfg.get("darkness", 0), "globalLight": {"enabled": True}},
     "lights": cfg.get("lights", []),
-    "sounds": [{**s, "walls": True, "easing": True} for s in cfg.get("sounds", [])],
+    "sounds": [{"walls": True, "easing": True, **s} for s in cfg.get("sounds", [])] + extras.musica(cfg, W, H, G),
     "flags": {"interactive-assets": {"map": {
         "cols": W, "rows": H, "fixed": fixed, "structures": structures, "objects": cfg.get("objects", [])}}},
 }
+_m, _p = extras.scene_flags(cfg)
+scene["flags"]["interactive-assets"]["map"].update(_m)
+if _p:
+    scene["flags"]["interactive-assets"]["protecoes"] = _p
 (DIR / "cena.json").write_text(json.dumps(scene, indent=1, ensure_ascii=False))
 
 # ---------- prévias: como a cena fica no Foundry, com as paredes calculadas pelo módulo ----------
@@ -235,6 +291,7 @@ def preview(out, broken=(), states=()):
     for w in walls:
         x1, y1, x2, y2 = [v * f for v in w["c"]]
         pd.line([(x1, y1), (x2, y2)], fill=(255, 210, 0) if w.get("door") else (230, 40, 40), width=4 if w.get("door") else 3)
+    extras.desenha(prev, cfg, f, G)
     prev.save(DIR / out, quality=85)
     return walls
 

@@ -1,0 +1,433 @@
+{
+  "name": "Candlekeep: Ferraria e Estábulos",
+  "grid": 100,
+  "darkness": 0.3,
+  "seed": 71,
+  "legend": {
+    "_": "terra",
+    "p": "piso_pedra",
+    "m": "piso_madeira",
+    ",": "paralelepipedo",
+    "#": "parede",
+    "D": "porta",
+    "P": "pilar"
+  },
+  "protecoes": {
+    "alarme": 1,
+    "resposta": [
+      {
+        "npc": "avowed_arquimago",
+        "n": 1
+      },
+      {
+        "npc": "avowed_mago",
+        "n": 4
+      }
+    ]
+  },
+  "saidas": [
+    {
+      "id": "rua",
+      "nome": "Pátio do Ar",
+      "x": 23,
+      "y": 16,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 22,
+        "y": 15,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_patio",
+      "chegada": "porta_ferraria"
+    }
+  ],
+  "objects": [
+    {
+      "asset": "feno",
+      "x": 150,
+      "y": 350
+    },
+    {
+      "asset": "cocho",
+      "x": 500,
+      "y": 350
+    },
+    {
+      "asset": "feno",
+      "x": 750,
+      "y": 350
+    },
+    {
+      "asset": "cocho",
+      "x": 1100,
+      "y": 350
+    },
+    {
+      "asset": "feno",
+      "x": 1350,
+      "y": 350
+    },
+    {
+      "asset": "cocho",
+      "x": 1700,
+      "y": 350
+    },
+    {
+      "asset": "feno",
+      "x": 1950,
+      "y": 350
+    },
+    {
+      "asset": "cocho",
+      "x": 2300,
+      "y": 350
+    },
+    {
+      "asset": "cocho",
+      "x": 200,
+      "y": 1550
+    },
+    {
+      "asset": "cocho",
+      "x": 700,
+      "y": 1550
+    },
+    {
+      "asset": "cocho",
+      "x": 1200,
+      "y": 1550
+    },
+    {
+      "asset": "feno",
+      "x": 450,
+      "y": 950
+    },
+    {
+      "asset": "feno",
+      "x": 950,
+      "y": 950
+    },
+    {
+      "asset": "feno",
+      "x": 1550,
+      "y": 950
+    },
+    {
+      "asset": "feno",
+      "x": 2550,
+      "y": 150
+    },
+    {
+      "asset": "feno",
+      "x": 2650,
+      "y": 150
+    },
+    {
+      "asset": "feno",
+      "x": 2750,
+      "y": 150
+    },
+    {
+      "asset": "feno",
+      "x": 2850,
+      "y": 150
+    },
+    {
+      "asset": "feno",
+      "x": 2950,
+      "y": 150
+    },
+    {
+      "asset": "feno",
+      "x": 3050,
+      "y": 150
+    },
+    {
+      "asset": "feno",
+      "x": 2550,
+      "y": 250
+    },
+    {
+      "asset": "feno",
+      "x": 2650,
+      "y": 250
+    },
+    {
+      "asset": "feno",
+      "x": 2950,
+      "y": 250
+    },
+    {
+      "asset": "feno",
+      "x": 3050,
+      "y": 250
+    },
+    {
+      "asset": "feno",
+      "x": 2550,
+      "y": 350
+    },
+    {
+      "asset": "feno",
+      "x": 3050,
+      "y": 350
+    },
+    {
+      "asset": "feno",
+      "x": 3050,
+      "y": 450
+    },
+    {
+      "asset": "feno",
+      "x": 2550,
+      "y": 550
+    },
+    {
+      "asset": "feno",
+      "x": 3050,
+      "y": 550
+    },
+    {
+      "asset": "caixa",
+      "x": 2650,
+      "y": 550
+    },
+    {
+      "asset": "feno",
+      "x": 150,
+      "y": 750
+    },
+    {
+      "asset": "feno",
+      "x": 2350,
+      "y": 550
+    },
+    {
+      "asset": "feno",
+      "x": 1150,
+      "y": 750
+    },
+    {
+      "asset": "cocho",
+      "x": 2000,
+      "y": 750
+    },
+    {
+      "asset": "barril",
+      "x": 2250,
+      "y": 750
+    },
+    {
+      "asset": "lampada",
+      "x": 550,
+      "y": 550
+    },
+    {
+      "asset": "lampada",
+      "x": 1450,
+      "y": 550
+    },
+    {
+      "asset": "lampada",
+      "x": 2350,
+      "y": 750
+    },
+    {
+      "asset": "forja",
+      "x": 3000,
+      "y": 1000
+    },
+    {
+      "asset": "bigorna",
+      "x": 2750,
+      "y": 1150
+    },
+    {
+      "asset": "bigorna",
+      "x": 2250,
+      "y": 1250
+    },
+    {
+      "asset": "cocho",
+      "x": 2800,
+      "y": 1350
+    },
+    {
+      "asset": "barril",
+      "x": 3050,
+      "y": 1350
+    },
+    {
+      "asset": "barril",
+      "x": 3050,
+      "y": 1450
+    },
+    {
+      "asset": "barril",
+      "x": 2950,
+      "y": 1550
+    },
+    {
+      "asset": "caixa",
+      "x": 1850,
+      "y": 1550
+    },
+    {
+      "asset": "caixa",
+      "x": 1950,
+      "y": 1550
+    },
+    {
+      "asset": "caixa",
+      "x": 1850,
+      "y": 1450
+    },
+    {
+      "asset": "mesa",
+      "x": 2100,
+      "y": 950
+    },
+    {
+      "asset": "lampada",
+      "x": 1750,
+      "y": 1550
+    },
+    {
+      "asset": "lampada",
+      "x": 2550,
+      "y": 950
+    }
+  ],
+  "npcs": [
+    {
+      "npc": "cavalo",
+      "x": 200,
+      "y": 200
+    },
+    {
+      "npc": "cavalo",
+      "x": 500,
+      "y": 200
+    },
+    {
+      "npc": "ponei",
+      "x": 800,
+      "y": 200
+    },
+    {
+      "npc": "mula",
+      "x": 1100,
+      "y": 200
+    },
+    {
+      "npc": "cavalo",
+      "x": 1400,
+      "y": 200
+    },
+    {
+      "npc": "mula",
+      "x": 1700,
+      "y": 200
+    },
+    {
+      "npc": "ponei",
+      "x": 2000,
+      "y": 200
+    },
+    {
+      "npc": "cavalo",
+      "x": 2300,
+      "y": 200
+    },
+    {
+      "npc": "hipogrifo",
+      "x": 300,
+      "y": 1200
+    },
+    {
+      "npc": "grifo",
+      "x": 800,
+      "y": 1200
+    },
+    {
+      "npc": "serpe",
+      "x": 1350,
+      "y": 1200
+    },
+    {
+      "npc": "kheril_hammerbind",
+      "x": 2850,
+      "y": 1150
+    }
+  ],
+  "multidao": [
+    {
+      "area": [
+        1,
+        5,
+        23,
+        3
+      ],
+      "n": 2,
+      "oficios": [
+        "cavalarico"
+      ]
+    },
+    {
+      "area": [
+        18,
+        9,
+        12,
+        6
+      ],
+      "n": 1,
+      "oficios": [
+        "cavalarico"
+      ]
+    }
+  ],
+  "notas": [
+    {
+      "x": 26,
+      "y": 12,
+      "titulo": "Khe'ril Hammerbind e a forja",
+      "texto": "<p>Anão dourado, ferreiro e chefe dos estábulos. A forja é uma das poucas chamas que as proteções de Candlekeep deixam arder: ela continua acesa mesmo com as proteções ligadas (quem entra leva 2d6 de fogo). Khe'ril ferra cavalos, conserta grades e não gosta de magos mexendo nas suas brasas.</p>"
+    },
+    {
+      "x": 8,
+      "y": 12,
+      "titulo": "Baias reforçadas",
+      "texto": "<p>Hipogrifo, grifo e serpe de visitantes. Se a serpe ou o grifo se soltarem, atacam primeiro os cavalos das baias da frente. Gancho: alguém deixou a porta da serpe destrancada.</p>"
+    },
+    {
+      "x": 12,
+      "y": 6,
+      "titulo": "Estábulos",
+      "texto": "<p>Oito baias de cavalos, pôneis e mulas de buscadores e caravanas. Abrir uma porta de baia pode soltar o animal (o mestre decide). O palheiro, cheio de feno, queima rápido se as proteções caírem.</p>"
+    }
+  ],
+  "lights": [],
+  "sounds": [
+    {
+      "x": 3000,
+      "y": 1000,
+      "radius": 15,
+      "path": "assets/tocha/fogo.ogg",
+      "volume": 0.5
+    },
+    {
+      "x": 1600,
+      "y": 900,
+      "radius": 97,
+      "path": "assets/audio/amb_estabulo.ogg",
+      "volume": 0.4,
+      "walls": false
+    }
+  ],
+  "musica": {
+    "path": "mapas/candlekeep/musica/ferraria.ogg",
+    "volume": 0.22
+  }
+}

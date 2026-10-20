@@ -531,6 +531,39 @@
       "x": 750,
       "y": 650
      }
+    ],
+    "saidas": [
+     {
+      "id": "estrada",
+      "nome": "Taverna",
+      "x": 3,
+      "y": 0,
+      "w": 2,
+      "h": 1,
+      "pouso": {
+       "x": 3,
+       "y": 1,
+       "w": 2,
+       "h": 1
+      },
+      "para": "taverna",
+      "chegada": "estrada"
+     }
+    ],
+    "multidao": [
+     {
+      "area": [
+       0,
+       11,
+       10,
+       4
+      ],
+      "n": 3,
+      "oficios": [
+       "mercador",
+       "caravaneiro"
+      ]
+     }
     ]
    }
   }

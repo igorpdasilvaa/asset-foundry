@@ -1,0 +1,2363 @@
+{
+ "name": "Candlekeep: Casa do Repouso",
+ "width": 6400,
+ "height": 1800,
+ "padding": 0,
+ "backgroundColor": "#1b1b1b",
+ "background": {
+  "src": "mapas/candlekeep_repouso/candlekeep_repouso.webp"
+ },
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 5,
+  "units": "ft"
+ },
+ "tokenVision": true,
+ "environment": {
+  "darknessLevel": 0.35,
+  "globalLight": {
+   "enabled": true
+  }
+ },
+ "lights": [],
+ "sounds": [
+  {
+   "walls": false,
+   "easing": true,
+   "x": 3200,
+   "y": 900,
+   "radius": 172,
+   "path": "assets/audio/amb_repouso.ogg",
+   "volume": 0.3
+  },
+  {
+   "x": 3200,
+   "y": 900,
+   "radius": 177,
+   "path": "mapas/candlekeep/musica/repouso.ogg",
+   "volume": 0.22,
+   "walls": false,
+   "easing": true,
+   "flags": {
+    "interactive-assets": {
+     "musica": true
+    }
+   }
+  }
+ ],
+ "flags": {
+  "interactive-assets": {
+   "map": {
+    "cols": 64,
+    "rows": 18,
+    "fixed": [
+     "19,0",
+     "20,0",
+     "21,0",
+     "22,0",
+     "41,0",
+     "42,0",
+     "43,0",
+     "44,0",
+     "19,1",
+     "20,1",
+     "21,1",
+     "22,1",
+     "41,1",
+     "42,1",
+     "43,1",
+     "44,1",
+     "19,2",
+     "20,2",
+     "21,2",
+     "22,2",
+     "41,2",
+     "42,2",
+     "43,2",
+     "44,2",
+     "19,3",
+     "20,3",
+     "21,3",
+     "22,3",
+     "41,3",
+     "42,3",
+     "43,3",
+     "44,3",
+     "19,4",
+     "20,4",
+     "21,4",
+     "22,4",
+     "41,4",
+     "42,4",
+     "43,4",
+     "44,4",
+     "19,5",
+     "20,5",
+     "21,5",
+     "22,5",
+     "41,5",
+     "42,5",
+     "43,5",
+     "44,5",
+     "19,6",
+     "20,6",
+     "21,6",
+     "22,6",
+     "41,6",
+     "42,6",
+     "43,6",
+     "44,6",
+     "19,7",
+     "20,7",
+     "21,7",
+     "22,7",
+     "41,7",
+     "42,7",
+     "43,7",
+     "44,7",
+     "19,8",
+     "20,8",
+     "21,8",
+     "22,8",
+     "41,8",
+     "42,8",
+     "43,8",
+     "44,8",
+     "19,9",
+     "20,9",
+     "21,9",
+     "22,9",
+     "41,9",
+     "42,9",
+     "43,9",
+     "44,9",
+     "19,10",
+     "20,10",
+     "21,10",
+     "22,10",
+     "41,10",
+     "42,10",
+     "43,10",
+     "44,10",
+     "19,11",
+     "20,11",
+     "21,11",
+     "22,11",
+     "41,11",
+     "42,11",
+     "43,11",
+     "44,11",
+     "19,12",
+     "20,12",
+     "21,12",
+     "22,12",
+     "41,12",
+     "42,12",
+     "43,12",
+     "44,12",
+     "19,13",
+     "20,13",
+     "21,13",
+     "22,13",
+     "41,13",
+     "42,13",
+     "43,13",
+     "44,13",
+     "19,14",
+     "20,14",
+     "21,14",
+     "22,14",
+     "41,14",
+     "42,14",
+     "43,14",
+     "44,14",
+     "19,15",
+     "20,15",
+     "21,15",
+     "22,15",
+     "23,15",
+     "24,15",
+     "25,15",
+     "26,15",
+     "27,15",
+     "28,15",
+     "29,15",
+     "30,15",
+     "31,15",
+     "32,15",
+     "33,15",
+     "34,15",
+     "35,15",
+     "36,15",
+     "37,15",
+     "38,15",
+     "39,15",
+     "40,15",
+     "41,15",
+     "42,15",
+     "43,15",
+     "44,15",
+     "45,15",
+     "46,15",
+     "47,15",
+     "48,15",
+     "49,15",
+     "50,15",
+     "51,15",
+     "52,15",
+     "53,15",
+     "54,15",
+     "55,15",
+     "56,15",
+     "57,15",
+     "58,15",
+     "59,15",
+     "60,15",
+     "61,15",
+     "62,15",
+     "63,15",
+     "20,16",
+     "21,16",
+     "22,16",
+     "23,16",
+     "24,16",
+     "25,16",
+     "26,16",
+     "27,16",
+     "28,16",
+     "29,16",
+     "30,16",
+     "31,16",
+     "32,16",
+     "33,16",
+     "34,16",
+     "35,16",
+     "36,16",
+     "37,16",
+     "38,16",
+     "39,16",
+     "40,16",
+     "41,16",
+     "42,16",
+     "43,16",
+     "44,16",
+     "45,16",
+     "46,16",
+     "47,16",
+     "48,16",
+     "49,16",
+     "50,16",
+     "51,16",
+     "52,16",
+     "53,16",
+     "54,16",
+     "55,16",
+     "56,16",
+     "57,16",
+     "58,16",
+     "59,16",
+     "60,16",
+     "61,16",
+     "62,16",
+     "63,16",
+     "20,17",
+     "21,17",
+     "22,17",
+     "23,17",
+     "24,17",
+     "25,17",
+     "26,17",
+     "27,17",
+     "28,17",
+     "29,17",
+     "30,17",
+     "31,17",
+     "32,17",
+     "33,17",
+     "34,17",
+     "35,17",
+     "36,17",
+     "37,17",
+     "38,17",
+     "39,17",
+     "40,17",
+     "41,17",
+     "42,17",
+     "43,17",
+     "44,17",
+     "45,17",
+     "46,17",
+     "47,17",
+     "48,17",
+     "49,17",
+     "50,17",
+     "51,17",
+     "52,17",
+     "53,17",
+     "54,17",
+     "55,17",
+     "56,17",
+     "57,17",
+     "58,17",
+     "59,17",
+     "60,17",
+     "61,17",
+     "62,17",
+     "63,17"
+    ],
+    "structures": [
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 1,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 2,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 3,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 4,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 5,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 6,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 7,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 8,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 9,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 10,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 11,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 12,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 13,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 14,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 16,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 17,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 18,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 23,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 24,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 25,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 26,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 27,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 28,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 29,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 30,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 31,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 32,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 33,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 34,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 35,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 36,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 37,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 38,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 39,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 40,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 45,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 46,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 47,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 48,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 49,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 50,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 51,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 52,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 53,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 54,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 55,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 56,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 57,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 58,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 59,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 60,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 61,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 62,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 63,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 13,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 29,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 35,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 51,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 57,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 63,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 2,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 13,
+      "y": 2,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 29,
+      "y": 2,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 35,
+      "y": 2,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 51,
+      "y": 2,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 57,
+      "y": 2,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 63,
+      "y": 2,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 3,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 13,
+      "y": 3,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 29,
+      "y": 3,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 35,
+      "y": 3,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 51,
+      "y": 3,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 57,
+      "y": 3,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 63,
+      "y": 3,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 4,
+      "kind": "wall"
+     },
+     {
+      "asset": "porta",
+      "x": 13,
+      "y": 4,
+      "kind": "door",
+      "dir": "v",
+      "rotation": 90
+     },
+     {
+      "asset": "parede",
+      "x": 29,
+      "y": 4,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 35,
+      "y": 4,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 51,
+      "y": 4,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 57,
+      "y": 4,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 63,
+      "y": 4,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 13,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 29,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 35,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 45,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 46,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "porta",
+      "x": 47,
+      "y": 5,
+      "kind": "door",
+      "dir": "h",
+      "rotation": 0
+     },
+     {
+      "asset": "parede",
+      "x": 48,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 49,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 50,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 51,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 52,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 53,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "porta",
+      "x": 54,
+      "y": 5,
+      "kind": "door",
+      "dir": "h",
+      "rotation": 0
+     },
+     {
+      "asset": "parede",
+      "x": 55,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 56,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 57,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 58,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 59,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "porta",
+      "x": 60,
+      "y": 5,
+      "kind": "door",
+      "dir": "h",
+      "rotation": 0
+     },
+     {
+      "asset": "parede",
+      "x": 61,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 62,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 63,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 13,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 23,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 24,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 25,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "porta",
+      "x": 26,
+      "y": 6,
+      "kind": "door",
+      "dir": "h",
+      "rotation": 0
+     },
+     {
+      "asset": "parede",
+      "x": 27,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 28,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 29,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 30,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 31,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "porta",
+      "x": 32,
+      "y": 6,
+      "kind": "door",
+      "dir": "h",
+      "rotation": 0
+     },
+     {
+      "asset": "parede",
+      "x": 33,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 34,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 35,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 36,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 37,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "porta",
+      "x": 38,
+      "y": 6,
+      "kind": "door",
+      "dir": "h",
+      "rotation": 0
+     },
+     {
+      "asset": "parede",
+      "x": 39,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 40,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 63,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 7,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 13,
+      "y": 7,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 63,
+      "y": 7,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 1,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 2,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 3,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 4,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 5,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 6,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 7,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 8,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "porta",
+      "x": 9,
+      "y": 8,
+      "kind": "door",
+      "dir": "h",
+      "rotation": 0
+     },
+     {
+      "asset": "parede",
+      "x": 10,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 11,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 12,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 13,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 14,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "porta",
+      "x": 16,
+      "y": 8,
+      "kind": "door",
+      "dir": "h",
+      "rotation": 0
+     },
+     {
+      "asset": "parede",
+      "x": 17,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 18,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 63,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 6,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 13,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 23,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 24,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 25,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "porta",
+      "x": 26,
+      "y": 9,
+      "kind": "door",
+      "dir": "h",
+      "rotation": 0
+     },
+     {
+      "asset": "parede",
+      "x": 27,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 28,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 29,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 30,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 31,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "porta",
+      "x": 32,
+      "y": 9,
+      "kind": "door",
+      "dir": "h",
+      "rotation": 0
+     },
+     {
+      "asset": "parede",
+      "x": 33,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 34,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 35,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 36,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 37,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "porta",
+      "x": 38,
+      "y": 9,
+      "kind": "door",
+      "dir": "h",
+      "rotation": 0
+     },
+     {
+      "asset": "parede",
+      "x": 39,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 40,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 63,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 10,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 6,
+      "y": 10,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 13,
+      "y": 10,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 29,
+      "y": 10,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 35,
+      "y": 10,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 63,
+      "y": 10,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 11,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 6,
+      "y": 11,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 13,
+      "y": 11,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 29,
+      "y": 11,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 35,
+      "y": 11,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 63,
+      "y": 11,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 12,
+      "kind": "wall"
+     },
+     {
+      "asset": "porta",
+      "x": 6,
+      "y": 12,
+      "kind": "door",
+      "dir": "v",
+      "rotation": 90
+     },
+     {
+      "asset": "parede",
+      "x": 13,
+      "y": 12,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 29,
+      "y": 12,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 35,
+      "y": 12,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 63,
+      "y": 12,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 13,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 6,
+      "y": 13,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 13,
+      "y": 13,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 29,
+      "y": 13,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 35,
+      "y": 13,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 63,
+      "y": 13,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 14,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 6,
+      "y": 14,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 13,
+      "y": 14,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 29,
+      "y": 14,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 35,
+      "y": 14,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 63,
+      "y": 14,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 0,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 1,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 2,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 3,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 4,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 5,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 6,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 7,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 8,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "porta",
+      "x": 9,
+      "y": 15,
+      "kind": "door",
+      "dir": "h",
+      "rotation": 0
+     },
+     {
+      "asset": "parede",
+      "x": 10,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 11,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 12,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 13,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 14,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 16,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 17,
+      "y": 15,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 18,
+      "y": 15,
+      "kind": "wall"
+     }
+    ],
+    "objects": [
+     {
+      "asset": "estante",
+      "x": 300,
+      "y": 150
+     },
+     {
+      "asset": "estante",
+      "x": 1000,
+      "y": 150
+     },
+     {
+      "asset": "pilha_livros",
+      "x": 450,
+      "y": 150
+     },
+     {
+      "asset": "mesa",
+      "x": 600,
+      "y": 450
+     },
+     {
+      "asset": "poltrona",
+      "x": 450,
+      "y": 450
+     },
+     {
+      "asset": "poltrona",
+      "x": 750,
+      "y": 450
+     },
+     {
+      "asset": "poltrona",
+      "x": 550,
+      "y": 350
+     },
+     {
+      "asset": "poltrona",
+      "x": 650,
+      "y": 550
+     },
+     {
+      "asset": "mesa",
+      "x": 1000,
+      "y": 550
+     },
+     {
+      "asset": "cadeira",
+      "x": 850,
+      "y": 550
+     },
+     {
+      "asset": "cadeira",
+      "x": 1150,
+      "y": 550
+     },
+     {
+      "asset": "cadeira",
+      "x": 1050,
+      "y": 650
+     },
+     {
+      "asset": "poltrona",
+      "x": 150,
+      "y": 450
+     },
+     {
+      "asset": "poltrona",
+      "x": 150,
+      "y": 550
+     },
+     {
+      "asset": "poltrona",
+      "x": 1250,
+      "y": 250
+     },
+     {
+      "asset": "lampada",
+      "x": 150,
+      "y": 150
+     },
+     {
+      "asset": "lampada",
+      "x": 1250,
+      "y": 750
+     },
+     {
+      "asset": "vela",
+      "x": 650,
+      "y": 150
+     },
+     {
+      "asset": "balcao",
+      "x": 1450,
+      "y": 150
+     },
+     {
+      "asset": "balcao",
+      "x": 1550,
+      "y": 150
+     },
+     {
+      "asset": "balcao",
+      "x": 1650,
+      "y": 150
+     },
+     {
+      "asset": "balcao",
+      "x": 1750,
+      "y": 150
+     },
+     {
+      "asset": "barril",
+      "x": 1850,
+      "y": 150
+     },
+     {
+      "asset": "barril",
+      "x": 1850,
+      "y": 250
+     },
+     {
+      "asset": "mesa",
+      "x": 1600,
+      "y": 450
+     },
+     {
+      "asset": "cadeira",
+      "x": 1550,
+      "y": 550
+     },
+     {
+      "asset": "cadeira",
+      "x": 1650,
+      "y": 550
+     },
+     {
+      "asset": "caixa",
+      "x": 1850,
+      "y": 650
+     },
+     {
+      "asset": "lampada",
+      "x": 1450,
+      "y": 750
+     },
+     {
+      "asset": "caixa",
+      "x": 1850,
+      "y": 950
+     },
+     {
+      "asset": "caixa",
+      "x": 1850,
+      "y": 1050
+     },
+     {
+      "asset": "caixa",
+      "x": 1450,
+      "y": 1450
+     },
+     {
+      "asset": "caixa",
+      "x": 1550,
+      "y": 1450
+     },
+     {
+      "asset": "barril",
+      "x": 1850,
+      "y": 1350
+     },
+     {
+      "asset": "barril",
+      "x": 1850,
+      "y": 1450
+     },
+     {
+      "asset": "lampada",
+      "x": 1550,
+      "y": 1150
+     },
+     {
+      "asset": "balcao",
+      "x": 850,
+      "y": 1150
+     },
+     {
+      "asset": "balcao",
+      "x": 950,
+      "y": 1150
+     },
+     {
+      "asset": "balcao",
+      "x": 1050,
+      "y": 1150
+     },
+     {
+      "asset": "balcao",
+      "x": 1150,
+      "y": 1150
+     },
+     {
+      "asset": "lampada",
+      "x": 750,
+      "y": 950
+     },
+     {
+      "asset": "lampada",
+      "x": 1250,
+      "y": 950
+     },
+     {
+      "asset": "poltrona",
+      "x": 750,
+      "y": 1350
+     },
+     {
+      "asset": "poltrona",
+      "x": 1250,
+      "y": 1350
+     },
+     {
+      "asset": "caixa",
+      "x": 150,
+      "y": 1450
+     },
+     {
+      "asset": "lampada",
+      "x": 550,
+      "y": 1450
+     },
+     {
+      "asset": "cama",
+      "x": 2350,
+      "y": 200
+     },
+     {
+      "asset": "vela",
+      "x": 2450,
+      "y": 150
+     },
+     {
+      "asset": "caixa",
+      "x": 2850,
+      "y": 150
+     },
+     {
+      "asset": "cama",
+      "x": 2350,
+      "y": 1400
+     },
+     {
+      "asset": "vela",
+      "x": 2450,
+      "y": 1450
+     },
+     {
+      "asset": "caixa",
+      "x": 2850,
+      "y": 1450
+     },
+     {
+      "asset": "cama",
+      "x": 3050,
+      "y": 200
+     },
+     {
+      "asset": "vela",
+      "x": 3150,
+      "y": 150
+     },
+     {
+      "asset": "caixa",
+      "x": 3450,
+      "y": 150
+     },
+     {
+      "asset": "cama",
+      "x": 3050,
+      "y": 1400
+     },
+     {
+      "asset": "vela",
+      "x": 3150,
+      "y": 1450
+     },
+     {
+      "asset": "caixa",
+      "x": 3450,
+      "y": 1450
+     },
+     {
+      "asset": "cama",
+      "x": 3650,
+      "y": 200
+     },
+     {
+      "asset": "vela",
+      "x": 3750,
+      "y": 150
+     },
+     {
+      "asset": "caixa",
+      "x": 4050,
+      "y": 150
+     },
+     {
+      "asset": "cama",
+      "x": 3650,
+      "y": 1400
+     },
+     {
+      "asset": "vela",
+      "x": 3750,
+      "y": 1450
+     },
+     {
+      "asset": "caixa",
+      "x": 4050,
+      "y": 1450
+     },
+     {
+      "asset": "escrivaninha",
+      "x": 2700,
+      "y": 150
+     },
+     {
+      "asset": "cadeira",
+      "x": 2650,
+      "y": 250
+     },
+     {
+      "asset": "escrivaninha",
+      "x": 2700,
+      "y": 1450
+     },
+     {
+      "asset": "cadeira",
+      "x": 2650,
+      "y": 1350
+     },
+     {
+      "asset": "lampada",
+      "x": 3050,
+      "y": 750
+     },
+     {
+      "asset": "lampada",
+      "x": 3550,
+      "y": 850
+     },
+     {
+      "asset": "cama",
+      "x": 4550,
+      "y": 200
+     },
+     {
+      "asset": "cama",
+      "x": 4650,
+      "y": 200
+     },
+     {
+      "asset": "vela",
+      "x": 4850,
+      "y": 150
+     },
+     {
+      "asset": "caixa",
+      "x": 5050,
+      "y": 150
+     },
+     {
+      "asset": "cama",
+      "x": 5250,
+      "y": 200
+     },
+     {
+      "asset": "vela",
+      "x": 5350,
+      "y": 150
+     },
+     {
+      "asset": "caixa",
+      "x": 5650,
+      "y": 150
+     },
+     {
+      "asset": "cama",
+      "x": 5850,
+      "y": 200
+     },
+     {
+      "asset": "cama",
+      "x": 5950,
+      "y": 200
+     },
+     {
+      "asset": "vela",
+      "x": 6150,
+      "y": 150
+     },
+     {
+      "asset": "caixa",
+      "x": 6250,
+      "y": 150
+     },
+     {
+      "asset": "cama",
+      "x": 4850,
+      "y": 1000
+     },
+     {
+      "asset": "cama",
+      "x": 5050,
+      "y": 1000
+     },
+     {
+      "asset": "cama",
+      "x": 5250,
+      "y": 1000
+     },
+     {
+      "asset": "cama",
+      "x": 5450,
+      "y": 1000
+     },
+     {
+      "asset": "cama",
+      "x": 5650,
+      "y": 1000
+     },
+     {
+      "asset": "cama",
+      "x": 5850,
+      "y": 1000
+     },
+     {
+      "asset": "cama",
+      "x": 6050,
+      "y": 1000
+     },
+     {
+      "asset": "cama",
+      "x": 4750,
+      "y": 1400
+     },
+     {
+      "asset": "cama",
+      "x": 4950,
+      "y": 1400
+     },
+     {
+      "asset": "cama",
+      "x": 5150,
+      "y": 1400
+     },
+     {
+      "asset": "cama",
+      "x": 5350,
+      "y": 1400
+     },
+     {
+      "asset": "cama",
+      "x": 5550,
+      "y": 1400
+     },
+     {
+      "asset": "cama",
+      "x": 5750,
+      "y": 1400
+     },
+     {
+      "asset": "cama",
+      "x": 5950,
+      "y": 1400
+     },
+     {
+      "asset": "cama",
+      "x": 6150,
+      "y": 1400
+     },
+     {
+      "asset": "caixa",
+      "x": 6250,
+      "y": 650
+     },
+     {
+      "asset": "caixa",
+      "x": 6250,
+      "y": 750
+     },
+     {
+      "asset": "vela",
+      "x": 6250,
+      "y": 1050
+     },
+     {
+      "asset": "vela",
+      "x": 4650,
+      "y": 1050
+     },
+     {
+      "asset": "lampada",
+      "x": 4550,
+      "y": 1450
+     },
+     {
+      "asset": "lampada",
+      "x": 6250,
+      "y": 1450
+     },
+     {
+      "asset": "lampada",
+      "x": 5550,
+      "y": 650
+     }
+    ],
+    "saidas": [
+     {
+      "id": "rua",
+      "nome": "Pátio do Ar",
+      "x": 9,
+      "y": 15,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+       "x": 8,
+       "y": 14,
+       "w": 3,
+       "h": 1
+      },
+      "para": "candlekeep_patio",
+      "chegada": "porta_repouso"
+     },
+     {
+      "id": "sobe1",
+      "nome": "1º andar",
+      "x": 2,
+      "y": 9,
+      "w": 3,
+      "h": 2,
+      "pouso": {
+       "x": 2,
+       "y": 11,
+       "w": 3,
+       "h": 1
+      },
+      "para": "candlekeep_repouso",
+      "chegada": "desce1"
+     },
+     {
+      "id": "desce1",
+      "nome": "Térreo",
+      "x": 23,
+      "y": 7,
+      "w": 1,
+      "h": 2,
+      "pouso": {
+       "x": 24,
+       "y": 7,
+       "w": 1,
+       "h": 2
+      },
+      "para": "candlekeep_repouso",
+      "chegada": "sobe1"
+     },
+     {
+      "id": "sobe2",
+      "nome": "2º andar",
+      "x": 40,
+      "y": 7,
+      "w": 1,
+      "h": 2,
+      "pouso": {
+       "x": 39,
+       "y": 7,
+       "w": 1,
+       "h": 2
+      },
+      "para": "candlekeep_repouso",
+      "chegada": "desce2"
+     },
+     {
+      "id": "desce2",
+      "nome": "1º andar",
+      "x": 45,
+      "y": 7,
+      "w": 1,
+      "h": 2,
+      "pouso": {
+       "x": 46,
+       "y": 7,
+       "w": 1,
+       "h": 2
+      },
+      "para": "candlekeep_repouso",
+      "chegada": "sobe2"
+     }
+    ],
+    "npcs": [
+     {
+      "npc": "anfitria_repouso",
+      "x": 950,
+      "y": 1050
+     }
+    ],
+    "multidao": [
+     {
+      "area": [
+       1,
+       1,
+       12,
+       7
+      ],
+      "n": 3,
+      "oficios": [
+       "buscador",
+       "peregrino"
+      ]
+     },
+     {
+      "area": [
+       25,
+       7,
+       14,
+       2
+      ],
+      "n": 1,
+      "oficios": [
+       "servo"
+      ]
+     },
+     {
+      "area": [
+       45,
+       6,
+       18,
+       9
+      ],
+      "n": 3,
+      "oficios": [
+       "peregrino",
+       "buscador",
+       "servo"
+      ]
+     }
+    ],
+    "notas": [
+     {
+      "x": 10,
+      "y": 12,
+      "titulo": "Regra do silêncio",
+      "texto": "<p>A anfitriã recebe os hóspedes no balcão (uns 50 cabem nos três andares). Aqui se fala baixo: quem faz barulho é convidado a ir para o Hearth, do outro lado do Pátio. Refeições simples saem da cozinha; nada de fogo maior que uma vela.</p>"
+     },
+     {
+      "x": 31,
+      "y": 7,
+      "titulo": "Quartos de reserva",
+      "texto": "<p>1º andar: quartos privados com cama, baú e candelabro. Quando a casa lota, a anfitriã abre quartos extradimensionais de reserva, iguais a estes, atrás das mesmas portas.</p>"
+     },
+     {
+      "x": 16,
+      "y": 12,
+      "titulo": "Alçapão do Porão dos Vaga-lumes",
+      "texto": "<p>Na despensa, um alçapão pintado de laranja desce ao Porão dos Vaga-lumes, onde começa <em>Shemshime's Bedtime Rhyme</em>. Os funcionários evitam abri-lo e mudam de assunto se perguntados. O porão é um mapa futuro.</p>"
+     },
+     {
+      "x": 54,
+      "y": 11,
+      "titulo": "Dormitório comum",
+      "texto": "<p>2º andar: camas enfileiradas para peregrinos e buscadores de bolso curto, e três quartos menores ao norte.</p>"
+     }
+    ]
+   },
+   "protecoes": {
+    "ativas": true,
+    "alarme": 1,
+    "dano": 0,
+    "tocado": false,
+    "resposta": [
+     {
+      "npc": "avowed_arquimago",
+      "n": 1
+     },
+     {
+      "npc": "avowed_mago",
+      "n": 4
+     }
+    ]
+   }
+  }
+ }
+}

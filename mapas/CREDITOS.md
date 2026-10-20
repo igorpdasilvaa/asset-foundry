@@ -26,3 +26,11 @@ com estas fotos. Os arbustos, pedras e o tronco caído dos mapas com fotos tamb�
 | `galho.png` | [Leafy tree/plant branch](https://opengameart.org/content/leafy-treeplant-branch) (reduzido à metade) | OpenGameArt | CC0 |
 | `casca.jpg` | `orig-brown-1024` de [Tree bark (close and far, 1024 and 2048)](https://opengameart.org/content/tree-bark-close-and-far-1024-and-2048) | OpenGameArt | CC0 |
 | `fire_01.png`, `flame_02.png`, `flame_05.png`, `smoke_02.png`, `scorch_01.png` | [Particle Pack](https://kenney.nl/assets/particle-pack) | Kenney | CC0 |
+
+## Sons, músicas e retratos gerados localmente
+Os efeitos (`assets/audio/`, exceto `madeira_quebrando.ogg`), as ambiências, as músicas e canções de Candlekeep
+(`mapas/candlekeep/musica/`) foram gerados neste projeto com Stable Audio 3 e ACE-Step 1.5. Os retratos dos NPCs
+(`assets/npcs/`) foram gerados com SDXL. Tudo rodou no orquestrador local `ia-orc`, e os prompts estão em `tools/sons.json`
+e `tools/tokens_npcs.json`. Antes de distribuir o módulo, confira a licença de cada modelo (o Stable Audio 3 segue a
+licença comunitária da Stability AI).
+

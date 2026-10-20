@@ -1,0 +1,1482 @@
+{
+ "name": "Candlekeep: o Portão",
+ "width": 4800,
+ "height": 3600,
+ "padding": 0,
+ "backgroundColor": "#1b1b1b",
+ "background": {
+  "src": "mapas/candlekeep_portao/candlekeep_portao.webp"
+ },
+ "grid": {
+  "type": 1,
+  "size": 100,
+  "distance": 5,
+  "units": "ft"
+ },
+ "tokenVision": true,
+ "environment": {
+  "darknessLevel": 0.1,
+  "globalLight": {
+   "enabled": true
+  }
+ },
+ "lights": [],
+ "sounds": [
+  {
+   "walls": true,
+   "easing": true,
+   "x": 2400,
+   "y": 3300,
+   "radius": 55,
+   "path": "assets/audio/amb_mar.ogg",
+   "volume": 0.5
+  },
+  {
+   "x": 2400,
+   "y": 1800,
+   "radius": 160,
+   "path": "mapas/candlekeep/musica/portao.ogg",
+   "volume": 0.3,
+   "walls": false,
+   "easing": true,
+   "flags": {
+    "interactive-assets": {
+     "musica": true
+    }
+   }
+  }
+ ],
+ "flags": {
+  "interactive-assets": {
+   "map": {
+    "cols": 48,
+    "rows": 36,
+    "fixed": [
+     "10,0",
+     "10,1",
+     "10,2",
+     "10,3",
+     "10,4",
+     "10,5",
+     "10,6",
+     "10,7",
+     "7,8",
+     "8,8",
+     "9,8",
+     "10,8",
+     "11,8",
+     "12,8",
+     "13,8",
+     "7,9",
+     "8,9",
+     "9,9",
+     "10,9",
+     "11,9",
+     "12,9",
+     "13,9",
+     "7,10",
+     "8,10",
+     "9,10",
+     "10,10",
+     "11,10",
+     "12,10",
+     "13,10",
+     "7,11",
+     "8,11",
+     "9,11",
+     "10,11",
+     "11,11",
+     "12,11",
+     "13,11",
+     "7,12",
+     "8,12",
+     "9,12",
+     "10,12",
+     "11,12",
+     "12,12",
+     "13,12",
+     "7,13",
+     "8,13",
+     "9,13",
+     "10,13",
+     "11,13",
+     "12,13",
+     "13,13",
+     "7,18",
+     "8,18",
+     "9,18",
+     "10,18",
+     "11,18",
+     "12,18",
+     "13,18",
+     "7,19",
+     "8,19",
+     "9,19",
+     "10,19",
+     "11,19",
+     "12,19",
+     "13,19",
+     "7,20",
+     "8,20",
+     "9,20",
+     "10,20",
+     "11,20",
+     "12,20",
+     "13,20",
+     "7,21",
+     "8,21",
+     "9,21",
+     "10,21",
+     "11,21",
+     "12,21",
+     "13,21",
+     "7,22",
+     "8,22",
+     "9,22",
+     "10,22",
+     "11,22",
+     "12,22",
+     "13,22",
+     "7,23",
+     "8,23",
+     "9,23",
+     "10,23",
+     "11,23",
+     "12,23",
+     "13,23",
+     "10,24",
+     "10,25",
+     "10,26",
+     "10,27",
+     "10,28",
+     "10,29"
+    ],
+    "structures": [
+     {
+      "asset": "muralha",
+      "x": 11,
+      "y": 0,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 11,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 16,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 17,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 18,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 19,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 20,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 21,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 22,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 23,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 24,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 25,
+      "y": 1,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 11,
+      "y": 2,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 2,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 25,
+      "y": 2,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 11,
+      "y": 3,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 3,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 25,
+      "y": 3,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 11,
+      "y": 4,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 4,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 25,
+      "y": 4,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 11,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 25,
+      "y": 5,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 11,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 25,
+      "y": 6,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 11,
+      "y": 7,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 7,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 25,
+      "y": 7,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 25,
+      "y": 8,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 25,
+      "y": 9,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 10,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 16,
+      "y": 10,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 17,
+      "y": 10,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 18,
+      "y": 10,
+      "kind": "wall"
+     },
+     {
+      "asset": "porta",
+      "x": 19,
+      "y": 10,
+      "kind": "door",
+      "dir": "h",
+      "rotation": 0
+     },
+     {
+      "asset": "parede",
+      "x": 20,
+      "y": 10,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 21,
+      "y": 10,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 22,
+      "y": 10,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 23,
+      "y": 10,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 24,
+      "y": 10,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 25,
+      "y": 10,
+      "kind": "wall"
+     },
+     {
+      "asset": "portao",
+      "x": 11,
+      "y": 14,
+      "kind": "door",
+      "dir": "v",
+      "rotation": 90
+     },
+     {
+      "asset": "portao",
+      "x": 11,
+      "y": 15,
+      "kind": "door",
+      "dir": "v",
+      "rotation": 90
+     },
+     {
+      "asset": "portao",
+      "x": 11,
+      "y": 16,
+      "kind": "door",
+      "dir": "v",
+      "rotation": 90
+     },
+     {
+      "asset": "portao",
+      "x": 11,
+      "y": 17,
+      "kind": "door",
+      "dir": "v",
+      "rotation": 90
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 21,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 16,
+      "y": 21,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 17,
+      "y": 21,
+      "kind": "wall"
+     },
+     {
+      "asset": "porta",
+      "x": 18,
+      "y": 21,
+      "kind": "door",
+      "dir": "h",
+      "rotation": 0
+     },
+     {
+      "asset": "parede",
+      "x": 19,
+      "y": 21,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 20,
+      "y": 21,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 21,
+      "y": 21,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 22,
+      "y": 21,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 22,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 22,
+      "y": 22,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 23,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 22,
+      "y": 23,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 11,
+      "y": 24,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 24,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 22,
+      "y": 24,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 11,
+      "y": 25,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 25,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 22,
+      "y": 25,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 11,
+      "y": 26,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 26,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 22,
+      "y": 26,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 11,
+      "y": 27,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 27,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 22,
+      "y": 27,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 11,
+      "y": 28,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 15,
+      "y": 28,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 16,
+      "y": 28,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 17,
+      "y": 28,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 18,
+      "y": 28,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 19,
+      "y": 28,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 20,
+      "y": 28,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 21,
+      "y": 28,
+      "kind": "wall"
+     },
+     {
+      "asset": "parede",
+      "x": 22,
+      "y": 28,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 11,
+      "y": 29,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 0,
+      "y": 30,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 1,
+      "y": 30,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 2,
+      "y": 30,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 3,
+      "y": 30,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 4,
+      "y": 30,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 5,
+      "y": 30,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 6,
+      "y": 30,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 7,
+      "y": 30,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 8,
+      "y": 30,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 9,
+      "y": 30,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 10,
+      "y": 30,
+      "kind": "wall"
+     },
+     {
+      "asset": "muralha",
+      "x": 11,
+      "y": 30,
+      "kind": "wall"
+     },
+     {
+      "asset": "agua",
+      "x": 19,
+      "y": 30,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 25,
+      "y": 30,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 27,
+      "y": 30,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 28,
+      "y": 30,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 33,
+      "y": 30,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 35,
+      "y": 30,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 43,
+      "y": 30,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 44,
+      "y": 30,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 45,
+      "y": 30,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 13,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 16,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 17,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 18,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 19,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 20,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 21,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 22,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 23,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 24,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 25,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 26,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 27,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 28,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 29,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 31,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 32,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 33,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 34,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 35,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 36,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 37,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 38,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 39,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 40,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 42,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 43,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 44,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 45,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 46,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 47,
+      "y": 31,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 12,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 13,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 14,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 15,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 16,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 17,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 18,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 19,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 20,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 21,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 22,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 23,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 24,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 25,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 26,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 27,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 28,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 29,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 30,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 31,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 32,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 33,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 34,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 35,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 36,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 37,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 38,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 39,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 40,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 41,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 42,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 43,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 44,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 45,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 46,
+      "y": 32,
+      "kind": "water"
+     },
+     {
+      "asset": "agua",
+      "x": 47,
+      "y": 32,
+      "kind": "water"
+     }
+    ],
+    "objects": [
+     {
+      "asset": "estante",
+      "x": 1800,
+      "y": 250
+     },
+     {
+      "asset": "estante",
+      "x": 2200,
+      "y": 250
+     },
+     {
+      "asset": "mesa",
+      "x": 1850,
+      "y": 550
+     },
+     {
+      "asset": "mesa",
+      "x": 2150,
+      "y": 550
+     },
+     {
+      "asset": "pilha_livros",
+      "x": 1850,
+      "y": 450
+     },
+     {
+      "asset": "pilha_livros",
+      "x": 2250,
+      "y": 550
+     },
+     {
+      "asset": "pilha_livros",
+      "x": 1650,
+      "y": 850
+     },
+     {
+      "asset": "atril",
+      "x": 2050,
+      "y": 350
+     },
+     {
+      "asset": "escrivaninha",
+      "x": 2300,
+      "y": 850
+     },
+     {
+      "asset": "vela",
+      "x": 2150,
+      "y": 650
+     },
+     {
+      "asset": "lampada",
+      "x": 1650,
+      "y": 350
+     },
+     {
+      "asset": "lampada",
+      "x": 2450,
+      "y": 350
+     },
+     {
+      "asset": "banco",
+      "x": 1700,
+      "y": 750
+     },
+     {
+      "asset": "cama",
+      "x": 1650,
+      "y": 2300
+     },
+     {
+      "asset": "cama",
+      "x": 2050,
+      "y": 2300
+     },
+     {
+      "asset": "mesa",
+      "x": 1850,
+      "y": 2550
+     },
+     {
+      "asset": "barril",
+      "x": 2150,
+      "y": 2750
+     },
+     {
+      "asset": "caixa",
+      "x": 1650,
+      "y": 2750
+     },
+     {
+      "asset": "lampada",
+      "x": 2150,
+      "y": 2450
+     },
+     {
+      "asset": "lampada",
+      "x": 1550,
+      "y": 1350
+     },
+     {
+      "asset": "lampada",
+      "x": 1550,
+      "y": 1850
+     },
+     {
+      "asset": "lampada",
+      "x": 850,
+      "y": 1450
+     },
+     {
+      "asset": "lampada",
+      "x": 850,
+      "y": 1750
+     },
+     {
+      "asset": "carroca",
+      "x": 2800,
+      "y": 1350
+     },
+     {
+      "asset": "barril",
+      "x": 2650,
+      "y": 1350
+     },
+     {
+      "asset": "caixa",
+      "x": 2950,
+      "y": 1250
+     },
+     {
+      "asset": "carroca",
+      "x": 3700,
+      "y": 1850
+     },
+     {
+      "asset": "caixa",
+      "x": 3850,
+      "y": 1850
+     },
+     {
+      "asset": "barril",
+      "x": 3550,
+      "y": 1850
+     }
+    ],
+    "saidas": [
+     {
+      "id": "patio",
+      "nome": "Pátio do Ar",
+      "x": 0,
+      "y": 14,
+      "w": 1,
+      "h": 4,
+      "pouso": {
+       "x": 2,
+       "y": 14,
+       "w": 2,
+       "h": 4
+      },
+      "para": "candlekeep_patio",
+      "chegada": "portao"
+     },
+     {
+      "id": "estrada",
+      "nome": "Caminho do Leão",
+      "x": 47,
+      "y": 15,
+      "w": 1,
+      "h": 2,
+      "pouso": {
+       "x": 45,
+       "y": 15,
+       "w": 1,
+       "h": 2
+      },
+      "para": "lobisomens",
+      "chegada": "candlekeep"
+     }
+    ],
+    "npcs": [
+     {
+      "npc": "kalan_strongbranch",
+      "x": 2050,
+      "y": 650
+     },
+     {
+      "npc": "guarda_portao",
+      "x": 1450,
+      "y": 1350
+     },
+     {
+      "npc": "guarda_portao",
+      "x": 1450,
+      "y": 1850
+     },
+     {
+      "npc": "guarda_portao",
+      "x": 1750,
+      "y": 650
+     },
+     {
+      "npc": "guarda_portao",
+      "x": 2350,
+      "y": 650
+     },
+     {
+      "npc": "guarda_portao",
+      "x": 850,
+      "y": 1550
+     }
+    ],
+    "multidao": [
+     {
+      "area": [
+       22,
+       13,
+       22,
+       6
+      ],
+      "n": 12,
+      "oficios": [
+       "buscador",
+       "peregrino",
+       "mercador",
+       "caravaneiro"
+      ]
+     },
+     {
+      "area": [
+       1,
+       2,
+       8,
+       26
+      ],
+      "n": 3,
+      "oficios": [
+       "servo",
+       "buscador"
+      ]
+     }
+    ],
+    "notas": [
+     {
+      "x": 20,
+      "y": 7,
+      "titulo": "Sala do tributo",
+      "texto": "<p>Kalan Strongbranch (Guardião do Portão, arquimago) e os sacerdotes de Deneir examinam a obra que cada buscador oferece: precisa ser um texto que a biblioteca ainda não tenha (diário, balada, receita servem). Aceito, o buscador entra no Pátio do Ar. A guarda troca nos sinos do amanhecer, do meio-dia e do pôr do sol.</p>"
+     },
+     {
+      "x": 12,
+      "y": 16,
+      "titulo": "Portão de Candlekeep",
+      "texto": "<p>Portão duplo de metal negro estranho, três vezes a altura de um homem, com o brasão do castelo em chamas. Muralhas de 50 pés. Ninguém entra por teleporte ou magia, só por aqui.</p>"
+     },
+     {
+      "x": 30,
+      "y": 16,
+      "titulo": "A fila",
+      "texto": "<p>Buscadores, peregrinos e caravanas esperando a vez. Muitos estão aqui há dias, reescrevendo o livro que vão oferecer.</p>"
+     }
+    ]
+   },
+   "protecoes": {
+    "ativas": true,
+    "alarme": 1,
+    "dano": 0,
+    "tocado": false,
+    "resposta": [
+     {
+      "npc": "avowed_arquimago",
+      "n": 1
+     },
+     {
+      "npc": "avowed_mago",
+      "n": 4
+     }
+    ]
+   }
+  }
+ }
+}

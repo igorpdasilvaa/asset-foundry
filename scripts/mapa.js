@@ -11,10 +11,13 @@
  *
  * As paredes do Foundry são recalculadas a partir do que está de pé: um bloco de parede quebrado
  * (estado com "broken") vira chão, e as paredes do Foundry se fecham em volta do buraco.
- * Estados de porta com "door": "open" | "closed" seguem a porta do Foundry (e vice-versa).
+ * Estados de porta com "door": "open" | "closed" | "locked" seguem a porta do Foundry (e vice-versa); o portão e a
+ * Porta Esmeralda começam trancados. "doorSound" no assets.json escolhe o som da porta (padrão: madeira).
  * Estados com "sfx" tocam um som ao entrar neles.
  */
 import { groundFn } from "./relevo.js";
+import * as cidade from "./cidade.js";
+import * as npc from "./npc.js";
 
 const MODULE_ID = "interactive-assets";
 /** Quanto a parede do Foundry fica recuada para dentro do bloco (fração do quadrado).
@@ -139,7 +142,7 @@ async function doRebuild(scene) {
   const remove = existing.filter(w => !wantKeys.has(keyOf(w))).map(w => w.id);
   const create = want.filter(w => !have.has(wallKey(w))).map(w => ({
     c: w.c,
-    ...(w.door ? { door: CONST.WALL_DOOR_TYPES.DOOR, ds: doorState.get(w.door) ?? doorStateFromToken(scene, w.door), doorSound: "woodBasic" } : {}),
+    ...(w.door ? { door: CONST.WALL_DOOR_TYPES.DOOR, ds: doorState.get(w.door) ?? doorStateFromToken(scene, w.door), doorSound: doorSoundFor(scene, w.door) } : {}),
     ...(w.moveOnly ? { sight: 0, light: 0, sound: 0 } : {}),
     flags: { [MODULE_ID]: { generated: true, ...(w.door ? { door: w.door } : {}), ...(w.moveOnly ? { moveOnly: true } : {}) } }
   }));
@@ -154,9 +157,15 @@ function cellToken(scene, cellKey, kind) {
   });
 }
 
+const DS = () => ({ open: CONST.WALL_DOOR_STATES.OPEN, closed: CONST.WALL_DOOR_STATES.CLOSED, locked: CONST.WALL_DOOR_STATES.LOCKED });
+
 function doorStateFromToken(scene, cellKey) {
-  const t = cellToken(scene, cellKey, "door");
-  return stateOf(t)?.door === "open" ? CONST.WALL_DOOR_STATES.OPEN : CONST.WALL_DOOR_STATES.CLOSED;
+  return DS()[stateOf(cellToken(scene, cellKey, "door"))?.door] ?? CONST.WALL_DOOR_STATES.CLOSED;
+}
+
+function doorSoundFor(scene, cellKey) {
+  const asset = getData(cellToken(scene, cellKey, "door"))?.asset;
+  return game.modules.get(MODULE_ID).api?.assets?.[asset]?.doorSound ?? "woodBasic";
 }
 
 /** Caminho completo de um som do assets.json, usando a mesma pasta das imagens do asset. */
@@ -170,6 +179,8 @@ function assetPath(token, rel) {
 
 /* ---------- Ganchos ---------- */
 
+const sfxRecentes = new Map();
+
 /** Guarda o estado anterior para saber, depois, se ele mudou de verdade. */
 Hooks.on("preUpdateToken", (token, changes, options) => {
   if (foundry.utils.hasProperty(changes, `flags.${MODULE_ID}.data.index`)) options[`${MODULE_ID}Prev`] = getData(token)?.index ?? 0;
@@ -180,17 +191,23 @@ Hooks.on("updateToken", async (token, changes, options) => {
   if (options?.[`${MODULE_ID}Prev`] === (getData(token)?.index ?? 0)) return; // estado não mudou
   const state = stateOf(token);
   if (state?.sfx) {
-    const AH = foundry.audio?.AudioHelper ?? AudioHelper;
-    AH.play({ src: assetPath(token, state.sfx), volume: 0.8, autoplay: true, loop: false }, true);
+    // O mesmo som uma vez só por meio segundo (o lago congelando troca dezenas de quadrados juntos).
+    const src = assetPath(token, state.sfx);
+    if (Date.now() - (sfxRecentes.get(src) ?? 0) > 500) {
+      sfxRecentes.set(src, Date.now());
+      const AH = foundry.audio?.AudioHelper ?? AudioHelper;
+      AH.play({ src, volume: 0.8, autoplay: true, loop: false }, true);
+    }
   }
   const cell = token.getFlag(MODULE_ID, "cell");
   if (!cell) return;
   await rebuildWalls(token.parent);
-  // Porta trocada pelo HUD (aberta/fechada) → abre/fecha a porta do Foundry.
+  // Porta trocada pelo HUD (aberta/fechada/trancada) → abre/fecha/tranca a porta do Foundry.
+  // Uma porta de madeira que o GM trancou no Foundry continua trancada quando a imagem volta para "fechada".
   if (cell.kind === "door" && state?.door) {
     const wall = token.parent.walls.find(w => w.getFlag(MODULE_ID, "door") === key(cell.x, cell.y));
-    const ds = state.door === "open" ? CONST.WALL_DOOR_STATES.OPEN : CONST.WALL_DOOR_STATES.CLOSED;
-    if (wall && wall.ds !== ds && wall.ds !== CONST.WALL_DOOR_STATES.LOCKED) await wall.update({ ds });
+    const ds = DS()[state.door];
+    if (wall && wall.ds !== ds && !(state.door === "closed" && wall.ds === CONST.WALL_DOOR_STATES.LOCKED)) await wall.update({ ds });
   }
 });
 
@@ -212,9 +229,13 @@ Hooks.on("updateWall", async (wall, changes) => {
   const token = cellToken(wall.parent, cellKey, "door");
   const data = getData(token);
   if (!data || stateOf(token)?.door == null) return; // quebrada ou pegando fogo: a imagem não muda
-  const want = changes.ds === CONST.WALL_DOOR_STATES.OPEN ? "open" : "closed";
+  const want = Object.entries(DS()).find(([, v]) => v === changes.ds)?.[0] ?? "closed";
   if (stateOf(token).door === want) return;
-  const i = data.states.findIndex(s => s.door === want);
+  // Sem estado "trancada", a porta trancada no Foundry fica com a imagem de fechada (e vice-versa).
+  const alt = { locked: "closed", closed: "locked" }[want];
+  let i = data.states.findIndex(s => s.door === want);
+  if (i === -1) i = data.states.findIndex(s => s.door === alt);
+  if (i === -1 || data.states[i].door === stateOf(token).door) return;
   if (i !== -1) await game.modules.get(MODULE_ID).api.setState(token, i, { syncHP: false });
 });
 
@@ -223,16 +244,22 @@ Hooks.on("updateWall", async (wall, changes) => {
 /**
  * Cria a cena de um mapa (cena.json gerado por tools/gen_mapa.py) com as estruturas e objetos.
  * root: endereço base dos arquivos do mapa (fundo e sons).
+ * opts (usado pela cidade, scripts/cidade.js): folder, sort, view (abre a cena no fim), cidade, mapId,
+ * diario (das notas) e ligar (liga já as saídas que ficam no próprio mapa, como escadas).
  */
-export async function buildMap(data, root) {
+export async function buildMap(data, root, { folder = null, sort, view = true, cidade: cidadeId, mapId, diario, ligar = true } = {}) {
   const api = game.modules.get(MODULE_ID).api;
   const map = data.flags?.[MODULE_ID]?.map;
+  mapId ??= data.background.src.split("/")[1];
   const sceneData = foundry.utils.deepClone(data);
   sceneData.background.src = `${root}/${data.background.src}`;
   for (const s of sceneData.sounds ?? []) s.path = `${root}/${s.path}`;
-  delete sceneData.flags[MODULE_ID].map.structures;
-  delete sceneData.flags[MODULE_ID].map.objects;
+  for (const k of ["structures", "objects", "npcs", "multidao", "notas"]) delete sceneData.flags[MODULE_ID].map[k];
   delete sceneData.regions; // criadas depois, com o comportamento de terreno difícil que o sistema tiver
+  Object.assign(sceneData.flags[MODULE_ID], { mapId, ...(cidadeId ? { cidade: cidadeId } : {}) });
+  // Jogadores precisam poder ver a cena para onde a saída leva o token.
+  Object.assign(sceneData, { folder, ...(sort != null ? { sort } : {}), ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.OBSERVER } });
+  if (cidadeId) Object.assign(sceneData, { navigation: true, navName: sceneData.navName ?? sceneData.name });
   const scene = await Scene.create(sceneData);
   const g = scene.grid.size;
 
@@ -274,8 +301,14 @@ export async function buildMap(data, root) {
   if (tokens.length) await scene.createEmbeddedDocuments("Token", tokens);
   await createRegions(scene, data.regions ?? []);
   await rebuildWalls(scene);
+  await cidade.criaSaidas(scene, map.saidas);
+  // NPCs depois das estruturas e saídas: a multidão só ocupa quadrados livres.
+  const gente = [...await npc.tokensNomeados(scene, map.npcs, ground), ...await npc.tokensMultidao(scene, map.multidao, ground)];
+  if (gente.length) await scene.createEmbeddedDocuments("Token", gente);
+  await cidade.criaNotas(scene, map.notas, diario);
+  if (ligar) await cidade.ligaSaidas(new Map([[mapId, scene]]));
   if (missing.size) ui.notifications.warn(`Assets não encontrados: ${[...missing].join(", ")}. Recarregue a página (F5) e rode de novo.`);
-  await scene.view();
+  if (view) await scene.view();
   return scene;
 }
 

@@ -1,0 +1,164 @@
+{
+  "muralha": {
+    "name": "Muralha de Candlekeep",
+    "tipo": "imovel",
+    "interacao": "mestre",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {
+      "ac": 19,
+      "hp": 120,
+      "immunities": [
+        "poison",
+        "psychic",
+        "necrotic",
+        "radiant"
+      ],
+      "resistances": [
+        "bludgeoning",
+        "piercing",
+        "slashing"
+      ]
+    },
+    "states": [
+      {
+        "id": "inteira",
+        "name": "Inteira",
+        "src": "muralha/muralha_inteira.png"
+      },
+      {
+        "id": "rachada",
+        "name": "Rachada",
+        "src": "muralha/muralha_rachada.png"
+      },
+      {
+        "id": "destruida",
+        "name": "Destruída",
+        "src": "muralha/muralha_destruida.png",
+        "broken": true
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "bludgeoning",
+          "thunder",
+          "force"
+        ],
+        "from": [
+          "inteira"
+        ],
+        "to": "rachada",
+        "say": "racha."
+      }
+    ],
+    "onZero": [
+      {
+        "to": "destruida",
+        "say": "desmorona e abre uma brecha na muralha!"
+      }
+    ]
+  },
+  "portao": {
+    "name": "Portão de Candlekeep",
+    "tipo": "imovel",
+    "interacao": "mestre",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "doorSound": "metal",
+    "actor": {
+      "ac": 20,
+      "hp": 250,
+      "immunities": [
+        "fire",
+        "lightning",
+        "poison",
+        "psychic",
+        "necrotic"
+      ],
+      "resistances": [
+        "bludgeoning",
+        "piercing",
+        "slashing"
+      ]
+    },
+    "states": [
+      {
+        "id": "fechado",
+        "name": "Fechado",
+        "src": "portao/portao_fechado.png",
+        "door": "locked"
+      },
+      {
+        "id": "aberto",
+        "name": "Aberto",
+        "src": "portao/portao_aberto.png",
+        "door": "open"
+      },
+      {
+        "id": "arrombado",
+        "name": "Arrombado",
+        "src": "portao/portao_arrombado.png",
+        "broken": true
+      }
+    ],
+    "onZero": [
+      {
+        "to": "arrombado",
+        "say": "se retorce e cai!"
+      }
+    ]
+  },
+  "porta_esmeralda": {
+    "name": "Porta Esmeralda",
+    "tipo": "imovel",
+    "interacao": "mestre",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "doorSound": "magicDoor",
+    "invulneravel": "não sofre nem um arranhão: a Porta Esmeralda é protegida contra qualquer dano.",
+    "actor": {},
+    "states": [
+      {
+        "id": "trancada",
+        "name": "Trancada",
+        "src": "porta_esmeralda/porta_esmeralda_trancada.png",
+        "door": "locked",
+        "light": {
+          "bright": 0,
+          "dim": 15,
+          "color": "#3fd38a",
+          "alpha": 0.35,
+          "animation": {
+            "type": "pulse",
+            "speed": 2,
+            "intensity": 3
+          }
+        }
+      },
+      {
+        "id": "aberta",
+        "name": "Aberta",
+        "src": "porta_esmeralda/porta_esmeralda_aberta.png",
+        "door": "open",
+        "light": {
+          "bright": 0,
+          "dim": 15,
+          "color": "#3fd38a",
+          "alpha": 0.35,
+          "animation": {
+            "type": "pulse",
+            "speed": 2,
+            "intensity": 3
+          }
+        }
+      }
+    ]
+  }
+}

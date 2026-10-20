@@ -1,0 +1,1322 @@
+{
+  "nomeados": {
+    "kalan_strongbranch": {
+      "nome": "Kalan Strongbranch",
+      "titulo": "Guardião do Portão",
+      "especie": "humano",
+      "cidade": "Candlekeep",
+      "base": [
+        "Archmage",
+        "Arquimago"
+      ],
+      "bio": "Arquimago responsável pela segurança dos portões. Comanda os cinco sacerdotes Avowed que examinam o livro que cada buscador oferece para entrar. Fica na guarita do portão.",
+      "img": "npcs/candlekeep/kalan_strongbranch.webp"
+    },
+    "guarda_portao": {
+      "nome": "Guarda do Portão",
+      "titulo": "Sacerdote Avowed de Deneir",
+      "especie": "humano",
+      "cidade": "Candlekeep",
+      "unico": false,
+      "base": [
+        "Priest",
+        "Sacerdote"
+      ],
+      "bio": "Um dos cinco sacerdotes que guardam o portão. A guarda troca nos sinos do amanhecer, do meio-dia e do pôr do sol.",
+      "img": "npcs/candlekeep/guarda_portao.webp"
+    },
+    "guardiao_porta_esmeralda": {
+      "nome": "Guardião da Porta Esmeralda",
+      "titulo": "Guardião da Porta Esmeralda",
+      "especie": "humano",
+      "cidade": "Candlekeep",
+      "base": [
+        "Mage",
+        "Mago"
+      ],
+      "bio": "Sempre de plantão na Porta Esmeralda. Abre a carta de admissão (selo intacto, assinada pelo Guardião dos Tomos, pelo Primeiro Leitor ou por um Grande Leitor) e só então deixa passar. Carta falsa: banimento do Pátio Interno para sempre.",
+      "img": "npcs/candlekeep/guardiao_porta_esmeralda.webp"
+    },
+    "benedora_stoneforge": {
+      "nome": "Benedora Stoneforge",
+      "titulo": "Cantor do Cântico Sem Fim",
+      "especie": "anao",
+      "cidade": "Candlekeep",
+      "base": [
+        "Priest",
+        "Sacerdote"
+      ],
+      "bio": "Anã do escudo, sacerdotisa de Milil. Conduz a procissão que recita as profecias de Alaundo dia e noite pelo Pátio do Ar.",
+      "img": "npcs/candlekeep/benedora_stoneforge.webp"
+    },
+    "fembris_larlancer": {
+      "nome": "Fembris Larlancer",
+      "titulo": "Adjunto Avowed",
+      "especie": "humano",
+      "cidade": "Candlekeep",
+      "base": [
+        "Commoner",
+        "Plebeu"
+      ],
+      "disposicao": "amigavel",
+      "bio": "18 anos, ansioso por impressionar. Guia buscadores e busca livros na Grande Biblioteca.",
+      "img": "npcs/candlekeep/fembris_larlancer.webp"
+    },
+    "sprig_summerfoot": {
+      "nome": "Sprig Summerfoot",
+      "titulo": "Adjunta Avowed",
+      "especie": "halfling",
+      "cidade": "Candlekeep",
+      "base": [
+        "Commoner",
+        "Plebeu"
+      ],
+      "disposicao": "amigavel",
+      "bio": "23 anos, dedos sujos de tinta, sempre com biscoitos no bolso. Lembra de qualquer receita que já leu.",
+      "img": "npcs/candlekeep/sprig_summerfoot.webp"
+    },
+    "parmak": {
+      "nome": "Parmak",
+      "titulo": "Adjunto Avowed (escriba)",
+      "especie": "humano",
+      "cidade": "Candlekeep",
+      "base": [
+        "Commoner",
+        "Plebeu"
+      ],
+      "disposicao": "amigavel",
+      "bio": "25 anos, sempre lendo enquanto anda, e por isso esbarra em tudo.",
+      "img": "npcs/candlekeep/parmak.webp"
+    },
+    "garlyth_graystock": {
+      "nome": "Garlyth Graystock",
+      "titulo": "Adjunto Avowed",
+      "especie": "anao",
+      "cidade": "Candlekeep",
+      "base": [
+        "Commoner",
+        "Plebeu"
+      ],
+      "disposicao": "amigavel",
+      "bio": "39 anos. Interrompe todo mundo, mas adivinha o que o buscador precisa antes de ele pedir.",
+      "img": "npcs/candlekeep/garlyth_graystock.webp"
+    },
+    "nax_olossis": {
+      "nome": "Nax Olossis",
+      "titulo": "Adjunto Avowed",
+      "especie": "draconato",
+      "cidade": "Candlekeep",
+      "base": [
+        "Commoner",
+        "Plebeu"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Draconato de latão, 22 anos. Fala sem parar.",
+      "img": "npcs/candlekeep/nax_olossis.webp"
+    },
+    "orrin_glass": {
+      "nome": "Orrin Glass",
+      "titulo": "Adjunto Avowed (escriba)",
+      "especie": "humano",
+      "cidade": "Candlekeep",
+      "base": [
+        "Commoner",
+        "Plebeu"
+      ],
+      "disposicao": "amigavel",
+      "bio": "67 anos, surdo de um ouvido, esquecido e fácil de irritar.",
+      "img": "npcs/candlekeep/orrin_glass.webp"
+    },
+    "vooshadi_moonriver": {
+      "nome": "Vooshadi Moonriver",
+      "titulo": "Adjunta Avowed",
+      "especie": "elfo",
+      "cidade": "Candlekeep",
+      "base": [
+        "Acolyte",
+        "Acólito"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Elfa da lua, 87 anos. Estoica e direta.",
+      "img": "npcs/candlekeep/vooshadi_moonriver.webp"
+    },
+    "irony": {
+      "nome": "Irony",
+      "titulo": "Adjunta Avowed (escriba)",
+      "especie": "tiefling",
+      "cidade": "Candlekeep",
+      "base": [
+        "Commoner",
+        "Plebeu"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Tiefling de 15 anos que segue todas as regras e quer ser Guardiã dos Tomos um dia.",
+      "img": "npcs/candlekeep/irony.webp"
+    },
+    "taberneiro_hearth": {
+      "nome": "Brannoc Amberlee",
+      "titulo": "Taberneiro do Hearth",
+      "especie": "humano",
+      "cidade": "Candlekeep",
+      "base": [
+        "Commoner",
+        "Plebeu"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Cuida do balcão de 20 lugares e aluga as salas de reunião extradimensionais (chave a 5 po). Nunca deixa a lareira apagar. (Nome nosso: a lore não nomeia o taberneiro.)",
+      "img": "npcs/candlekeep/taberneiro_hearth.webp"
+    },
+    "little_one": {
+      "nome": "Little One",
+      "titulo": "Ogro erudito",
+      "especie": "ogro",
+      "cidade": "Candlekeep",
+      "base": [
+        "Ogre",
+        "Ogro"
+      ],
+      "disposicao": "amigavel",
+      "ajustes": {
+        "system.abilities.int.value": 19
+      },
+      "bio": "Ogro que virou gênio graças a uma tiara do intelecto. Arrependido do passado, reservado e querido pelos monges. Quase sempre lendo perto da lareira do Hearth.",
+      "img": "npcs/candlekeep/little_one.webp"
+    },
+    "anfitria_repouso": {
+      "nome": "Delphina Rowe",
+      "titulo": "Anfitriã da Casa do Repouso",
+      "especie": "meio_elfo",
+      "cidade": "Candlekeep",
+      "base": [
+        "Commoner",
+        "Plebeu"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Distribui os quartos e manda os barulhentos para o Hearth: a Casa do Repouso é lugar de silêncio. (Nome nosso.)",
+      "img": "npcs/candlekeep/anfitria_repouso.webp"
+    },
+    "kei_tigersteel": {
+      "nome": "Kei Tigersteel",
+      "titulo": "Lorekeeper do Templo de Oghma",
+      "especie": "humano",
+      "cidade": "Candlekeep",
+      "base": [
+        "Priest",
+        "Sacerdote"
+      ],
+      "bio": "Sacerdote shou que cuida do Templo de Oghma. Não é Avowed, mas pode entrar na biblioteca sem escolta.",
+      "img": "npcs/candlekeep/kei_tigersteel.webp"
+    },
+    "gargula_oghma": {
+      "nome": "Gárgula do Templo",
+      "titulo": "Golem de pedra",
+      "especie": "constructo",
+      "cidade": "Candlekeep",
+      "unico": false,
+      "base": [
+        "Stone Golem",
+        "Golem de Pedra"
+      ],
+      "bio": "Parece uma estátua no beiral do Templo de Oghma. Quando precisa, desce planando, como se estivesse sob queda suave.",
+      "img": "npcs/candlekeep/gargula_oghma.webp"
+    },
+    "feldmar_bisset": {
+      "nome": "Feldmar Bisset III",
+      "titulo": "Dono da Erudite Outfitters & Clothiers",
+      "especie": "humano",
+      "cidade": "Candlekeep",
+      "base": [
+        "Acolyte",
+        "Acólito"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Alfaiate e acólito de Gond, cria bichos-da-seda no átrio da loja. Dá aula obrigatória de costura aos adjuntos.",
+      "img": "npcs/candlekeep/feldmar_bisset.webp"
+    },
+    "kheril_hammerbind": {
+      "nome": "Khe'ril Hammerbind",
+      "titulo": "Ferreiro e chefe dos estábulos",
+      "especie": "anao",
+      "cidade": "Candlekeep",
+      "base": [
+        "Veteran",
+        "Veterano"
+      ],
+      "bio": "Anão dourado veterano. Cuida da forja, dos aprendizes e das baias, inclusive as reforçadas para hipogrifos, grifos e serpes.",
+      "img": "npcs/candlekeep/kheril_hammerbind.webp"
+    },
+    "leitor_mestre_encadernador": {
+      "nome": "Ysolde Marrowquill",
+      "titulo": "Leitora Mestre da Casa do Encadernador",
+      "especie": "humano",
+      "cidade": "Candlekeep",
+      "base": [
+        "Mage",
+        "Mago"
+      ],
+      "bio": "Supervisiona os escribas e recebe as encomendas de cópia (pagas adiantado, prontas em semanas ou meses). (Nome nosso.)",
+      "img": "npcs/candlekeep/leitor_mestre_encadernador.webp"
+    },
+    "lorris_niss": {
+      "nome": "Lorris Niss",
+      "titulo": "Acólito Avowed",
+      "especie": "meio_elfo",
+      "cidade": "Candlekeep",
+      "base": [
+        "Acolyte",
+        "Acólito"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Acólito preocupado com o colega Falthrax Loderr, que sumiu (gancho de The Price of Beauty).",
+      "img": "npcs/candlekeep/lorris_niss.webp"
+    },
+    "matreous": {
+      "nome": "Matreous",
+      "titulo": "Sábio especialista em maldições",
+      "especie": "humano",
+      "cidade": "Candlekeep",
+      "base": [
+        "Mage",
+        "Mago"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Sumiu da sala de leitura nos Pilares da Pedagogia (gancho de The Joy of Extradimensional Spaces).",
+      "img": "npcs/candlekeep/matreous.webp"
+    },
+    "avowed_arquimago": {
+      "nome": "Arquimago Avowed",
+      "titulo": "Resposta ao alarme",
+      "especie": "humano",
+      "cidade": "Candlekeep",
+      "unico": false,
+      "base": [
+        "Archmage",
+        "Arquimago"
+      ],
+      "bio": "Aparece na hora quando alguém briga ou destrói conhecimento em Candlekeep.",
+      "img": "npcs/candlekeep/avowed_arquimago.webp"
+    },
+    "avowed_mago": {
+      "nome": "Mago Avowed",
+      "titulo": "Resposta ao alarme",
+      "especie": "humano",
+      "cidade": "Candlekeep",
+      "unico": false,
+      "base": [
+        "Mage",
+        "Mago"
+      ],
+      "bio": "Chega com o arquimago quando o alarme toca.",
+      "img": "npcs/candlekeep/avowed_mago.webp"
+    },
+    "cavalo": {
+      "nome": "Cavalo",
+      "titulo": "Animal",
+      "especie": "animal",
+      "cidade": "Candlekeep",
+      "unico": false,
+      "base": [
+        "Riding Horse",
+        "Cavalo de Montaria",
+        "Horse",
+        "Cavalo"
+      ],
+      "bio": "Cavalo de montaria de um visitante."
+    },
+    "ponei": {
+      "nome": "Pônei",
+      "titulo": "Animal",
+      "especie": "animal",
+      "cidade": "Candlekeep",
+      "unico": false,
+      "base": [
+        "Pony",
+        "Pônei"
+      ],
+      "bio": "Pônei de carga."
+    },
+    "mula": {
+      "nome": "Mula",
+      "titulo": "Animal",
+      "especie": "animal",
+      "cidade": "Candlekeep",
+      "unico": false,
+      "base": [
+        "Mule",
+        "Mula"
+      ],
+      "bio": "Mula de caravana."
+    },
+    "hipogrifo": {
+      "nome": "Hipogrifo",
+      "titulo": "Animal",
+      "especie": "animal",
+      "cidade": "Candlekeep",
+      "unico": false,
+      "base": [
+        "Hippogriff",
+        "Hipogrifo"
+      ],
+      "bio": "Montaria de um mensageiro, numa baia reforçada."
+    },
+    "grifo": {
+      "nome": "Grifo",
+      "titulo": "Animal",
+      "especie": "animal",
+      "cidade": "Candlekeep",
+      "unico": false,
+      "base": [
+        "Griffon",
+        "Grifo"
+      ],
+      "bio": "Montaria de um cavaleiro de passagem, numa baia reforçada. Se soltar, ataca cavalos."
+    },
+    "serpe": {
+      "nome": "Serpe",
+      "titulo": "Animal",
+      "especie": "animal",
+      "cidade": "Candlekeep",
+      "unico": false,
+      "base": [
+        "Wyvern",
+        "Serpe",
+        "Wyverna"
+      ],
+      "bio": "Serpe domada de um visitante ilustre, acorrentada na baia mais forte. Perigosa se soltar."
+    },
+    "gato": {
+      "nome": "Gato",
+      "titulo": "Animal",
+      "especie": "animal",
+      "cidade": "Candlekeep",
+      "unico": false,
+      "base": [
+        "Cat",
+        "Gato"
+      ],
+      "bio": "Gato que vive pelos telhados e bibliotecas. (Nosso: a lore oficial não tem gatos de Candlekeep.)"
+    }
+  },
+  "oficios": {
+    "buscador": {
+      "nome": "Buscador",
+      "base": [
+        "Noble",
+        "Nobre"
+      ],
+      "descricao": "Estudioso visitante, pagou a entrada com um livro.",
+      "especies": {
+        "humano": 6,
+        "anao": 1,
+        "elfo": 1,
+        "halfling": 1,
+        "gnomo": 1,
+        "meio_elfo": 1,
+        "draconato": 1,
+        "tiefling": 1
+      },
+      "imgs": [
+        {
+          "src": "npcs/plebeus/buscador_elfo_f1.webp",
+          "especie": "elfo",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/buscador_elfo_f2.webp",
+          "especie": "elfo",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/buscador_humano_f1.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/buscador_humano_f2.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/buscador_humano_m3.webp",
+          "especie": "humano",
+          "genero": "m"
+        }
+      ]
+    },
+    "peregrino": {
+      "nome": "Peregrino",
+      "base": [
+        "Acolyte",
+        "Acólito"
+      ],
+      "descricao": "Devoto de Oghma, Deneir, Gond ou Milil.",
+      "especies": {
+        "humano": 5,
+        "anao": 2,
+        "halfling": 1,
+        "gnomo": 1,
+        "meio_elfo": 1
+      },
+      "imgs": [
+        {
+          "src": "npcs/plebeus/peregrino_anao_m1.webp",
+          "especie": "anao",
+          "genero": "m"
+        },
+        {
+          "src": "npcs/plebeus/peregrino_anao_m2.webp",
+          "especie": "anao",
+          "genero": "m"
+        },
+        {
+          "src": "npcs/plebeus/peregrino_humano_f1.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/peregrino_humano_m2.webp",
+          "especie": "humano",
+          "genero": "m"
+        },
+        {
+          "src": "npcs/plebeus/peregrino_humano_m3.webp",
+          "especie": "humano",
+          "genero": "m"
+        }
+      ]
+    },
+    "mercador": {
+      "nome": "Mercador",
+      "base": [
+        "Commoner",
+        "Plebeu"
+      ],
+      "descricao": "Vende papel, tinta, velas ou comida aos Avowed.",
+      "especies": {
+        "humano": 5,
+        "anao": 1,
+        "halfling": 2,
+        "gnomo": 1
+      },
+      "imgs": [
+        {
+          "src": "npcs/plebeus/mercador_halfling_m1.webp",
+          "especie": "halfling",
+          "genero": "m"
+        },
+        {
+          "src": "npcs/plebeus/mercador_halfling_m2.webp",
+          "especie": "halfling",
+          "genero": "m"
+        },
+        {
+          "src": "npcs/plebeus/mercador_humano_f1.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/mercador_humano_f2.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/mercador_humano_m3.webp",
+          "especie": "humano",
+          "genero": "m"
+        },
+        {
+          "src": "npcs/plebeus/mercador_humano_m4.webp",
+          "especie": "humano",
+          "genero": "m"
+        }
+      ]
+    },
+    "caravaneiro": {
+      "nome": "Guarda de caravana",
+      "base": [
+        "Guard",
+        "Guarda"
+      ],
+      "descricao": "Escolta caravanas pelo Caminho do Leão.",
+      "especies": {
+        "humano": 5,
+        "anao": 2,
+        "meio_elfo": 1,
+        "meio_orc": 1,
+        "draconato": 1
+      },
+      "imgs": [
+        {
+          "src": "npcs/plebeus/caravaneiro_meio_orc_m1.webp",
+          "especie": "meio_orc",
+          "genero": "m"
+        },
+        {
+          "src": "npcs/plebeus/caravaneiro_meio_orc_m2.webp",
+          "especie": "meio_orc",
+          "genero": "m"
+        },
+        {
+          "src": "npcs/plebeus/caravaneiro_humano_f1.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/caravaneiro_humano_f2.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/caravaneiro_humano_m3.webp",
+          "especie": "humano",
+          "genero": "m"
+        },
+        {
+          "src": "npcs/plebeus/caravaneiro_meio_elfo_m1.webp",
+          "especie": "meio_elfo",
+          "genero": "m"
+        }
+      ]
+    },
+    "aventureiro": {
+      "nome": "Aventureiro",
+      "base": [
+        "Veteran",
+        "Veterano"
+      ],
+      "descricao": "Veio atrás de um mapa, uma lenda ou uma maldição.",
+      "especies": {
+        "humano": 4,
+        "anao": 1,
+        "elfo": 1,
+        "meio_elfo": 1,
+        "meio_orc": 1,
+        "draconato": 1,
+        "tiefling": 1
+      },
+      "imgs": [
+        {
+          "src": "npcs/plebeus/aventureiro_humano_f1.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/aventureiro_tiefling_f1.webp",
+          "especie": "tiefling",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/aventureiro_humano_f2.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/aventureiro_humano_f3.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/aventureiro_humano_m4.webp",
+          "especie": "humano",
+          "genero": "m"
+        },
+        {
+          "src": "npcs/plebeus/aventureiro_humano_m5.webp",
+          "especie": "humano",
+          "genero": "m"
+        }
+      ]
+    },
+    "bardo": {
+      "nome": "Bardo",
+      "base": [
+        "Bard",
+        "Bardo",
+        "Commoner",
+        "Plebeu"
+      ],
+      "descricao": "Troca baladas por um lugar no Hearth.",
+      "especies": {
+        "humano": 3,
+        "elfo": 1,
+        "halfling": 2,
+        "meio_elfo": 2,
+        "tiefling": 1
+      },
+      "imgs": [
+        {
+          "src": "npcs/plebeus/bardo_halfling_f1.webp",
+          "especie": "halfling",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/bardo_halfling_f2.webp",
+          "especie": "halfling",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/bardo_humano_f1.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/bardo_humano_f2.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/bardo_humano_m3.webp",
+          "especie": "humano",
+          "genero": "m"
+        },
+        {
+          "src": "npcs/plebeus/bardo_humano_m4.webp",
+          "especie": "humano",
+          "genero": "m"
+        }
+      ]
+    },
+    "servo": {
+      "nome": "Avowed servo",
+      "base": [
+        "Commoner",
+        "Plebeu"
+      ],
+      "descricao": "Cozinha, limpa e carrega. A maioria dos Avowed é assim.",
+      "especies": {
+        "humano": 6,
+        "anao": 1,
+        "halfling": 2,
+        "gnomo": 1,
+        "meio_elfo": 1
+      },
+      "imgs": [
+        {
+          "src": "npcs/plebeus/servo_halfling_f1.webp",
+          "especie": "halfling",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/servo_halfling_f2.webp",
+          "especie": "halfling",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/servo_humano_f1.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/servo_humano_f2.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/servo_humano_m3.webp",
+          "especie": "humano",
+          "genero": "m"
+        },
+        {
+          "src": "npcs/plebeus/servo_humano_m4.webp",
+          "especie": "humano",
+          "genero": "m"
+        }
+      ]
+    },
+    "acolito": {
+      "nome": "Acólito Avowed",
+      "base": [
+        "Acolyte",
+        "Acólito"
+      ],
+      "descricao": "Canta na procissão do Cântico Sem Fim.",
+      "especies": {
+        "humano": 6,
+        "anao": 1,
+        "elfo": 1,
+        "halfling": 1,
+        "meio_elfo": 1
+      },
+      "imgs": [
+        {
+          "src": "npcs/plebeus/acolito_anao_m1.webp",
+          "especie": "anao",
+          "genero": "m"
+        },
+        {
+          "src": "npcs/plebeus/acolito_anao_m2.webp",
+          "especie": "anao",
+          "genero": "m"
+        },
+        {
+          "src": "npcs/plebeus/acolito_humano_f1.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/acolito_humano_f2.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/acolito_humano_m3.webp",
+          "especie": "humano",
+          "genero": "m"
+        },
+        {
+          "src": "npcs/plebeus/acolito_humano_m4.webp",
+          "especie": "humano",
+          "genero": "m"
+        }
+      ]
+    },
+    "escriba": {
+      "nome": "Escriba Avowed",
+      "base": [
+        "Commoner",
+        "Plebeu"
+      ],
+      "descricao": "Copia livros por encomenda na Casa do Encadernador.",
+      "especies": {
+        "humano": 5,
+        "anao": 1,
+        "elfo": 1,
+        "gnomo": 2,
+        "halfling": 1
+      },
+      "imgs": [
+        {
+          "src": "npcs/plebeus/escriba_gnomo_m1.webp",
+          "especie": "gnomo",
+          "genero": "m"
+        },
+        {
+          "src": "npcs/plebeus/escriba_gnomo_m2.webp",
+          "especie": "gnomo",
+          "genero": "m"
+        },
+        {
+          "src": "npcs/plebeus/escriba_humano_f1.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/escriba_humano_f2.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/escriba_meio_elfo_m1.webp",
+          "especie": "meio_elfo",
+          "genero": "m"
+        },
+        {
+          "src": "npcs/plebeus/escriba_humano_m3.webp",
+          "especie": "humano",
+          "genero": "m"
+        }
+      ]
+    },
+    "cavalarico": {
+      "nome": "Cavalariço",
+      "base": [
+        "Commoner",
+        "Plebeu"
+      ],
+      "descricao": "Aprendiz da ferraria e dos estábulos.",
+      "especies": {
+        "humano": 5,
+        "anao": 2,
+        "halfling": 1,
+        "meio_orc": 1
+      },
+      "imgs": [
+        {
+          "src": "npcs/plebeus/cavalarico_anao_f1.webp",
+          "especie": "anao",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/cavalarico_anao_f2.webp",
+          "especie": "anao",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/cavalarico_humano_f1.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/cavalarico_humano_f2.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/cavalarico_humano_m3.webp",
+          "especie": "humano",
+          "genero": "m"
+        },
+        {
+          "src": "npcs/plebeus/cavalarico_humano_m4.webp",
+          "especie": "humano",
+          "genero": "m"
+        }
+      ]
+    },
+    "atendente": {
+      "nome": "Atendente dos banhos",
+      "base": [
+        "Commoner",
+        "Plebeu"
+      ],
+      "descricao": "Cuida das piscinas, saunas e massagens.",
+      "especies": {
+        "humano": 5,
+        "elfo": 1,
+        "halfling": 1,
+        "meio_elfo": 1
+      },
+      "imgs": [
+        {
+          "src": "npcs/plebeus/atendente_elfo_f1.webp",
+          "especie": "elfo",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/atendente_elfo_f2.webp",
+          "especie": "elfo",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/atendente_humano_f1.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/atendente_humano_f2.webp",
+          "especie": "humano",
+          "genero": "f"
+        },
+        {
+          "src": "npcs/plebeus/atendente_humano_m3.webp",
+          "especie": "humano",
+          "genero": "m"
+        },
+        {
+          "src": "npcs/plebeus/atendente_humano_m4.webp",
+          "especie": "humano",
+          "genero": "m"
+        }
+      ]
+    }
+  },
+  "especies": {
+    "humano": {
+      "nome": "Humano",
+      "m": [
+        "Anders",
+        "Bram",
+        "Corran",
+        "Darvin",
+        "Evendur",
+        "Geth",
+        "Halric",
+        "Jandar",
+        "Kethoth",
+        "Lander",
+        "Morn",
+        "Randal",
+        "Stedd",
+        "Taman",
+        "Urth",
+        "Wulf"
+      ],
+      "f": [
+        "Arveene",
+        "Betha",
+        "Cefrey",
+        "Delsa",
+        "Esvele",
+        "Jhessail",
+        "Kerri",
+        "Lureene",
+        "Miri",
+        "Natali",
+        "Rowan",
+        "Shandri",
+        "Tessele",
+        "Ulma",
+        "Westra",
+        "Yasheira"
+      ],
+      "sobrenomes": [
+        "Amblecrown",
+        "Brightwood",
+        "Dundragon",
+        "Evenwood",
+        "Greycastle",
+        "Helder",
+        "Marivaldi",
+        "Ostrel",
+        "Ravensong",
+        "Stormwind",
+        "Tallstag",
+        "Windrivver"
+      ]
+    },
+    "anao": {
+      "nome": "Anão",
+      "m": [
+        "Adrik",
+        "Baern",
+        "Bruenor",
+        "Dain",
+        "Eberk",
+        "Harbek",
+        "Morgran",
+        "Orsik",
+        "Rurik",
+        "Thoradin",
+        "Ulfgar",
+        "Vondal"
+      ],
+      "f": [
+        "Amber",
+        "Bardryn",
+        "Dagnal",
+        "Eldeth",
+        "Gunnloda",
+        "Hlin",
+        "Kathra",
+        "Mardred",
+        "Riswynn",
+        "Torbera",
+        "Vistra",
+        "Sannl"
+      ],
+      "sobrenomes": [
+        "Battlehammer",
+        "Brawnanvil",
+        "Fireforge",
+        "Gorunn",
+        "Holderhek",
+        "Ironfist",
+        "Rumnaheim",
+        "Torunn"
+      ]
+    },
+    "elfo": {
+      "nome": "Elfo",
+      "m": [
+        "Adran",
+        "Aelar",
+        "Berrian",
+        "Erevan",
+        "Galinndan",
+        "Ivellios",
+        "Laucian",
+        "Paelias",
+        "Riardon",
+        "Soveliss",
+        "Thamior",
+        "Varis"
+      ],
+      "f": [
+        "Adrie",
+        "Birel",
+        "Caelynn",
+        "Enna",
+        "Keyleth",
+        "Leshanna",
+        "Naivara",
+        "Quelenna",
+        "Sariel",
+        "Shava",
+        "Thia",
+        "Valanthe"
+      ],
+      "sobrenomes": [
+        "Amakiir",
+        "Galanodel",
+        "Holimion",
+        "Ilphelkiir",
+        "Liadon",
+        "Meliamne",
+        "Nailo",
+        "Siannodel"
+      ]
+    },
+    "halfling": {
+      "nome": "Halfling",
+      "m": [
+        "Alton",
+        "Cade",
+        "Eldon",
+        "Garret",
+        "Lyle",
+        "Milo",
+        "Osborn",
+        "Perrin",
+        "Reed",
+        "Roscoe",
+        "Wellby",
+        "Corrin"
+      ],
+      "f": [
+        "Andry",
+        "Bree",
+        "Callie",
+        "Cora",
+        "Euphemia",
+        "Kithri",
+        "Lavinia",
+        "Merla",
+        "Nedda",
+        "Paela",
+        "Seraphina",
+        "Verna"
+      ],
+      "sobrenomes": [
+        "Brushgather",
+        "Goodbarrel",
+        "Greenbottle",
+        "Highhill",
+        "Hilltopple",
+        "Leagallow",
+        "Tealeaf",
+        "Thorngage",
+        "Underbough"
+      ]
+    },
+    "gnomo": {
+      "nome": "Gnomo",
+      "m": [
+        "Alston",
+        "Boddynock",
+        "Brocc",
+        "Dimble",
+        "Eldon",
+        "Fonkin",
+        "Gimble",
+        "Glim",
+        "Jebeddo",
+        "Orryn",
+        "Wrenn",
+        "Zook"
+      ],
+      "f": [
+        "Bimpnottin",
+        "Breena",
+        "Carlin",
+        "Donella",
+        "Ellyjobell",
+        "Lilli",
+        "Loopmottin",
+        "Nissa",
+        "Nyx",
+        "Orla",
+        "Roywyn",
+        "Zanna"
+      ],
+      "sobrenomes": [
+        "Beren",
+        "Daergel",
+        "Folkor",
+        "Garrick",
+        "Nackle",
+        "Murnig",
+        "Ningel",
+        "Scheppen",
+        "Timbers",
+        "Turen"
+      ]
+    },
+    "meio_elfo": {
+      "nome": "Meio-elfo",
+      "m": [
+        "Aeron",
+        "Corran",
+        "Davin",
+        "Erevan",
+        "Halric",
+        "Ilmar",
+        "Lander",
+        "Rhys",
+        "Theren",
+        "Varis"
+      ],
+      "f": [
+        "Aelith",
+        "Cefrey",
+        "Elenna",
+        "Lia",
+        "Mialee",
+        "Naeris",
+        "Sariel",
+        "Tessele",
+        "Valia",
+        "Yllena"
+      ],
+      "sobrenomes": [
+        "Brightwood",
+        "Evenwood",
+        "Liadon",
+        "Nailo",
+        "Ravensong",
+        "Stormwind"
+      ]
+    },
+    "meio_orc": {
+      "nome": "Meio-orc",
+      "m": [
+        "Dench",
+        "Feng",
+        "Gell",
+        "Henk",
+        "Holg",
+        "Imsh",
+        "Keth",
+        "Krusk",
+        "Ront",
+        "Shump",
+        "Thokk"
+      ],
+      "f": [
+        "Baggi",
+        "Emen",
+        "Engong",
+        "Kansif",
+        "Myev",
+        "Neega",
+        "Ovak",
+        "Ownka",
+        "Shautha",
+        "Sutha",
+        "Vola"
+      ]
+    },
+    "draconato": {
+      "nome": "Draconato",
+      "m": [
+        "Arjhan",
+        "Balasar",
+        "Bharash",
+        "Donaar",
+        "Ghesh",
+        "Heskan",
+        "Kriv",
+        "Medrash",
+        "Nadarr",
+        "Pandjed",
+        "Rhogar",
+        "Torinn"
+      ],
+      "f": [
+        "Akra",
+        "Biri",
+        "Daar",
+        "Farideh",
+        "Harann",
+        "Havilar",
+        "Jheri",
+        "Kava",
+        "Korinn",
+        "Mishann",
+        "Sora",
+        "Thava"
+      ],
+      "sobrenomes": [
+        "Clethtinthiallor",
+        "Daardendrian",
+        "Delmirev",
+        "Drachedandion",
+        "Fenkenkabradon",
+        "Kepeshkmolik",
+        "Kerrhylon",
+        "Myastan",
+        "Nemmonis",
+        "Yarjerit"
+      ]
+    },
+    "tiefling": {
+      "nome": "Tiefling",
+      "m": [
+        "Akmenos",
+        "Amnon",
+        "Barakas",
+        "Damakos",
+        "Ekemon",
+        "Iados",
+        "Kairon",
+        "Leucis",
+        "Melech",
+        "Mordai",
+        "Skamos",
+        "Esperança"
+      ],
+      "f": [
+        "Akta",
+        "Anakis",
+        "Bryseis",
+        "Criella",
+        "Damaia",
+        "Ea",
+        "Kallista",
+        "Lerissa",
+        "Makaria",
+        "Nemeia",
+        "Orianna",
+        "Canção"
+      ]
+    },
+    "ogro": {
+      "nome": "Ogro",
+      "m": [
+        "Little One"
+      ],
+      "f": [
+        "Little One"
+      ]
+    },
+    "constructo": {
+      "nome": "Constructo",
+      "m": [
+        "Gárgula"
+      ],
+      "f": [
+        "Gárgula"
+      ]
+    },
+    "animal": {
+      "nome": "Animal",
+      "m": [
+        "-"
+      ],
+      "f": [
+        "-"
+      ]
+    }
+  },
+  "manias": [
+    "Cheira cada livro antes de abrir.",
+    "Fala baixinho mesmo fora da biblioteca.",
+    "Carrega um diário que ofereceu na entrada e se arrependeu.",
+    "Conta quantos degraus subiu no dia.",
+    "Jura que viu um gato atravessar uma parede.",
+    "Corrige a pronúncia de todo mundo.",
+    "Tem tinta até no nariz.",
+    "Pergunta o nome de todo mundo e anota.",
+    "Morre de medo de fogo, mesmo de vela.",
+    "Está na fila do portão há três dias com a mesma receita de bolo.",
+    "Acha que as profecias do Cântico falam dele.",
+    "Esconde migalhas de pão no bolso para os pássaros do pátio.",
+    "Discute com qualquer um sobre a melhor tinta.",
+    "Quer trocar o próprio livro de volta.",
+    "Ri alto e pede desculpas logo em seguida.",
+    "Coleciona selos de cera.",
+    "Usa óculos que não precisa.",
+    "Reza para Oghma antes de cada refeição.",
+    "Jura que já foi aventureiro.",
+    "Assovia a mesma música o dia todo."
+  ]
+}

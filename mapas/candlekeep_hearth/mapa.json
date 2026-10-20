@@ -1,0 +1,1145 @@
+{
+  "name": "Candlekeep: o Hearth",
+  "grid": 100,
+  "px": 150,
+  "darkness": 0.35,
+  "seed": 31,
+  "legend": {
+    ".": "piso_madeira",
+    "m": "madeira_escura",
+    "t": "tapete",
+    "p": "piso_pedra",
+    "M": "marmore",
+    ",": "paralelepipedo",
+    "x": "vazio",
+    "#": "parede",
+    "D": "porta",
+    "F": "lareira"
+  },
+  "protecoes": {
+    "alarme": 1,
+    "resposta": [
+      {
+        "npc": "avowed_arquimago",
+        "n": 1
+      },
+      {
+        "npc": "avowed_mago",
+        "n": 4
+      }
+    ]
+  },
+  "saidas": [
+    {
+      "id": "rua",
+      "nome": "Pátio do Ar",
+      "x": 13,
+      "y": 21,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 12,
+        "y": 20,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_patio",
+      "chegada": "porta_hearth"
+    },
+    {
+      "id": "sala1",
+      "nome": "Salão do Hearth",
+      "x": 32,
+      "y": 7,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 31,
+        "y": 6,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_hearth",
+      "chegada": "porta_sala1"
+    },
+    {
+      "id": "porta_sala1",
+      "nome": "Sala de reunião I",
+      "x": 8,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 7,
+        "y": 1,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_hearth",
+      "chegada": "sala1"
+    },
+    {
+      "id": "sala2",
+      "nome": "Salão do Hearth",
+      "x": 41,
+      "y": 7,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 40,
+        "y": 6,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_hearth",
+      "chegada": "porta_sala2"
+    },
+    {
+      "id": "porta_sala2",
+      "nome": "Sala de reunião II",
+      "x": 22,
+      "y": 0,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 21,
+        "y": 1,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_hearth",
+      "chegada": "sala2"
+    },
+    {
+      "id": "deneir",
+      "nome": "Salão do Hearth",
+      "x": 32,
+      "y": 16,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 31,
+        "y": 15,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_hearth",
+      "chegada": "porta_deneir"
+    },
+    {
+      "id": "porta_deneir",
+      "nome": "Santuário de Deneir",
+      "x": 27,
+      "y": 6,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 26,
+        "y": 5,
+        "w": 1,
+        "h": 3
+      },
+      "para": "candlekeep_hearth",
+      "chegada": "deneir"
+    },
+    {
+      "id": "gond",
+      "nome": "Salão do Hearth",
+      "x": 41,
+      "y": 16,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 40,
+        "y": 15,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_hearth",
+      "chegada": "porta_gond"
+    },
+    {
+      "id": "porta_gond",
+      "nome": "Santuário de Gond",
+      "x": 27,
+      "y": 11,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 26,
+        "y": 10,
+        "w": 1,
+        "h": 3
+      },
+      "para": "candlekeep_hearth",
+      "chegada": "gond"
+    },
+    {
+      "id": "milil",
+      "nome": "Salão do Hearth",
+      "x": 36,
+      "y": 25,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 35,
+        "y": 24,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_hearth",
+      "chegada": "porta_milil"
+    },
+    {
+      "id": "porta_milil",
+      "nome": "Santuário de Milil",
+      "x": 27,
+      "y": 16,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 26,
+        "y": 15,
+        "w": 1,
+        "h": 3
+      },
+      "para": "candlekeep_hearth",
+      "chegada": "milil"
+    }
+  ],
+  "npcs": [
+    {
+      "npc": "taberneiro_hearth",
+      "x": 250,
+      "y": 950
+    },
+    {
+      "npc": "little_one",
+      "x": 1350,
+      "y": 1350
+    }
+  ],
+  "multidao": [
+    {
+      "area": [
+        6,
+        1,
+        20,
+        20
+      ],
+      "n": 14,
+      "oficios": [
+        "buscador",
+        "aventureiro",
+        "bardo",
+        "caravaneiro",
+        "mercador",
+        "servo"
+      ]
+    }
+  ],
+  "notas": [
+    {
+      "x": 4,
+      "y": 10,
+      "titulo": "Amplificador geométrico",
+      "texto": "<p>Orbe de cristal de 2 pés cheio de engrenagens, pendurado sobre o balcão: é ele que deixa o Hearth três vezes maior por dentro (magia gondiana). Se for quebrado, o espaço desaba de volta ao tamanho real: cada criatura lá dentro faz um teste de Destreza CD 15 e sofre 2d6 de dano de concussão se falhar.</p>"
+    },
+    {
+      "x": 14,
+      "y": 15,
+      "titulo": "O Hearth",
+      "texto": "<p>Taverna e salão de festas dos buscadores. Por fora parece modesta; por dentro cabe uns 30 fregueses: balcão de 20 lugares, mesas redondas e compridas e uma dúzia de poltronas em volta do fosso de fogo. O fosso e a lareira nunca se apagam: são a única exceção às proteções contra chamas de Candlekeep. Gancho: <em>Alkazaar's Appendix</em> começa aqui, numa conversa à beira do fogo.</p>"
+    },
+    {
+      "x": 32,
+      "y": 4,
+      "titulo": "Salas de reunião privadas",
+      "texto": "<p>Duas salas extradimensionais de 30 pés, atrás das portas da parede norte do salão: mesa redonda, cadeiras e um aparador. A chave fica com o taberneiro e custa 5 po. Ninguém de fora ouve o que se diz ali.</p>"
+    },
+    {
+      "x": 36,
+      "y": 15,
+      "titulo": "Santuários",
+      "texto": "<p>Três demiplanos atrás das portas da parede leste: santuários de Deneir (escrita), Gond (invenção) e Milil (canção), com altar, velas e bancos para estudo e oração. Abertos a qualquer buscador.</p>"
+    }
+  ],
+  "lights": [
+    {
+      "x": 1500,
+      "y": 1100,
+      "config": {
+        "bright": 15,
+        "dim": 35,
+        "color": "#ff8a3d",
+        "alpha": 0.45,
+        "attenuation": 0.5,
+        "animation": {
+          "type": "torch",
+          "speed": 3,
+          "intensity": 4
+        }
+      }
+    },
+    {
+      "x": 1450,
+      "y": 50,
+      "config": {
+        "bright": 8,
+        "dim": 20,
+        "color": "#ff8a3d",
+        "alpha": 0.45,
+        "attenuation": 0.5,
+        "animation": {
+          "type": "torch",
+          "speed": 3,
+          "intensity": 4
+        }
+      }
+    }
+  ],
+  "sounds": [
+    {
+      "x": 1350,
+      "y": 1050,
+      "radius": 60,
+      "path": "mapas/taverna/taverna_loop.ogg",
+      "volume": 0.45
+    },
+    {
+      "x": 1500,
+      "y": 1100,
+      "radius": 20,
+      "path": "assets/tocha/fogo.ogg",
+      "volume": 0.6
+    },
+    {
+      "x": 1450,
+      "y": 150,
+      "radius": 15,
+      "path": "assets/tocha/fogo.ogg",
+      "volume": 0.5
+    }
+  ],
+  "objects": [
+    {
+      "asset": "balcao",
+      "x": 450,
+      "y": 250
+    },
+    {
+      "asset": "balcao",
+      "x": 450,
+      "y": 350
+    },
+    {
+      "asset": "balcao",
+      "x": 450,
+      "y": 450
+    },
+    {
+      "asset": "balcao",
+      "x": 450,
+      "y": 550
+    },
+    {
+      "asset": "balcao",
+      "x": 450,
+      "y": 650
+    },
+    {
+      "asset": "balcao",
+      "x": 450,
+      "y": 750
+    },
+    {
+      "asset": "balcao",
+      "x": 450,
+      "y": 850
+    },
+    {
+      "asset": "balcao",
+      "x": 450,
+      "y": 950
+    },
+    {
+      "asset": "balcao",
+      "x": 450,
+      "y": 1050
+    },
+    {
+      "asset": "balcao",
+      "x": 450,
+      "y": 1150
+    },
+    {
+      "asset": "balcao",
+      "x": 450,
+      "y": 1250
+    },
+    {
+      "asset": "balcao",
+      "x": 450,
+      "y": 1350
+    },
+    {
+      "asset": "balcao",
+      "x": 450,
+      "y": 1450
+    },
+    {
+      "asset": "balcao",
+      "x": 450,
+      "y": 1550
+    },
+    {
+      "asset": "balcao",
+      "x": 450,
+      "y": 1650
+    },
+    {
+      "asset": "balcao",
+      "x": 150,
+      "y": 1650
+    },
+    {
+      "asset": "balcao",
+      "x": 250,
+      "y": 1650
+    },
+    {
+      "asset": "balcao",
+      "x": 350,
+      "y": 1650
+    },
+    {
+      "asset": "cadeira",
+      "x": 550,
+      "y": 250
+    },
+    {
+      "asset": "cadeira",
+      "x": 550,
+      "y": 350
+    },
+    {
+      "asset": "cadeira",
+      "x": 550,
+      "y": 450
+    },
+    {
+      "asset": "cadeira",
+      "x": 550,
+      "y": 550
+    },
+    {
+      "asset": "cadeira",
+      "x": 550,
+      "y": 650
+    },
+    {
+      "asset": "cadeira",
+      "x": 550,
+      "y": 750
+    },
+    {
+      "asset": "cadeira",
+      "x": 550,
+      "y": 850
+    },
+    {
+      "asset": "cadeira",
+      "x": 550,
+      "y": 950
+    },
+    {
+      "asset": "cadeira",
+      "x": 550,
+      "y": 1050
+    },
+    {
+      "asset": "cadeira",
+      "x": 550,
+      "y": 1150
+    },
+    {
+      "asset": "cadeira",
+      "x": 550,
+      "y": 1250
+    },
+    {
+      "asset": "cadeira",
+      "x": 550,
+      "y": 1350
+    },
+    {
+      "asset": "cadeira",
+      "x": 550,
+      "y": 1450
+    },
+    {
+      "asset": "cadeira",
+      "x": 550,
+      "y": 1550
+    },
+    {
+      "asset": "cadeira",
+      "x": 550,
+      "y": 1650
+    },
+    {
+      "asset": "cadeira",
+      "x": 150,
+      "y": 1750
+    },
+    {
+      "asset": "cadeira",
+      "x": 250,
+      "y": 1750
+    },
+    {
+      "asset": "cadeira",
+      "x": 350,
+      "y": 1750
+    },
+    {
+      "asset": "cadeira",
+      "x": 450,
+      "y": 1750
+    },
+    {
+      "asset": "cadeira",
+      "x": 550,
+      "y": 1750
+    },
+    {
+      "asset": "amplificador",
+      "x": 450,
+      "y": 950
+    },
+    {
+      "asset": "barril",
+      "x": 150,
+      "y": 350
+    },
+    {
+      "asset": "barril",
+      "x": 150,
+      "y": 450
+    },
+    {
+      "asset": "barril",
+      "x": 150,
+      "y": 650
+    },
+    {
+      "asset": "barril",
+      "x": 150,
+      "y": 750
+    },
+    {
+      "asset": "barril",
+      "x": 150,
+      "y": 1350
+    },
+    {
+      "asset": "barril",
+      "x": 150,
+      "y": 1450
+    },
+    {
+      "asset": "caixa",
+      "x": 150,
+      "y": 1050
+    },
+    {
+      "asset": "caixa",
+      "x": 150,
+      "y": 1150
+    },
+    {
+      "asset": "fogueira",
+      "x": 1500,
+      "y": 1100
+    },
+    {
+      "asset": "poltrona",
+      "x": 1350,
+      "y": 850
+    },
+    {
+      "asset": "poltrona",
+      "x": 1350,
+      "y": 1350
+    },
+    {
+      "asset": "poltrona",
+      "x": 1450,
+      "y": 850
+    },
+    {
+      "asset": "poltrona",
+      "x": 1450,
+      "y": 1350
+    },
+    {
+      "asset": "poltrona",
+      "x": 1550,
+      "y": 850
+    },
+    {
+      "asset": "poltrona",
+      "x": 1550,
+      "y": 1350
+    },
+    {
+      "asset": "poltrona",
+      "x": 1650,
+      "y": 850
+    },
+    {
+      "asset": "poltrona",
+      "x": 1650,
+      "y": 1350
+    },
+    {
+      "asset": "poltrona",
+      "x": 1250,
+      "y": 1050
+    },
+    {
+      "asset": "poltrona",
+      "x": 1750,
+      "y": 1050
+    },
+    {
+      "asset": "poltrona",
+      "x": 1250,
+      "y": 1150
+    },
+    {
+      "asset": "poltrona",
+      "x": 1750,
+      "y": 1150
+    },
+    {
+      "asset": "mesa",
+      "x": 900,
+      "y": 350
+    },
+    {
+      "asset": "cadeira",
+      "x": 750,
+      "y": 350
+    },
+    {
+      "asset": "cadeira",
+      "x": 1050,
+      "y": 350
+    },
+    {
+      "asset": "cadeira",
+      "x": 850,
+      "y": 250
+    },
+    {
+      "asset": "cadeira",
+      "x": 950,
+      "y": 450
+    },
+    {
+      "asset": "mesa",
+      "x": 2200,
+      "y": 450
+    },
+    {
+      "asset": "cadeira",
+      "x": 2050,
+      "y": 450
+    },
+    {
+      "asset": "cadeira",
+      "x": 2350,
+      "y": 450
+    },
+    {
+      "asset": "cadeira",
+      "x": 2150,
+      "y": 350
+    },
+    {
+      "asset": "cadeira",
+      "x": 2250,
+      "y": 550
+    },
+    {
+      "asset": "mesa",
+      "x": 900,
+      "y": 1850
+    },
+    {
+      "asset": "cadeira",
+      "x": 750,
+      "y": 1850
+    },
+    {
+      "asset": "cadeira",
+      "x": 1050,
+      "y": 1850
+    },
+    {
+      "asset": "cadeira",
+      "x": 850,
+      "y": 1750
+    },
+    {
+      "asset": "cadeira",
+      "x": 950,
+      "y": 1950
+    },
+    {
+      "asset": "mesa",
+      "x": 1800,
+      "y": 1850
+    },
+    {
+      "asset": "cadeira",
+      "x": 1650,
+      "y": 1850
+    },
+    {
+      "asset": "cadeira",
+      "x": 1950,
+      "y": 1850
+    },
+    {
+      "asset": "cadeira",
+      "x": 1750,
+      "y": 1750
+    },
+    {
+      "asset": "cadeira",
+      "x": 1850,
+      "y": 1950
+    },
+    {
+      "asset": "mesa",
+      "x": 2300,
+      "y": 1850
+    },
+    {
+      "asset": "cadeira",
+      "x": 2150,
+      "y": 1850
+    },
+    {
+      "asset": "cadeira",
+      "x": 2450,
+      "y": 1850
+    },
+    {
+      "asset": "cadeira",
+      "x": 2250,
+      "y": 1750
+    },
+    {
+      "asset": "cadeira",
+      "x": 2350,
+      "y": 1950
+    },
+    {
+      "asset": "mesa",
+      "x": 800,
+      "y": 850
+    },
+    {
+      "asset": "banco",
+      "x": 800,
+      "y": 750
+    },
+    {
+      "asset": "banco",
+      "x": 800,
+      "y": 950
+    },
+    {
+      "asset": "mesa",
+      "x": 1000,
+      "y": 850
+    },
+    {
+      "asset": "banco",
+      "x": 1000,
+      "y": 750
+    },
+    {
+      "asset": "banco",
+      "x": 1000,
+      "y": 950
+    },
+    {
+      "asset": "mesa",
+      "x": 800,
+      "y": 1350
+    },
+    {
+      "asset": "banco",
+      "x": 800,
+      "y": 1250
+    },
+    {
+      "asset": "banco",
+      "x": 800,
+      "y": 1450
+    },
+    {
+      "asset": "mesa",
+      "x": 1000,
+      "y": 1350
+    },
+    {
+      "asset": "banco",
+      "x": 1000,
+      "y": 1250
+    },
+    {
+      "asset": "banco",
+      "x": 1000,
+      "y": 1450
+    },
+    {
+      "asset": "mesa",
+      "x": 2100,
+      "y": 950
+    },
+    {
+      "asset": "banco",
+      "x": 2100,
+      "y": 850
+    },
+    {
+      "asset": "banco",
+      "x": 2100,
+      "y": 1050
+    },
+    {
+      "asset": "mesa",
+      "x": 2300,
+      "y": 950
+    },
+    {
+      "asset": "banco",
+      "x": 2300,
+      "y": 850
+    },
+    {
+      "asset": "banco",
+      "x": 2300,
+      "y": 1050
+    },
+    {
+      "asset": "mesa",
+      "x": 2100,
+      "y": 1450
+    },
+    {
+      "asset": "banco",
+      "x": 2100,
+      "y": 1350
+    },
+    {
+      "asset": "banco",
+      "x": 2100,
+      "y": 1550
+    },
+    {
+      "asset": "mesa",
+      "x": 2300,
+      "y": 1450
+    },
+    {
+      "asset": "banco",
+      "x": 2300,
+      "y": 1350
+    },
+    {
+      "asset": "banco",
+      "x": 2300,
+      "y": 1550
+    },
+    {
+      "asset": "poltrona",
+      "x": 1350,
+      "y": 250
+    },
+    {
+      "asset": "poltrona",
+      "x": 1550,
+      "y": 250
+    },
+    {
+      "asset": "lampada",
+      "x": 150,
+      "y": 150
+    },
+    {
+      "asset": "lampada",
+      "x": 2650,
+      "y": 150
+    },
+    {
+      "asset": "lampada",
+      "x": 150,
+      "y": 2050
+    },
+    {
+      "asset": "lampada",
+      "x": 2650,
+      "y": 2050
+    },
+    {
+      "asset": "lampada",
+      "x": 1150,
+      "y": 150
+    },
+    {
+      "asset": "lampada",
+      "x": 1750,
+      "y": 150
+    },
+    {
+      "asset": "mesa",
+      "x": 3300,
+      "y": 350
+    },
+    {
+      "asset": "cadeira",
+      "x": 3150,
+      "y": 350
+    },
+    {
+      "asset": "cadeira",
+      "x": 3450,
+      "y": 350
+    },
+    {
+      "asset": "cadeira",
+      "x": 3250,
+      "y": 250
+    },
+    {
+      "asset": "cadeira",
+      "x": 3350,
+      "y": 250
+    },
+    {
+      "asset": "cadeira",
+      "x": 3250,
+      "y": 450
+    },
+    {
+      "asset": "cadeira",
+      "x": 3350,
+      "y": 450
+    },
+    {
+      "asset": "caixa",
+      "x": 3050,
+      "y": 150
+    },
+    {
+      "asset": "caixa",
+      "x": 3150,
+      "y": 150
+    },
+    {
+      "asset": "vela",
+      "x": 3550,
+      "y": 150
+    },
+    {
+      "asset": "lampada",
+      "x": 3550,
+      "y": 650
+    },
+    {
+      "asset": "mesa",
+      "x": 4200,
+      "y": 350
+    },
+    {
+      "asset": "cadeira",
+      "x": 4050,
+      "y": 350
+    },
+    {
+      "asset": "cadeira",
+      "x": 4350,
+      "y": 350
+    },
+    {
+      "asset": "cadeira",
+      "x": 4150,
+      "y": 250
+    },
+    {
+      "asset": "cadeira",
+      "x": 4250,
+      "y": 250
+    },
+    {
+      "asset": "cadeira",
+      "x": 4150,
+      "y": 450
+    },
+    {
+      "asset": "cadeira",
+      "x": 4250,
+      "y": 450
+    },
+    {
+      "asset": "caixa",
+      "x": 3950,
+      "y": 150
+    },
+    {
+      "asset": "caixa",
+      "x": 4050,
+      "y": 150
+    },
+    {
+      "asset": "vela",
+      "x": 4450,
+      "y": 150
+    },
+    {
+      "asset": "lampada",
+      "x": 4450,
+      "y": 650
+    },
+    {
+      "asset": "altar",
+      "x": 3300,
+      "y": 1050
+    },
+    {
+      "asset": "vela",
+      "x": 3150,
+      "y": 1050
+    },
+    {
+      "asset": "vela",
+      "x": 3450,
+      "y": 1050
+    },
+    {
+      "asset": "banco",
+      "x": 3100,
+      "y": 1350
+    },
+    {
+      "asset": "banco",
+      "x": 3500,
+      "y": 1350
+    },
+    {
+      "asset": "lampada",
+      "x": 3550,
+      "y": 1550
+    },
+    {
+      "asset": "atril",
+      "x": 3050,
+      "y": 1050
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 3550,
+      "y": 1050
+    },
+    {
+      "asset": "altar",
+      "x": 4200,
+      "y": 1050
+    },
+    {
+      "asset": "vela",
+      "x": 4050,
+      "y": 1050
+    },
+    {
+      "asset": "vela",
+      "x": 4350,
+      "y": 1050
+    },
+    {
+      "asset": "banco",
+      "x": 4000,
+      "y": 1350
+    },
+    {
+      "asset": "banco",
+      "x": 4400,
+      "y": 1350
+    },
+    {
+      "asset": "lampada",
+      "x": 4450,
+      "y": 1550
+    },
+    {
+      "asset": "bigorna",
+      "x": 3950,
+      "y": 1050
+    },
+    {
+      "asset": "globo",
+      "x": 4450,
+      "y": 1050
+    },
+    {
+      "asset": "altar",
+      "x": 3700,
+      "y": 1950
+    },
+    {
+      "asset": "vela",
+      "x": 3550,
+      "y": 1950
+    },
+    {
+      "asset": "vela",
+      "x": 3850,
+      "y": 1950
+    },
+    {
+      "asset": "banco",
+      "x": 3500,
+      "y": 2250
+    },
+    {
+      "asset": "banco",
+      "x": 3900,
+      "y": 2250
+    },
+    {
+      "asset": "lampada",
+      "x": 3950,
+      "y": 2450
+    },
+    {
+      "asset": "sino",
+      "x": 3450,
+      "y": 1950
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 3950,
+      "y": 1950
+    }
+  ],
+  "musica": {
+    "path": "mapas/candlekeep/musica/hearth.ogg",
+    "volume": 0.22
+  }
+}

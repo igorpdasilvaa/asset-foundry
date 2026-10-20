@@ -210,6 +210,57 @@ morros com penhascos virados para a estrada). O módulo usa essa altura assim:
 No `assets.json`: `"trap": { "to", "say", "roll" }` e estados com `"armed": true` (armada) e
 `"altura"` (muda o chão do quadrado, em pés); `"boulder": { "dc", "damage" }` e estados com `"rolls": true`.
 
+## Cidades: mapas ligados, NPCs e proteções
+Uma cidade é uma pasta `mapas/<cidade>/` com `cidade.json` (a lista de mapas). A macro dos mapas com
+`MAPA = "<cidade>"` monta todos numa pasta de cenas e liga as saídas. `"vila_teste"` liga a taverna ao lago
+pela estrada. Candlekeep está planejada em [`mapas/candlekeep/PLANO.md`](mapas/candlekeep/PLANO.md).
+
+- **Saídas**: portões, portas e escadas que levam a outra cena (região *Teleport Token* do Foundry). O jogador
+  anda com o token até a saída e aparece na chegada do outro mapa. Numa porta, a saída só funciona aberta.
+- **NPCs nomeados** (`assets/npcs.json`): cada um vira um ator na pasta *Interactive Assets / NPCs / <cidade>*, copiado
+  do bloco de estatísticas do compêndio do sistema (SRD do dnd5e, em inglês ou traduzido) com nome, imagem e biografia.
+- **Plebeus**: cada token sorteia nome, espécie, imagem e uma mania pelo ofício (buscador, peregrino, mercador...).
+  Os mapas trazem áreas de multidão; por macro, `api.gerarPlebeus(6, { oficios: ["buscador"] })` coloca 6 na tela.
+  No HUD do token, o botão 🪪 sussurra ao mestre quem é aquela pessoa.
+- **Proteções do lugar** (botão de escudo nas ferramentas de token, nas cenas que têm proteções):
+  - nenhum asset pega fogo: em vez de queimar, fica chamuscado (ou como estava) e a tocha apaga. Assets com
+    `"fogoPermitido"` (lareiras, forjas) continuam queimando;
+  - dano em assets com `"conhecimento"` (livros, estantes) ou em NPCs avisa no chat, e no limite toca o alarme:
+    aparecem os NPCs de resposta (em Candlekeep, 1 arquimago e 4 magos). `api.resetAlarme()` zera a contagem;
+  - desligar o botão derruba as proteções e o fogo volta a funcionar normalmente.
+
+## Assets de Candlekeep
+Feitos para a cidade de Candlekeep (`mapas/candlekeep/`), mas servem em qualquer mapa. Tudo de madeira, papel ou tecido pega
+fogo (queimando → cinzas) quando a cena não tem proteções ou o mestre as derrubou.
+
+| Grupo | Assets |
+|---|---|
+| Construção | **Muralha** (CA 19 / 120, resiste a tudo físico), **Portão** negro (4 quadrados lado a lado formam o portão; CA 20 / 250, imune a fogo e raio; começa trancado, só o mestre abre), **Porta Esmeralda** (3 quadrados; não sofre dano nenhum, começa trancada) |
+| Biblioteca | **Estante** (tomba com trovão/força, fica molhada com gelo), **pilha de livros**, **atril**, **escrivaninha** (a tinta derrama com concussão), **carrinho de livros** (leva o que está em cima, como a carroça), **vela** (luz permitida pelas proteções), **lâmpada** de chama contínua, **globo** flutuante |
+| Templo | **Sino** (trovão/concussão faz tocar; tocando, dispara o alarme), **altar** (profanado com necrótico), **gárgula** (estátua; no estado *Desperta* vira o NPC golem de pedra) |
+| Hearth e hospedagem | **Amplificador geométrico** (a 0 PV o espaço extradimensional desaba: o chat pede Destreza CD 15 e 2d6), **fogueira** e **forja** (continuam acesas com as proteções), **balcão**, **cadeira**, **poltrona**, **banco**, **cama** |
+| Ofícios | **Bigorna**, **feno**, **cocho** (congela), **tear**, **casulário** |
+
+Livros, estantes, atris, escrivaninhas e o carrinho têm `"conhecimento": true`: dano neles conta para o alarme das proteções.
+Novos campos do `assets.json`: `"conhecimento"`, `"fogoPermitido"`, `"invulneravel"` (texto dito no chat quando atacam),
+`"doorSound"` (som da porta do Foundry) e, nos estados, `"chama"`, `"door": "locked"`, `"npc"`, `"colapso"` e `"alarme"`.
+Os geradores são `tools/gen_construcao.py`, `tools/gen_biblioteca.py` e `tools/gen_oficios.py` (cada um escreve o seu
+`tools/fragmentos/<grupo>.json`; `python3 tools/juntar_fragmentos.py` leva para o `assets.json`).
+
+## Sons e música
+- **Efeitos ao mudar de estado:** quase todo estado tem `"sfx"`, tocado para todos uma vez quando o asset entra nele.
+  Fogo pegando, fogo apagado no gelo, pedra rachando e desabando, vidro quebrando, livros caindo, sino, gárgula despertando,
+  armadilhas disparando, água congelando, eletrificada ou envenenada, e outros. O mesmo som não repete em menos de meio segundo
+  (o lago congelando inteiro toca uma vez).
+- **Sons em loop que seguem o asset** (`"sound"` no estado): fogo, forja trabalhando, zumbido do amplificador do Hearth.
+- **Música de cada mapa:** `"musica": { "path", "volume" }` no `mapa.json` vira um som que cobre o mapa inteiro, então trocar
+  de cena troca a música sozinho. As ambiências (mar, pátio, estábulo, banhos, biblioteca...) ficam em `"sounds"`.
+- **Playlist:** montar Candlekeep cria a playlist *Candlekeep* com as músicas de cada lugar, uma de combate, o Cântico Sem Fim e
+  a canção do bardo do Hearth, para o mestre tocar quando quiser.
+
+Os sons foram gerados localmente (Stable Audio 3 e ACE-Step, no orquestrador `ia-orc`). Os prompts ficam em `tools/sons.json`,
+`tools/gen_sons.py` prepara cada arquivo e `tools/juntar_fragmentos.py` liga os efeitos aos estados (`"estados"` do `sons.json`).
+
 ## Adicionar novos assets
 Tudo fica neste mesmo módulo: coloque os arquivos em `assets/<nome>/` e registre
 o asset em `assets/assets.json`. Cada estado aceita:

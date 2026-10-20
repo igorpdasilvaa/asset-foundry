@@ -1,0 +1,324 @@
+{
+  "name": "Candlekeep: o Portão",
+  "grid": 100,
+  "px": 150,
+  "darkness": 0.1,
+  "seed": 17,
+  "legend": {
+    "v": "rocha_vulcanica",
+    "\"": "grama",
+    "~": "agua",
+    ",": "paralelepipedo",
+    "_": "terra",
+    ".": "piso_pedra",
+    "#": "parede",
+    "D": "porta",
+    "W": "muralha",
+    "X": {
+      "nome": "muralha_fixa",
+      "chao": "muralha",
+      "solido": true
+    },
+    "R": "telhado_ardosia",
+    "G": {
+      "nome": "portao",
+      "chao": "muralha",
+      "asset": "portao",
+      "kind": "door"
+    },
+    "M": {
+      "nome": "mar",
+      "chao": "agua"
+    }
+  },
+  "protecoes": {
+    "alarme": 1,
+    "resposta": [
+      {
+        "npc": "avowed_arquimago",
+        "n": 1
+      },
+      {
+        "npc": "avowed_mago",
+        "n": 4
+      }
+    ]
+  },
+  "saidas": [
+    {
+      "id": "patio",
+      "nome": "Pátio do Ar",
+      "x": 0,
+      "y": 14,
+      "w": 1,
+      "h": 4,
+      "pouso": {
+        "x": 2,
+        "y": 14,
+        "w": 2,
+        "h": 4
+      },
+      "para": "candlekeep_patio",
+      "chegada": "portao"
+    },
+    {
+      "id": "estrada",
+      "nome": "Caminho do Leão",
+      "x": 47,
+      "y": 15,
+      "w": 1,
+      "h": 2,
+      "pouso": {
+        "x": 45,
+        "y": 15,
+        "w": 1,
+        "h": 2
+      },
+      "para": "lobisomens",
+      "chegada": "candlekeep"
+    }
+  ],
+  "objects": [
+    {
+      "asset": "estante",
+      "x": 1800,
+      "y": 250
+    },
+    {
+      "asset": "estante",
+      "x": 2200,
+      "y": 250
+    },
+    {
+      "asset": "mesa",
+      "x": 1850,
+      "y": 550
+    },
+    {
+      "asset": "mesa",
+      "x": 2150,
+      "y": 550
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 1850,
+      "y": 450
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 2250,
+      "y": 550
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 1650,
+      "y": 850
+    },
+    {
+      "asset": "atril",
+      "x": 2050,
+      "y": 350
+    },
+    {
+      "asset": "escrivaninha",
+      "x": 2300,
+      "y": 850
+    },
+    {
+      "asset": "vela",
+      "x": 2150,
+      "y": 650
+    },
+    {
+      "asset": "lampada",
+      "x": 1650,
+      "y": 350
+    },
+    {
+      "asset": "lampada",
+      "x": 2450,
+      "y": 350
+    },
+    {
+      "asset": "banco",
+      "x": 1700,
+      "y": 750
+    },
+    {
+      "asset": "cama",
+      "x": 1650,
+      "y": 2300
+    },
+    {
+      "asset": "cama",
+      "x": 2050,
+      "y": 2300
+    },
+    {
+      "asset": "mesa",
+      "x": 1850,
+      "y": 2550
+    },
+    {
+      "asset": "barril",
+      "x": 2150,
+      "y": 2750
+    },
+    {
+      "asset": "caixa",
+      "x": 1650,
+      "y": 2750
+    },
+    {
+      "asset": "lampada",
+      "x": 2150,
+      "y": 2450
+    },
+    {
+      "asset": "lampada",
+      "x": 1550,
+      "y": 1350
+    },
+    {
+      "asset": "lampada",
+      "x": 1550,
+      "y": 1850
+    },
+    {
+      "asset": "lampada",
+      "x": 850,
+      "y": 1450
+    },
+    {
+      "asset": "lampada",
+      "x": 850,
+      "y": 1750
+    },
+    {
+      "asset": "carroca",
+      "x": 2800,
+      "y": 1350
+    },
+    {
+      "asset": "barril",
+      "x": 2650,
+      "y": 1350
+    },
+    {
+      "asset": "caixa",
+      "x": 2950,
+      "y": 1250
+    },
+    {
+      "asset": "carroca",
+      "x": 3700,
+      "y": 1850
+    },
+    {
+      "asset": "caixa",
+      "x": 3850,
+      "y": 1850
+    },
+    {
+      "asset": "barril",
+      "x": 3550,
+      "y": 1850
+    }
+  ],
+  "npcs": [
+    {
+      "npc": "kalan_strongbranch",
+      "x": 2050,
+      "y": 650
+    },
+    {
+      "npc": "guarda_portao",
+      "x": 1450,
+      "y": 1350
+    },
+    {
+      "npc": "guarda_portao",
+      "x": 1450,
+      "y": 1850
+    },
+    {
+      "npc": "guarda_portao",
+      "x": 1750,
+      "y": 650
+    },
+    {
+      "npc": "guarda_portao",
+      "x": 2350,
+      "y": 650
+    },
+    {
+      "npc": "guarda_portao",
+      "x": 850,
+      "y": 1550
+    }
+  ],
+  "multidao": [
+    {
+      "area": [
+        22,
+        13,
+        22,
+        6
+      ],
+      "n": 12,
+      "oficios": [
+        "buscador",
+        "peregrino",
+        "mercador",
+        "caravaneiro"
+      ]
+    },
+    {
+      "area": [
+        1,
+        2,
+        8,
+        26
+      ],
+      "n": 3,
+      "oficios": [
+        "servo",
+        "buscador"
+      ]
+    }
+  ],
+  "notas": [
+    {
+      "x": 20,
+      "y": 7,
+      "titulo": "Sala do tributo",
+      "texto": "<p>Kalan Strongbranch (Guardião do Portão, arquimago) e os sacerdotes de Deneir examinam a obra que cada buscador oferece: precisa ser um texto que a biblioteca ainda não tenha (diário, balada, receita servem). Aceito, o buscador entra no Pátio do Ar. A guarda troca nos sinos do amanhecer, do meio-dia e do pôr do sol.</p>"
+    },
+    {
+      "x": 12,
+      "y": 16,
+      "titulo": "Portão de Candlekeep",
+      "texto": "<p>Portão duplo de metal negro estranho, três vezes a altura de um homem, com o brasão do castelo em chamas. Muralhas de 50 pés. Ninguém entra por teleporte ou magia, só por aqui.</p>"
+    },
+    {
+      "x": 30,
+      "y": 16,
+      "titulo": "A fila",
+      "texto": "<p>Buscadores, peregrinos e caravanas esperando a vez. Muitos estão aqui há dias, reescrevendo o livro que vão oferecer.</p>"
+    }
+  ],
+  "lights": [],
+  "sounds": [
+    {
+      "x": 2400,
+      "y": 3300,
+      "radius": 55,
+      "path": "assets/audio/amb_mar.ogg",
+      "volume": 0.5
+    }
+  ],
+  "musica": {
+    "path": "mapas/candlekeep/musica/portao.ogg",
+    "volume": 0.3
+  }
+}

@@ -3,6 +3,10 @@ import * as agua from "./agua.js";
 import * as veiculo from "./veiculo.js";
 import * as template from "./template.js";
 import * as relevo from "./relevo.js";
+import * as cidade from "./cidade.js";
+import * as npc from "./npc.js";
+import * as protecoes from "./protecoes.js";
+import * as estados from "./estados.js";
 
 const MODULE_ID = "interactive-assets";
 /** Pasta dos assets: local (modules/...) ou, no modo desenvolvimento, o commit mais recente no GitHub. */
@@ -514,13 +518,27 @@ export async function start({ base, version }) {
     default: true
   });
   CONFIG.DND5E?.neverBlockStatuses?.add?.(OBJECT_STATUS);
-  const ctx = { registry: () => REGISTRY, getData, posOf, currentState, ruleAllows, matchesTypes, indexOfId, stateUpdate, setState, say, tokenCenter, isResponsibleGM, MODULE_ID };
+  const ctx = {
+    registry: () => REGISTRY, base: () => BASE, getData, posOf, currentState, ruleAllows, matchesTypes, indexOfId, stateUpdate, setState,
+    say, tokenCenter, isResponsibleGM, rootFolder, childFolder, MODULE_ID
+  };
   agua.init(ctx);
+  npc.init(ctx);
+  protecoes.init(ctx);
+  estados.init(ctx);
   veiculo.init(ctx);
   relevo.init(ctx);
   template.init();
   game.modules.get(MODULE_ID).api = {
     placeAsset, nextState, setState, buildMap, rebuildWalls,
+    /** Monta todos os mapas de mapas/<cidade>/cidade.json e liga as saídas entre eles. */
+    buildCity: (id, root) => cidade.buildCity(id, root, buildMap),
+    /** Coloca n plebeus aleatórios na cena atual: gerarPlebeus(6, { oficios: ["buscador"], area: [x, y, w, h] }). */
+    gerarPlebeus: npc.gerarPlebeus,
+    /** Ator de um NPC nomeado do npcs.json (cria se faltar). */
+    npcActor: npc.npcActor,
+    /** Liga/desliga as proteções do lugar (fogo abafado e alarme) e zera o alarme. */
+    protecoes: protecoes.protecoes, resetAlarme: protecoes.resetAlarme,
     /** Ator do asset (cria se faltar), para quem monta um mapa antes do GM principal ter o asset novo. */
     actorFor: id => REGISTRY[id]?.actor ? getBaseActor(id, REGISTRY[id]) : null,
     /** De onde o código veio: commit do GitHub (modo desenvolvimento) ou a pasta instalada. A macro dos mapas usa isso. */
@@ -530,6 +548,7 @@ export async function start({ base, version }) {
 
   try {
     REGISTRY = await (await fetch(`${BASE}/assets.json?v=${version}`, { cache: "no-cache" })).json();
+    await npc.load(BASE, version);
     console.log(`${MODULE_ID} | ${Object.keys(REGISTRY).length} asset(s) carregado(s)`);
     // O canvas pode ter sido desenhado antes do assets.json chegar (estado "oculto" da água).
     for (const t of canvas.tokens?.placeables ?? []) if (getData(t.document)) t.renderFlags.set({ refreshVisibility: true });
@@ -575,7 +594,7 @@ Hooks.on("updateActor", async (actor, changes, options) => {
     if (hp <= 0) {
       if (state?.broken) continue;
       const rule = (data.onZero ?? [{ to: data.states[brokenIndex(data)].id, say: "se despedaça!" }])
-        .find(r => (!r.state || r.state === state?.id) && matchesTypes(r, zeroTypes));
+        .find(r => (!r.state || r.state === state?.id) && matchesTypes(r, zeroTypes) && protecoes.regraZero(token, r));
       const target = rule ? indexOfId(data, rule.to) : brokenIndex(data);
       await setState(token, target === -1 ? brokenIndex(data) : target, { syncHP: false });
       if (rule?.say) await say(token, rule.say);
@@ -601,8 +620,12 @@ async function react(token, actor, types, attacker) {
   const frac = hp?.max ? hp.value / hp.max : 1;
   const change = rules.find(r => r.to && matchesTypes(r, types) && ruleAllows(r, data) && (r.below == null || frac <= r.below));
   if (change) {
-    const target = indexOfId(data, change.to);
-    if (target !== -1) {
+    // Lugar protegido (Candlekeep): o fogo não pega, o objeto fica chamuscado ou como estava.
+    const { index: target, abafado } = protecoes.filtra(token, indexOfId(data, change.to));
+    if (abafado) {
+      if (target !== (data.index ?? 0)) await setState(token, target, { syncHP: false });
+      await say(token, protecoes.ABAFADO);
+    } else if (target !== -1) {
       // Ir para um estado quebrado (ex.: gelo estilhaçado) zera a vida.
       await setState(token, target, { syncHP: !!data.states[target].broken });
       if (change.say) await say(token, change.say);
@@ -635,8 +658,13 @@ Hooks.on("createChatMessage", async message => {
     const token = actor?.token ?? actor?.getActiveTokens(false, true)[0];
     const data = getData(token);
     if (!data) continue;
-    // Sem vida (água, tocha): não leva dano, só reage ao tipo do golpe.
+    // Sem vida (água, tocha): não leva dano, só reage ao tipo do golpe. "invulneravel" (Porta Esmeralda) só avisa.
     if (!isDamageable(data)) {
+      const inv = REGISTRY[data.asset]?.invulneravel;
+      if (inv) {
+        await say(token, inv);
+        continue;
+      }
       const types = new Map();
       for (const d of damages) if (d.value > 0 && d.type) types.set(d.type, (types.get(d.type) ?? 0) + d.value);
       if (types.size && data.reactions) await react(token, actor, types, attacker);
