@@ -27,3 +27,17 @@
   músicas (loop sem corte), normaliza o volume e salva em OGG (`assets/audio/` ou `mapas/candlekeep/musica/`).
   O `"estados"` do `sons.json` diz qual efeito cada estado toca; `juntar_fragmentos.py` aplica no `assets.json`.
 
+## Arte pintada (ia-orc / SDXL), desde a 0.12.0
+- `ia_assets.py` + `ia_assets.json` + `ia_receitas/<grupo>.json`: a arte de todos os assets (menos as árvores, que são fotos CC0).
+  Cada receita aponta a imagem-base gerada no ia-orc (job + variação) e os estados são feitos a partir dela (fogo animado em
+  WebM, carvão, cacos com a textura do objeto, gelo, água, ácido...). `python3 tools/ia_assets.py [asset ...]` regenera e
+  atualiza o `src` dos estados no `assets.json` (com `--so-imagens` só gera as imagens). As imagens do ia-orc ficam em
+  `~/Downloads/ia-orc/<job>/`; para refazer do zero, gere de novo com o prompt da receita.
+- `gen_texturas.py` + `mapas/pecas/texturas/escolhas.json`: texturas pintadas e emendáveis dos materiais dos mapas
+  (pisos, paredes, telhados, grama, água, vazio...). O `gen_mapa.py` usa a textura no lugar do SVG quando ela existe.
+- `gen_jardim.py`: o jardim do Pátio do Ar (pintura do chão, poço e estátua de Alaundo).
+- Legado: `gen_estruturas.py`, `gen_agua_veiculos.py`, `gen_armadilhas.py`, `gen_mesa_variantes.py`, `gen_construcao.py`,
+  `gen_biblioteca.py` e `gen_oficios.py` desenhavam a arte antiga em SVG. Os fragmentos (`fragmentos/*.json`) continuam sendo
+  a fonte das definições (estados, reações), mas não rode esses geradores de novo: eles voltariam o `src` para a arte antiga.
+  As peças `pilar`, `porta`, `lareira` e `escada` de `mapas/pecas/` ainda são SVG.
+

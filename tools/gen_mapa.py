@@ -3,7 +3,7 @@ Gera mapas/<nome>/<nome>.webp (fundo, 200 px por quadrado), cena.json (cena do F
 estruturas quebráveis, objetos, luzes e sons) e previa.jpg (a cena com as paredes calculadas pelo módulo).
 Uso: python3 tools/gen_mapa.py taverna"""
 import json, os, subprocess, sys, tempfile, pathlib
-from PIL import Image, ImageDraw
+from PIL import Image, ImageChops, ImageDraw, ImageFilter
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PECAS = ROOT / "mapas" / "pecas"
@@ -57,9 +57,41 @@ if RECORTE:
     caixa = {m: (max(0, a0 - 1), max(0, b0 - 1), min(W - 1, a1 + 1), min(H - 1, b1 + 1)) for m, (a0, b0, a1, b1) in caixa.items()}
 origem = {}
 tex = {}
+
+# Texturas pintadas (ia-orc, emendáveis) em mapas/pecas/texturas/<material>.webp substituem o SVG do material.
+# texturas.json: { "<material>": { "quadrados": lado do ladrilho em quadrados, "variacao": 0..1 (manchas de tom) } }
+TEXDIR = PECAS / "texturas"
+TEXCFG = json.loads((TEXDIR / "texturas.json").read_text()) if (TEXDIR / "texturas.json").exists() else {}
+def textura(m, i):
+    import random as _r
+    x0, y0, x1, y1 = caixa.get(m, (0, 0, W - 1, H - 1))
+    bw, bh = x1 - x0 + 1, y1 - y0 + 1
+    c = TEXCFG.get(m, {})
+    lado = int(c.get("quadrados", 2) * PX)
+    lad = Image.open(TEXDIR / f"{m}.webp").convert("RGB").resize((lado, lado), Image.LANCZOS)
+    out = Image.new("RGB", (bw * PX, bh * PX))
+    for yy in range(0, bh * PX, lado):
+        for xx in range(0, bw * PX, lado):
+            out.paste(lad, (xx, yy))
+    var = c.get("variacao", .12)
+    if var:  # manchas grandes de tom para a repetição não aparecer
+        R_ = _r.Random(cfg.get("seed", 1) + i)
+        n = Image.new("L", (max(2, bw // 3 + 2), max(2, bh // 3 + 2)))
+        n.putdata([R_.randint(0, 255) for _ in range(n.width * n.height)])
+        n = n.resize(out.size, Image.BICUBIC)
+        from PIL import ImageChops as _C
+        claro = out.point(lambda v: min(255, int(v * (1 + var))))
+        escuro = out.point(lambda v: int(v * (1 - var)))
+        out = Image.composite(claro, escuro, n)
+    origem[m] = (x0, y0)
+    return out.convert("RGBA")
+
 with tempfile.TemporaryDirectory() as tmp:
     files = []
     for i, m in enumerate(sorted(used & MATERIAIS.keys())):
+        if (TEXDIR / f"{m}.webp").exists():
+            tex[m] = textura(m, i)
+            continue
         f = pathlib.Path(tmp) / f"{m}.svg"
         x0, y0, x1, y1 = caixa.get(m, (0, 0, W - 1, H - 1))
         bw, bh = x1 - x0 + 1, y1 - y0 + 1
@@ -71,7 +103,8 @@ with tempfile.TemporaryDirectory() as tmp:
         files.append(f)
     env = {**os.environ}
     env.setdefault("NODE_PATH", subprocess.run(["npm", "root", "-g"], capture_output=True, text=True).stdout.strip())
-    subprocess.run(["node", str(ROOT / "tools" / "render.js"), *map(str, files)], check=True, env=env)
+    if files:
+        subprocess.run(["node", str(ROOT / "tools" / "render.js"), *map(str, files)], check=True, env=env)
     for f in files:
         tex[f.stem] = Image.open(f.with_suffix(".png")).convert("RGBA")
 
@@ -131,6 +164,65 @@ for y in range(H):
             img.alpha_composite(tile, pos)
         else:
             img.alpha_composite(material(chao(k), x, y), pos)
+
+# telhados de duas águas: cada bloco de telhado ganha cumeeira no meio (no sentido do lado maior),
+# uma água iluminada (de cima/esquerda) e a outra na sombra, com beiral escuro
+TELHADOS = {n for n in PROPS if n.startswith("telhado")} | set(cfg.get("telhados", []))
+vistos = set()
+for y in range(H):
+    for x in range(W):
+        if at(x, y) not in TELHADOS or (x, y) in vistos:
+            continue
+        pilha, comp = [(x, y)], []
+        vistos.add((x, y))
+        while pilha:
+            cx, cy = pilha.pop()
+            comp.append((cx, cy))
+            for dx, dy in N4:
+                nx, ny = cx + dx, cy + dy
+                if (nx, ny) not in vistos and at(nx, ny) == at(x, y):
+                    vistos.add((nx, ny))
+                    pilha.append((nx, ny))
+        xs, ys = [c[0] for c in comp], [c[1] for c in comp]
+        x0, y0, x1, y1 = min(xs), min(ys), max(xs) + 1, max(ys) + 1
+        bw, bh = (x1 - x0) * PX, (y1 - y0) * PX
+        horiz = bw >= bh  # cumeeira horizontal: águas para cima e para baixo
+        lado = bh if horiz else bw
+        rampa = Image.new("RGBA", (1, lado) if horiz else (lado, 1))
+        for i in range(lado):
+            t = i / max(1, lado - 1)
+            if t < .5:   # água de cima/esquerda: clareia perto da cumeeira
+                cor = (255, 245, 220, int(70 * (t / .5) ** 1.5))
+            else:        # água de baixo/direita: sombra
+                cor = (0, 0, 10, int(40 + 70 * ((t - .5) / .5)))
+            if abs(t - .5) < 6 / lado:
+                cor = (30, 25, 20, 150)  # cumeeira
+            rampa.putpixel((0, i) if horiz else (i, 0), cor)
+        rampa = rampa.resize((bw, bh), Image.BILINEAR)
+        m = Image.new("L", (bw, bh), 0)
+        dm = ImageDraw.Draw(m)
+        for cx, cy in comp:
+            dm.rectangle(((cx - x0) * PX, (cy - y0) * PX, (cx - x0 + 1) * PX - 1, (cy - y0 + 1) * PX - 1), fill=255)
+        beiral = m.filter(ImageFilter.MinFilter(int(PX * .12) | 1))
+        camada = Image.new("RGBA", (bw, bh))
+        camada.paste(rampa, (0, 0), m)
+        borda = Image.new("RGBA", (bw, bh), (15, 12, 10, 0))
+        borda.putalpha(ImageChops.subtract(m, beiral).point(lambda v: int(v * .55)))
+        camada.alpha_composite(borda)
+        img.alpha_composite(camada, (x0 * PX, y0 * PX))
+
+# pinturas: imagens prontas (ex.: um jardim gerado no ia-orc) sobre o chão de uma área, com a borda esfumada.
+# "pinturas": [{ "img": "mapas/<mapa>/x.webp", "x", "y", "w", "h" (quadrados), "borda": fração de quadrado }]
+for pt in cfg.get("pinturas", []):
+    w_, h_ = pt["w"] * PX, pt["h"] * PX
+    pin = Image.open(ROOT / pt["img"]).convert("RGBA").resize((w_, h_), Image.LANCZOS)
+    b = int(pt.get("borda", .4) * PX)
+    if b:
+        from PIL import ImageFilter
+        m = Image.new("L", (w_, h_), 0)
+        ImageDraw.Draw(m).rectangle((b, b, w_ - b, h_ - b), fill=255)
+        pin.putalpha(m.filter(ImageFilter.GaussianBlur(b / 2)))
+    img.alpha_composite(pin, (pt["x"] * PX, pt["y"] * PX))
 
 # margem da água: lama e espuma onde a água encosta na terra
 water = lambda x, y: at(x, y) in WET
@@ -200,7 +292,7 @@ for y in range(H):
                 od.line(seg, fill=(20, 18, 16, 255), width=max(2, int(6 * ESCALA)))
 
 bg_name = f"{name}.webp"
-img.convert("RGB").save(DIR / bg_name, quality=86, method=6)
+img.convert("RGB").save(DIR / bg_name, quality=cfg.get("qualidade", 86), method=6)
 
 # ---------- estruturas quebráveis (tokens) ----------
 # Cada bloco de parede, porta e pilar vira um token de asset; as paredes do Foundry

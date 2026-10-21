@@ -30,7 +30,12 @@ com estas fotos. Os arbustos, pedras e o tronco caído dos mapas com fotos tamb�
 ## Sons, músicas e retratos gerados localmente
 Os efeitos (`assets/audio/`, exceto `madeira_quebrando.ogg`), as ambiências, as músicas e canções de Candlekeep
 (`mapas/candlekeep/musica/`) foram gerados neste projeto com Stable Audio 3 e ACE-Step 1.5. Os retratos dos NPCs
-(`assets/npcs/`) foram gerados com SDXL. Tudo rodou no orquestrador local `ia-orc`, e os prompts estão em `tools/sons.json`
+(`assets/npcs/`), o chão do jardim do Pátio (`mapas/candlekeep_patio/jardim.webp`), o poço e a estátua de Alaundo foram gerados com SDXL. Tudo rodou no orquestrador local `ia-orc`, e os prompts estão em `tools/sons.json`
 e `tools/tokens_npcs.json`. Antes de distribuir o módulo, confira a licença de cada modelo (o Stable Audio 3 segue a
 licença comunitária da Stability AI).
+
+## Arte dos assets e texturas dos mapas (desde a 0.12.0)
+A arte dos assets interativos (`assets/<asset>/*.webp|webm`) e as texturas dos materiais (`mapas/pecas/texturas/`) foram
+geradas localmente com SDXL no `ia-orc` e tratadas por `tools/ia_assets.py` e `tools/gen_texturas.py`. As chamas usam os
+sprites CC0 da Kenney (`tools/fontes/`). As árvores continuam feitas com as fotos CC0 listadas acima.
 

@@ -24,35 +24,35 @@
       {
         "id": "inteira",
         "name": "Inteira",
-        "src": "estante/estante_inteira.png"
+        "src": "estante/estante_inteira.webp"
       },
       {
         "id": "tombada",
         "name": "Tombada",
-        "src": "estante/estante_tombada.png",
+        "src": "estante/estante_tombada.webp",
         "sfx": "audio/madeira_quebrando.ogg"
       },
       {
         "id": "cortada",
         "name": "Partida ao meio",
-        "src": "estante/estante_cortada.png",
+        "src": "estante/estante_cortada.webp",
         "broken": true,
         "sfx": "audio/madeira_quebrando.ogg"
       },
       {
         "id": "molhada",
         "name": "Molhada",
-        "src": "estante/estante_molhada.png"
+        "src": "estante/estante_molhada.webp"
       },
       {
         "id": "chamuscada",
         "name": "Chamuscada",
-        "src": "estante/estante_chamuscada.png"
+        "src": "estante/estante_chamuscada.webp"
       },
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "estante/estante_queimando.png",
+        "src": "estante/estante_queimando.webm",
         "burning": true,
         "sticky": true,
         "dot": {
@@ -80,7 +80,7 @@
       {
         "id": "cinzas",
         "name": "Cinzas",
-        "src": "estante/estante_cinzas.png",
+        "src": "estante/estante_cinzas.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -196,23 +196,23 @@
       {
         "id": "inteira",
         "name": "Empilhada",
-        "src": "pilha_livros/pilha_livros_inteira.png"
+        "src": "pilha_livros/pilha_livros_inteira.webp"
       },
       {
         "id": "espalhada",
         "name": "Espalhada",
-        "src": "pilha_livros/pilha_livros_espalhada.png",
+        "src": "pilha_livros/pilha_livros_espalhada.webp",
         "broken": true
       },
       {
         "id": "molhada",
         "name": "Molhada",
-        "src": "pilha_livros/pilha_livros_molhada.png"
+        "src": "pilha_livros/pilha_livros_molhada.webp"
       },
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "pilha_livros/pilha_livros_queimando.png",
+        "src": "pilha_livros/pilha_livros_queimando.webm",
         "burning": true,
         "sticky": true,
         "dot": {
@@ -240,7 +240,7 @@
       {
         "id": "cinzas",
         "name": "Cinzas",
-        "src": "pilha_livros/pilha_livros_cinzas.png",
+        "src": "pilha_livros/pilha_livros_cinzas.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -341,29 +341,29 @@
       {
         "id": "inteiro",
         "name": "Inteiro",
-        "src": "atril/atril_inteiro.png"
+        "src": "atril/atril_inteiro.webp"
       },
       {
         "id": "tombado",
         "name": "Tombado",
-        "src": "atril/atril_tombado.png"
+        "src": "atril/atril_tombado.webp"
       },
       {
         "id": "quebrado",
         "name": "Quebrado",
-        "src": "atril/atril_quebrado.png",
+        "src": "atril/atril_quebrado.webp",
         "broken": true,
         "sfx": "audio/madeira_quebrando.ogg"
       },
       {
         "id": "chamuscado",
         "name": "Chamuscado",
-        "src": "atril/atril_chamuscado.png"
+        "src": "atril/atril_chamuscado.webp"
       },
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "atril/atril_queimando.png",
+        "src": "atril/atril_queimando.webm",
         "burning": true,
         "sticky": true,
         "dot": {
@@ -391,7 +391,7 @@
       {
         "id": "queimado",
         "name": "Queimado",
-        "src": "atril/atril_queimado.png",
+        "src": "atril/atril_queimado.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -498,29 +498,29 @@
       {
         "id": "inteira",
         "name": "Inteira",
-        "src": "escrivaninha/escrivaninha_inteira.png"
+        "src": "escrivaninha/escrivaninha_inteira.webp"
       },
       {
         "id": "tinta_derramada",
         "name": "Tinta derramada",
-        "src": "escrivaninha/escrivaninha_tinta_derramada.png"
+        "src": "escrivaninha/escrivaninha_tinta_derramada.webp"
       },
       {
         "id": "quebrada",
         "name": "Quebrada",
-        "src": "escrivaninha/escrivaninha_quebrada.png",
+        "src": "escrivaninha/escrivaninha_quebrada.webp",
         "broken": true,
         "sfx": "audio/madeira_quebrando.ogg"
       },
       {
         "id": "chamuscada",
         "name": "Chamuscada",
-        "src": "escrivaninha/escrivaninha_chamuscada.png"
+        "src": "escrivaninha/escrivaninha_chamuscada.webp"
       },
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "escrivaninha/escrivaninha_queimando.png",
+        "src": "escrivaninha/escrivaninha_queimando.webm",
         "burning": true,
         "sticky": true,
         "dot": {
@@ -548,7 +548,7 @@
       {
         "id": "queimada",
         "name": "Queimada",
-        "src": "escrivaninha/escrivaninha_queimada.png",
+        "src": "escrivaninha/escrivaninha_queimada.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -659,12 +659,12 @@
       {
         "id": "inteiro",
         "name": "Inteiro",
-        "src": "carrinho_livros/carrinho_livros_inteiro.png"
+        "src": "carrinho_livros/carrinho_livros_inteiro.webp"
       },
       {
         "id": "quebrado",
         "name": "Quebrado",
-        "src": "carrinho_livros/carrinho_livros_quebrado.png",
+        "src": "carrinho_livros/carrinho_livros_quebrado.webp",
         "broken": true,
         "travado": true,
         "sfx": "audio/madeira_quebrando.ogg"
@@ -672,7 +672,7 @@
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "carrinho_livros/carrinho_livros_queimando.png",
+        "src": "carrinho_livros/carrinho_livros_queimando.webm",
         "burning": true,
         "sticky": true,
         "dot": {
@@ -700,7 +700,7 @@
       {
         "id": "queimado",
         "name": "Queimado",
-        "src": "carrinho_livros/carrinho_livros_queimado.png",
+        "src": "carrinho_livros/carrinho_livros_queimado.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -795,7 +795,7 @@
       {
         "id": "acesa",
         "name": "Acesa",
-        "src": "vela/vela_acesa.png",
+        "src": "vela/vela_acesa.webp",
         "light": {
           "bright": 5,
           "dim": 15,
@@ -811,7 +811,7 @@
       {
         "id": "apagada",
         "name": "Apagada",
-        "src": "vela/vela_apagada.png",
+        "src": "vela/vela_apagada.webp",
         "light": {
           "bright": 0,
           "dim": 0
@@ -820,7 +820,7 @@
       {
         "id": "derrubado",
         "name": "Derrubado",
-        "src": "vela/vela_derrubado.png",
+        "src": "vela/vela_derrubado.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -879,7 +879,7 @@
       {
         "id": "acesa",
         "name": "Acesa",
-        "src": "lampada/lampada_acesa.png",
+        "src": "lampada/lampada_acesa.webp",
         "light": {
           "bright": 6,
           "dim": 20,
@@ -891,7 +891,7 @@
       {
         "id": "quebrada",
         "name": "Quebrada",
-        "src": "lampada/lampada_quebrada.png",
+        "src": "lampada/lampada_quebrada.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -934,7 +934,7 @@
       {
         "id": "aceso",
         "name": "Aceso",
-        "src": "globo/globo_aceso.png",
+        "src": "globo/globo_aceso.webp",
         "light": {
           "bright": 20,
           "dim": 40,
@@ -945,7 +945,7 @@
       {
         "id": "apagado",
         "name": "Apagado",
-        "src": "globo/globo_apagado.png",
+        "src": "globo/globo_apagado.webp",
         "light": {
           "bright": 0,
           "dim": 0
@@ -954,7 +954,7 @@
       {
         "id": "quebrado",
         "name": "Quebrado",
-        "src": "globo/globo_quebrado.png",
+        "src": "globo/globo_quebrado.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -994,12 +994,12 @@
       {
         "id": "parado",
         "name": "Parado",
-        "src": "sino/sino_parado.png"
+        "src": "sino/sino_parado.webp"
       },
       {
         "id": "tocando",
         "name": "Tocando",
-        "src": "sino/sino_tocando.png",
+        "src": "sino/sino_tocando.webp",
         "alarme": true,
         "ticks": 3,
         "then": "parado"
@@ -1007,7 +1007,7 @@
       {
         "id": "rachado",
         "name": "Rachado",
-        "src": "sino/sino_rachado.png",
+        "src": "sino/sino_rachado.webp",
         "broken": true
       }
     ],
@@ -1055,17 +1055,17 @@
       {
         "id": "inteiro",
         "name": "Inteiro",
-        "src": "altar/altar_inteiro.png"
+        "src": "altar/altar_inteiro.webp"
       },
       {
         "id": "profanado",
         "name": "Profanado",
-        "src": "altar/altar_profanado.png"
+        "src": "altar/altar_profanado.webp"
       },
       {
         "id": "quebrado",
         "name": "Quebrado",
-        "src": "altar/altar_quebrado.png",
+        "src": "altar/altar_quebrado.webp",
         "broken": true
       }
     ],
@@ -1101,12 +1101,12 @@
       {
         "id": "estatua",
         "name": "Estátua",
-        "src": "gargula/gargula_estatua.png"
+        "src": "gargula/gargula_estatua.webp"
       },
       {
         "id": "desperta",
         "name": "Desperta",
-        "src": "gargula/gargula_desperta.png",
+        "src": "gargula/gargula_desperta.webp",
         "npc": "gargula_oghma"
       }
     ]

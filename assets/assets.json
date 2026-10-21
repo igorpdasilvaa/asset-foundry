@@ -26,19 +26,19 @@
       {
         "id": "inteira",
         "name": "Inteira",
-        "src": "mesa/mesa_inteira.png"
+        "src": "mesa/mesa_inteira.webp"
       },
       {
         "id": "quebrada",
         "name": "Quebrada",
-        "src": "mesa/mesa_quebrada.png",
+        "src": "mesa/mesa_quebrada.webp",
         "broken": true,
         "sfx": "audio/madeira_quebrando.ogg"
       },
       {
         "id": "cortada",
         "name": "Cortada ao meio",
-        "src": "mesa/mesa_cortada.png",
+        "src": "mesa/mesa_cortada.webp",
         "broken": true,
         "sfx": "audio/madeira_quebrando.ogg"
       },
@@ -74,7 +74,7 @@
       {
         "id": "queimada",
         "name": "Queimada",
-        "src": "mesa/mesa_queimada.png",
+        "src": "mesa/mesa_queimada.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -91,13 +91,13 @@
       {
         "id": "chamuscada",
         "name": "Chamuscada",
-        "src": "mesa/mesa_chamuscada.png",
+        "src": "mesa/mesa_chamuscada.webp",
         "sfx": "audio/fogo_apaga.ogg"
       },
       {
         "id": "congelada",
         "name": "Congelada",
-        "src": "mesa/mesa_congelada.png",
+        "src": "mesa/mesa_congelada.webp",
         "sticky": true,
         "light": {
           "bright": 0,
@@ -110,14 +110,14 @@
       {
         "id": "estilhacada",
         "name": "Estilhaçada",
-        "src": "mesa/mesa_estilhacada.png",
+        "src": "mesa/mesa_estilhacada.webp",
         "broken": true,
         "sfx": "audio/gelo_quebra.ogg"
       },
       {
         "id": "corroida",
         "name": "Corroída",
-        "src": "mesa/mesa_corroida.png",
+        "src": "mesa/mesa_corroida.webp",
         "dot": {
           "damage": 1,
           "type": "acid"
@@ -128,19 +128,19 @@
       {
         "id": "flechada",
         "name": "Com flechas",
-        "src": "mesa/mesa_flechada.png",
+        "src": "mesa/mesa_flechada.webp",
         "sfx": "audio/flechas.ogg"
       },
       {
         "id": "apodrecida",
         "name": "Apodrecida",
-        "src": "mesa/mesa_apodrecida.png",
+        "src": "mesa/mesa_apodrecida.webp",
         "sfx": "audio/profano.ogg"
       },
       {
         "id": "radiante",
         "name": "Radiante",
-        "src": "mesa/mesa_radiante.png",
+        "src": "mesa/mesa_radiante.webp",
         "ticks": 10,
         "then": "inteira",
         "light": {
@@ -334,7 +334,7 @@
       {
         "id": "apagada",
         "name": "Apagada",
-        "src": "tocha/tocha_apagada.png",
+        "src": "tocha/tocha_apagada.webp",
         "light": {
           "bright": 0,
           "dim": 0
@@ -392,18 +392,18 @@
       {
         "id": "inteira",
         "name": "Inteira",
-        "src": "parede/parede_inteira.png"
+        "src": "parede/parede_inteira.webp"
       },
       {
         "id": "rachada",
         "name": "Rachada",
-        "src": "parede/parede_rachada.png",
+        "src": "parede/parede_rachada.webp",
         "sfx": "audio/pedra_racha.ogg"
       },
       {
         "id": "destruida",
         "name": "Destruída",
-        "src": "parede/parede_destruida.png",
+        "src": "parede/parede_destruida.webp",
         "broken": true,
         "sfx": "audio/pedra_desaba.ogg"
       }
@@ -459,26 +459,26 @@
       {
         "id": "fechada",
         "name": "Fechada",
-        "src": "porta/porta_fechada.png",
+        "src": "porta/porta_fechada.webp",
         "door": "closed"
       },
       {
         "id": "aberta",
         "name": "Aberta",
-        "src": "porta/porta_aberta.png",
+        "src": "porta/porta_aberta.webp",
         "door": "open"
       },
       {
         "id": "quebrada",
         "name": "Arrombada",
-        "src": "porta/porta_quebrada.png",
+        "src": "porta/porta_quebrada.webp",
         "broken": true,
         "sfx": "audio/madeira_quebrando.ogg"
       },
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "porta/porta_queimando.png",
+        "src": "porta/porta_queimando.webm",
         "sticky": true,
         "dot": {
           "damage": 2,
@@ -506,7 +506,7 @@
       {
         "id": "queimada",
         "name": "Queimada",
-        "src": "porta/porta_queimada.png",
+        "src": "porta/porta_queimada.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -591,18 +591,18 @@
       {
         "id": "inteiro",
         "name": "Inteiro",
-        "src": "pilar/pilar_inteiro.png"
+        "src": "pilar/pilar_inteiro.webp"
       },
       {
         "id": "rachado",
         "name": "Rachado",
-        "src": "pilar/pilar_rachado.png",
+        "src": "pilar/pilar_rachado.webp",
         "sfx": "audio/pedra_racha.ogg"
       },
       {
         "id": "destruido",
         "name": "Desmoronado",
-        "src": "pilar/pilar_destruido.png",
+        "src": "pilar/pilar_destruido.webp",
         "broken": true,
         "sfx": "audio/pedra_desaba.ogg"
       }
@@ -655,19 +655,19 @@
       {
         "id": "inteiro",
         "name": "Inteiro",
-        "src": "barril/barril_inteiro.png"
+        "src": "barril/barril_inteiro.webp"
       },
       {
         "id": "quebrado",
         "name": "Quebrado",
-        "src": "barril/barril_quebrado.png",
+        "src": "barril/barril_quebrado.webp",
         "broken": true,
         "sfx": "audio/madeira_quebrando.ogg"
       },
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "barril/barril_queimando.png",
+        "src": "barril/barril_queimando.webm",
         "sticky": true,
         "dot": {
           "damage": 2,
@@ -695,7 +695,7 @@
       {
         "id": "queimado",
         "name": "Queimado",
-        "src": "barril/barril_queimado.png",
+        "src": "barril/barril_queimado.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -780,19 +780,19 @@
       {
         "id": "inteiro",
         "name": "Inteiro",
-        "src": "caixa/caixa_inteira.png"
+        "src": "caixa/caixa_inteiro.webp"
       },
       {
         "id": "quebrado",
         "name": "Quebrada",
-        "src": "caixa/caixa_quebrada.png",
+        "src": "caixa/caixa_quebrado.webp",
         "broken": true,
         "sfx": "audio/madeira_quebrando.ogg"
       },
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "caixa/caixa_queimando.png",
+        "src": "caixa/caixa_queimando.webm",
         "sticky": true,
         "dot": {
           "damage": 2,
@@ -820,7 +820,7 @@
       {
         "id": "queimado",
         "name": "Queimado",
-        "src": "caixa/caixa_queimada.png",
+        "src": "caixa/caixa_queimado.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -892,14 +892,14 @@
       {
         "id": "calma",
         "name": "Calma",
-        "src": "agua/agua_calma.png",
+        "src": "agua/agua_calma.webp",
         "wet": true,
         "oculto": true
       },
       {
         "id": "congelada",
         "name": "Congelada",
-        "src": "agua/agua_congelada.png",
+        "src": "agua/agua_congelada.webp",
         "gelo": true,
         "sfx": "audio/gelo_congela.ogg"
       },
@@ -926,7 +926,7 @@
       {
         "id": "vapor",
         "name": "Vapor",
-        "src": "agua/agua_vapor.png",
+        "src": "agua/agua_vapor.webp",
         "wet": true,
         "ticks": 3,
         "then": "calma",
@@ -935,7 +935,7 @@
       {
         "id": "envenenada",
         "name": "Envenenada",
-        "src": "agua/agua_envenenada.png",
+        "src": "agua/agua_envenenada.webp",
         "wet": true,
         "ticks": 10,
         "then": "calma",
@@ -1066,19 +1066,19 @@
       {
         "id": "inteira",
         "name": "Inteira",
-        "src": "carroca/carroca_inteira.png"
+        "src": "carroca/carroca_inteira.webp"
       },
       {
         "id": "roda_quebrada",
         "name": "Roda quebrada",
-        "src": "carroca/carroca_roda_quebrada.png",
+        "src": "carroca/carroca_roda_quebrada.webp",
         "travado": true,
         "sfx": "audio/madeira_quebrando.ogg"
       },
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "carroca/carroca_queimando.png",
+        "src": "carroca/carroca_queimando.webm",
         "sticky": true,
         "dot": {
           "damage": 2,
@@ -1106,7 +1106,7 @@
       {
         "id": "queimada",
         "name": "Queimada",
-        "src": "carroca/carroca_queimada.png",
+        "src": "carroca/carroca_queimada.webp",
         "broken": true,
         "travado": true,
         "light": {
@@ -1124,7 +1124,7 @@
       {
         "id": "destruida",
         "name": "Destruída",
-        "src": "carroca/carroca_destruida.png",
+        "src": "carroca/carroca_destruida.webp",
         "broken": true,
         "travado": true,
         "sfx": "audio/madeira_quebrando.ogg"
@@ -1226,18 +1226,18 @@
       {
         "id": "inteiro",
         "name": "Inteiro",
-        "src": "barco/barco_inteiro.png"
+        "src": "barco/barco_inteiro.webp"
       },
       {
         "id": "avariado",
         "name": "Fazendo água",
-        "src": "barco/barco_avariado.png",
+        "src": "barco/barco_avariado.webp",
         "sfx": "audio/madeira_quebrando.ogg"
       },
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "barco/barco_queimando.png",
+        "src": "barco/barco_queimando.webm",
         "sticky": true,
         "dot": {
           "damage": 2,
@@ -1265,7 +1265,7 @@
       {
         "id": "queimado",
         "name": "Queimado",
-        "src": "barco/barco_queimado.png",
+        "src": "barco/barco_queimado.webp",
         "broken": true,
         "travado": true,
         "light": {
@@ -1283,7 +1283,7 @@
       {
         "id": "afundado",
         "name": "Afundado",
-        "src": "barco/barco_afundado.png",
+        "src": "barco/barco_afundado.webp",
         "broken": true,
         "travado": true,
         "sfx": "audio/agua_espirra.ogg"
@@ -1369,19 +1369,19 @@
       {
         "id": "armada",
         "name": "Armada",
-        "src": "armadilhas/urso_armada.png",
+        "src": "armadilha_urso/armadilha_urso_armada.webp",
         "armed": true
       },
       {
         "id": "fechada",
         "name": "Fechada",
-        "src": "armadilhas/urso_fechada.png",
+        "src": "armadilha_urso/armadilha_urso_fechada.webp",
         "sfx": "audio/armadilha_urso.ogg"
       },
       {
         "id": "desarmada",
         "name": "Desarmada",
-        "src": "armadilhas/urso_fechada.png"
+        "src": "armadilha_urso/armadilha_urso_desarmada.webp"
       }
     ],
     "trap": {
@@ -1402,13 +1402,13 @@
       {
         "id": "coberto",
         "name": "Coberto",
-        "src": "armadilhas/fosso_coberto.png",
+        "src": "fosso/fosso_coberto.webp",
         "armed": true
       },
       {
         "id": "aberto",
         "name": "Aberto",
-        "src": "armadilhas/fosso_aberto.png",
+        "src": "fosso/fosso_aberto.webp",
         "altura": -10,
         "sfx": "audio/fosso.ogg"
       }
@@ -1431,13 +1431,13 @@
       {
         "id": "armado",
         "name": "Armado",
-        "src": "armadilhas/fio_armado.png",
+        "src": "fio/fio_armado.webp",
         "armed": true
       },
       {
         "id": "disparado",
         "name": "Disparado",
-        "src": "armadilhas/fio_cortado.png",
+        "src": "fio/fio_disparado.webp",
         "sfx": "audio/fio.ogg"
       }
     ],
@@ -1460,12 +1460,12 @@
       {
         "id": "parado",
         "name": "Parado",
-        "src": "armadilhas/pedregulho.png"
+        "src": "pedregulho/pedregulho_parado.webp"
       },
       {
         "id": "rolou",
         "name": "Rolou",
-        "src": "armadilhas/pedregulho.png",
+        "src": "pedregulho/pedregulho_rolou.webp",
         "rolls": true,
         "sfx": "audio/pedregulho.ogg"
       }
@@ -1776,18 +1776,18 @@
       {
         "id": "inteira",
         "name": "Inteira",
-        "src": "muralha/muralha_inteira.png"
+        "src": "muralha/muralha_inteira.webp"
       },
       {
         "id": "rachada",
         "name": "Rachada",
-        "src": "muralha/muralha_rachada.png",
+        "src": "muralha/muralha_rachada.webp",
         "sfx": "audio/pedra_racha.ogg"
       },
       {
         "id": "destruida",
         "name": "Destruída",
-        "src": "muralha/muralha_destruida.png",
+        "src": "muralha/muralha_destruida.webp",
         "broken": true,
         "sfx": "audio/pedra_desaba.ogg"
       }
@@ -1842,19 +1842,19 @@
       {
         "id": "fechado",
         "name": "Fechado",
-        "src": "portao/portao_fechado.png",
+        "src": "portao/portao_fechado.webp",
         "door": "locked"
       },
       {
         "id": "aberto",
         "name": "Aberto",
-        "src": "portao/portao_aberto.png",
+        "src": "portao/portao_aberto.webp",
         "door": "open"
       },
       {
         "id": "arrombado",
         "name": "Arrombado",
-        "src": "portao/portao_arrombado.png",
+        "src": "portao/portao_arrombado.webp",
         "broken": true,
         "sfx": "audio/metal_desaba.ogg"
       }
@@ -1881,7 +1881,7 @@
       {
         "id": "trancada",
         "name": "Trancada",
-        "src": "porta_esmeralda/porta_esmeralda_trancada.png",
+        "src": "porta_esmeralda/porta_esmeralda_trancada.webp",
         "door": "locked",
         "light": {
           "bright": 0,
@@ -1899,7 +1899,7 @@
       {
         "id": "aberta",
         "name": "Aberta",
-        "src": "porta_esmeralda/porta_esmeralda_aberta.png",
+        "src": "porta_esmeralda/porta_esmeralda_aberta.webp",
         "door": "open",
         "light": {
           "bright": 0,
@@ -1937,7 +1937,7 @@
       {
         "id": "brilhando",
         "name": "Brilhando",
-        "src": "amplificador/amplificador_brilhando.png",
+        "src": "amplificador/amplificador_brilhando.webp",
         "light": {
           "bright": 10,
           "dim": 25,
@@ -1958,7 +1958,7 @@
       {
         "id": "rachado",
         "name": "Rachado",
-        "src": "amplificador/amplificador_rachado.png",
+        "src": "amplificador/amplificador_rachado.webp",
         "light": {
           "bright": 6,
           "dim": 18,
@@ -1980,7 +1980,7 @@
       {
         "id": "estilhacado",
         "name": "Estilhaçado",
-        "src": "amplificador/amplificador_estilhacado.png",
+        "src": "amplificador/amplificador_estilhacado.webp",
         "broken": true,
         "colapso": {
           "dc": 15,
@@ -2025,7 +2025,7 @@
       {
         "id": "acesa",
         "name": "Acesa",
-        "src": "fogueira/fogueira_acesa.png",
+        "src": "fogueira/fogueira_acesa.webm",
         "chama": true,
         "light": {
           "bright": 15,
@@ -2049,7 +2049,7 @@
       {
         "id": "brasas",
         "name": "Brasas",
-        "src": "fogueira/fogueira_brasas.png",
+        "src": "fogueira/fogueira_brasas.webp",
         "light": {
           "bright": 0,
           "dim": 12,
@@ -2112,25 +2112,25 @@
       {
         "id": "inteiro",
         "name": "Inteiro",
-        "src": "balcao/balcao_inteiro.png"
+        "src": "balcao/balcao_inteiro.webp"
       },
       {
         "id": "chamuscado",
         "name": "Chamuscado",
-        "src": "balcao/balcao_chamuscado.png",
+        "src": "balcao/balcao_chamuscado.webp",
         "sfx": "audio/fogo_apaga.ogg"
       },
       {
         "id": "quebrado",
         "name": "Quebrado",
-        "src": "balcao/balcao_quebrado.png",
+        "src": "balcao/balcao_quebrado.webp",
         "broken": true,
         "sfx": "audio/madeira_quebrando.ogg"
       },
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "balcao/balcao_queimando.png",
+        "src": "balcao/balcao_queimando.webm",
         "burning": true,
         "sticky": true,
         "dot": {
@@ -2159,7 +2159,7 @@
       {
         "id": "queimado",
         "name": "Queimado",
-        "src": "balcao/balcao_queimado.png",
+        "src": "balcao/balcao_queimado.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -2243,19 +2243,19 @@
       {
         "id": "inteira",
         "name": "Inteira",
-        "src": "cadeira/cadeira_inteira.png"
+        "src": "cadeira/cadeira_inteira.webp"
       },
       {
         "id": "quebrada",
         "name": "Quebrada",
-        "src": "cadeira/cadeira_quebrada.png",
+        "src": "cadeira/cadeira_quebrada.webp",
         "broken": true,
         "sfx": "audio/madeira_quebrando.ogg"
       },
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "cadeira/cadeira_queimando.png",
+        "src": "cadeira/cadeira_queimando.webm",
         "burning": true,
         "sticky": true,
         "dot": {
@@ -2284,7 +2284,7 @@
       {
         "id": "queimada",
         "name": "Queimada",
-        "src": "cadeira/cadeira_queimada.png",
+        "src": "cadeira/cadeira_queimada.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -2367,19 +2367,19 @@
       {
         "id": "inteira",
         "name": "Inteira",
-        "src": "poltrona/poltrona_inteira.png"
+        "src": "poltrona/poltrona_inteira.webp"
       },
       {
         "id": "quebrada",
         "name": "Quebrada",
-        "src": "poltrona/poltrona_quebrada.png",
+        "src": "poltrona/poltrona_quebrada.webp",
         "broken": true,
         "sfx": "audio/madeira_quebrando.ogg"
       },
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "poltrona/poltrona_queimando.png",
+        "src": "poltrona/poltrona_queimando.webm",
         "burning": true,
         "sticky": true,
         "dot": {
@@ -2408,7 +2408,7 @@
       {
         "id": "queimada",
         "name": "Queimada",
-        "src": "poltrona/poltrona_queimada.png",
+        "src": "poltrona/poltrona_queimada.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -2491,19 +2491,19 @@
       {
         "id": "inteiro",
         "name": "Inteiro",
-        "src": "banco/banco_inteiro.png"
+        "src": "banco/banco_inteiro.webp"
       },
       {
         "id": "quebrado",
         "name": "Quebrado",
-        "src": "banco/banco_quebrado.png",
+        "src": "banco/banco_quebrado.webp",
         "broken": true,
         "sfx": "audio/madeira_quebrando.ogg"
       },
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "banco/banco_queimando.png",
+        "src": "banco/banco_queimando.webm",
         "burning": true,
         "sticky": true,
         "dot": {
@@ -2532,7 +2532,7 @@
       {
         "id": "queimado",
         "name": "Queimado",
-        "src": "banco/banco_queimado.png",
+        "src": "banco/banco_queimado.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -2612,24 +2612,24 @@
       {
         "id": "arrumada",
         "name": "Arrumada",
-        "src": "cama/cama_arrumada.png"
+        "src": "cama/cama_arrumada.webp"
       },
       {
         "id": "desarrumada",
         "name": "Desarrumada",
-        "src": "cama/cama_desarrumada.png"
+        "src": "cama/cama_desarrumada.webp"
       },
       {
         "id": "quebrada",
         "name": "Quebrada",
-        "src": "cama/cama_quebrada.png",
+        "src": "cama/cama_quebrada.webp",
         "broken": true,
         "sfx": "audio/madeira_quebrando.ogg"
       },
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "cama/cama_queimando.png",
+        "src": "cama/cama_queimando.webm",
         "burning": true,
         "sticky": true,
         "dot": {
@@ -2658,7 +2658,7 @@
       {
         "id": "queimada",
         "name": "Queimada",
-        "src": "cama/cama_queimada.png",
+        "src": "cama/cama_queimada.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -2740,7 +2740,7 @@
       {
         "id": "acesa",
         "name": "Acesa",
-        "src": "forja/forja_acesa.png",
+        "src": "forja/forja_acesa.webm",
         "chama": true,
         "light": {
           "bright": 15,
@@ -2764,7 +2764,7 @@
       {
         "id": "apagada",
         "name": "Apagada",
-        "src": "forja/forja_apagada.png",
+        "src": "forja/forja_apagada.webp",
         "light": {
           "bright": 0,
           "dim": 0
@@ -2825,12 +2825,12 @@
       {
         "id": "inteira",
         "name": "Inteira",
-        "src": "bigorna/bigorna_inteira.png"
+        "src": "bigorna/bigorna_inteira.webp"
       },
       {
         "id": "rachada",
         "name": "Rachada",
-        "src": "bigorna/bigorna_rachada.png",
+        "src": "bigorna/bigorna_rachada.webp",
         "broken": true,
         "sfx": "audio/bigorna_racha.ogg"
       }
@@ -2867,19 +2867,19 @@
       {
         "id": "inteiro",
         "name": "Inteiro",
-        "src": "feno/feno_inteiro.png"
+        "src": "feno/feno_inteiro.webp"
       },
       {
         "id": "espalhado",
         "name": "Espalhado",
-        "src": "feno/feno_espalhado.png",
+        "src": "feno/feno_espalhado.webp",
         "broken": true,
         "sfx": "audio/feno.ogg"
       },
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "feno/feno_queimando.png",
+        "src": "feno/feno_queimando.webm",
         "burning": true,
         "sticky": true,
         "dot": {
@@ -2908,7 +2908,7 @@
       {
         "id": "cinzas",
         "name": "Cinzas",
-        "src": "feno/feno_cinzas.png",
+        "src": "feno/feno_cinzas.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -2987,13 +2987,13 @@
       {
         "id": "cheio",
         "name": "Cheio",
-        "src": "cocho/cocho_cheio.png",
+        "src": "cocho/cocho_cheio.webp",
         "wet": true
       },
       {
         "id": "congelado",
         "name": "Congelado",
-        "src": "cocho/cocho_congelado.png",
+        "src": "cocho/cocho_congelado.webp",
         "gelo": true,
         "light": {
           "bright": 0,
@@ -3006,7 +3006,7 @@
       {
         "id": "vazio",
         "name": "Vazio",
-        "src": "cocho/cocho_vazio.png",
+        "src": "cocho/cocho_vazio.webp",
         "broken": true,
         "sfx": "audio/agua_espirra.ogg"
       }
@@ -3062,25 +3062,25 @@
       {
         "id": "inteiro",
         "name": "Inteiro",
-        "src": "tear/tear_inteiro.png"
+        "src": "tear/tear_inteiro.webp"
       },
       {
         "id": "cortado",
         "name": "Cortado",
-        "src": "tear/tear_cortado.png",
+        "src": "tear/tear_cortado.webp",
         "sfx": "audio/tecido.ogg"
       },
       {
         "id": "quebrado",
         "name": "Quebrado",
-        "src": "tear/tear_quebrado.png",
+        "src": "tear/tear_quebrado.webp",
         "broken": true,
         "sfx": "audio/madeira_quebrando.ogg"
       },
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "tear/tear_queimando.png",
+        "src": "tear/tear_queimando.webm",
         "burning": true,
         "sticky": true,
         "dot": {
@@ -3109,7 +3109,7 @@
       {
         "id": "queimado",
         "name": "Queimado",
-        "src": "tear/tear_queimado.png",
+        "src": "tear/tear_queimado.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -3201,12 +3201,12 @@
       {
         "id": "vivo",
         "name": "Vivo",
-        "src": "casulario/casulario_vivo.png"
+        "src": "casulario/casulario_vivo.webp"
       },
       {
         "id": "esmagado",
         "name": "Esmagado",
-        "src": "casulario/casulario_esmagado.png",
+        "src": "casulario/casulario_esmagado.webp",
         "broken": true,
         "sfx": "audio/esmagado.ogg"
       }
@@ -3243,37 +3243,37 @@
       {
         "id": "inteira",
         "name": "Inteira",
-        "src": "estante/estante_inteira.png"
+        "src": "estante/estante_inteira.webp"
       },
       {
         "id": "tombada",
         "name": "Tombada",
-        "src": "estante/estante_tombada.png",
+        "src": "estante/estante_tombada.webp",
         "sfx": "audio/livros_caem.ogg"
       },
       {
         "id": "cortada",
         "name": "Partida ao meio",
-        "src": "estante/estante_cortada.png",
+        "src": "estante/estante_cortada.webp",
         "broken": true,
         "sfx": "audio/madeira_quebrando.ogg"
       },
       {
         "id": "molhada",
         "name": "Molhada",
-        "src": "estante/estante_molhada.png",
+        "src": "estante/estante_molhada.webp",
         "sfx": "audio/agua_espirra.ogg"
       },
       {
         "id": "chamuscada",
         "name": "Chamuscada",
-        "src": "estante/estante_chamuscada.png",
+        "src": "estante/estante_chamuscada.webp",
         "sfx": "audio/fogo_apaga.ogg"
       },
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "estante/estante_queimando.png",
+        "src": "estante/estante_queimando.webm",
         "burning": true,
         "sticky": true,
         "dot": {
@@ -3302,7 +3302,7 @@
       {
         "id": "cinzas",
         "name": "Cinzas",
-        "src": "estante/estante_cinzas.png",
+        "src": "estante/estante_cinzas.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -3418,25 +3418,25 @@
       {
         "id": "inteira",
         "name": "Empilhada",
-        "src": "pilha_livros/pilha_livros_inteira.png"
+        "src": "pilha_livros/pilha_livros_inteira.webp"
       },
       {
         "id": "espalhada",
         "name": "Espalhada",
-        "src": "pilha_livros/pilha_livros_espalhada.png",
+        "src": "pilha_livros/pilha_livros_espalhada.webp",
         "broken": true,
         "sfx": "audio/livros_espalham.ogg"
       },
       {
         "id": "molhada",
         "name": "Molhada",
-        "src": "pilha_livros/pilha_livros_molhada.png",
+        "src": "pilha_livros/pilha_livros_molhada.webp",
         "sfx": "audio/agua_espirra.ogg"
       },
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "pilha_livros/pilha_livros_queimando.png",
+        "src": "pilha_livros/pilha_livros_queimando.webm",
         "burning": true,
         "sticky": true,
         "dot": {
@@ -3465,7 +3465,7 @@
       {
         "id": "cinzas",
         "name": "Cinzas",
-        "src": "pilha_livros/pilha_livros_cinzas.png",
+        "src": "pilha_livros/pilha_livros_cinzas.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -3566,31 +3566,31 @@
       {
         "id": "inteiro",
         "name": "Inteiro",
-        "src": "atril/atril_inteiro.png"
+        "src": "atril/atril_inteiro.webp"
       },
       {
         "id": "tombado",
         "name": "Tombado",
-        "src": "atril/atril_tombado.png",
+        "src": "atril/atril_tombado.webp",
         "sfx": "audio/livros_espalham.ogg"
       },
       {
         "id": "quebrado",
         "name": "Quebrado",
-        "src": "atril/atril_quebrado.png",
+        "src": "atril/atril_quebrado.webp",
         "broken": true,
         "sfx": "audio/madeira_quebrando.ogg"
       },
       {
         "id": "chamuscado",
         "name": "Chamuscado",
-        "src": "atril/atril_chamuscado.png",
+        "src": "atril/atril_chamuscado.webp",
         "sfx": "audio/fogo_apaga.ogg"
       },
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "atril/atril_queimando.png",
+        "src": "atril/atril_queimando.webm",
         "burning": true,
         "sticky": true,
         "dot": {
@@ -3619,7 +3619,7 @@
       {
         "id": "queimado",
         "name": "Queimado",
-        "src": "atril/atril_queimado.png",
+        "src": "atril/atril_queimado.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -3726,31 +3726,31 @@
       {
         "id": "inteira",
         "name": "Inteira",
-        "src": "escrivaninha/escrivaninha_inteira.png"
+        "src": "escrivaninha/escrivaninha_inteira.webp"
       },
       {
         "id": "tinta_derramada",
         "name": "Tinta derramada",
-        "src": "escrivaninha/escrivaninha_tinta_derramada.png",
+        "src": "escrivaninha/escrivaninha_tinta_derramada.webp",
         "sfx": "audio/tinta.ogg"
       },
       {
         "id": "quebrada",
         "name": "Quebrada",
-        "src": "escrivaninha/escrivaninha_quebrada.png",
+        "src": "escrivaninha/escrivaninha_quebrada.webp",
         "broken": true,
         "sfx": "audio/madeira_quebrando.ogg"
       },
       {
         "id": "chamuscada",
         "name": "Chamuscada",
-        "src": "escrivaninha/escrivaninha_chamuscada.png",
+        "src": "escrivaninha/escrivaninha_chamuscada.webp",
         "sfx": "audio/fogo_apaga.ogg"
       },
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "escrivaninha/escrivaninha_queimando.png",
+        "src": "escrivaninha/escrivaninha_queimando.webm",
         "burning": true,
         "sticky": true,
         "dot": {
@@ -3779,7 +3779,7 @@
       {
         "id": "queimada",
         "name": "Queimada",
-        "src": "escrivaninha/escrivaninha_queimada.png",
+        "src": "escrivaninha/escrivaninha_queimada.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -3890,12 +3890,12 @@
       {
         "id": "inteiro",
         "name": "Inteiro",
-        "src": "carrinho_livros/carrinho_livros_inteiro.png"
+        "src": "carrinho_livros/carrinho_livros_inteiro.webp"
       },
       {
         "id": "quebrado",
         "name": "Quebrado",
-        "src": "carrinho_livros/carrinho_livros_quebrado.png",
+        "src": "carrinho_livros/carrinho_livros_quebrado.webp",
         "broken": true,
         "travado": true,
         "sfx": "audio/madeira_quebrando.ogg"
@@ -3903,7 +3903,7 @@
       {
         "id": "queimando",
         "name": "Pegando fogo",
-        "src": "carrinho_livros/carrinho_livros_queimando.png",
+        "src": "carrinho_livros/carrinho_livros_queimando.webm",
         "burning": true,
         "sticky": true,
         "dot": {
@@ -3932,7 +3932,7 @@
       {
         "id": "queimado",
         "name": "Queimado",
-        "src": "carrinho_livros/carrinho_livros_queimado.png",
+        "src": "carrinho_livros/carrinho_livros_queimado.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -4027,7 +4027,7 @@
       {
         "id": "acesa",
         "name": "Acesa",
-        "src": "vela/vela_acesa.png",
+        "src": "vela/vela_acesa.webp",
         "light": {
           "bright": 5,
           "dim": 15,
@@ -4044,7 +4044,7 @@
       {
         "id": "apagada",
         "name": "Apagada",
-        "src": "vela/vela_apagada.png",
+        "src": "vela/vela_apagada.webp",
         "light": {
           "bright": 0,
           "dim": 0
@@ -4054,7 +4054,7 @@
       {
         "id": "derrubado",
         "name": "Derrubado",
-        "src": "vela/vela_derrubado.png",
+        "src": "vela/vela_derrubado.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -4114,7 +4114,7 @@
       {
         "id": "acesa",
         "name": "Acesa",
-        "src": "lampada/lampada_acesa.png",
+        "src": "lampada/lampada_acesa.webp",
         "light": {
           "bright": 6,
           "dim": 20,
@@ -4126,7 +4126,7 @@
       {
         "id": "quebrada",
         "name": "Quebrada",
-        "src": "lampada/lampada_quebrada.png",
+        "src": "lampada/lampada_quebrada.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -4170,7 +4170,7 @@
       {
         "id": "aceso",
         "name": "Aceso",
-        "src": "globo/globo_aceso.png",
+        "src": "globo/globo_aceso.webp",
         "light": {
           "bright": 20,
           "dim": 40,
@@ -4182,7 +4182,7 @@
       {
         "id": "apagado",
         "name": "Apagado",
-        "src": "globo/globo_apagado.png",
+        "src": "globo/globo_apagado.webp",
         "light": {
           "bright": 0,
           "dim": 0
@@ -4192,7 +4192,7 @@
       {
         "id": "quebrado",
         "name": "Quebrado",
-        "src": "globo/globo_quebrado.png",
+        "src": "globo/globo_quebrado.webp",
         "broken": true,
         "light": {
           "bright": 0,
@@ -4233,12 +4233,12 @@
       {
         "id": "parado",
         "name": "Parado",
-        "src": "sino/sino_parado.png"
+        "src": "sino/sino_parado.webp"
       },
       {
         "id": "tocando",
         "name": "Tocando",
-        "src": "sino/sino_tocando.png",
+        "src": "sino/sino_tocando.webp",
         "alarme": true,
         "ticks": 3,
         "then": "parado",
@@ -4247,7 +4247,7 @@
       {
         "id": "rachado",
         "name": "Rachado",
-        "src": "sino/sino_rachado.png",
+        "src": "sino/sino_rachado.webp",
         "broken": true,
         "sfx": "audio/sino_racha.ogg"
       }
@@ -4296,18 +4296,18 @@
       {
         "id": "inteiro",
         "name": "Inteiro",
-        "src": "altar/altar_inteiro.png"
+        "src": "altar/altar_inteiro.webp"
       },
       {
         "id": "profanado",
         "name": "Profanado",
-        "src": "altar/altar_profanado.png",
+        "src": "altar/altar_profanado.webp",
         "sfx": "audio/profano.ogg"
       },
       {
         "id": "quebrado",
         "name": "Quebrado",
-        "src": "altar/altar_quebrado.png",
+        "src": "altar/altar_quebrado.webp",
         "broken": true,
         "sfx": "audio/pedra_desaba.ogg"
       }
@@ -4344,14 +4344,229 @@
       {
         "id": "estatua",
         "name": "Estátua",
-        "src": "gargula/gargula_estatua.png"
+        "src": "gargula/gargula_estatua.webp"
       },
       {
         "id": "desperta",
         "name": "Desperta",
-        "src": "gargula/gargula_desperta.png",
+        "src": "gargula/gargula_desperta.webp",
         "npc": "gargula_oghma",
         "sfx": "audio/gargula.ogg"
+      }
+    ]
+  },
+  "poco": {
+    "name": "Poço de pedra",
+    "tipo": "imovel",
+    "interacao": "mestre",
+    "size": {
+      "w": 2,
+      "h": 2
+    },
+    "actor": {
+      "ac": 15,
+      "hp": 40,
+      "immunities": [
+        "psychic"
+      ],
+      "resistances": [
+        "piercing",
+        "slashing"
+      ]
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "inteiro",
+        "name": "Inteiro",
+        "src": "poco/poco_inteiro.webp"
+      },
+      {
+        "id": "rachado",
+        "name": "Rachado",
+        "src": "poco/poco_rachado.webp",
+        "sfx": "audio/pedra_racha.ogg"
+      },
+      {
+        "id": "desmoronado",
+        "name": "Desmoronado",
+        "src": "poco/poco_desmoronado.webp",
+        "broken": true,
+        "sfx": "audio/pedra_desaba.ogg"
+      },
+      {
+        "id": "envenenado",
+        "name": "Água envenenada",
+        "src": "poco/poco_envenenado.webp",
+        "ticks": 10,
+        "then": "inteiro",
+        "sfx": "audio/veneno.ogg"
+      },
+      {
+        "id": "congelado",
+        "name": "Água congelada",
+        "src": "poco/poco_congelado.webp",
+        "sticky": true,
+        "light": {
+          "bright": 0,
+          "dim": 5,
+          "color": "#9fdcff",
+          "alpha": 0.25
+        },
+        "sfx": "audio/gelo_congela.ogg"
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "poison",
+          "acid"
+        ],
+        "from": [
+          "inteiro",
+          "rachado"
+        ],
+        "to": "envenenado",
+        "say": "tem a água envenenada."
+      },
+      {
+        "types": [
+          "radiant"
+        ],
+        "from": [
+          "envenenado"
+        ],
+        "to": "inteiro",
+        "say": "tem a água purificada."
+      },
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "inteiro",
+          "rachado",
+          "envenenado"
+        ],
+        "to": "congelado",
+        "say": "tem a água congelada."
+      },
+      {
+        "types": [
+          "fire"
+        ],
+        "from": [
+          "congelado"
+        ],
+        "to": "inteiro",
+        "say": "tem o gelo derretido."
+      },
+      {
+        "types": [
+          "bludgeoning",
+          "thunder",
+          "force"
+        ],
+        "from": [
+          "inteiro"
+        ],
+        "to": "rachado",
+        "say": "racha."
+      }
+    ],
+    "onZero": [
+      {
+        "to": "desmoronado",
+        "say": "desmorona dentro de si mesmo!"
+      }
+    ]
+  },
+  "estatua_alaundo": {
+    "name": "Estátua de Alaundo",
+    "tipo": "imovel",
+    "interacao": "mestre",
+    "size": {
+      "w": 2,
+      "h": 2
+    },
+    "actor": {
+      "ac": 17,
+      "hp": 60,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": [
+        "piercing",
+        "slashing"
+      ]
+    },
+    "conhecimento": true,
+    "states": [
+      {
+        "id": "inteira",
+        "name": "Inteira",
+        "src": "estatua_alaundo/estatua_alaundo_inteira.webp"
+      },
+      {
+        "id": "rachada",
+        "name": "Rachada",
+        "src": "estatua_alaundo/estatua_alaundo_rachada.webp",
+        "sfx": "audio/pedra_racha.ogg"
+      },
+      {
+        "id": "profanada",
+        "name": "Profanada",
+        "src": "estatua_alaundo/estatua_alaundo_profanada.webp",
+        "sfx": "audio/profano.ogg"
+      },
+      {
+        "id": "derrubada",
+        "name": "Derrubada",
+        "src": "estatua_alaundo/estatua_alaundo_derrubada.webp",
+        "broken": true,
+        "sfx": "audio/pedra_desaba.ogg"
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "necrotic"
+        ],
+        "from": [
+          "inteira",
+          "rachada"
+        ],
+        "to": "profanada",
+        "say": "fica manchada de sombra."
+      },
+      {
+        "types": [
+          "radiant"
+        ],
+        "from": [
+          "profanada"
+        ],
+        "to": "inteira",
+        "say": "volta a brilhar, purificada."
+      },
+      {
+        "types": [
+          "bludgeoning",
+          "thunder",
+          "force"
+        ],
+        "from": [
+          "inteira"
+        ],
+        "to": "rachada",
+        "say": "racha."
+      }
+    ],
+    "onZero": [
+      {
+        "to": "derrubada",
+        "say": "tomba e se parte! O sábio de pedra vira entulho."
       }
     ]
   }

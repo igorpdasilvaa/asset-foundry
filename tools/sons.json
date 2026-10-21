@@ -851,6 +851,31 @@
       "desperta": {
         "sfx": "audio/gargula.ogg"
       }
+    },
+    "poco": {
+      "rachado": {
+        "sfx": "audio/pedra_racha.ogg"
+      },
+      "desmoronado": {
+        "sfx": "audio/pedra_desaba.ogg"
+      },
+      "envenenado": {
+        "sfx": "audio/veneno.ogg"
+      },
+      "congelado": {
+        "sfx": "audio/gelo_congela.ogg"
+      }
+    },
+    "estatua_alaundo": {
+      "rachada": {
+        "sfx": "audio/pedra_racha.ogg"
+      },
+      "profanada": {
+        "sfx": "audio/profano.ogg"
+      },
+      "derrubada": {
+        "sfx": "audio/pedra_desaba.ogg"
+      }
     }
   }
 }

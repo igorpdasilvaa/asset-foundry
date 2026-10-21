@@ -1,0 +1,514 @@
+{
+  "carroca": {
+    "prompt": "a wooden farm cart wagon seen from directly above, rectangular plank cargo bed with raised side boards, four spoked wooden wheels visible at the sides, wooden drawbar shaft pointing forward, no horses (veio sobre grama: recorte com tira_verde)",
+    "jobs": {
+      "base": [
+        "977fd14c-39ac-4c2d-8142-58bc9ddc6b2d",
+        2
+      ]
+    },
+    "estados": {
+      "inteira": [
+        [
+          "recorte",
+          {
+            "job": "977fd14c-39ac-4c2d-8142-58bc9ddc6b2d",
+            "i": 2,
+            "tira_verde": true,
+            "girar": 180
+          }
+        ]
+      ],
+      "roda_quebrada": [
+        [
+          "recorte",
+          {
+            "job": "977fd14c-39ac-4c2d-8142-58bc9ddc6b2d",
+            "i": 2,
+            "tira_verde": true,
+            "girar": 180
+          }
+        ],
+        [
+          "arranca",
+          {
+            "caixa": [
+              -0.02,
+              0.85,
+              0.16,
+              1.02
+            ],
+            "n": 8,
+            "espalha": 0.7
+          }
+        ]
+      ],
+      "queimando": [
+        [
+          "recorte",
+          {
+            "job": "977fd14c-39ac-4c2d-8142-58bc9ddc6b2d",
+            "i": 2,
+            "tira_verde": true,
+            "girar": 180
+          }
+        ],
+        [
+          "chamuscado"
+        ],
+        [
+          "fogo"
+        ]
+      ],
+      "queimada": [
+        [
+          "recorte",
+          {
+            "job": "977fd14c-39ac-4c2d-8142-58bc9ddc6b2d",
+            "i": 2,
+            "tira_verde": true,
+            "girar": 180
+          }
+        ],
+        [
+          "queimado"
+        ]
+      ],
+      "destruida": [
+        [
+          "recorte",
+          {
+            "job": "977fd14c-39ac-4c2d-8142-58bc9ddc6b2d",
+            "i": 2,
+            "tira_verde": true,
+            "girar": 180
+          }
+        ],
+        [
+          "lascas",
+          {
+            "n": 22
+          }
+        ]
+      ]
+    }
+  },
+  "barco": {
+    "prompt": "single small wooden rowboat seen from directly above, symmetrical top view of the hull, pointed bow and flat stern, plank floor inside with bench seats (a folha veio com dois barcos: recorte do de cima)",
+    "jobs": {
+      "base": [
+        "6f827aa1-a1e4-4475-9b37-5a6484a4f20f",
+        3
+      ]
+    },
+    "estados": {
+      "inteiro": [
+        [
+          "recorte",
+          {
+            "job": "6f827aa1-a1e4-4475-9b37-5a6484a4f20f",
+            "i": 3,
+            "caixa": [
+              0,
+              0,
+              1,
+              0.5
+            ],
+            "alarga": 1.6
+          }
+        ]
+      ],
+      "avariado": [
+        [
+          "recorte",
+          {
+            "job": "6f827aa1-a1e4-4475-9b37-5a6484a4f20f",
+            "i": 3,
+            "caixa": [
+              0,
+              0,
+              1,
+              0.5
+            ],
+            "alarga": 1.6
+          }
+        ],
+        [
+          "rachado",
+          {
+            "n": 4
+          }
+        ],
+        [
+          "alaga"
+        ]
+      ],
+      "queimando": [
+        [
+          "recorte",
+          {
+            "job": "6f827aa1-a1e4-4475-9b37-5a6484a4f20f",
+            "i": 3,
+            "caixa": [
+              0,
+              0,
+              1,
+              0.5
+            ],
+            "alarga": 1.6
+          }
+        ],
+        [
+          "chamuscado"
+        ],
+        [
+          "fogo"
+        ]
+      ],
+      "queimado": [
+        [
+          "recorte",
+          {
+            "job": "6f827aa1-a1e4-4475-9b37-5a6484a4f20f",
+            "i": 3,
+            "caixa": [
+              0,
+              0,
+              1,
+              0.5
+            ],
+            "alarga": 1.6
+          }
+        ],
+        [
+          "queimado"
+        ]
+      ],
+      "afundado": [
+        [
+          "recorte",
+          {
+            "job": "6f827aa1-a1e4-4475-9b37-5a6484a4f20f",
+            "i": 3,
+            "caixa": [
+              0,
+              0,
+              1,
+              0.5
+            ],
+            "alarga": 1.6
+          }
+        ],
+        [
+          "submerso",
+          {
+            "de": -1
+          }
+        ]
+      ]
+    }
+  },
+  "agua": {
+    "prompt": "seamless tileable texture of deep dark blue lake water seen from directly above, calm surface with subtle small ripples (textura cheia, sem fundo branco; cor corrigida para o teal da água do mapa). Gelo e veneno são texturas próprias (jobs nas receitas).",
+    "jobs": {
+      "base": [
+        "3c178f17-2e8c-4263-9d1b-a7f9582f3be7",
+        3
+      ]
+    },
+    "esticar": true,
+    "margem": 0,
+    "sombra": false,
+    "estados": {
+      "calma": [
+        [
+          "textura",
+          {
+            "job": "3c178f17-2e8c-4263-9d1b-a7f9582f3be7",
+            "i": 3
+          }
+        ],
+        [
+          "dessatura",
+          {
+            "k": 0.4
+          }
+        ],
+        [
+          "tinge",
+          {
+            "cor": [
+              40,
+              120,
+              140
+            ],
+            "forca": 0.55
+          }
+        ],
+        [
+          "brilho",
+          {
+            "k": 1.05
+          }
+        ]
+      ],
+      "congelada": [
+        [
+          "textura",
+          {
+            "job": "951297b7-9ebf-4221-9734-009b64a836b1",
+            "i": 1
+          }
+        ]
+      ],
+      "eletrificada": [
+        [
+          "textura",
+          {
+            "job": "3c178f17-2e8c-4263-9d1b-a7f9582f3be7",
+            "i": 3
+          }
+        ],
+        [
+          "dessatura",
+          {
+            "k": 0.4
+          }
+        ],
+        [
+          "tinge",
+          {
+            "cor": [
+              40,
+              120,
+              140
+            ],
+            "forca": 0.55
+          }
+        ],
+        [
+          "brilho",
+          {
+            "k": 1.05
+          }
+        ],
+        [
+          "raios",
+          {
+            "webm": "agua/agua_eletrificada.webm"
+          }
+        ]
+      ],
+      "vapor": [
+        [
+          "textura",
+          {
+            "job": "3c178f17-2e8c-4263-9d1b-a7f9582f3be7",
+            "i": 3
+          }
+        ],
+        [
+          "dessatura",
+          {
+            "k": 0.4
+          }
+        ],
+        [
+          "tinge",
+          {
+            "cor": [
+              40,
+              120,
+              140
+            ],
+            "forca": 0.55
+          }
+        ],
+        [
+          "brilho",
+          {
+            "k": 1.05
+          }
+        ],
+        [
+          "vapor",
+          {
+            "forca": 0.62
+          }
+        ]
+      ],
+      "envenenada": [
+        [
+          "textura",
+          {
+            "job": "18ea20b5-02d1-40a0-a9cf-d2b030968d58",
+            "i": 0
+          }
+        ],
+        [
+          "tinge",
+          {
+            "cor": [
+              70,
+              110,
+              30
+            ],
+            "forca": 0.25
+          }
+        ]
+      ]
+    }
+  },
+  "fio": {
+    "prompt": "híbrido: corda (a single straight thin twisted hemp rope stretched taut horizontally...) entre duas estacas (the round top of a single short wooden stake peg seen from directly above, circular cut wood end grain...), montado pelo efeito fio",
+    "jobs": {
+      "base": [
+        "e7970f38-14fc-495b-bc3e-fb23f265b685",
+        1
+      ]
+    },
+    "estados": {
+      "armado": [
+        [
+          "fio",
+          {
+            "corda": [
+              "eb9395bd-1c75-4a10-b074-fb91ffa7e36b",
+              1
+            ],
+            "estaca": [
+              "e7970f38-14fc-495b-bc3e-fb23f265b685",
+              1
+            ]
+          }
+        ]
+      ],
+      "disparado": [
+        [
+          "fio",
+          {
+            "corda": [
+              "eb9395bd-1c75-4a10-b074-fb91ffa7e36b",
+              1
+            ],
+            "estaca": [
+              "e7970f38-14fc-495b-bc3e-fb23f265b685",
+              1
+            ],
+            "arrebentado": true
+          }
+        ]
+      ]
+    }
+  },
+  "pedregulho": {
+    "prompt": "a single large round granite boulder seen from directly above, a big rounded grey rock shaded like a sphere with highlight on top and darker edges, cracks and small patches of yellow lichen and green moss",
+    "jobs": {
+      "base": [
+        "e4e2b238-136b-40a4-a06f-841d7f52eac6",
+        2
+      ]
+    },
+    "estados": {
+      "parado": [
+        [
+          "recorte",
+          {
+            "job": "e4e2b238-136b-40a4-a06f-841d7f52eac6",
+            "i": 2,
+            "tapa": true
+          }
+        ],
+        [
+          "dessatura",
+          {
+            "k": 0.7
+          }
+        ]
+      ],
+      "rolou": [
+        [
+          "recorte",
+          {
+            "job": "e4e2b238-136b-40a4-a06f-841d7f52eac6",
+            "i": 2,
+            "tapa": true
+          }
+        ],
+        [
+          "dessatura",
+          {
+            "k": 0.7
+          }
+        ]
+      ]
+    }
+  },
+  "fosso": {
+    "prompt": "coberto: a dense square mat of crisscrossed thin branches, twigs, dry leaves and straw grass completely covering a hidden pit; aberto: a deep square pit trap dug in brown earth, very dark bottom with sharpened wooden stakes",
+    "jobs": {
+      "base": [
+        "3c2958d1-897e-42eb-94a6-68a68ecb1843",
+        3
+      ],
+      "aberto": [
+        "7807ae3e-57f1-4eda-8715-0723739d0505",
+        3
+      ]
+    },
+    "margem": 0.02,
+    "estados": {
+      "coberto": [],
+      "aberto": {
+        "img": "aberto",
+        "efeitos": []
+      }
+    }
+  },
+  "armadilha_urso": {
+    "prompt": "procedural: o SDXL não fez armadilha de urso vista de cima em 3 tentativas (saíam rodas/engrenagens); desenhada pelo efeito armadilha_urso com a textura de metal enferrujado de game item icon of an open iron bear trap... (variação 0)",
+    "jobs": {
+      "base": [
+        "13373d57-81a1-4d4e-aa1c-33c4250f5b2e",
+        0
+      ]
+    },
+    "estados": {
+      "armada": [
+        [
+          "armadilha_urso",
+          {
+            "metal": [
+              "13373d57-81a1-4d4e-aa1c-33c4250f5b2e",
+              0
+            ]
+          }
+        ]
+      ],
+      "fechada": [
+        [
+          "armadilha_urso",
+          {
+            "metal": [
+              "13373d57-81a1-4d4e-aa1c-33c4250f5b2e",
+              0
+            ],
+            "fechada": true
+          }
+        ]
+      ],
+      "desarmada": [
+        [
+          "armadilha_urso",
+          {
+            "metal": [
+              "13373d57-81a1-4d4e-aa1c-33c4250f5b2e",
+              0
+            ],
+            "fechada": true
+          }
+        ]
+      ]
+    }
+  }
+}

@@ -17,7 +17,10 @@ jobs:
       - name: Empacotar módulo
         run: |
           mkdir -p dist/interactive-assets
-          cp -r module.json scripts styles assets README.md dist/interactive-assets/
+          cp -r module.json scripts styles assets mapas README.md dist/interactive-assets/
+          # os mapas vão no pacote (o servidor do Foundry serve tudo); as prévias e as peças-fonte não precisam
+          find dist -name 'previa*.jpg' -delete
+          find dist/interactive-assets/mapas/pecas -name '*.svg' -delete
           cd dist && zip -r interactive-assets.zip interactive-assets && cp interactive-assets/module.json .
       - uses: softprops/action-gh-release@v2
         with:

@@ -1,0 +1,29 @@
+{
+  "_comentario": "Receitas dos assets feitos a partir do ia-orc (tools/ia_assets.py). jobs: imagem-base [job, índice da variação].",
+  "barril": {
+    "prompt": "a wooden barrel seen from directly above showing its round lid made of planks and two iron hoops around the rim",
+    "jobs": { "base": ["14248444-d88e-4ecf-bb78-51a8547765cb", 2] },
+    "estados": {
+      "quebrado": [["poca", {}], ["quebrado", {"n": 14, "alongado": 2.4}]],
+      "queimando": [["chamuscado"], ["fogo"]],
+      "queimado": [["cinzas"]]
+    }
+  },
+  "mesa": {
+    "prompt": "a rectangular rustic wooden tavern table seen from directly above, plank tabletop with darker edges and small wear marks",
+    "jobs": { "base": ["42f0bea2-e733-4b33-b4ff-3da4d3baec9e", 2] },
+    "estados": {
+      "quebrada": [["lascas", {"n": 18}]],
+      "cortada": [["cortado"]],
+      "queimando": [["chamuscado"], ["fogo"]],
+      "queimada": [["cinzas"]],
+      "chamuscada": [["chamuscado"]],
+      "congelada": [["gelo"]],
+      "estilhacada": [["gelo"], ["quebrado", {"n": 20}]],
+      "corroida": [["acido"]],
+      "flechada": [["flechas", {"n": 4}]],
+      "apodrecida": [["podre"]],
+      "radiante": [["radiante"]]
+    }
+  }
+}

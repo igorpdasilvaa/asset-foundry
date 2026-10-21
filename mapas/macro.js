@@ -11,14 +11,16 @@ if (!api?.buildMap) return ui.notifications.error("Interactive Assets desatualiz
 
 // Com o modo desenvolvimento, usa o mesmo commit que o módulo carregou (sem gastar consulta ao GitHub).
 let root = REF === "main" && api.root?.startsWith("http") ? api.root : null;
+// Módulo instalado (0.12.0 ou mais novo): os mapas vêm no pacote, então tudo sai do próprio servidor do Foundry.
+const existe = async base => !!(await fetch(`${base}/mapas/${MAPA}/cidade.json`).then(r => r.ok).catch(() => false)
+  || await fetch(`${base}/mapas/${MAPA}/cena.json`).then(r => r.ok).catch(() => false));
+if (!root && REF === "main" && await existe("modules/interactive-assets")) root = "modules/interactive-assets";
 if (!root) {
-  // O GitHub libera 60 consultas por hora; se passar disso (erro 403), lê os arquivos direto do repositório.
+  // Último recurso: os arquivos direto do repositório (o jsDelivr recusa repositórios com mais de 50 MB).
   const r = await fetch(`https://api.github.com/repos/${REPO}/commits/${encodeURIComponent(REF)}`, {
     headers: { Accept: "application/vnd.github.sha" }
   }).catch(() => null);
-  root = r?.ok
-    ? `https://cdn.jsdelivr.net/gh/${REPO}@${(await r.text()).trim()}`
-    : `https://raw.githubusercontent.com/${REPO}/${REF}`;
+  root = `https://raw.githubusercontent.com/${REPO}/${r?.ok ? (await r.text()).trim() : REF}`;
 }
 const miniatura = async scene => {
   try {
@@ -28,7 +30,7 @@ const miniatura = async scene => {
 };
 const cidade = await fetch(`${root}/mapas/${MAPA}/cidade.json`).then(r => r.ok ? r.json() : null).catch(() => null);
 if (cidade) {
-  if (!api.buildCity) return ui.notifications.error("Interactive Assets desatualizado: atualize o módulo para a versão 0.11.0 ou mais nova (ou ligue o Modo desenvolvimento).");
+  if (!api.buildCity) return ui.notifications.error("Interactive Assets desatualizado: atualize o módulo para a versão 0.12.0 ou mais nova (ou ligue o Modo desenvolvimento).");
   const inicio = await api.buildCity(MAPA, root);
   if (inicio) for (const s of game.scenes.filter(s => s.getFlag("interactive-assets", "cidade") === MAPA)) await miniatura(s);
   return;

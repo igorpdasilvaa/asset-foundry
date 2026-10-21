@@ -1,0 +1,66 @@
+{
+  "piso_madeira": {
+    "quadrados": 2,
+    "variacao": 0.12
+  },
+  "piso_pedra": {
+    "quadrados": 2,
+    "variacao": 0.12
+  },
+  "grama": {
+    "quadrados": 3,
+    "variacao": 0.18
+  },
+  "terra": {
+    "quadrados": 3,
+    "variacao": 0.15
+  },
+  "parede": {
+    "quadrados": 2,
+    "variacao": 0.12
+  },
+  "agua": {
+    "quadrados": 3,
+    "variacao": 0.1
+  },
+  "paralelepipedo": {
+    "quadrados": 2,
+    "variacao": 0.12
+  },
+  "marmore": {
+    "quadrados": 2,
+    "variacao": 0.06
+  },
+  "tapete": {
+    "quadrados": 2,
+    "variacao": 0.05
+  },
+  "rocha_vulcanica": {
+    "quadrados": 4,
+    "variacao": 0.15
+  },
+  "telhado_ardosia": {
+    "quadrados": 2,
+    "variacao": 0.12
+  },
+  "telhado_telha": {
+    "quadrados": 2,
+    "variacao": 0.12
+  },
+  "muralha": {
+    "quadrados": 2,
+    "variacao": 0.12
+  },
+  "vazio": {
+    "quadrados": 4,
+    "variacao": 0.05
+  },
+  "azulejo": {
+    "quadrados": 2,
+    "variacao": 0.04
+  },
+  "madeira_escura": {
+    "quadrados": 2,
+    "variacao": 0.12
+  }
+}

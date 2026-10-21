@@ -320,5 +320,6 @@
   "musica": {
     "path": "mapas/candlekeep/musica/portao.ogg",
     "volume": 0.3
-  }
+  },
+  "qualidade": 80
 }

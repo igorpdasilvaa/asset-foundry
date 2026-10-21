@@ -26,17 +26,17 @@
       {
         "id": "inteira",
         "name": "Inteira",
-        "src": "muralha/muralha_inteira.png"
+        "src": "muralha/muralha_inteira.webp"
       },
       {
         "id": "rachada",
         "name": "Rachada",
-        "src": "muralha/muralha_rachada.png"
+        "src": "muralha/muralha_rachada.webp"
       },
       {
         "id": "destruida",
         "name": "Destruída",
-        "src": "muralha/muralha_destruida.png",
+        "src": "muralha/muralha_destruida.webp",
         "broken": true
       }
     ],
@@ -90,19 +90,19 @@
       {
         "id": "fechado",
         "name": "Fechado",
-        "src": "portao/portao_fechado.png",
+        "src": "portao/portao_fechado.webp",
         "door": "locked"
       },
       {
         "id": "aberto",
         "name": "Aberto",
-        "src": "portao/portao_aberto.png",
+        "src": "portao/portao_aberto.webp",
         "door": "open"
       },
       {
         "id": "arrombado",
         "name": "Arrombado",
-        "src": "portao/portao_arrombado.png",
+        "src": "portao/portao_arrombado.webp",
         "broken": true
       }
     ],
@@ -128,7 +128,7 @@
       {
         "id": "trancada",
         "name": "Trancada",
-        "src": "porta_esmeralda/porta_esmeralda_trancada.png",
+        "src": "porta_esmeralda/porta_esmeralda_trancada.webp",
         "door": "locked",
         "light": {
           "bright": 0,
@@ -146,7 +146,7 @@
       {
         "id": "aberta",
         "name": "Aberta",
-        "src": "porta_esmeralda/porta_esmeralda_aberta.png",
+        "src": "porta_esmeralda/porta_esmeralda_aberta.webp",
         "door": "open",
         "light": {
           "bright": 0,

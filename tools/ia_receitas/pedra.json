@@ -1,0 +1,1405 @@
+{
+  "parede": {
+    "prompt": "seamless tileable texture of a solid stone wall seen from directly above, the flat top of a castle wall made of tightly fitted grey cut stone blocks (textura, passada por ladrilho)",
+    "jobs": {
+      "base": [
+        "67ceb137-8722-427b-8dd9-930d169f44a5",
+        0
+      ]
+    },
+    "esticar": true,
+    "margem": 0,
+    "sombra": false,
+    "estados": {
+      "inteira": [
+        [
+          "textura",
+          {
+            "job": "67ceb137-8722-427b-8dd9-930d169f44a5",
+            "i": 0,
+            "zoom": 0.5
+          }
+        ]
+      ],
+      "rachada": [
+        [
+          "textura",
+          {
+            "job": "67ceb137-8722-427b-8dd9-930d169f44a5",
+            "i": 0,
+            "zoom": 0.5
+          }
+        ],
+        [
+          "rachado",
+          {
+            "n": 5
+          }
+        ]
+      ],
+      "destruida": [
+        [
+          "textura",
+          {
+            "job": "67ceb137-8722-427b-8dd9-930d169f44a5",
+            "i": 0,
+            "zoom": 0.5
+          }
+        ],
+        [
+          "entulho",
+          {
+            "n": 45,
+            "resto": 0.9
+          }
+        ]
+      ]
+    }
+  },
+  "muralha": {
+    "prompt": "seamless tileable texture of massive dark grey granite fortress wall blocks seen from directly above (textura, passada por ladrilho)",
+    "jobs": {
+      "base": [
+        "1103e779-48eb-42dd-a5f2-b30fbd23571f",
+        2
+      ]
+    },
+    "esticar": true,
+    "margem": 0,
+    "sombra": false,
+    "estados": {
+      "inteira": [
+        [
+          "textura",
+          {
+            "job": "1103e779-48eb-42dd-a5f2-b30fbd23571f",
+            "i": 2,
+            "zoom": 0.6
+          }
+        ]
+      ],
+      "rachada": [
+        [
+          "textura",
+          {
+            "job": "1103e779-48eb-42dd-a5f2-b30fbd23571f",
+            "i": 2,
+            "zoom": 0.6
+          }
+        ],
+        [
+          "rachado",
+          {
+            "n": 5
+          }
+        ]
+      ],
+      "destruida": [
+        [
+          "textura",
+          {
+            "job": "1103e779-48eb-42dd-a5f2-b30fbd23571f",
+            "i": 2,
+            "zoom": 0.6
+          }
+        ],
+        [
+          "entulho",
+          {
+            "n": 45,
+            "resto": 0.9
+          }
+        ]
+      ]
+    }
+  },
+  "porta": {
+    "prompt": "a long narrow heavy wooden door slab lying flat, thick brown oak planks with black iron bands (folha) + piso de lajes + batentes da textura da parede",
+    "jobs": {
+      "base": [
+        "d2094b3a-cd34-4093-9657-9ccf4f2d4752",
+        1
+      ]
+    },
+    "esticar": true,
+    "margem": 0,
+    "sombra": false,
+    "estados": {
+      "fechada": [
+        [
+          "porta",
+          {
+            "piso": [
+              "d2094b3a-cd34-4093-9657-9ccf4f2d4752",
+              1
+            ],
+            "batente": [
+              "67ceb137-8722-427b-8dd9-930d169f44a5",
+              0
+            ],
+            "folha": [
+              "d29664b6-89ed-41cf-9ee3-931ac6da6905",
+              0
+            ],
+            "zoom_batente": 0.5
+          }
+        ]
+      ],
+      "aberta": [
+        [
+          "porta",
+          {
+            "piso": [
+              "d2094b3a-cd34-4093-9657-9ccf4f2d4752",
+              1
+            ],
+            "batente": [
+              "67ceb137-8722-427b-8dd9-930d169f44a5",
+              0
+            ],
+            "folha": [
+              "d29664b6-89ed-41cf-9ee3-931ac6da6905",
+              0
+            ],
+            "zoom_batente": 0.5,
+            "aberta": true
+          }
+        ]
+      ],
+      "quebrada": [
+        [
+          "porta",
+          {
+            "piso": [
+              "d2094b3a-cd34-4093-9657-9ccf4f2d4752",
+              1
+            ],
+            "batente": [
+              "67ceb137-8722-427b-8dd9-930d169f44a5",
+              0
+            ],
+            "folha": [
+              "d29664b6-89ed-41cf-9ee3-931ac6da6905",
+              0
+            ],
+            "zoom_batente": 0.5,
+            "efeitos_folha": [
+              [
+                "lascas",
+                {
+                  "n": 16
+                }
+              ]
+            ]
+          }
+        ]
+      ],
+      "queimando": [
+        [
+          "porta",
+          {
+            "piso": [
+              "d2094b3a-cd34-4093-9657-9ccf4f2d4752",
+              1
+            ],
+            "batente": [
+              "67ceb137-8722-427b-8dd9-930d169f44a5",
+              0
+            ],
+            "folha": [
+              "d29664b6-89ed-41cf-9ee3-931ac6da6905",
+              0
+            ],
+            "zoom_batente": 0.5,
+            "efeitos_folha": [
+              [
+                "chamuscado"
+              ]
+            ]
+          }
+        ],
+        [
+          "zona_fogo",
+          {
+            "cx": 0.5,
+            "cy": 0.5,
+            "r": 0.22
+          }
+        ],
+        [
+          "fogo",
+          {
+            "escala": 0.7
+          }
+        ]
+      ],
+      "queimada": [
+        [
+          "porta",
+          {
+            "piso": [
+              "d2094b3a-cd34-4093-9657-9ccf4f2d4752",
+              1
+            ],
+            "batente": [
+              "67ceb137-8722-427b-8dd9-930d169f44a5",
+              0
+            ],
+            "folha": [
+              "d29664b6-89ed-41cf-9ee3-931ac6da6905",
+              0
+            ],
+            "zoom_batente": 0.5,
+            "efeitos_folha": [
+              [
+                "cinzas"
+              ]
+            ]
+          }
+        ]
+      ]
+    }
+  },
+  "portao": {
+    "prompt": "seamless texture of blackened iron plates with rivets (folha, emendável na horizontal) + heraldic shield with a castle tower in flames (brasão) + piso de lajes",
+    "jobs": {
+      "base": [
+        "d2094b3a-cd34-4093-9657-9ccf4f2d4752",
+        1
+      ]
+    },
+    "esticar": true,
+    "margem": 0,
+    "sombra": false,
+    "estados": {
+      "fechado": [
+        [
+          "porta",
+          {
+            "piso": [
+              "d2094b3a-cd34-4093-9657-9ccf4f2d4752",
+              1
+            ],
+            "textura_folha": [
+              "2abf10cb-75ea-40fe-be5d-82500a4bc352",
+              1
+            ],
+            "brasao": [
+              "d287cd39-1688-448d-9bbd-52a2f1466f3d",
+              2
+            ],
+            "esp": 0.42
+          }
+        ]
+      ],
+      "aberto": [
+        [
+          "porta",
+          {
+            "piso": [
+              "d2094b3a-cd34-4093-9657-9ccf4f2d4752",
+              1
+            ],
+            "textura_folha": [
+              "2abf10cb-75ea-40fe-be5d-82500a4bc352",
+              1
+            ],
+            "brasao": [
+              "d287cd39-1688-448d-9bbd-52a2f1466f3d",
+              2
+            ],
+            "esp": 0.42,
+            "aberta": true
+          }
+        ]
+      ],
+      "arrombado": [
+        [
+          "porta",
+          {
+            "piso": [
+              "d2094b3a-cd34-4093-9657-9ccf4f2d4752",
+              1
+            ],
+            "textura_folha": [
+              "2abf10cb-75ea-40fe-be5d-82500a4bc352",
+              1
+            ],
+            "brasao": [
+              "d287cd39-1688-448d-9bbd-52a2f1466f3d",
+              2
+            ],
+            "esp": 0.42,
+            "arrombada": 10,
+            "efeitos_folha": [
+              [
+                "rachado",
+                {
+                  "n": 4
+                }
+              ]
+            ]
+          }
+        ]
+      ]
+    }
+  },
+  "porta_esmeralda": {
+    "prompt": "seamless texture of polished translucent glowing emerald green crystal stone (folha, emendável na horizontal) + piso de lajes",
+    "jobs": {
+      "base": [
+        "d2094b3a-cd34-4093-9657-9ccf4f2d4752",
+        1
+      ]
+    },
+    "esticar": true,
+    "margem": 0,
+    "sombra": false,
+    "estados": {
+      "trancada": [
+        [
+          "porta",
+          {
+            "piso": [
+              "d2094b3a-cd34-4093-9657-9ccf4f2d4752",
+              1
+            ],
+            "textura_folha": [
+              "0ca3c3f3-394f-4432-bbb0-ec8bc501b4bd",
+              0
+            ],
+            "esp": 0.5,
+            "translucida": 0.15,
+            "brilho": [
+              70,
+              230,
+              150
+            ]
+          }
+        ]
+      ],
+      "aberta": [
+        [
+          "porta",
+          {
+            "piso": [
+              "d2094b3a-cd34-4093-9657-9ccf4f2d4752",
+              1
+            ],
+            "textura_folha": [
+              "0ca3c3f3-394f-4432-bbb0-ec8bc501b4bd",
+              0
+            ],
+            "esp": 0.5,
+            "translucida": 0.15,
+            "brilho": [
+              70,
+              230,
+              150
+            ],
+            "aberta": true
+          }
+        ]
+      ]
+    }
+  },
+  "pilar": {
+    "prompt": "a round grey stone pillar column seen from directly above, showing only its flat circular top capital with a carved ring moulding",
+    "jobs": {
+      "base": [
+        "834f81c1-9b85-452d-9800-7f16d200f0e5",
+        1
+      ]
+    },
+    "estados": {
+      "inteiro": [
+        [
+          "oval"
+        ]
+      ],
+      "rachado": [
+        [
+          "oval"
+        ],
+        [
+          "rachado",
+          {
+            "n": 5
+          }
+        ]
+      ],
+      "destruido": [
+        [
+          "oval"
+        ],
+        [
+          "entulho",
+          {
+            "n": 30,
+            "resto": 0.5,
+            "espalha": 0.16
+          }
+        ]
+      ]
+    },
+    "margem": 0,
+    "sombra": false
+  },
+  "altar": {
+    "prompt": "a long rectangular grey stone altar table of a god of knowledge, seen from directly above showing its flat carved stone top with a blue cloth runner, an open book in the middle and candles at the corners",
+    "jobs": {
+      "base": [
+        "150282fb-25f1-47d9-a183-ccd74ff1dd0e",
+        3
+      ]
+    },
+    "margem": 0,
+    "sombra": false,
+    "estados": {
+      "inteiro": [
+        [
+          "apara",
+          {
+            "l": 0.016,
+            "t": 0.022,
+            "r": 0.006,
+            "b": 0.012
+          }
+        ]
+      ],
+      "profanado": [
+        [
+          "apara",
+          {
+            "l": 0.016,
+            "t": 0.022,
+            "r": 0.006,
+            "b": 0.012
+          }
+        ],
+        [
+          "derrame",
+          {
+            "cor": [
+              90,
+              6,
+              14
+            ],
+            "x": 0.3,
+            "y": 0.45,
+            "tam": 0.22,
+            "gotas": 16,
+            "forca": 0.85
+          }
+        ],
+        [
+          "derrame",
+          {
+            "cor": [
+              90,
+              6,
+              14
+            ],
+            "x": 0.72,
+            "y": 0.6,
+            "tam": 0.15,
+            "gotas": 10,
+            "forca": 0.8
+          }
+        ],
+        [
+          "tinge",
+          {
+            "cor": [
+              50,
+              0,
+              40
+            ],
+            "forca": 0.15
+          }
+        ]
+      ],
+      "quebrado": [
+        [
+          "apara",
+          {
+            "l": 0.016,
+            "t": 0.022,
+            "r": 0.006,
+            "b": 0.012
+          }
+        ],
+        [
+          "rachado",
+          {
+            "n": 5
+          }
+        ],
+        [
+          "cortado"
+        ],
+        [
+          "entulho",
+          {
+            "n": 14,
+            "resto": 1.0,
+            "escuro": 0.8,
+            "tam": [
+              0.03,
+              0.07
+            ],
+            "espalha": 0.25
+          }
+        ]
+      ]
+    }
+  },
+  "sino": {
+    "prompt": "a large bronze bell hanging from a wooden beam, seen from directly above: the round domed bronze crown of the bell with a yoke crossing over it",
+    "jobs": {
+      "base": [
+        "39d147cc-1bf9-4f1e-97ae-9dfc58f78340",
+        2
+      ]
+    },
+    "estados": {
+      "parado": [
+        [
+          "oval",
+          {
+            "r": 0.985,
+            "margem": 0,
+            "sombra": false
+          }
+        ],
+        [
+          "tira_claro"
+        ]
+      ],
+      "tocando": [
+        [
+          "oval",
+          {
+            "r": 0.985,
+            "margem": 0,
+            "sombra": false
+          }
+        ],
+        [
+          "tira_claro"
+        ],
+        [
+          "aura",
+          {
+            "cor": [
+              255,
+              215,
+              120
+            ],
+            "raio": 0.03,
+            "forca": 0.35
+          }
+        ],
+        [
+          "balanca",
+          {
+            "ang": 7
+          }
+        ]
+      ],
+      "rachado": [
+        [
+          "oval",
+          {
+            "r": 0.985,
+            "margem": 0,
+            "sombra": false
+          }
+        ],
+        [
+          "tira_claro"
+        ],
+        [
+          "rachado",
+          {
+            "n": 7
+          }
+        ],
+        [
+          "escurece",
+          {
+            "k": 0.85
+          }
+        ]
+      ]
+    },
+    "margem": 0,
+    "sombra": false
+  },
+  "amplificador": {
+    "prompt": "a round magical crystal orb with small brass clockwork gears visible inside the glass, set in a thick ornate brass ring frame, glowing pale blue (recortado em círculo)",
+    "jobs": {
+      "base": [
+        "ce2fc713-39cc-4cbf-af2c-0693163edc51",
+        3
+      ]
+    },
+    "margem": 0,
+    "sombra": false,
+    "estados": {
+      "brilhando": [
+        [
+          "oval",
+          {
+            "r": 0.96
+          }
+        ],
+        [
+          "aura",
+          {
+            "cor": [
+              150,
+              215,
+              255
+            ],
+            "raio": 0.045,
+            "forca": 0.8
+          }
+        ]
+      ],
+      "rachado": [
+        [
+          "oval",
+          {
+            "r": 0.96
+          }
+        ],
+        [
+          "rachado",
+          {
+            "n": 6,
+            "cor": [
+              235,
+              250,
+              255,
+              230
+            ]
+          }
+        ],
+        [
+          "aura",
+          {
+            "cor": [
+              150,
+              215,
+              255
+            ],
+            "raio": 0.04,
+            "forca": 0.45
+          }
+        ]
+      ],
+      "estilhacado": [
+        [
+          "oval",
+          {
+            "r": 0.96
+          }
+        ],
+        [
+          "escurece",
+          {
+            "k": 0.7
+          }
+        ],
+        [
+          "quebrado",
+          {
+            "n": 24,
+            "resto": 0.45
+          }
+        ]
+      ]
+    }
+  },
+  "lampada": {
+    "prompt": "an ornate octagonal brass lantern seen from directly above, its octagonal brass top rim with a round glass window in the middle showing a warm magical flame inside",
+    "jobs": {
+      "base": [
+        "eb6c6e7e-195d-42ef-8698-09c415698bc0",
+        1
+      ]
+    },
+    "margem": 0,
+    "sombra": false,
+    "estados": {
+      "acesa": [
+        [
+          "tira_claro",
+          {
+            "lim": 172,
+            "sat": 30
+          }
+        ],
+        [
+          "aura",
+          {
+            "cor": [
+              255,
+              215,
+              150
+            ],
+            "raio": 0.05,
+            "forca": 0.6
+          }
+        ]
+      ],
+      "quebrada": [
+        [
+          "tira_claro",
+          {
+            "lim": 172,
+            "sat": 30
+          }
+        ],
+        [
+          "escurece",
+          {
+            "k": 0.5
+          }
+        ],
+        [
+          "rachado",
+          {
+            "n": 7,
+            "cor": [
+              225,
+              235,
+              245,
+              220
+            ]
+          }
+        ],
+        [
+          "entulho",
+          {
+            "n": 10,
+            "resto": 1.0,
+            "escuro": 1.0,
+            "tam": [
+              0.02,
+              0.05
+            ],
+            "espalha": 0.3
+          }
+        ]
+      ]
+    }
+  },
+  "globo": {
+    "prompt": "a smooth round frosted glass sphere, a pale milky white glass orb with soft highlights (recortado em círculo)",
+    "jobs": {
+      "base": [
+        "5c9d7d9e-05bc-413d-adf1-a26b9d459d0f",
+        0
+      ]
+    },
+    "margem": 0,
+    "sombra": false,
+    "estados": {
+      "aceso": [
+        [
+          "oval",
+          {
+            "r": 0.83,
+            "job": "5c9d7d9e-05bc-413d-adf1-a26b9d459d0f",
+            "i": 0,
+            "margem": 0.16
+          }
+        ],
+        [
+          "tinge",
+          {
+            "cor": [
+              255,
+              255,
+              255
+            ],
+            "forca": 0.25
+          }
+        ],
+        [
+          "aura",
+          {
+            "cor": [
+              235,
+              245,
+              255
+            ],
+            "raio": 0.08,
+            "forca": 0.95
+          }
+        ]
+      ],
+      "apagado": [
+        [
+          "oval",
+          {
+            "r": 0.83,
+            "job": "5c9d7d9e-05bc-413d-adf1-a26b9d459d0f",
+            "i": 0,
+            "margem": 0.16
+          }
+        ],
+        [
+          "escurece",
+          {
+            "k": 0.5
+          }
+        ],
+        [
+          "tinge",
+          {
+            "cor": [
+              80,
+              90,
+              110
+            ],
+            "forca": 0.3
+          }
+        ]
+      ],
+      "quebrado": [
+        [
+          "oval",
+          {
+            "r": 0.83,
+            "job": "5c9d7d9e-05bc-413d-adf1-a26b9d459d0f",
+            "i": 0,
+            "margem": 0.16
+          }
+        ],
+        [
+          "tinge",
+          {
+            "cor": [
+              200,
+              215,
+              235
+            ],
+            "forca": 0.2
+          }
+        ],
+        [
+          "quebrado",
+          {
+            "n": 22,
+            "resto": 0.2,
+            "alongado": 1.4
+          }
+        ],
+        [
+          "escurece",
+          {
+            "k": 0.85
+          }
+        ]
+      ]
+    }
+  },
+  "forja": {
+    "prompt": "a blacksmith stone forge seen from directly above, a square brick and stone hearth with a wide round fire pit full of dark charcoal in the middle, a chimney hood opening and a leather bellows at one side (o fogo pintado no poço foi coberto com o carvão da fogueira apagada)",
+    "jobs": {
+      "base": [
+        "af32de68-415b-4f13-9a6b-38a68fa97f12",
+        3
+      ]
+    },
+    "margem": 0.03,
+    "estados": {
+      "acesa": [
+        [
+          "remendo",
+          {
+            "job": "ac8c1e63-8318-4395-abe9-9c948707e960",
+            "i": 1,
+            "de": [
+              0.5,
+              0.5,
+              0.1
+            ],
+            "para": [
+              0.506,
+              0.669,
+              0.13
+            ]
+          }
+        ],
+        [
+          "remendo",
+          {
+            "job": "ac8c1e63-8318-4395-abe9-9c948707e960",
+            "i": 1,
+            "de": [
+              0.5,
+              0.5,
+              0.07
+            ],
+            "para": [
+              0.2,
+              0.455,
+              0.07
+            ]
+          }
+        ],
+        [
+          "brasas_em",
+          {
+            "cx": 0.506,
+            "cy": 0.669,
+            "r": 0.11,
+            "n": 60,
+            "forca": 0.85
+          }
+        ],
+        [
+          "brasas_em",
+          {
+            "cx": 0.2,
+            "cy": 0.455,
+            "r": 0.06,
+            "n": 15
+          }
+        ],
+        [
+          "zona_fogo",
+          {
+            "cx": 0.506,
+            "cy": 0.65,
+            "r": 0.07
+          }
+        ],
+        [
+          "fogo",
+          {
+            "escala": 0.35
+          }
+        ]
+      ],
+      "apagada": [
+        [
+          "remendo",
+          {
+            "job": "ac8c1e63-8318-4395-abe9-9c948707e960",
+            "i": 1,
+            "de": [
+              0.5,
+              0.5,
+              0.1
+            ],
+            "para": [
+              0.506,
+              0.669,
+              0.13
+            ]
+          }
+        ],
+        [
+          "remendo",
+          {
+            "job": "ac8c1e63-8318-4395-abe9-9c948707e960",
+            "i": 1,
+            "de": [
+              0.5,
+              0.5,
+              0.07
+            ],
+            "para": [
+              0.2,
+              0.455,
+              0.07
+            ]
+          }
+        ]
+      ]
+    }
+  },
+  "fogueira": {
+    "prompt": "an unlit campfire seen from directly above, a ring of grey stones around a pile of crossed charred logs on grey ash and black coals in the middle, no fire",
+    "jobs": {
+      "base": [
+        "ac8c1e63-8318-4395-abe9-9c948707e960",
+        1
+      ]
+    },
+    "margem": 0,
+    "sombra": false,
+    "estados": {
+      "acesa": [
+        [
+          "oval",
+          {
+            "r": 0.97,
+            "margem": 0,
+            "sombra": false
+          }
+        ],
+        [
+          "tira_claro",
+          {
+            "lim": 176,
+            "sat": 14
+          }
+        ],
+        [
+          "brasas_em",
+          {
+            "cx": 0.5,
+            "cy": 0.5,
+            "r": 0.13,
+            "n": 70,
+            "forca": 0.9
+          }
+        ],
+        [
+          "zona_fogo",
+          {
+            "cx": 0.5,
+            "cy": 0.48,
+            "r": 0.08
+          }
+        ],
+        [
+          "fogo",
+          {
+            "escala": 0.5
+          }
+        ]
+      ],
+      "brasas": [
+        [
+          "oval",
+          {
+            "r": 0.97,
+            "margem": 0,
+            "sombra": false
+          }
+        ],
+        [
+          "tira_claro",
+          {
+            "lim": 176,
+            "sat": 14
+          }
+        ],
+        [
+          "brasas_em",
+          {
+            "cx": 0.5,
+            "cy": 0.5,
+            "r": 0.13,
+            "n": 80,
+            "forca": 0.7
+          }
+        ]
+      ]
+    }
+  },
+  "vela": {
+    "prompt": "overhead view of a round brass tray holding white wax pillar candles, each candle a white circle with a black wick (recortado no aro de latão)",
+    "jobs": {
+      "base": [
+        "9af92c44-99a9-4c01-822a-3c3140d413a2",
+        0
+      ]
+    },
+    "margem": 0,
+    "sombra": false,
+    "estados": {
+      "acesa": [
+        [
+          "oval",
+          {
+            "r": 0.64
+          }
+        ],
+        [
+          "chamas_em",
+          {
+            "pts": [
+              [
+                0.456,
+                0.2
+              ],
+              [
+                0.707,
+                0.283
+              ],
+              [
+                0.756,
+                0.52
+              ],
+              [
+                0.516,
+                0.773
+              ],
+              [
+                0.204,
+                0.68
+              ],
+              [
+                0.196,
+                0.42
+              ]
+            ],
+            "tam": 0.22
+          }
+        ]
+      ],
+      "apagada": [
+        [
+          "oval",
+          {
+            "r": 0.64
+          }
+        ]
+      ],
+      "derrubado": [
+        [
+          "oval",
+          {
+            "r": 0.64
+          }
+        ],
+        [
+          "tombado",
+          {
+            "ang": -28,
+            "achata": 0.55,
+            "dx": 0.04,
+            "dy": 0.05
+          }
+        ]
+      ]
+    }
+  },
+  "tocha": {
+    "prompt": "a simple medieval wooden torch lying flat, seen from directly above, a straight dark wooden handle with a thick head of wrapped cloth soaked in black pitch, placed diagonally",
+    "jobs": {
+      "base": [
+        "8baeb81b-d04b-4290-8e2b-86ae90e49c7b",
+        2
+      ]
+    },
+    "estados": {
+      "acesa": [
+        [
+          "tira_claro",
+          {
+            "lim": 165,
+            "sat": 22
+          }
+        ],
+        [
+          "brasas_em",
+          {
+            "cx": 0.14,
+            "cy": 0.22,
+            "r": 0.1,
+            "n": 20,
+            "forca": 0.8
+          }
+        ],
+        [
+          "zona_fogo",
+          {
+            "cx": 0.13,
+            "cy": 0.2,
+            "r": 0.07
+          }
+        ],
+        [
+          "fogo",
+          {
+            "escala": 0.8
+          }
+        ]
+      ],
+      "apagada": [
+        [
+          "tira_claro",
+          {
+            "lim": 165,
+            "sat": 22
+          }
+        ]
+      ]
+    }
+  },
+  "gargula": {
+    "prompt": "a crouching grey stone gargoyle statue, folded bat wings, horned head, claws on a square stone plinth (o modelo não fez vista de cima em 2 tentativas; usada a estátua em relevo na laje quadrada, como o SVG antigo)",
+    "jobs": {
+      "base": [
+        "47508e9d-89e6-4d26-911a-83c5d69714df",
+        0
+      ]
+    },
+    "estados": {
+      "desperta": [
+        [
+          "escurece",
+          {
+            "k": 0.85
+          }
+        ],
+        [
+          "olhos",
+          {
+            "pts": [
+              [
+                0.426,
+                0.432
+              ],
+              [
+                0.544,
+                0.432
+              ]
+            ],
+            "cor": [
+              255,
+              70,
+              20
+            ],
+            "r": 0.012,
+            "halo": 2.4
+          }
+        ]
+      ]
+    }
+  },
+  "bigorna": {
+    "prompt": "híbrido: toco de árvore visto de cima (job do toco, recortado em círculo) + tampo de bigorna de ferro visto de cima (bird's eye view of an iron anvil, top-down silhouette...), recortado do fundo claro e girado",
+    "jobs": {
+      "base": [
+        "3b073413-b8a1-4430-be9f-1bb986f3b83b",
+        0
+      ]
+    },
+    "margem": 0,
+    "sombra": false,
+    "estados": {
+      "inteira": [
+        [
+          "oval",
+          {
+            "r": 0.8,
+            "job": "3b073413-b8a1-4430-be9f-1bb986f3b83b",
+            "i": 0
+          }
+        ],
+        [
+          "remendo",
+          {
+            "job": "3b073413-b8a1-4430-be9f-1bb986f3b83b",
+            "i": 0,
+            "de": [
+              0.68,
+              0.62,
+              0.16
+            ],
+            "para": [
+              0.5,
+              0.5,
+              0.4
+            ],
+            "suave": 0.3
+          }
+        ],
+        [
+          "sobrepoe",
+          {
+            "job": "cc24c51a-3abd-4708-a701-371f84dcfb88",
+            "i": 0,
+            "de": [
+              0.04,
+              0.1,
+              0.96,
+              0.92
+            ],
+            "para": [
+              0.5,
+              0.5,
+              0.97
+            ],
+            "girar": -12
+          }
+        ]
+      ],
+      "rachada": [
+        [
+          "oval",
+          {
+            "r": 0.8,
+            "job": "3b073413-b8a1-4430-be9f-1bb986f3b83b",
+            "i": 0
+          }
+        ],
+        [
+          "remendo",
+          {
+            "job": "3b073413-b8a1-4430-be9f-1bb986f3b83b",
+            "i": 0,
+            "de": [
+              0.68,
+              0.62,
+              0.16
+            ],
+            "para": [
+              0.5,
+              0.5,
+              0.4
+            ],
+            "suave": 0.3
+          }
+        ],
+        [
+          "sobrepoe",
+          {
+            "job": "cc24c51a-3abd-4708-a701-371f84dcfb88",
+            "i": 0,
+            "de": [
+              0.04,
+              0.1,
+              0.96,
+              0.92
+            ],
+            "para": [
+              0.5,
+              0.5,
+              0.97
+            ],
+            "girar": -12
+          }
+        ],
+        [
+          "rachado",
+          {
+            "n": 4,
+            "cor": [
+              15,
+              12,
+              10,
+              245
+            ]
+          }
+        ],
+        [
+          "escurece",
+          {
+            "k": 0.88
+          }
+        ]
+      ]
+    }
+  }
+}

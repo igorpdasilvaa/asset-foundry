@@ -1,0 +1,1581 @@
+{
+  "caixa": {
+    "prompt": "a square wooden storage crate seen from directly above, closed lid made of nailed wooden planks with a diagonal cross brace and iron corner brackets",
+    "jobs": {
+      "base": [
+        "e308e89e-1cda-44e0-87ab-a5b2cc6259fa",
+        2
+      ]
+    },
+    "margem": 0.1,
+    "estados": {
+      "quebrado": [
+        [
+          "lascas",
+          {
+            "n": 18
+          }
+        ]
+      ],
+      "queimando": [
+        [
+          "chamuscado"
+        ],
+        [
+          "fogo"
+        ]
+      ],
+      "queimado": [
+        [
+          "cinzas"
+        ]
+      ]
+    }
+  },
+  "cadeira": {
+    "prompt": "game asset sheet of four simple wooden tavern chairs seen from directly above, top-down battlemap furniture tokens, each chair shows a square plank seat and a narrow backrest along one edge (a folha veio com várias cadeiras em ângulo íngreme; uso uma, achatada na vertical)",
+    "jobs": {
+      "base": [
+        "cc7f857a-fbc6-427a-af25-98af375ff68b",
+        1
+      ]
+    },
+    "estados": {
+      "inteira": [
+        [
+          "outra",
+          {
+            "job": "cc7f857a-fbc6-427a-af25-98af375ff68b",
+            "i": 1,
+            "de": [
+              0.575,
+              0.325,
+              0.7,
+              0.6
+            ],
+            "so_borda": true,
+            "escala_y": 0.6
+          }
+        ],
+        [
+          "recorta_cor",
+          {
+            "sat": 0.3,
+            "valor": 0.35,
+            "margem": 0.08
+          }
+        ]
+      ],
+      "quebrada": [
+        [
+          "outra",
+          {
+            "job": "cc7f857a-fbc6-427a-af25-98af375ff68b",
+            "i": 1,
+            "de": [
+              0.575,
+              0.325,
+              0.7,
+              0.6
+            ],
+            "so_borda": true,
+            "escala_y": 0.6
+          }
+        ],
+        [
+          "recorta_cor",
+          {
+            "sat": 0.3,
+            "valor": 0.35,
+            "margem": 0.08
+          }
+        ],
+        [
+          "lascas",
+          {
+            "n": 14
+          }
+        ]
+      ],
+      "queimando": [
+        [
+          "outra",
+          {
+            "job": "cc7f857a-fbc6-427a-af25-98af375ff68b",
+            "i": 1,
+            "de": [
+              0.575,
+              0.325,
+              0.7,
+              0.6
+            ],
+            "so_borda": true,
+            "escala_y": 0.6
+          }
+        ],
+        [
+          "recorta_cor",
+          {
+            "sat": 0.3,
+            "valor": 0.35,
+            "margem": 0.08
+          }
+        ],
+        [
+          "chamuscado"
+        ],
+        [
+          "fogo",
+          {
+            "escala": 0.8
+          }
+        ]
+      ],
+      "queimada": [
+        [
+          "outra",
+          {
+            "job": "cc7f857a-fbc6-427a-af25-98af375ff68b",
+            "i": 1,
+            "de": [
+              0.575,
+              0.325,
+              0.7,
+              0.6
+            ],
+            "so_borda": true,
+            "escala_y": 0.6
+          }
+        ],
+        [
+          "recorta_cor",
+          {
+            "sat": 0.3,
+            "valor": 0.35,
+            "margem": 0.08
+          }
+        ],
+        [
+          "cinzas"
+        ]
+      ]
+    }
+  },
+  "poltrona": {
+    "prompt": "bird's eye view of a brown leather club armchair, orthographic overhead plan view looking straight down, U shaped padded backrest and armrests wrapping around a square tufted seat cushion, brass nail studs",
+    "jobs": {
+      "base": [
+        "980e529c-03d2-4f55-bd7d-c8eeca25e9a2",
+        2
+      ]
+    },
+    "estados": {
+      "inteira": [
+        [
+          "recorta_cor",
+          {
+            "sat": 0.25,
+            "valor": 0.2
+          }
+        ]
+      ],
+      "quebrada": [
+        [
+          "recorta_cor",
+          {
+            "sat": 0.25,
+            "valor": 0.2
+          }
+        ],
+        [
+          "quebrado",
+          {
+            "n": 16,
+            "alongado": 1.5
+          }
+        ]
+      ],
+      "queimando": [
+        [
+          "recorta_cor",
+          {
+            "sat": 0.25,
+            "valor": 0.2
+          }
+        ],
+        [
+          "chamuscado"
+        ],
+        [
+          "fogo"
+        ]
+      ],
+      "queimada": [
+        [
+          "recorta_cor",
+          {
+            "sat": 0.25,
+            "valor": 0.2
+          }
+        ],
+        [
+          "cinzas"
+        ]
+      ]
+    }
+  },
+  "banco": {
+    "prompt": "bird's eye view of a long rustic wooden bench, orthographic overhead plan view looking straight down, a flat long rectangular seat made of two parallel wooden planks with nail heads (a folha saiu com várias tábuas; uso a tábua longa com cinta de ferro, linha 2 à direita)",
+    "jobs": {
+      "base": [
+        "22f0a1f8-97f2-4b23-ab2f-50bb8c8b934f",
+        2
+      ]
+    },
+    "estados": {
+      "inteiro": [
+        [
+          "outra",
+          {
+            "job": "22f0a1f8-97f2-4b23-ab2f-50bb8c8b934f",
+            "i": 2,
+            "de": [
+              0.405,
+              0.27,
+              0.975,
+              0.5
+            ],
+            "so_borda": true
+          }
+        ],
+        [
+          "recorta_cor",
+          {
+            "sat": 0.18,
+            "valor": 0.45
+          }
+        ]
+      ],
+      "quebrado": [
+        [
+          "outra",
+          {
+            "job": "22f0a1f8-97f2-4b23-ab2f-50bb8c8b934f",
+            "i": 2,
+            "de": [
+              0.405,
+              0.27,
+              0.975,
+              0.5
+            ],
+            "so_borda": true
+          }
+        ],
+        [
+          "recorta_cor",
+          {
+            "sat": 0.18,
+            "valor": 0.45
+          }
+        ],
+        [
+          "lascas",
+          {
+            "n": 16
+          }
+        ]
+      ],
+      "queimando": [
+        [
+          "outra",
+          {
+            "job": "22f0a1f8-97f2-4b23-ab2f-50bb8c8b934f",
+            "i": 2,
+            "de": [
+              0.405,
+              0.27,
+              0.975,
+              0.5
+            ],
+            "so_borda": true
+          }
+        ],
+        [
+          "recorta_cor",
+          {
+            "sat": 0.18,
+            "valor": 0.45
+          }
+        ],
+        [
+          "chamuscado"
+        ],
+        [
+          "fogo"
+        ]
+      ],
+      "queimado": [
+        [
+          "outra",
+          {
+            "job": "22f0a1f8-97f2-4b23-ab2f-50bb8c8b934f",
+            "i": 2,
+            "de": [
+              0.405,
+              0.27,
+              0.975,
+              0.5
+            ],
+            "so_borda": true
+          }
+        ],
+        [
+          "recorta_cor",
+          {
+            "sat": 0.18,
+            "valor": 0.45
+          }
+        ],
+        [
+          "cinzas"
+        ]
+      ]
+    }
+  },
+  "cama": {
+    "prompt": "a neatly made single medieval wooden bed seen from directly above, wooden bed frame with four thick corner posts, two white pillows at the head, a smooth red wool blanket neatly tucked in, white sheet folded over at the top (seed 2831535625, a mesma da desarrumada, para as duas baterem)",
+    "jobs": {
+      "base": [
+        "8793bacd-ad72-4098-b3ce-3da9500ff865",
+        1
+      ],
+      "desarrumada": [
+        "d32e1510-3c49-4e3d-a95a-792e67e48816",
+        1
+      ]
+    },
+    "estados": {
+      "arrumada": [
+        [
+          "recorta_cor",
+          {
+            "sat": 0.2,
+            "valor": 0.45
+          }
+        ]
+      ],
+      "desarrumada": {
+        "img": "desarrumada",
+        "efeitos": [
+          [
+            "recorta_cor",
+            {
+              "sat": 0.2,
+              "valor": 0.45
+            }
+          ]
+        ]
+      },
+      "quebrada": [
+        [
+          "recorta_cor",
+          {
+            "sat": 0.2,
+            "valor": 0.45
+          }
+        ],
+        [
+          "lascas",
+          {
+            "n": 20
+          }
+        ]
+      ],
+      "queimando": [
+        [
+          "recorta_cor",
+          {
+            "sat": 0.2,
+            "valor": 0.45
+          }
+        ],
+        [
+          "chamuscado"
+        ],
+        [
+          "fogo"
+        ]
+      ],
+      "queimada": [
+        [
+          "recorta_cor",
+          {
+            "sat": 0.2,
+            "valor": 0.45
+          }
+        ],
+        [
+          "cinzas"
+        ]
+      ]
+    }
+  },
+  "balcao": {
+    "prompt": "polished dark oak wooden planks running horizontally, tavern bar counter top texture seen from directly above, full frame",
+    "jobs": {
+      "base": [
+        "2a20328a-63b0-437f-98f7-bb231b82999e",
+        1
+      ]
+    },
+    "esticar": true,
+    "margem": 0,
+    "sombra": false,
+    "estados": {
+      "inteiro": [
+        [
+          "faixa_h",
+          {}
+        ]
+      ],
+      "chamuscado": [
+        [
+          "faixa_h",
+          {}
+        ],
+        [
+          "chamuscado"
+        ]
+      ],
+      "quebrado": [
+        [
+          "faixa_h",
+          {}
+        ],
+        [
+          "lascas",
+          {
+            "n": 16
+          }
+        ]
+      ],
+      "queimando": [
+        [
+          "faixa_h",
+          {}
+        ],
+        [
+          "chamuscado"
+        ],
+        [
+          "fogo"
+        ]
+      ],
+      "queimado": [
+        [
+          "faixa_h",
+          {}
+        ],
+        [
+          "cinzas"
+        ]
+      ]
+    }
+  },
+  "carrinho_livros": {
+    "prompt": "composto: o cocho (a long wooden water trough seen from directly above...) girado e esvaziado vira a caixa do carrinho; dentro, duas fileiras de lombadas recortadas da estante vista de frente (front view of a tall wooden library bookshelf...). As tentativas diretas de carrinho saíram como estante de frente ou mapa.",
+    "jobs": {
+      "base": [
+        "5afd0b12-ba31-4786-b67f-ffe448913bc7",
+        2
+      ]
+    },
+    "estados": {
+      "inteiro": [
+        [
+          "outra",
+          {
+            "job": "5afd0b12-ba31-4786-b67f-ffe448913bc7",
+            "i": 2,
+            "girar": 90
+          }
+        ],
+        [
+          "recorta_cor",
+          {
+            "sat": 0.28,
+            "valor": 0.45
+          }
+        ],
+        [
+          "esvazia",
+          {
+            "job": "2a20328a-63b0-437f-98f7-bb231b82999e",
+            "i": 0,
+            "escuro": 0.45
+          }
+        ],
+        [
+          "cola",
+          {
+            "job": "5061f9ea-2db3-47b2-a29e-c7d4d761e375",
+            "i": 2,
+            "de": [
+              0.11,
+              0.51,
+              0.88,
+              0.63
+            ],
+            "para": [
+              0.27,
+              0.16,
+              0.5,
+              0.84
+            ],
+            "girar": 90
+          }
+        ],
+        [
+          "cola",
+          {
+            "job": "5061f9ea-2db3-47b2-a29e-c7d4d761e375",
+            "i": 2,
+            "de": [
+              0.11,
+              0.37,
+              0.88,
+              0.49
+            ],
+            "para": [
+              0.5,
+              0.16,
+              0.73,
+              0.84
+            ],
+            "girar": -90
+          }
+        ]
+      ],
+      "quebrado": [
+        [
+          "outra",
+          {
+            "job": "5afd0b12-ba31-4786-b67f-ffe448913bc7",
+            "i": 2,
+            "girar": 90
+          }
+        ],
+        [
+          "recorta_cor",
+          {
+            "sat": 0.28,
+            "valor": 0.45
+          }
+        ],
+        [
+          "esvazia",
+          {
+            "job": "2a20328a-63b0-437f-98f7-bb231b82999e",
+            "i": 0,
+            "escuro": 0.45
+          }
+        ],
+        [
+          "cola",
+          {
+            "job": "5061f9ea-2db3-47b2-a29e-c7d4d761e375",
+            "i": 2,
+            "de": [
+              0.11,
+              0.51,
+              0.88,
+              0.63
+            ],
+            "para": [
+              0.27,
+              0.16,
+              0.5,
+              0.84
+            ],
+            "girar": 90
+          }
+        ],
+        [
+          "cola",
+          {
+            "job": "5061f9ea-2db3-47b2-a29e-c7d4d761e375",
+            "i": 2,
+            "de": [
+              0.11,
+              0.37,
+              0.88,
+              0.49
+            ],
+            "para": [
+              0.5,
+              0.16,
+              0.73,
+              0.84
+            ],
+            "girar": -90
+          }
+        ],
+        [
+          "lascas",
+          {
+            "n": 20
+          }
+        ]
+      ],
+      "queimando": [
+        [
+          "outra",
+          {
+            "job": "5afd0b12-ba31-4786-b67f-ffe448913bc7",
+            "i": 2,
+            "girar": 90
+          }
+        ],
+        [
+          "recorta_cor",
+          {
+            "sat": 0.28,
+            "valor": 0.45
+          }
+        ],
+        [
+          "esvazia",
+          {
+            "job": "2a20328a-63b0-437f-98f7-bb231b82999e",
+            "i": 0,
+            "escuro": 0.45
+          }
+        ],
+        [
+          "cola",
+          {
+            "job": "5061f9ea-2db3-47b2-a29e-c7d4d761e375",
+            "i": 2,
+            "de": [
+              0.11,
+              0.51,
+              0.88,
+              0.63
+            ],
+            "para": [
+              0.27,
+              0.16,
+              0.5,
+              0.84
+            ],
+            "girar": 90
+          }
+        ],
+        [
+          "cola",
+          {
+            "job": "5061f9ea-2db3-47b2-a29e-c7d4d761e375",
+            "i": 2,
+            "de": [
+              0.11,
+              0.37,
+              0.88,
+              0.49
+            ],
+            "para": [
+              0.5,
+              0.16,
+              0.73,
+              0.84
+            ],
+            "girar": -90
+          }
+        ],
+        [
+          "chamuscado"
+        ],
+        [
+          "fogo"
+        ]
+      ],
+      "queimado": [
+        [
+          "outra",
+          {
+            "job": "5afd0b12-ba31-4786-b67f-ffe448913bc7",
+            "i": 2,
+            "girar": 90
+          }
+        ],
+        [
+          "recorta_cor",
+          {
+            "sat": 0.28,
+            "valor": 0.45
+          }
+        ],
+        [
+          "esvazia",
+          {
+            "job": "2a20328a-63b0-437f-98f7-bb231b82999e",
+            "i": 0,
+            "escuro": 0.45
+          }
+        ],
+        [
+          "cola",
+          {
+            "job": "5061f9ea-2db3-47b2-a29e-c7d4d761e375",
+            "i": 2,
+            "de": [
+              0.11,
+              0.51,
+              0.88,
+              0.63
+            ],
+            "para": [
+              0.27,
+              0.16,
+              0.5,
+              0.84
+            ],
+            "girar": 90
+          }
+        ],
+        [
+          "cola",
+          {
+            "job": "5061f9ea-2db3-47b2-a29e-c7d4d761e375",
+            "i": 2,
+            "de": [
+              0.11,
+              0.37,
+              0.88,
+              0.49
+            ],
+            "para": [
+              0.5,
+              0.16,
+              0.73,
+              0.84
+            ],
+            "girar": -90
+          }
+        ],
+        [
+          "cinzas"
+        ]
+      ]
+    }
+  },
+  "escrivaninha": {
+    "prompt": "bird's eye view of a scribe's writing desk, orthographic overhead plan view looking straight down at the flat rectangular dark wooden desktop, on it an open book, loose parchment sheets, an inkwell with a quill pen, a lit candle and a small stack of books",
+    "jobs": {
+      "base": [
+        "d6fcf0dc-d1b4-48e8-bf57-2ca6bb89eba0",
+        0
+      ]
+    },
+    "margem": 0.06,
+    "estados": {
+      "tinta_derramada": [
+        [
+          "derrame",
+          {
+            "x": 0.62,
+            "y": 0.6,
+            "tam": 0.2
+          }
+        ]
+      ],
+      "quebrada": [
+        [
+          "lascas",
+          {
+            "n": 18
+          }
+        ]
+      ],
+      "chamuscada": [
+        [
+          "chamuscado"
+        ]
+      ],
+      "queimando": [
+        [
+          "chamuscado"
+        ],
+        [
+          "fogo"
+        ]
+      ],
+      "queimada": [
+        [
+          "cinzas"
+        ]
+      ]
+    }
+  },
+  "atril": {
+    "prompt": "a wooden reading lectern seen from directly above, square slanted wooden reading board with a large open old book lying on it, round wooden base visible around it",
+    "jobs": {
+      "base": [
+        "d16358e6-d591-4a5e-87e2-5ef2349eb072",
+        1
+      ]
+    },
+    "estados": {
+      "inteiro": [
+        [
+          "recorta",
+          {
+            "limite": 200,
+            "tol": 30
+          }
+        ]
+      ],
+      "tombado": [
+        [
+          "recorta",
+          {
+            "limite": 200,
+            "tol": 30
+          }
+        ],
+        [
+          "tombado",
+          {
+            "ang": 70,
+            "achata": 0.8
+          }
+        ]
+      ],
+      "quebrado": [
+        [
+          "recorta",
+          {
+            "limite": 200,
+            "tol": 30
+          }
+        ],
+        [
+          "lascas",
+          {
+            "n": 16
+          }
+        ]
+      ],
+      "chamuscado": [
+        [
+          "recorta",
+          {
+            "limite": 200,
+            "tol": 30
+          }
+        ],
+        [
+          "chamuscado"
+        ]
+      ],
+      "queimando": [
+        [
+          "recorta",
+          {
+            "limite": 200,
+            "tol": 30
+          }
+        ],
+        [
+          "chamuscado"
+        ],
+        [
+          "fogo"
+        ]
+      ],
+      "queimado": [
+        [
+          "recorta",
+          {
+            "limite": 200,
+            "tol": 30
+          }
+        ],
+        [
+          "cinzas"
+        ]
+      ]
+    }
+  },
+  "estante": {
+    "prompt": "híbrido: tampo visto de cima (the flat top of a long wooden bookshelf seen from directly above...) + fileira de lombadas recortada da estante vista de frente (front view of a tall wooden library bookshelf full of colorful old leather-bound books)",
+    "jobs": {
+      "base": [
+        "1806c900-6a67-46eb-92c8-6c88be9e4088",
+        3
+      ]
+    },
+    "estados": {
+      "inteira": [
+        [
+          "cola",
+          {
+            "job": "5061f9ea-2db3-47b2-a29e-c7d4d761e375",
+            "i": 2,
+            "de": [
+              0.11,
+              0.51,
+              0.88,
+              0.63
+            ],
+            "para": [
+              0.03,
+              0.6,
+              0.97,
+              0.97
+            ]
+          }
+        ]
+      ],
+      "tombada": [
+        [
+          "outra",
+          {
+            "job": "5061f9ea-2db3-47b2-a29e-c7d4d761e375",
+            "i": 2,
+            "girar": 90
+          }
+        ]
+      ],
+      "cortada": [
+        [
+          "cola",
+          {
+            "job": "5061f9ea-2db3-47b2-a29e-c7d4d761e375",
+            "i": 2,
+            "de": [
+              0.11,
+              0.51,
+              0.88,
+              0.63
+            ],
+            "para": [
+              0.03,
+              0.6,
+              0.97,
+              0.97
+            ]
+          }
+        ],
+        [
+          "cortado"
+        ]
+      ],
+      "molhada": [
+        [
+          "cola",
+          {
+            "job": "5061f9ea-2db3-47b2-a29e-c7d4d761e375",
+            "i": 2,
+            "de": [
+              0.11,
+              0.51,
+              0.88,
+              0.63
+            ],
+            "para": [
+              0.03,
+              0.6,
+              0.97,
+              0.97
+            ]
+          }
+        ],
+        [
+          "molhado"
+        ]
+      ],
+      "chamuscada": [
+        [
+          "cola",
+          {
+            "job": "5061f9ea-2db3-47b2-a29e-c7d4d761e375",
+            "i": 2,
+            "de": [
+              0.11,
+              0.51,
+              0.88,
+              0.63
+            ],
+            "para": [
+              0.03,
+              0.6,
+              0.97,
+              0.97
+            ]
+          }
+        ],
+        [
+          "chamuscado"
+        ]
+      ],
+      "queimando": [
+        [
+          "cola",
+          {
+            "job": "5061f9ea-2db3-47b2-a29e-c7d4d761e375",
+            "i": 2,
+            "de": [
+              0.11,
+              0.51,
+              0.88,
+              0.63
+            ],
+            "para": [
+              0.03,
+              0.6,
+              0.97,
+              0.97
+            ]
+          }
+        ],
+        [
+          "chamuscado"
+        ],
+        [
+          "fogo"
+        ]
+      ],
+      "cinzas": [
+        [
+          "cola",
+          {
+            "job": "5061f9ea-2db3-47b2-a29e-c7d4d761e375",
+            "i": 2,
+            "de": [
+              0.11,
+              0.51,
+              0.88,
+              0.63
+            ],
+            "para": [
+              0.03,
+              0.6,
+              0.97,
+              0.97
+            ]
+          }
+        ],
+        [
+          "cinzas"
+        ]
+      ]
+    }
+  },
+  "pilha_livros": {
+    "prompt": "livros recortados um a um da imagem 'several old leather-bound books scattered and fallen seen from directly above...' e empilhados (as tentativas de pilha vista de cima saíram de lado)",
+    "jobs": {
+      "base": [
+        "658831a9-3c35-40e9-ad65-3cb0c9a5a272",
+        2
+      ]
+    },
+    "estados": {
+      "inteira": [
+        [
+          "empilha",
+          {
+            "job": "658831a9-3c35-40e9-ad65-3cb0c9a5a272",
+            "i": 2,
+            "pecas": [
+              [
+                0.62,
+                0.7,
+                0.98,
+                0.98,
+                12
+              ],
+              [
+                0.335,
+                0.03,
+                0.585,
+                0.31,
+                -18
+              ],
+              [
+                0.4,
+                0.4,
+                0.672,
+                0.63,
+                25
+              ],
+              [
+                0.36,
+                0.3,
+                0.57,
+                0.43,
+                -8
+              ]
+            ]
+          }
+        ]
+      ],
+      "espalhada": [
+        [
+          "empilha",
+          {
+            "job": "658831a9-3c35-40e9-ad65-3cb0c9a5a272",
+            "i": 2,
+            "pecas": [
+              [
+                0.62,
+                0.7,
+                0.98,
+                0.98,
+                12
+              ],
+              [
+                0.66,
+                0.52,
+                0.98,
+                0.72,
+                40
+              ],
+              [
+                0.335,
+                0.03,
+                0.585,
+                0.31,
+                -18
+              ],
+              [
+                0.4,
+                0.4,
+                0.672,
+                0.63,
+                25
+              ],
+              [
+                0.36,
+                0.3,
+                0.57,
+                0.43,
+                -8
+              ]
+            ],
+            "escala": 0.42,
+            "espalha": 0.3,
+            "ang_extra": 80
+          }
+        ]
+      ],
+      "molhada": [
+        [
+          "empilha",
+          {
+            "job": "658831a9-3c35-40e9-ad65-3cb0c9a5a272",
+            "i": 2,
+            "pecas": [
+              [
+                0.62,
+                0.7,
+                0.98,
+                0.98,
+                12
+              ],
+              [
+                0.335,
+                0.03,
+                0.585,
+                0.31,
+                -18
+              ],
+              [
+                0.4,
+                0.4,
+                0.672,
+                0.63,
+                25
+              ],
+              [
+                0.36,
+                0.3,
+                0.57,
+                0.43,
+                -8
+              ]
+            ]
+          }
+        ],
+        [
+          "molhado"
+        ]
+      ],
+      "queimando": [
+        [
+          "empilha",
+          {
+            "job": "658831a9-3c35-40e9-ad65-3cb0c9a5a272",
+            "i": 2,
+            "pecas": [
+              [
+                0.62,
+                0.7,
+                0.98,
+                0.98,
+                12
+              ],
+              [
+                0.335,
+                0.03,
+                0.585,
+                0.31,
+                -18
+              ],
+              [
+                0.4,
+                0.4,
+                0.672,
+                0.63,
+                25
+              ],
+              [
+                0.36,
+                0.3,
+                0.57,
+                0.43,
+                -8
+              ]
+            ]
+          }
+        ],
+        [
+          "chamuscado"
+        ],
+        [
+          "fogo",
+          {
+            "escala": 0.7
+          }
+        ]
+      ],
+      "cinzas": [
+        [
+          "empilha",
+          {
+            "job": "658831a9-3c35-40e9-ad65-3cb0c9a5a272",
+            "i": 2,
+            "pecas": [
+              [
+                0.62,
+                0.7,
+                0.98,
+                0.98,
+                12
+              ],
+              [
+                0.335,
+                0.03,
+                0.585,
+                0.31,
+                -18
+              ],
+              [
+                0.4,
+                0.4,
+                0.672,
+                0.63,
+                25
+              ],
+              [
+                0.36,
+                0.3,
+                0.57,
+                0.43,
+                -8
+              ]
+            ]
+          }
+        ],
+        [
+          "cinzas"
+        ]
+      ]
+    }
+  },
+  "tear": {
+    "prompt": "a wooden weaving loom seen from directly above, rectangular wooden frame with many white warp threads stretched across it and a partly woven blue and red striped cloth, wooden beams at both ends and a shuttle",
+    "jobs": {
+      "base": [
+        "4ae37ae8-1321-4594-828b-16661274df6e",
+        2
+      ]
+    },
+    "estados": {
+      "inteiro": [
+        [
+          "recorta_cor",
+          {
+            "sat": 0.2,
+            "valor": 0.45
+          }
+        ]
+      ],
+      "cortado": [
+        [
+          "recorta_cor",
+          {
+            "sat": 0.2,
+            "valor": 0.45
+          }
+        ],
+        [
+          "rasgo",
+          {
+            "x": 0.5,
+            "y": 0.5,
+            "larg": 0.45,
+            "alto": 0.5
+          }
+        ]
+      ],
+      "quebrado": [
+        [
+          "recorta_cor",
+          {
+            "sat": 0.2,
+            "valor": 0.45
+          }
+        ],
+        [
+          "lascas",
+          {
+            "n": 18
+          }
+        ]
+      ],
+      "queimando": [
+        [
+          "recorta_cor",
+          {
+            "sat": 0.2,
+            "valor": 0.45
+          }
+        ],
+        [
+          "chamuscado"
+        ],
+        [
+          "fogo"
+        ]
+      ],
+      "queimado": [
+        [
+          "recorta_cor",
+          {
+            "sat": 0.2,
+            "valor": 0.45
+          }
+        ],
+        [
+          "cinzas"
+        ]
+      ]
+    }
+  },
+  "casulario": {
+    "prompt": "a shallow square wooden tray seen from directly above, filled with green mulberry leaves and many small white silkworm cocoons and pale silkworms",
+    "jobs": {
+      "base": [
+        "d1778928-5dc1-45db-83ad-5f337baa15c9",
+        3
+      ]
+    },
+    "margem": 0.08,
+    "estados": {
+      "vivo": [
+        [
+          "outra",
+          {
+            "job": "d1778928-5dc1-45db-83ad-5f337baa15c9",
+            "i": 3,
+            "so_borda": true,
+            "margem": 0.08
+          }
+        ],
+        [
+          "recorta_cor",
+          {
+            "sat": 0.2,
+            "valor": 0.45,
+            "margem": 0.08
+          }
+        ]
+      ],
+      "esmagado": [
+        [
+          "outra",
+          {
+            "job": "d1778928-5dc1-45db-83ad-5f337baa15c9",
+            "i": 3,
+            "so_borda": true,
+            "margem": 0.08
+          }
+        ],
+        [
+          "recorta_cor",
+          {
+            "sat": 0.2,
+            "valor": 0.45,
+            "margem": 0.08
+          }
+        ],
+        [
+          "manchas",
+          {
+            "cor": [
+              205,
+              215,
+              160
+            ],
+            "n": 7,
+            "forca": 0.55
+          }
+        ],
+        [
+          "quebrado",
+          {
+            "n": 16,
+            "resto": 0.6
+          }
+        ]
+      ]
+    }
+  },
+  "feno": {
+    "prompt": "a rectangular bale of golden hay seen from directly above, compressed dry straw block tied with two twine strings, loose straws at the edges",
+    "jobs": {
+      "base": [
+        "089b2aff-9ae3-43b8-aa64-eaeac956a442",
+        3
+      ],
+      "espalhado": [
+        "fe9364ea-722c-4d41-b778-310326224e43",
+        0
+      ]
+    },
+    "estados": {
+      "inteiro": [
+        [
+          "recorta_cor",
+          {
+            "sat": 0.35,
+            "valor": 0.4
+          }
+        ]
+      ],
+      "espalhado": {
+        "img": "espalhado",
+        "efeitos": [
+          [
+            "recorta_cor",
+            {
+              "sat": 0.3,
+              "valor": 0.4,
+              "margem": 0.1
+            }
+          ],
+          [
+            "desfia",
+            {}
+          ]
+        ]
+      },
+      "queimando": [
+        [
+          "recorta_cor",
+          {
+            "sat": 0.35,
+            "valor": 0.4
+          }
+        ],
+        [
+          "chamuscado"
+        ],
+        [
+          "fogo"
+        ]
+      ],
+      "cinzas": [
+        [
+          "recorta_cor",
+          {
+            "sat": 0.35,
+            "valor": 0.4
+          }
+        ],
+        [
+          "cinzas"
+        ]
+      ]
+    }
+  },
+  "cocho": {
+    "prompt": "a long wooden water trough seen from directly above, rectangular box made of thick wooden planks with iron bands, filled to the brim with clear blue water",
+    "jobs": {
+      "base": [
+        "5afd0b12-ba31-4786-b67f-ffe448913bc7",
+        2
+      ]
+    },
+    "estados": {
+      "cheio": [
+        [
+          "recorta_cor",
+          {
+            "sat": 0.28,
+            "valor": 0.45
+          }
+        ]
+      ],
+      "congelado": [
+        [
+          "recorta_cor",
+          {
+            "sat": 0.28,
+            "valor": 0.45
+          }
+        ],
+        [
+          "gelo"
+        ]
+      ],
+      "vazio": [
+        [
+          "recorta_cor",
+          {
+            "sat": 0.28,
+            "valor": 0.45
+          }
+        ],
+        [
+          "esvazia",
+          {
+            "job": "2a20328a-63b0-437f-98f7-bb231b82999e",
+            "i": 0
+          }
+        ],
+        [
+          "poca",
+          {
+            "cor": [
+              70,
+              120,
+              160
+            ],
+            "forca": 0.6
+          }
+        ]
+      ]
+    }
+  }
+}

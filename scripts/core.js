@@ -362,7 +362,8 @@ async function ensureTestActor() {
 /** Atualiza Tokens/Tiles já colocados quando o assets.json muda, mantendo o estado atual (pelo id). */
 async function refreshPlaced(assetId, def) {
   const fresh = stateFlags(assetId, def)[MODULE_ID].data;
-  for (const scene of game.scenes) {
+  for (const scene of [...game.scenes]) {
+    if (!game.scenes.has(scene.id)) continue;
     for (const collection of ["tokens", "tiles"]) {
       const updates = [];
       for (const doc of scene[collection]) {
@@ -555,9 +556,14 @@ export async function start({ base, version }) {
     if (isResponsibleGM()) {
       await ensureFolders();
       // Garante um ator por asset na pasta da sua categoria, pronto para arrastar para a cena.
+      // Um asset com problema (ou uma cena apagada no meio do caminho) não pode parar a atualização dos outros.
       for (const [id, def] of Object.entries(REGISTRY)) {
-        if (def.actor) await getBaseActor(id, def);
-        await refreshPlaced(id, def);
+        try {
+          if (def.actor) await getBaseActor(id, def);
+          await refreshPlaced(id, def);
+        } catch (err) {
+          console.error(`${MODULE_ID} | falha ao atualizar o asset ${id}`, err);
+        }
       }
       startTickTimer();
       await ensureTestActor().catch(err => console.error(`${MODULE_ID} | falha ao criar o NPC de teste`, err));

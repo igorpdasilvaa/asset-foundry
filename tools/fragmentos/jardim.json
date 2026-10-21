@@ -1,0 +1,210 @@
+{
+  "poco": {
+    "name": "Poço de pedra",
+    "tipo": "imovel",
+    "interacao": "mestre",
+    "size": {
+      "w": 2,
+      "h": 2
+    },
+    "actor": {
+      "ac": 15,
+      "hp": 40,
+      "immunities": [
+        "psychic"
+      ],
+      "resistances": [
+        "piercing",
+        "slashing"
+      ]
+    },
+    "tickSeconds": 6,
+    "states": [
+      {
+        "id": "inteiro",
+        "name": "Inteiro",
+        "src": "poco/poco_inteiro.webp"
+      },
+      {
+        "id": "rachado",
+        "name": "Rachado",
+        "src": "poco/poco_rachado.webp"
+      },
+      {
+        "id": "desmoronado",
+        "name": "Desmoronado",
+        "src": "poco/poco_desmoronado.webp",
+        "broken": true
+      },
+      {
+        "id": "envenenado",
+        "name": "Água envenenada",
+        "src": "poco/poco_envenenado.webp",
+        "ticks": 10,
+        "then": "inteiro"
+      },
+      {
+        "id": "congelado",
+        "name": "Água congelada",
+        "src": "poco/poco_congelado.webp",
+        "sticky": true,
+        "light": {
+          "bright": 0,
+          "dim": 5,
+          "color": "#9fdcff",
+          "alpha": 0.25
+        }
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "poison",
+          "acid"
+        ],
+        "from": [
+          "inteiro",
+          "rachado"
+        ],
+        "to": "envenenado",
+        "say": "tem a água envenenada."
+      },
+      {
+        "types": [
+          "radiant"
+        ],
+        "from": [
+          "envenenado"
+        ],
+        "to": "inteiro",
+        "say": "tem a água purificada."
+      },
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "inteiro",
+          "rachado",
+          "envenenado"
+        ],
+        "to": "congelado",
+        "say": "tem a água congelada."
+      },
+      {
+        "types": [
+          "fire"
+        ],
+        "from": [
+          "congelado"
+        ],
+        "to": "inteiro",
+        "say": "tem o gelo derretido."
+      },
+      {
+        "types": [
+          "bludgeoning",
+          "thunder",
+          "force"
+        ],
+        "from": [
+          "inteiro"
+        ],
+        "to": "rachado",
+        "say": "racha."
+      }
+    ],
+    "onZero": [
+      {
+        "to": "desmoronado",
+        "say": "desmorona dentro de si mesmo!"
+      }
+    ]
+  },
+  "estatua_alaundo": {
+    "name": "Estátua de Alaundo",
+    "tipo": "imovel",
+    "interacao": "mestre",
+    "size": {
+      "w": 2,
+      "h": 2
+    },
+    "actor": {
+      "ac": 17,
+      "hp": 60,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": [
+        "piercing",
+        "slashing"
+      ]
+    },
+    "conhecimento": true,
+    "states": [
+      {
+        "id": "inteira",
+        "name": "Inteira",
+        "src": "estatua_alaundo/estatua_alaundo_inteira.webp"
+      },
+      {
+        "id": "rachada",
+        "name": "Rachada",
+        "src": "estatua_alaundo/estatua_alaundo_rachada.webp"
+      },
+      {
+        "id": "profanada",
+        "name": "Profanada",
+        "src": "estatua_alaundo/estatua_alaundo_profanada.webp"
+      },
+      {
+        "id": "derrubada",
+        "name": "Derrubada",
+        "src": "estatua_alaundo/estatua_alaundo_derrubada.webp",
+        "broken": true
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "necrotic"
+        ],
+        "from": [
+          "inteira",
+          "rachada"
+        ],
+        "to": "profanada",
+        "say": "fica manchada de sombra."
+      },
+      {
+        "types": [
+          "radiant"
+        ],
+        "from": [
+          "profanada"
+        ],
+        "to": "inteira",
+        "say": "volta a brilhar, purificada."
+      },
+      {
+        "types": [
+          "bludgeoning",
+          "thunder",
+          "force"
+        ],
+        "from": [
+          "inteira"
+        ],
+        "to": "rachada",
+        "say": "racha."
+      }
+    ],
+    "onZero": [
+      {
+        "to": "derrubada",
+        "say": "tomba e se parte! O sábio de pedra vira entulho."
+      }
+    ]
+  }
+}

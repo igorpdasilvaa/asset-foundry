@@ -2413,18 +2413,6 @@
       "rotation": 0
      },
      {
-      "asset": "agua",
-      "x": 71,
-      "y": 47,
-      "kind": "water"
-     },
-     {
-      "asset": "agua",
-      "x": 72,
-      "y": 47,
-      "kind": "water"
-     },
-     {
       "asset": "muralha",
       "x": 79,
       "y": 47,
@@ -2435,18 +2423,6 @@
       "x": 14,
       "y": 48,
       "kind": "wall"
-     },
-     {
-      "asset": "agua",
-      "x": 71,
-      "y": 48,
-      "kind": "water"
-     },
-     {
-      "asset": "agua",
-      "x": 72,
-      "y": 48,
-      "kind": "water"
      },
      {
       "asset": "muralha",
@@ -2905,30 +2881,6 @@
       "y": 2050
      },
      {
-      "asset": "arvore_pequena",
-      "x": 6850,
-      "y": 4350,
-      "rotation": 356
-     },
-     {
-      "asset": "arvore_pequena",
-      "x": 7550,
-      "y": 4350,
-      "rotation": 255
-     },
-     {
-      "asset": "arvore_pequena",
-      "x": 6850,
-      "y": 5250,
-      "rotation": 356
-     },
-     {
-      "asset": "arvore_pequena",
-      "x": 7650,
-      "y": 5150,
-      "rotation": 292
-     },
-     {
       "asset": "gargula",
       "x": 5250,
       "y": 4250
@@ -2962,6 +2914,43 @@
       "asset": "pilha_livros",
       "x": 2550,
       "y": 1350
+     },
+     {
+      "asset": "estatua_alaundo",
+      "x": 7250,
+      "y": 4760
+     },
+     {
+      "asset": "poco",
+      "x": 7050,
+      "y": 5140
+     },
+     {
+      "asset": "arvore_grande",
+      "x": 6900,
+      "y": 4450,
+      "rotation": 40
+     },
+     {
+      "asset": "arvore_grande",
+      "x": 7650,
+      "y": 5250,
+      "rotation": 200
+     },
+     {
+      "asset": "banco",
+      "x": 7550,
+      "y": 4450
+     },
+     {
+      "asset": "banco",
+      "x": 7550,
+      "y": 4950
+     },
+     {
+      "asset": "lampada",
+      "x": 7450,
+      "y": 4550
      }
     ],
     "saidas": [
@@ -3295,6 +3284,12 @@
       "y": 27,
       "titulo": "Cântico Sem Fim",
       "texto": "<p>Benedora Stoneforge e os acólitos andam em procissão pelo Pátio, dia e noite, recitando as profecias de Alaundo.</p>"
+     },
+     {
+      "x": 72,
+      "y": 44,
+      "titulo": "Jardim dos Sábios",
+      "texto": "<p>Um canteiro de ervas antigo, do tempo em que o Pátio ainda tinha bosque. A estátua de Alaundo, o fundador, fica no cruzamento dos caminhos; o poço dá água boa (e dá para envenenar ou congelar). Danificar a estátua conta como destruir conhecimento.</p>"
      }
     ]
    },

@@ -40,22 +40,22 @@
  ],
  "sounds": [
   {
+   "walls": true,
+   "easing": true,
    "x": 650,
    "y": 215,
    "radius": 20,
    "path": "assets/tocha/fogo.ogg",
-   "volume": 0.6,
-   "walls": true,
-   "easing": true
+   "volume": 0.6
   },
   {
+   "walls": true,
+   "easing": true,
    "x": 700,
    "y": 650,
    "radius": 45,
    "path": "mapas/taverna/taverna_loop.ogg",
-   "volume": 0.4,
-   "walls": true,
-   "easing": true
+   "volume": 0.4
   }
  ],
  "flags": {

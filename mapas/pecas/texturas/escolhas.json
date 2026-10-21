@@ -1,0 +1,90 @@
+{
+  "piso_madeira": {
+    "job": "fb42081b-d293-444c-ac2e-547803741bc1",
+    "variacao_img": 0,
+    "quadrados": 2
+  },
+  "piso_pedra": {
+    "job": "0c531b1a-2082-4e4d-be50-7acfbf0075d2",
+    "variacao_img": 0,
+    "quadrados": 2
+  },
+  "grama": {
+    "job": "23701f0a-5527-49cb-9e67-cc3e1600d9ab",
+    "variacao_img": 0,
+    "quadrados": 3,
+    "variacao": 0.18
+  },
+  "terra": {
+    "job": "58c59c0b-be5e-4adf-aad6-1894be71bee2",
+    "variacao_img": 0,
+    "quadrados": 3,
+    "variacao": 0.15
+  },
+  "parede": {
+    "job": "47c966b1-9c78-4fdd-a5ca-c31ebdaa5a90",
+    "variacao_img": 1,
+    "quadrados": 2
+  },
+  "agua": {
+    "job": "af68d403-0385-48e3-97e8-58caa93c45ab",
+    "variacao_img": 0,
+    "quadrados": 3,
+    "variacao": 0.1
+  },
+  "paralelepipedo": {
+    "job": "ce611a0d-34b9-4459-a7f3-3e3ce2ccae72",
+    "variacao_img": 0,
+    "quadrados": 2
+  },
+  "marmore": {
+    "job": "a8eef103-e621-4be1-b1bc-46ce73eae617",
+    "variacao_img": 0,
+    "quadrados": 2,
+    "variacao": 0.06
+  },
+  "tapete": {
+    "job": "8379f994-1f27-4a2f-ac24-9bd56026d854",
+    "variacao_img": 1,
+    "quadrados": 2,
+    "variacao": 0.05
+  },
+  "rocha_vulcanica": {
+    "job": "a38b75b1-f8fb-47c4-9da3-83e9359574a5",
+    "variacao_img": 0,
+    "quadrados": 4,
+    "variacao": 0.15
+  },
+  "telhado_ardosia": {
+    "job": "33c4db4e-fb41-4cd6-89cb-ad49fbe81d7f",
+    "variacao_img": 0,
+    "quadrados": 2
+  },
+  "telhado_telha": {
+    "job": "cc0c9918-a346-4971-afae-f2961f8e7004",
+    "variacao_img": 0,
+    "quadrados": 2
+  },
+  "muralha": {
+    "job": "64cb4a08-6851-43c4-987a-6be9f0f5a91a",
+    "variacao_img": 1,
+    "quadrados": 2
+  },
+  "vazio": {
+    "job": "ca7ec912-002a-4fc9-93fb-5144d6aa30c1",
+    "variacao_img": 1,
+    "quadrados": 4,
+    "variacao": 0.05
+  },
+  "azulejo": {
+    "job": "8fd0c33b-179d-404e-a141-79cf742b1895",
+    "variacao_img": 1,
+    "quadrados": 2,
+    "variacao": 0.04
+  },
+  "madeira_escura": {
+    "job": "b5c2c566-2b48-4a8b-be3a-04bc2b4064d3",
+    "variacao_img": 1,
+    "quadrados": 2
+  }
+}

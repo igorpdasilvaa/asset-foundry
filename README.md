@@ -30,12 +30,14 @@ Também dá pra trocar por macro: `api.nextState(tile)` / `api.setState(tile, 1)
 
 Em **Configurar Configurações → Interactive Assets**, ligue **Modo desenvolvimento (GitHub)**.
 Com ele ligado, cada recarregamento da página (F5) busca o código e as imagens do último commit
-da branch `main` no GitHub (via jsDelivr), sem precisar apertar Atualizar no setup.
+da branch `main` no GitHub, sem precisar apertar Atualizar no setup. O código vem do githack (que entrega JavaScript
+com o tipo certo) e as imagens, sons e mapas do GitHub raw. O jsDelivr não serve mais: ele recusa repositórios com
+mais de 50 MB, e com Candlekeep o repositório passou disso.
 
-- Mudanças no `module.json` (nome, versão, novos arquivos de estilo) ainda pedem atualização normal.
+- Mudanças no `module.json` (nome, versão, novos arquivos de estilo) e no `scripts/main.js` ainda pedem atualização normal.
 - O GitHub permite 60 consultas por hora por IP; se passar disso ou o GitHub cair, o módulo usa a versão instalada e avisa.
-  A macro dos mapas usa o mesmo commit que o módulo carregou e, sem ele, lê os arquivos direto do repositório,
-  então funciona mesmo com o limite estourado (mantenha o módulo instalado atualizado para esse caso).
+- Fora do modo desenvolvimento, tudo sai do próprio servidor do Foundry: desde a 0.12.0 o pacote traz os mapas
+  (fundos, músicas, cenas). A macro dos mapas usa os arquivos instalados e só busca no GitHub se não os achar.
 - Desligar o modo volta para os arquivos instalados; tokens já na cena trocam as imagens sozinhos.
 
 ## O que jogadores podem fazer
@@ -244,8 +246,9 @@ fogo (queimando → cinzas) quando a cena não tem proteções ou o mestre as de
 Livros, estantes, atris, escrivaninhas e o carrinho têm `"conhecimento": true`: dano neles conta para o alarme das proteções.
 Novos campos do `assets.json`: `"conhecimento"`, `"fogoPermitido"`, `"invulneravel"` (texto dito no chat quando atacam),
 `"doorSound"` (som da porta do Foundry) e, nos estados, `"chama"`, `"door": "locked"`, `"npc"`, `"colapso"` e `"alarme"`.
-Os geradores são `tools/gen_construcao.py`, `tools/gen_biblioteca.py` e `tools/gen_oficios.py` (cada um escreve o seu
-`tools/fragmentos/<grupo>.json`; `python3 tools/juntar_fragmentos.py` leva para o `assets.json`).
+Toda a arte dos assets (e as texturas dos pisos e paredes dos mapas) é pintada: gerada localmente com SDXL no `ia-orc` e
+tratada por `tools/ia_assets.py` (receitas em `tools/ia_receitas/`), com os estados feitos a partir da mesma imagem
+(fogo animado, carvão, cacos, gelo...). Detalhes em [`tools/README.md`](tools/README.md).
 
 ## Sons e música
 - **Efeitos ao mudar de estado:** quase todo estado tem `"sfx"`, tocado para todos uma vez quando o asset entra nele.

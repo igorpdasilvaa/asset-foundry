@@ -23,13 +23,13 @@
  "lights": [],
  "sounds": [
   {
+   "walls": true,
+   "easing": true,
    "x": 1500,
    "y": 750,
    "radius": 40,
    "path": "mapas/lago/agua_loop.ogg",
-   "volume": 0.5,
-   "walls": true,
-   "easing": true
+   "volume": 0.5
   }
  ],
  "flags": {

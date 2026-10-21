@@ -45,8 +45,8 @@ XmmmmmmmmmmmmmW,,,,,,,,,,,,,,,,,,,,,,RRDRRR,,,,,,,,,RRRRRRRRRRRRR,,""""""""""",W
 XmmmmmmmmmmmmmW,,,,,,,,,,,,,,,,,,,,,,RRRRRR,,,,,,,,,RRRRRRRRRRRRR,,""""""""""",W
 XmRRRRRRmmmmmmW,,rrrrDrrrrr,,,,,,,,,,RRRRRR,,,,,,,,,RRRRRRRRRRRRR,,""""""""""",W
 XmRRRRRRmRRRRmW,,rrrrrrrrrr,,,RRDRRR,RRRRRR,,,,,,,,,RRRRRRRRRRRRR,,""""""""""",W
-XmRRRRRRmRRRRmW,,rrrrrrrrrr,,,RRRRRR,RRRRRR,RRDRR,,,RRRRRRRRRRRRR,,""""~~""""",W
-XmRRRRRRmRRRRmW,,rrrrrrrrrr,,,RRRRRR,RRRRRR,RRRRR,,,RRRRRRRRRRRRR,,""""~~""""",W
+XmRRRRRRmRRRRmW,,rrrrrrrrrr,,,RRRRRR,RRRRRR,RRDRR,,,RRRRRRRRRRRRR,,""""""""""",W
+XmRRRRRRmRRRRmW,,rrrrrrrrrr,,,RRRRRR,RRRRRR,RRRRR,,,RRRRRRRRRRRRR,,""""""""""",W
 XmRRRRRRmRRRRmW,,rrrrrrrrrr,,,RRRRRR,RRRRRR,RRRRR,,,RRRRRRRRRRRRR,,""""""""""",W
 XmRRRRRRmRRRRmW,,rrrrrrrrrr,,,RRRRRR,RRRRRR,RRRRR,,,RRRRRRRRRRRRR,,""""""""""",W
 XmRRRRRRmRRRRmW,,rrrrrrrrrr,,,RRRRRR,RRRRRR,RRRRR,,,RRRRRRRRRRRRR,,""""""""""",W
