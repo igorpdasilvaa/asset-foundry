@@ -86,6 +86,29 @@
    }
   }
  ],
+ "tiles": [
+  {
+   "x": 1000,
+   "y": 300,
+   "width": 1400,
+   "height": 1300,
+   "elevation": 0,
+   "sort": 0,
+   "texture": {
+    "src": "mapas/candlekeep_banhos/candlekeep_banhos_agua.webm"
+   },
+   "video": {
+    "loop": true,
+    "autoplay": true,
+    "volume": 0
+   },
+   "flags": {
+    "interactive-assets": {
+     "aguaAnimada": true
+    }
+   }
+  }
+ ],
  "sounds": [
   {
    "walls": true,

@@ -21,6 +21,29 @@
   }
  },
  "lights": [],
+ "tiles": [
+  {
+   "x": 900,
+   "y": 300,
+   "width": 1200,
+   "height": 900,
+   "elevation": 0,
+   "sort": 0,
+   "texture": {
+    "src": "mapas/lago/lago_agua.webm"
+   },
+   "video": {
+    "loop": true,
+    "autoplay": true,
+    "volume": 0
+   },
+   "flags": {
+    "interactive-assets": {
+     "aguaAnimada": true
+    }
+   }
+  }
+ ],
  "sounds": [
   {
    "walls": true,

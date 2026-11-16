@@ -12,6 +12,13 @@
     "candlekeep_templo",
     "candlekeep_alfaiataria",
     "candlekeep_ferraria",
+    "candlekeep_interno",
+    "candlekeep_biblioteca",
+    "candlekeep_torres",
+    "candlekeep_alojamentos",
+    "candlekeep_subterraneo",
+    "candlekeep_porao",
+    "candlekeep_muralha",
     "lobisomens"
   ],
   "playlist": [
@@ -54,6 +61,34 @@
     {
       "nome": "Ferraria e Estábulos",
       "path": "mapas/candlekeep/musica/ferraria.ogg"
+    },
+    {
+      "nome": "Pátio Interno",
+      "path": "mapas/candlekeep/musica/interno.ogg"
+    },
+    {
+      "nome": "Grande Biblioteca",
+      "path": "mapas/candlekeep/musica/biblioteca.ogg"
+    },
+    {
+      "nome": "Torres dos Leitores",
+      "path": "mapas/candlekeep/musica/torres.ogg"
+    },
+    {
+      "nome": "Exaltação e alojamentos",
+      "path": "mapas/candlekeep/musica/alojamentos.ogg"
+    },
+    {
+      "nome": "Subterrâneo (Miirym)",
+      "path": "mapas/candlekeep/musica/subterraneo.ogg"
+    },
+    {
+      "nome": "Porão dos Vaga-lumes",
+      "path": "mapas/candlekeep/musica/porao.ogg"
+    },
+    {
+      "nome": "Torres e adarve",
+      "path": "mapas/candlekeep/musica/muralha.ogg"
     },
     {
       "nome": "Combate em Candlekeep",

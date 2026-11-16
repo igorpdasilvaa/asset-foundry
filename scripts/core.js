@@ -1,4 +1,4 @@
-import { buildMap, rebuildWalls } from "./mapa.js";
+import { buildMap, rebuildWalls, acrescentaNovidades } from "./mapa.js";
 import * as agua from "./agua.js";
 import * as veiculo from "./veiculo.js";
 import * as template from "./template.js";
@@ -532,8 +532,8 @@ export async function start({ base, version }) {
   template.init();
   game.modules.get(MODULE_ID).api = {
     placeAsset, nextState, setState, buildMap, rebuildWalls,
-    /** Monta todos os mapas de mapas/<cidade>/cidade.json e liga as saídas entre eles. */
-    buildCity: (id, root) => cidade.buildCity(id, root, buildMap),
+    /** Monta os mapas de mapas/<cidade>/cidade.json e liga as saídas entre eles (já montada: só os mapas novos, se quiser). */
+    buildCity: (id, root) => cidade.buildCity(id, root, buildMap, acrescentaNovidades),
     /** Coloca n plebeus aleatórios na cena atual: gerarPlebeus(6, { oficios: ["buscador"], area: [x, y, w, h] }). */
     gerarPlebeus: npc.gerarPlebeus,
     /** Ator de um NPC nomeado do npcs.json (cria se faltar). */

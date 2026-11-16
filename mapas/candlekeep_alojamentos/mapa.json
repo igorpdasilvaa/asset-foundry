@@ -1,0 +1,967 @@
+{
+  "name": "Candlekeep: Exaltação e alojamentos",
+  "grid": 100,
+  "px": 150,
+  "darkness": 0.3,
+  "seed": 101,
+  "legend": {
+    "#": "parede",
+    ",": "paralelepipedo",
+    ".": "piso_madeira",
+    "D": "porta",
+    "S": {
+      "nome": "escada_sobe",
+      "peca": "escada",
+      "rot": 0,
+      "chao": "piso_pedra"
+    },
+    "_": "terra",
+    "a": "azulejo",
+    "p": "piso_pedra",
+    "s": {
+      "nome": "escada_desce",
+      "peca": "escada",
+      "rot": 180,
+      "chao": "piso_pedra"
+    },
+    "t": "tapete",
+    "v": "vazio"
+  },
+  "protecoes": {
+    "alarme": 1,
+    "resposta": [
+      {
+        "npc": "avowed_arquimago",
+        "n": 1
+      },
+      {
+        "npc": "avowed_mago",
+        "n": 4
+      }
+    ]
+  },
+  "saidas": [
+    {
+      "id": "rua_exaltacao",
+      "nome": "Pátio Interno",
+      "x": 7,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 6,
+        "y": 2,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_interno",
+      "chegada": "porta_exaltacao"
+    },
+    {
+      "id": "rua_refeitorio",
+      "nome": "Pátio Interno",
+      "x": 20,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 19,
+        "y": 2,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_interno",
+      "chegada": "porta_refeitorio"
+    },
+    {
+      "id": "rua_enfermaria",
+      "nome": "Pátio Interno",
+      "x": 37,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 36,
+        "y": 2,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_interno",
+      "chegada": "porta_enfermaria"
+    },
+    {
+      "id": "rua_armazem",
+      "nome": "Pátio Interno",
+      "x": 51,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 50,
+        "y": 2,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_interno",
+      "chegada": "porta_armazem"
+    },
+    {
+      "id": "sobe_1",
+      "nome": "Escada: sobe (celas)",
+      "x": 12,
+      "y": 7,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 11,
+        "y": 7,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_alojamentos",
+      "chegada": "desce_1"
+    },
+    {
+      "id": "desce_1",
+      "nome": "Escada: desce",
+      "x": 1,
+      "y": 22,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 2,
+        "y": 22,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_alojamentos",
+      "chegada": "sobe_1"
+    },
+    {
+      "id": "desce_2",
+      "nome": "Escada: desce",
+      "x": 16,
+      "y": 22,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 17,
+        "y": 22,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_alojamentos",
+      "chegada": "sobe_2"
+    },
+    {
+      "id": "sobe_2",
+      "nome": "Escada: sobe (2º andar de celas)",
+      "x": 12,
+      "y": 23,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 11,
+        "y": 23,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_alojamentos",
+      "chegada": "desce_2"
+    }
+  ],
+  "objects": [
+    {
+      "asset": "mesa",
+      "x": 310,
+      "y": 460
+    },
+    {
+      "asset": "banco",
+      "x": 300,
+      "y": 350
+    },
+    {
+      "asset": "banco",
+      "x": 300,
+      "y": 550
+    },
+    {
+      "asset": "mesa",
+      "x": 910,
+      "y": 460
+    },
+    {
+      "asset": "banco",
+      "x": 900,
+      "y": 350
+    },
+    {
+      "asset": "banco",
+      "x": 900,
+      "y": 550
+    },
+    {
+      "asset": "estante",
+      "x": 200,
+      "y": 750
+    },
+    {
+      "asset": "lampada",
+      "x": 150,
+      "y": 250
+    },
+    {
+      "asset": "lampada",
+      "x": 1050,
+      "y": 250
+    },
+    {
+      "asset": "altar",
+      "x": 700,
+      "y": 1250
+    },
+    {
+      "asset": "banco",
+      "x": 300,
+      "y": 1050
+    },
+    {
+      "asset": "banco",
+      "x": 900,
+      "y": 1050
+    },
+    {
+      "asset": "vela",
+      "x": 450,
+      "y": 1250
+    },
+    {
+      "asset": "vela",
+      "x": 950,
+      "y": 1250
+    },
+    {
+      "asset": "atril",
+      "x": 150,
+      "y": 1250
+    },
+    {
+      "asset": "cama",
+      "x": 150,
+      "y": 1800
+    },
+    {
+      "asset": "caixa",
+      "x": 150,
+      "y": 2050
+    },
+    {
+      "asset": "vela",
+      "x": 350,
+      "y": 1750
+    },
+    {
+      "asset": "cama",
+      "x": 150,
+      "y": 2800
+    },
+    {
+      "asset": "caixa",
+      "x": 350,
+      "y": 2850
+    },
+    {
+      "asset": "vela",
+      "x": 350,
+      "y": 2550
+    },
+    {
+      "asset": "cama",
+      "x": 550,
+      "y": 1800
+    },
+    {
+      "asset": "caixa",
+      "x": 550,
+      "y": 2050
+    },
+    {
+      "asset": "vela",
+      "x": 750,
+      "y": 1750
+    },
+    {
+      "asset": "cama",
+      "x": 550,
+      "y": 2800
+    },
+    {
+      "asset": "caixa",
+      "x": 750,
+      "y": 2850
+    },
+    {
+      "asset": "vela",
+      "x": 750,
+      "y": 2550
+    },
+    {
+      "asset": "cama",
+      "x": 950,
+      "y": 1800
+    },
+    {
+      "asset": "caixa",
+      "x": 950,
+      "y": 2050
+    },
+    {
+      "asset": "vela",
+      "x": 1150,
+      "y": 1750
+    },
+    {
+      "asset": "cama",
+      "x": 950,
+      "y": 2800
+    },
+    {
+      "asset": "caixa",
+      "x": 1150,
+      "y": 2850
+    },
+    {
+      "asset": "vela",
+      "x": 1150,
+      "y": 2550
+    },
+    {
+      "asset": "lampada",
+      "x": 650,
+      "y": 2250
+    },
+    {
+      "asset": "cama",
+      "x": 1650,
+      "y": 1800
+    },
+    {
+      "asset": "caixa",
+      "x": 1650,
+      "y": 2050
+    },
+    {
+      "asset": "vela",
+      "x": 1850,
+      "y": 1750
+    },
+    {
+      "asset": "cama",
+      "x": 1650,
+      "y": 2800
+    },
+    {
+      "asset": "caixa",
+      "x": 1850,
+      "y": 2850
+    },
+    {
+      "asset": "vela",
+      "x": 1850,
+      "y": 2550
+    },
+    {
+      "asset": "cama",
+      "x": 2050,
+      "y": 1800
+    },
+    {
+      "asset": "caixa",
+      "x": 2050,
+      "y": 2050
+    },
+    {
+      "asset": "vela",
+      "x": 2250,
+      "y": 1750
+    },
+    {
+      "asset": "cama",
+      "x": 2050,
+      "y": 2800
+    },
+    {
+      "asset": "caixa",
+      "x": 2250,
+      "y": 2850
+    },
+    {
+      "asset": "vela",
+      "x": 2250,
+      "y": 2550
+    },
+    {
+      "asset": "cama",
+      "x": 2450,
+      "y": 1800
+    },
+    {
+      "asset": "caixa",
+      "x": 2450,
+      "y": 2050
+    },
+    {
+      "asset": "vela",
+      "x": 2650,
+      "y": 1750
+    },
+    {
+      "asset": "cama",
+      "x": 2450,
+      "y": 2800
+    },
+    {
+      "asset": "caixa",
+      "x": 2650,
+      "y": 2850
+    },
+    {
+      "asset": "vela",
+      "x": 2650,
+      "y": 2550
+    },
+    {
+      "asset": "lampada",
+      "x": 2150,
+      "y": 2250
+    },
+    {
+      "asset": "mesa",
+      "x": 1710,
+      "y": 460
+    },
+    {
+      "asset": "mesa",
+      "x": 2010,
+      "y": 460
+    },
+    {
+      "asset": "banco",
+      "x": 1700,
+      "y": 350
+    },
+    {
+      "asset": "banco",
+      "x": 1700,
+      "y": 550
+    },
+    {
+      "asset": "banco",
+      "x": 1900,
+      "y": 350
+    },
+    {
+      "asset": "banco",
+      "x": 1900,
+      "y": 550
+    },
+    {
+      "asset": "banco",
+      "x": 2100,
+      "y": 350
+    },
+    {
+      "asset": "banco",
+      "x": 2100,
+      "y": 550
+    },
+    {
+      "asset": "mesa",
+      "x": 1710,
+      "y": 860
+    },
+    {
+      "asset": "mesa",
+      "x": 2010,
+      "y": 860
+    },
+    {
+      "asset": "banco",
+      "x": 1700,
+      "y": 750
+    },
+    {
+      "asset": "banco",
+      "x": 1700,
+      "y": 950
+    },
+    {
+      "asset": "banco",
+      "x": 1900,
+      "y": 750
+    },
+    {
+      "asset": "banco",
+      "x": 1900,
+      "y": 950
+    },
+    {
+      "asset": "banco",
+      "x": 2100,
+      "y": 750
+    },
+    {
+      "asset": "banco",
+      "x": 2100,
+      "y": 950
+    },
+    {
+      "asset": "lampada",
+      "x": 2350,
+      "y": 250
+    },
+    {
+      "asset": "lampada",
+      "x": 2350,
+      "y": 1150
+    },
+    {
+      "asset": "atril",
+      "x": 2350,
+      "y": 650
+    },
+    {
+      "asset": "mesa",
+      "x": 2710,
+      "y": 260
+    },
+    {
+      "asset": "cocho",
+      "x": 2900,
+      "y": 550
+    },
+    {
+      "asset": "barril",
+      "x": 2950,
+      "y": 250
+    },
+    {
+      "asset": "barril",
+      "x": 2950,
+      "y": 350
+    },
+    {
+      "asset": "caixa",
+      "x": 2650,
+      "y": 1050
+    },
+    {
+      "asset": "caixa",
+      "x": 2750,
+      "y": 1150
+    },
+    {
+      "asset": "mesa",
+      "x": 2810,
+      "y": 860
+    },
+    {
+      "asset": "lampada",
+      "x": 2950,
+      "y": 1150
+    },
+    {
+      "asset": "cama",
+      "x": 3350,
+      "y": 400
+    },
+    {
+      "asset": "cama",
+      "x": 3350,
+      "y": 1000
+    },
+    {
+      "asset": "cama",
+      "x": 3550,
+      "y": 400
+    },
+    {
+      "asset": "cama",
+      "x": 3550,
+      "y": 1000
+    },
+    {
+      "asset": "cama",
+      "x": 3750,
+      "y": 1000
+    },
+    {
+      "asset": "cama",
+      "x": 3950,
+      "y": 400
+    },
+    {
+      "asset": "cama",
+      "x": 3950,
+      "y": 1000
+    },
+    {
+      "asset": "cama",
+      "x": 4150,
+      "y": 400
+    },
+    {
+      "asset": "cama",
+      "x": 4150,
+      "y": 1000
+    },
+    {
+      "asset": "mesa",
+      "x": 3710,
+      "y": 660
+    },
+    {
+      "asset": "cadeira",
+      "x": 3650,
+      "y": 850
+    },
+    {
+      "asset": "estante",
+      "x": 4150,
+      "y": 700,
+      "rotation": 90
+    },
+    {
+      "asset": "vela",
+      "x": 3450,
+      "y": 650
+    },
+    {
+      "asset": "lampada",
+      "x": 4250,
+      "y": 250
+    },
+    {
+      "asset": "cocho",
+      "x": 3400,
+      "y": 750
+    },
+    {
+      "asset": "feno",
+      "x": 4650,
+      "y": 350
+    },
+    {
+      "asset": "feno",
+      "x": 4650,
+      "y": 450
+    },
+    {
+      "asset": "feno",
+      "x": 4650,
+      "y": 550
+    },
+    {
+      "asset": "feno",
+      "x": 4750,
+      "y": 350
+    },
+    {
+      "asset": "feno",
+      "x": 4750,
+      "y": 450
+    },
+    {
+      "asset": "feno",
+      "x": 4750,
+      "y": 550
+    },
+    {
+      "asset": "feno",
+      "x": 4850,
+      "y": 350
+    },
+    {
+      "asset": "feno",
+      "x": 4850,
+      "y": 450
+    },
+    {
+      "asset": "feno",
+      "x": 4850,
+      "y": 550
+    },
+    {
+      "asset": "barril",
+      "x": 5450,
+      "y": 250
+    },
+    {
+      "asset": "barril",
+      "x": 5450,
+      "y": 350
+    },
+    {
+      "asset": "barril",
+      "x": 5550,
+      "y": 250
+    },
+    {
+      "asset": "barril",
+      "x": 5550,
+      "y": 350
+    },
+    {
+      "asset": "barril",
+      "x": 5650,
+      "y": 250
+    },
+    {
+      "asset": "barril",
+      "x": 5650,
+      "y": 350
+    },
+    {
+      "asset": "barril",
+      "x": 5750,
+      "y": 250
+    },
+    {
+      "asset": "barril",
+      "x": 5750,
+      "y": 350
+    },
+    {
+      "asset": "caixa",
+      "x": 4650,
+      "y": 950
+    },
+    {
+      "asset": "caixa",
+      "x": 4750,
+      "y": 950
+    },
+    {
+      "asset": "caixa",
+      "x": 4650,
+      "y": 1050
+    },
+    {
+      "asset": "caixa",
+      "x": 4750,
+      "y": 1150
+    },
+    {
+      "asset": "caixa",
+      "x": 4650,
+      "y": 1150
+    },
+    {
+      "asset": "caixa",
+      "x": 4950,
+      "y": 1150
+    },
+    {
+      "asset": "caixa",
+      "x": 5550,
+      "y": 1050
+    },
+    {
+      "asset": "caixa",
+      "x": 5650,
+      "y": 1050
+    },
+    {
+      "asset": "caixa",
+      "x": 5750,
+      "y": 1050
+    },
+    {
+      "asset": "caixa",
+      "x": 5650,
+      "y": 1150
+    },
+    {
+      "asset": "caixa",
+      "x": 5750,
+      "y": 1150
+    },
+    {
+      "asset": "carroca",
+      "x": 5200,
+      "y": 850
+    },
+    {
+      "asset": "lampada",
+      "x": 5050,
+      "y": 250
+    },
+    {
+      "asset": "carrinho_livros",
+      "x": 5450,
+      "y": 700
+    }
+  ],
+  "npcs": [],
+  "multidao": [
+    {
+      "area": [
+        2,
+        2,
+        10,
+        5
+      ],
+      "n": 3,
+      "oficios": [
+        "acolito",
+        "escriba",
+        "servo"
+      ]
+    },
+    {
+      "area": [
+        2,
+        9,
+        9,
+        3
+      ],
+      "n": 2,
+      "oficios": [
+        "acolito"
+      ]
+    },
+    {
+      "area": [
+        2,
+        22,
+        9,
+        2
+      ],
+      "n": 1,
+      "oficios": [
+        "acolito"
+      ]
+    },
+    {
+      "area": [
+        17,
+        22,
+        9,
+        2
+      ],
+      "n": 1,
+      "oficios": [
+        "escriba"
+      ]
+    },
+    {
+      "area": [
+        16,
+        2,
+        8,
+        9
+      ],
+      "n": 4,
+      "oficios": [
+        "servo",
+        "acolito",
+        "escriba"
+      ]
+    },
+    {
+      "area": [
+        26,
+        6,
+        3,
+        3
+      ],
+      "n": 2,
+      "oficios": [
+        "servo"
+      ]
+    },
+    {
+      "area": [
+        34,
+        5,
+        7,
+        3
+      ],
+      "n": 2,
+      "oficios": [
+        "acolito",
+        "peregrino"
+      ]
+    },
+    {
+      "area": [
+        50,
+        3,
+        4,
+        3
+      ],
+      "n": 1,
+      "oficios": [
+        "servo"
+      ]
+    }
+  ],
+  "notas": [
+    {
+      "x": 11,
+      "y": 3,
+      "titulo": "Exaltação",
+      "texto": "<p>A torre mais alta de Candlekeep e a casa dos Avowed. No térreo, a sala comum e a capela; nos andares, as celas: cama, baú e candelabro, nada mais. (Só dois andares de celas no mapa; a torre continua acima.)</p>"
+    },
+    {
+      "x": 21,
+      "y": 6,
+      "titulo": "Refeitório e cozinha",
+      "texto": "<p>Os Avowed comem juntos, em silêncio, enquanto um deles lê em voz alta no atril. Como nenhuma chama maior que uma vela pega em Candlekeep (fora a lareira do Hearth), a cozinha esquenta tudo com pedras aquecidas por magia.</p>"
+    },
+    {
+      "x": 38,
+      "y": 7,
+      "titulo": "Enfermaria",
+      "texto": "<p>Leitos para Avowed e visitantes doentes ou feridos, sob os cuidados dos sacerdotes de Deneir e Oghma.</p>"
+    },
+    {
+      "x": 52,
+      "y": 4,
+      "titulo": "Armazém e celeiros",
+      "texto": "<p>Comida, papel, tinta, couro e lenha (que só serve na lareira do Hearth) chegam pelas caravanas e ficam aqui.</p>"
+    }
+  ],
+  "lights": [],
+  "sounds": [
+    {
+      "x": 2100,
+      "y": 600,
+      "radius": 40,
+      "path": "assets/audio/amb_refeitorio.ogg",
+      "volume": 0.3,
+      "walls": false
+    },
+    {
+      "x": 700,
+      "y": 2300,
+      "radius": 35,
+      "path": "assets/audio/amb_repouso.ogg",
+      "volume": 0.25,
+      "walls": false
+    },
+    {
+      "x": 2200,
+      "y": 2300,
+      "radius": 35,
+      "path": "assets/audio/amb_repouso.ogg",
+      "volume": 0.25,
+      "walls": false
+    }
+  ],
+  "musica": {
+    "path": "mapas/candlekeep/musica/alojamentos.ogg",
+    "volume": 0.22
+  }
+}

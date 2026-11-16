@@ -54,6 +54,9 @@ export async function ligaSaidas(cenas) {
       }
       const behavior = { name: "Teleportar", type: "teleportToken", system: { destination: destino.uuid, choice: !!s.perguntar } };
       const atual = region.behaviors.find(b => b.type === "teleportToken");
+      // Saída de cena já em jogo que ainda leva a algum lugar: fica como o mestre deixou.
+      const leva = atual?.system.destination;
+      if (leva && fromUuidSync(typeof leva === "string" ? leva : leva.uuid)) continue;
       if (atual) await atual.update({ system: behavior.system });
       else await region.createEmbeddedDocuments("RegionBehavior", [behavior]);
       ligadas++;
@@ -94,41 +97,78 @@ async function confirmar(title, content) {
   return Dialog.confirm({ title, content: `<p>${content}</p>` });
 }
 
+/** Cidade já montada: "novos" (padrão), "substituir" ou null (cancelou). */
+async function escolheModo(nome, n) {
+  return foundry.applications.api.DialogV2.wait({
+    window: { title: nome },
+    content: `<p>Já existem ${n} cena(s) de ${nome}, e os jogadores podem ter mexido nelas.</p>
+      <p><b>Só os mapas novos:</b> monta só os mapas que ainda não têm cena. Nas cenas que já existem entram apenas as
+      saídas e as notas que o mapa ganhou depois (com a porta por onde a saída nova passa); o resto fica como está.</p>
+      <p><b>Substituir tudo:</b> apaga as cenas (com os tokens), o diário e a playlist, e monta tudo do zero.</p>`,
+    buttons: [
+      { action: "novos", label: "Só os mapas novos", icon: "fa-solid fa-plus", default: true },
+      { action: "substituir", label: "Substituir tudo", icon: "fa-solid fa-trash" },
+      { action: "cancelar", label: "Cancelar" }
+    ],
+    rejectClose: false
+  }).then(r => (r === "novos" || r === "substituir" ? r : null));
+}
+
 /**
- * Monta todos os mapas de uma cidade numa pasta de cenas e liga as saídas.
- * Rodar de novo pergunta se substitui as cenas já montadas (as fichas dos personagens não são apagadas,
- * só os tokens que estavam nessas cenas).
+ * Monta os mapas de uma cidade numa pasta de cenas e liga as saídas. Devolve a primeira cena criada.
+ * Se a cidade já foi montada, pergunta:
+ * - "Só os mapas novos" (padrão): cria só as cenas que faltam. As que já existem recebem apenas as saídas e as notas novas
+ *   (acrescenta = acrescentaNovidades de scripts/mapa.js), e a playlist ganha só as músicas que faltam;
+ * - "Substituir tudo": confirma de novo e apaga as cenas (e os tokens delas), o diário e a playlist antes de montar.
+ *   As fichas dos personagens não são apagadas.
  */
-export async function buildCity(cidadeId, root, buildMap) {
+export async function buildCity(cidadeId, root, buildMap, acrescenta) {
   const cfg = await (await fetch(`${root}/mapas/${cidadeId}/cidade.json`)).json();
   let pasta = game.folders.find(f => f.type === "Scene" && f.getFlag(MODULE_ID, "cidade") === cidadeId);
   const antigas = game.scenes.filter(s => s.getFlag(MODULE_ID, "cidade") === cidadeId);
+  const ficam = new Map(); // mapId → cena já em jogo, que não é refeita
   if (antigas.length) {
-    const ok = await confirmar(cfg.name, `Já existem ${antigas.length} cena(s) de ${cfg.name}. Substituir? Os tokens dessas cenas serão apagados.`);
-    if (!ok) return null;
-    await Scene.deleteDocuments(antigas.map(s => s.id));
-    const diario = game.journal.find(j => j.getFlag(MODULE_ID, "cidade") === cidadeId);
-    await diario?.delete();
-    await game.playlists.find(p => p.getFlag(MODULE_ID, "cidade") === cidadeId)?.delete();
+    const modo = await escolheModo(cfg.name, antigas.length);
+    if (modo === "novos") for (const s of antigas) ficam.set(s.getFlag(MODULE_ID, "mapId"), s);
+    else if (modo === "substituir" && await confirmar(cfg.name,
+      `Apagar as ${antigas.length} cenas de ${cfg.name}, com tudo o que os jogadores mudaram nelas, e montar de novo? Não dá para desfazer.`)) {
+      await Scene.deleteDocuments(antigas.map(s => s.id));
+      await game.journal.find(j => j.getFlag(MODULE_ID, "cidade") === cidadeId)?.delete();
+      await game.playlists.find(p => p.getFlag(MODULE_ID, "cidade") === cidadeId)?.delete();
+    } else return null;
   }
   pasta ??= await Folder.create({ name: cfg.name, type: "Scene", sorting: "m", flags: { [MODULE_ID]: { cidade: cidadeId } } });
-  const diario = await JournalEntry.create({
+  const diario = (ficam.size && game.journal.find(j => j.getFlag(MODULE_ID, "cidade") === cidadeId)) || await JournalEntry.create({
     name: `Guia de ${cfg.name}`, folder: await pastaDiario(cfg.name),
     ownership: { default: CONST.DOCUMENT_OWNERSHIP_LEVELS.NONE }, flags: { [MODULE_ID]: { cidade: cidadeId } }
   });
-  const cenas = new Map();
+  const cenas = new Map(ficam), novas = [];
+  const faltam = cfg.mapas.filter(id => !ficam.has(id));
+  let acrescentadas = 0;
   for (const [i, mapId] of cfg.mapas.entries()) {
-    ui.notifications.info(`${cfg.name}: montando ${i + 1} de ${cfg.mapas.length} (${mapId})...`);
     const data = await (await fetch(`${root}/mapas/${mapId}/cena.json`)).json();
+    if (ficam.has(mapId)) {
+      acrescentadas += (await acrescenta(ficam.get(mapId), data, { diario })).length;
+      continue;
+    }
+    ui.notifications.info(`${cfg.name}: montando ${novas.length + 1} de ${faltam.length} (${mapId})...`);
     const scene = await buildMap(data, root, { folder: pasta.id, sort: i, view: false, cidade: cidadeId, mapId, diario, ligar: false });
     cenas.set(mapId, scene);
+    novas.push(scene);
   }
   const n = await ligaSaidas(cenas);
-  if (cfg.playlist?.length && !game.playlists.find(p => p.getFlag(MODULE_ID, "cidade") === cidadeId)) {
-    await Playlist.create({
-      name: cfg.name, mode: CONST.PLAYLIST_MODES.DISABLED, flags: { [MODULE_ID]: { cidade: cidadeId } },
-      sounds: cfg.playlist.map(m => ({ name: m.nome, path: `${root}/${m.path}`, repeat: m.repetir !== false, volume: 0.5 }))
+  if (cfg.playlist?.length) {
+    const som = m => ({ name: m.nome, path: `${root}/${m.path}`, repeat: m.repetir !== false, volume: 0.5 });
+    const playlist = game.playlists.find(p => p.getFlag(MODULE_ID, "cidade") === cidadeId);
+    const novasMusicas = cfg.playlist.filter(m => !playlist?.sounds.some(s => s.name === m.nome));
+    if (!playlist) await Playlist.create({
+      name: cfg.name, mode: CONST.PLAYLIST_MODES.DISABLED, flags: { [MODULE_ID]: { cidade: cidadeId } }, sounds: novasMusicas.map(som)
     });
+    else if (novasMusicas.length) await playlist.createEmbeddedDocuments("PlaylistSound", novasMusicas.map(som));
+  }
+  if (ficam.size) {
+    ui.notifications.info(`${cfg.name}: ${novas.length} cena(s) nova(s); ${ficam.size} mantida(s), com ${acrescentadas} saída(s) nova(s); ${n} saída(s) ligadas.`);
+    return novas[0] ?? null;
   }
   ui.notifications.info(`${cfg.name}: ${cenas.size} cena(s) montadas, ${n} saída(s) ligadas.`);
   const inicio = cenas.get(cfg.inicio ?? cfg.mapas[0]);

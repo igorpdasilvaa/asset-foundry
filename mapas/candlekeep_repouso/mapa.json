@@ -132,6 +132,23 @@
       },
       "para": "candlekeep_repouso",
       "chegada": "sobe2"
+    },
+    {
+      "id": "alcapao",
+      "nome": "Alçapão: desce ao Porão dos Vaga-lumes",
+      "x": 16,
+      "y": 12,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 15,
+        "y": 11,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_porao",
+      "chegada": "alcapao",
+      "perguntar": true
     }
   ],
   "npcs": [
@@ -199,7 +216,7 @@
       "x": 16,
       "y": 12,
       "titulo": "Alçapão do Porão dos Vaga-lumes",
-      "texto": "<p>Na despensa, um alçapão pintado de laranja desce ao Porão dos Vaga-lumes, onde começa <em>Shemshime's Bedtime Rhyme</em>. Os funcionários evitam abri-lo e mudam de assunto se perguntados. O porão é um mapa futuro.</p>"
+      "texto": "<p>Na despensa, um alçapão pintado de laranja desce ao Porão dos Vaga-lumes, onde começa <em>Shemshime's Bedtime Rhyme</em>. Os funcionários evitam abri-lo e mudam de assunto se perguntados. Pode ser lacrado por cima.</p>"
     },
     {
       "x": 54,

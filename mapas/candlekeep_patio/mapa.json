@@ -21,7 +21,11 @@
       "asset": "porta_esmeralda",
       "kind": "door"
     },
-    "m": "marmore",
+    "m": {
+      "nome": "marmore_interno",
+      "chao": "marmore",
+      "solido": true
+    },
     "_": "terra",
     "\"": "grama",
     "~": "agua",
@@ -216,6 +220,22 @@
       },
       "para": "candlekeep_templo",
       "chegada": "rua"
+    },
+    {
+      "id": "porta_esmeralda",
+      "nome": "Pátio Interno (Porta Esmeralda)",
+      "x": 14,
+      "y": 26,
+      "w": 1,
+      "h": 3,
+      "pouso": {
+        "x": 15,
+        "y": 26,
+        "w": 2,
+        "h": 3
+      },
+      "para": "candlekeep_interno",
+      "chegada": "porta_esmeralda"
     }
   ],
   "objects": [
@@ -425,7 +445,7 @@
   "npcs": [
     {
       "npc": "guardiao_porta_esmeralda",
-      "x": 1550,
+      "x": 1750,
       "y": 2750
     },
     {

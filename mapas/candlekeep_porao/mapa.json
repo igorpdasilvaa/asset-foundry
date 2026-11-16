@@ -1,0 +1,527 @@
+{
+  "name": "Candlekeep: Porão dos Vaga-lumes",
+  "grid": 100,
+  "px": 150,
+  "darkness": 0.6,
+  "seed": 127,
+  "legend": {
+    "#": "parede",
+    "D": "porta",
+    "S": {
+      "nome": "escada_sobe",
+      "peca": "escada",
+      "rot": 0,
+      "chao": "piso_pedra"
+    },
+    "d": "madeira_escura",
+    "p": "piso_pedra",
+    "s": {
+      "nome": "escada_desce",
+      "peca": "escada",
+      "rot": 180,
+      "chao": "piso_pedra"
+    },
+    "v": "vazio"
+  },
+  "protecoes": {
+    "alarme": 1,
+    "resposta": [
+      {
+        "npc": "avowed_arquimago",
+        "n": 1
+      },
+      {
+        "npc": "avowed_mago",
+        "n": 4
+      }
+    ]
+  },
+  "saidas": [
+    {
+      "id": "alcapao",
+      "nome": "Alçapão: sobe à Casa do Repouso",
+      "x": 2,
+      "y": 2,
+      "w": 1,
+      "h": 2,
+      "pouso": {
+        "x": 3,
+        "y": 2,
+        "w": 1,
+        "h": 2
+      },
+      "para": "candlekeep_repouso",
+      "chegada": "alcapao",
+      "perguntar": true
+    },
+    {
+      "id": "desce_1",
+      "nome": "Escada: desce (2º nível)",
+      "x": 15,
+      "y": 12,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 14,
+        "y": 12,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_porao",
+      "chegada": "sobe_2"
+    },
+    {
+      "id": "sobe_2",
+      "nome": "Escada: sobe (1º nível)",
+      "x": 19,
+      "y": 12,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 20,
+        "y": 12,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_porao",
+      "chegada": "desce_1"
+    },
+    {
+      "id": "desce_2",
+      "nome": "Escada: desce (cozinha e quartos)",
+      "x": 32,
+      "y": 12,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 31,
+        "y": 12,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_porao",
+      "chegada": "sobe_3"
+    },
+    {
+      "id": "sobe_3",
+      "nome": "Escada: sobe (2º nível)",
+      "x": 36,
+      "y": 12,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 37,
+        "y": 12,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_porao",
+      "chegada": "desce_2"
+    }
+  ],
+  "objects": [
+    {
+      "asset": "estante",
+      "x": 600,
+      "y": 250
+    },
+    {
+      "asset": "estante",
+      "x": 800,
+      "y": 250
+    },
+    {
+      "asset": "estante",
+      "x": 1100,
+      "y": 250
+    },
+    {
+      "asset": "estante",
+      "x": 1300,
+      "y": 250
+    },
+    {
+      "asset": "estante",
+      "x": 600,
+      "y": 550
+    },
+    {
+      "asset": "estante",
+      "x": 800,
+      "y": 550
+    },
+    {
+      "asset": "estante",
+      "x": 1200,
+      "y": 550
+    },
+    {
+      "asset": "estante",
+      "x": 1400,
+      "y": 550
+    },
+    {
+      "asset": "estante",
+      "x": 600,
+      "y": 850
+    },
+    {
+      "asset": "estante",
+      "x": 800,
+      "y": 850
+    },
+    {
+      "asset": "estante",
+      "x": 1200,
+      "y": 850
+    },
+    {
+      "asset": "estante",
+      "x": 1400,
+      "y": 850
+    },
+    {
+      "asset": "escrivaninha",
+      "x": 400,
+      "y": 1150
+    },
+    {
+      "asset": "cadeira",
+      "x": 450,
+      "y": 1050
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 550,
+      "y": 1150
+    },
+    {
+      "asset": "atril",
+      "x": 950,
+      "y": 1150
+    },
+    {
+      "asset": "carrinho_livros",
+      "x": 1550,
+      "y": 400
+    },
+    {
+      "asset": "pote_vagalumes",
+      "x": 450,
+      "y": 450
+    },
+    {
+      "asset": "pote_vagalumes",
+      "x": 1050,
+      "y": 350
+    },
+    {
+      "asset": "pote_vagalumes",
+      "x": 1550,
+      "y": 750
+    },
+    {
+      "asset": "pote_vagalumes",
+      "x": 950,
+      "y": 1050
+    },
+    {
+      "asset": "pote_vagalumes",
+      "x": 350,
+      "y": 850
+    },
+    {
+      "asset": "estante",
+      "x": 2200,
+      "y": 350
+    },
+    {
+      "asset": "estante",
+      "x": 2400,
+      "y": 350
+    },
+    {
+      "asset": "estante",
+      "x": 2800,
+      "y": 350
+    },
+    {
+      "asset": "estante",
+      "x": 3000,
+      "y": 350
+    },
+    {
+      "asset": "estante",
+      "x": 2200,
+      "y": 650
+    },
+    {
+      "asset": "estante",
+      "x": 2400,
+      "y": 650
+    },
+    {
+      "asset": "estante",
+      "x": 2800,
+      "y": 650
+    },
+    {
+      "asset": "estante",
+      "x": 3000,
+      "y": 650
+    },
+    {
+      "asset": "estante",
+      "x": 2200,
+      "y": 950
+    },
+    {
+      "asset": "estante",
+      "x": 2400,
+      "y": 950
+    },
+    {
+      "asset": "estante",
+      "x": 2800,
+      "y": 950
+    },
+    {
+      "asset": "estante",
+      "x": 3000,
+      "y": 950
+    },
+    {
+      "asset": "mesa",
+      "x": 2510,
+      "y": 1160
+    },
+    {
+      "asset": "cadeira",
+      "x": 2550,
+      "y": 1050
+    },
+    {
+      "asset": "caixa",
+      "x": 3250,
+      "y": 250
+    },
+    {
+      "asset": "caixa",
+      "x": 3250,
+      "y": 350
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 3150,
+      "y": 650
+    },
+    {
+      "asset": "pote_vagalumes",
+      "x": 1950,
+      "y": 350
+    },
+    {
+      "asset": "pote_vagalumes",
+      "x": 2650,
+      "y": 550
+    },
+    {
+      "asset": "pote_vagalumes",
+      "x": 3250,
+      "y": 950
+    },
+    {
+      "asset": "pote_vagalumes",
+      "x": 2250,
+      "y": 1250
+    },
+    {
+      "asset": "pote_vagalumes",
+      "x": 2550,
+      "y": 850
+    },
+    {
+      "asset": "mesa",
+      "x": 3910,
+      "y": 660
+    },
+    {
+      "asset": "cadeira",
+      "x": 3850,
+      "y": 850
+    },
+    {
+      "asset": "cadeira",
+      "x": 4050,
+      "y": 850
+    },
+    {
+      "asset": "banco",
+      "x": 3900,
+      "y": 550
+    },
+    {
+      "asset": "barril",
+      "x": 3650,
+      "y": 250
+    },
+    {
+      "asset": "barril",
+      "x": 3750,
+      "y": 250
+    },
+    {
+      "asset": "caixa",
+      "x": 4250,
+      "y": 250
+    },
+    {
+      "asset": "cocho",
+      "x": 4100,
+      "y": 250
+    },
+    {
+      "asset": "caixa",
+      "x": 4250,
+      "y": 1050
+    },
+    {
+      "asset": "cama",
+      "x": 4450,
+      "y": 300
+    },
+    {
+      "asset": "cama",
+      "x": 4650,
+      "y": 300
+    },
+    {
+      "asset": "cama",
+      "x": 4850,
+      "y": 300
+    },
+    {
+      "asset": "cama",
+      "x": 4450,
+      "y": 1000
+    },
+    {
+      "asset": "cama",
+      "x": 4850,
+      "y": 1000
+    },
+    {
+      "asset": "caixa",
+      "x": 4650,
+      "y": 1150
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 4750,
+      "y": 1150
+    },
+    {
+      "asset": "caixa",
+      "x": 4950,
+      "y": 550
+    },
+    {
+      "asset": "pote_vagalumes",
+      "x": 3750,
+      "y": 1050
+    },
+    {
+      "asset": "pote_vagalumes",
+      "x": 4150,
+      "y": 450
+    },
+    {
+      "asset": "pote_vagalumes",
+      "x": 4550,
+      "y": 550
+    },
+    {
+      "asset": "pote_vagalumes",
+      "x": 4750,
+      "y": 850
+    },
+    {
+      "asset": "pote_vagalumes",
+      "x": 4950,
+      "y": 1250
+    }
+  ],
+  "npcs": [
+    {
+      "npc": "varnyr",
+      "x": 450,
+      "y": 1050
+    },
+    {
+      "npc": "crinkle",
+      "x": 1350,
+      "y": 1050
+    },
+    {
+      "npc": "k_tulah",
+      "x": 2750,
+      "y": 1250
+    },
+    {
+      "npc": "ebder_smallstone",
+      "x": 3950,
+      "y": 450
+    },
+    {
+      "npc": "gailby_smallstone",
+      "x": 4150,
+      "y": 1050
+    }
+  ],
+  "multidao": [],
+  "notas": [
+    {
+      "x": 3,
+      "y": 5,
+      "titulo": "Porão dos Vaga-lumes",
+      "texto": "<p>Pequeno arquivo embaixo da Casa do Repouso, em três níveis: os dois de cima guardam o acervo; o de baixo tem cozinha e quartos. A luz vem de vaga-lumes em potes (fogo não pega em Candlekeep). O alçapão de cima pode ser lacrado por fora. <em>Shemshime's Bedtime Rhyme</em> começa aqui.</p>"
+    },
+    {
+      "x": 39,
+      "y": 11,
+      "titulo": "Cozinha e quartos",
+      "texto": "<p>Onde vivem os que cuidam do porão. As caixas no quarto de Crinkle estão cheias de bugigangas.</p>"
+    }
+  ],
+  "lights": [],
+  "sounds": [
+    {
+      "x": 900,
+      "y": 700,
+      "radius": 30,
+      "path": "assets/audio/amb_porao.ogg",
+      "volume": 0.3,
+      "walls": false
+    },
+    {
+      "x": 2600,
+      "y": 700,
+      "radius": 30,
+      "path": "assets/audio/amb_porao.ogg",
+      "volume": 0.3,
+      "walls": false
+    },
+    {
+      "x": 4300,
+      "y": 700,
+      "radius": 30,
+      "path": "assets/audio/amb_porao.ogg",
+      "volume": 0.3,
+      "walls": false
+    }
+  ],
+  "musica": {
+    "path": "mapas/candlekeep/musica/porao.ogg",
+    "volume": 0.22
+  }
+}

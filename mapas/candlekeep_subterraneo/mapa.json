@@ -1,0 +1,776 @@
+{
+  "name": "Candlekeep: subterrâneo",
+  "grid": 100,
+  "px": 120,
+  "darkness": 0.8,
+  "seed": 109,
+  "legend": {
+    "\"": "grama",
+    "#": "parede",
+    "D": "porta",
+    "G": {
+      "nome": "porta_cofre",
+      "chao": "parede",
+      "asset": "portao",
+      "kind": "door"
+    },
+    "M": {
+      "nome": "mar",
+      "chao": "agua"
+    },
+    "P": "pilar",
+    "S": {
+      "nome": "escada_sobe",
+      "peca": "escada",
+      "rot": 0,
+      "chao": "piso_pedra"
+    },
+    "m": "marmore",
+    "p": "piso_pedra",
+    "r": "terra",
+    "v": {
+      "nome": "vazio",
+      "chao": "rocha_vulcanica"
+    },
+    "~": "agua"
+  },
+  "protecoes": {
+    "alarme": 1,
+    "resposta": [
+      {
+        "npc": "avowed_arquimago",
+        "n": 1
+      },
+      {
+        "npc": "avowed_mago",
+        "n": 4
+      }
+    ]
+  },
+  "saidas": [
+    {
+      "id": "biblioteca",
+      "nome": "Escada: sobe à Grande Biblioteca",
+      "x": 2,
+      "y": 1,
+      "w": 1,
+      "h": 3,
+      "pouso": {
+        "x": 3,
+        "y": 1,
+        "w": 1,
+        "h": 3
+      },
+      "para": "candlekeep_biblioteca",
+      "chegada": "desce_cofres"
+    },
+    {
+      "id": "capela",
+      "nome": "Escada: sobe à Capela dos Mortos",
+      "x": 61,
+      "y": 2,
+      "w": 1,
+      "h": 2,
+      "pouso": {
+        "x": 59,
+        "y": 2,
+        "w": 2,
+        "h": 2
+      },
+      "para": "candlekeep_interno",
+      "chegada": "porta_capela"
+    }
+  ],
+  "objects": [
+    {
+      "asset": "sarcofago",
+      "x": 3250,
+      "y": 1100
+    },
+    {
+      "asset": "sarcofago",
+      "x": 3550,
+      "y": 1100
+    },
+    {
+      "asset": "sarcofago",
+      "x": 3850,
+      "y": 1100
+    },
+    {
+      "asset": "sarcofago",
+      "x": 4150,
+      "y": 1100
+    },
+    {
+      "asset": "sarcofago",
+      "x": 4450,
+      "y": 1100
+    },
+    {
+      "asset": "sarcofago",
+      "x": 3350,
+      "y": 1500
+    },
+    {
+      "asset": "sarcofago",
+      "x": 3950,
+      "y": 1500
+    },
+    {
+      "asset": "sarcofago",
+      "x": 4250,
+      "y": 1500
+    },
+    {
+      "asset": "sarcofago",
+      "x": 4550,
+      "y": 1500
+    },
+    {
+      "asset": "sarcofago",
+      "x": 4850,
+      "y": 1500
+    },
+    {
+      "asset": "sarcofago",
+      "x": 5150,
+      "y": 1500
+    },
+    {
+      "asset": "sarcofago",
+      "x": 5450,
+      "y": 1500
+    },
+    {
+      "asset": "sarcofago",
+      "x": 5750,
+      "y": 1500
+    },
+    {
+      "asset": "sarcofago",
+      "x": 6050,
+      "y": 1500
+    },
+    {
+      "asset": "sarcofago",
+      "x": 3250,
+      "y": 1900
+    },
+    {
+      "asset": "sarcofago",
+      "x": 3550,
+      "y": 1900
+    },
+    {
+      "asset": "sarcofago",
+      "x": 3850,
+      "y": 1900
+    },
+    {
+      "asset": "sarcofago",
+      "x": 4150,
+      "y": 1900
+    },
+    {
+      "asset": "sarcofago",
+      "x": 4450,
+      "y": 1900
+    },
+    {
+      "asset": "sarcofago",
+      "x": 5050,
+      "y": 1900
+    },
+    {
+      "asset": "sarcofago",
+      "x": 5350,
+      "y": 1900
+    },
+    {
+      "asset": "sarcofago",
+      "x": 5950,
+      "y": 1900
+    },
+    {
+      "asset": "sarcofago",
+      "x": 3350,
+      "y": 2300
+    },
+    {
+      "asset": "sarcofago",
+      "x": 3950,
+      "y": 2300
+    },
+    {
+      "asset": "sarcofago",
+      "x": 4250,
+      "y": 2300
+    },
+    {
+      "asset": "sarcofago",
+      "x": 4550,
+      "y": 2300
+    },
+    {
+      "asset": "sarcofago",
+      "x": 4850,
+      "y": 2300
+    },
+    {
+      "asset": "sarcofago",
+      "x": 5150,
+      "y": 2300
+    },
+    {
+      "asset": "sarcofago",
+      "x": 5450,
+      "y": 2300
+    },
+    {
+      "asset": "sarcofago",
+      "x": 5750,
+      "y": 2300
+    },
+    {
+      "asset": "sarcofago",
+      "x": 6050,
+      "y": 2300
+    },
+    {
+      "asset": "sarcofago",
+      "x": 4050,
+      "y": 2600
+    },
+    {
+      "asset": "sarcofago",
+      "x": 4250,
+      "y": 2600
+    },
+    {
+      "asset": "sarcofago",
+      "x": 4450,
+      "y": 2600
+    },
+    {
+      "asset": "vela",
+      "x": 4150,
+      "y": 2350
+    },
+    {
+      "asset": "vela",
+      "x": 4350,
+      "y": 2350
+    },
+    {
+      "asset": "sarcofago",
+      "x": 4950,
+      "y": 2600
+    },
+    {
+      "asset": "sarcofago",
+      "x": 5150,
+      "y": 2600
+    },
+    {
+      "asset": "sarcofago",
+      "x": 5350,
+      "y": 2600
+    },
+    {
+      "asset": "vela",
+      "x": 5050,
+      "y": 2350
+    },
+    {
+      "asset": "vela",
+      "x": 5250,
+      "y": 2350
+    },
+    {
+      "asset": "lampada",
+      "x": 950,
+      "y": 150
+    },
+    {
+      "asset": "atril",
+      "x": 650,
+      "y": 350
+    },
+    {
+      "asset": "banco",
+      "x": 700,
+      "y": 550
+    },
+    {
+      "asset": "lampada",
+      "x": 850,
+      "y": 850
+    },
+    {
+      "asset": "lampada",
+      "x": 1750,
+      "y": 850
+    },
+    {
+      "asset": "lampada",
+      "x": 2650,
+      "y": 850
+    },
+    {
+      "asset": "atril",
+      "x": 1450,
+      "y": 350
+    },
+    {
+      "asset": "lampada",
+      "x": 1250,
+      "y": 150
+    },
+    {
+      "asset": "mesa",
+      "x": 1710,
+      "y": 460
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 1750,
+      "y": 150
+    },
+    {
+      "asset": "atril",
+      "x": 2350,
+      "y": 350
+    },
+    {
+      "asset": "lampada",
+      "x": 2150,
+      "y": 150
+    },
+    {
+      "asset": "mesa",
+      "x": 2610,
+      "y": 460
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 2650,
+      "y": 150
+    },
+    {
+      "asset": "altar",
+      "x": 500,
+      "y": 1450
+    },
+    {
+      "asset": "globo",
+      "x": 250,
+      "y": 1250
+    },
+    {
+      "asset": "globo",
+      "x": 850,
+      "y": 1250
+    },
+    {
+      "asset": "atril",
+      "x": 350,
+      "y": 1650
+    },
+    {
+      "asset": "atril",
+      "x": 650,
+      "y": 1650
+    },
+    {
+      "asset": "estante",
+      "x": 1100,
+      "y": 1250
+    },
+    {
+      "asset": "estante",
+      "x": 1600,
+      "y": 1250
+    },
+    {
+      "asset": "estante",
+      "x": 1100,
+      "y": 1650
+    },
+    {
+      "asset": "estante",
+      "x": 1300,
+      "y": 1650
+    },
+    {
+      "asset": "estante",
+      "x": 1500,
+      "y": 1650
+    },
+    {
+      "asset": "estante",
+      "x": 1700,
+      "y": 1650
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 1450,
+      "y": 1450
+    },
+    {
+      "asset": "estante",
+      "x": 2000,
+      "y": 1250
+    },
+    {
+      "asset": "estante",
+      "x": 2200,
+      "y": 1250
+    },
+    {
+      "asset": "estante",
+      "x": 2600,
+      "y": 1250
+    },
+    {
+      "asset": "estante",
+      "x": 2000,
+      "y": 1650
+    },
+    {
+      "asset": "estante",
+      "x": 2200,
+      "y": 1650
+    },
+    {
+      "asset": "estante",
+      "x": 2600,
+      "y": 1650
+    },
+    {
+      "asset": "caixa",
+      "x": 2750,
+      "y": 1450
+    },
+    {
+      "asset": "caixa",
+      "x": 2350,
+      "y": 1450
+    },
+    {
+      "asset": "altar",
+      "x": 5500,
+      "y": 150
+    },
+    {
+      "asset": "sarcofago",
+      "x": 5050,
+      "y": 500
+    },
+    {
+      "asset": "sarcofago",
+      "x": 5250,
+      "y": 500
+    },
+    {
+      "asset": "vela",
+      "x": 5750,
+      "y": 150
+    },
+    {
+      "asset": "vela",
+      "x": 5250,
+      "y": 150
+    },
+    {
+      "asset": "banco",
+      "x": 5800,
+      "y": 650
+    },
+    {
+      "asset": "sarcofago",
+      "x": 1150,
+      "y": 3400
+    },
+    {
+      "asset": "vela",
+      "x": 1050,
+      "y": 3350
+    },
+    {
+      "asset": "arvore_pequena",
+      "x": 1850,
+      "y": 2250
+    },
+    {
+      "asset": "arvore_pequena",
+      "x": 2150,
+      "y": 2350
+    },
+    {
+      "asset": "arvore_pequena",
+      "x": 1950,
+      "y": 2450
+    },
+    {
+      "asset": "pedregulho",
+      "x": 650,
+      "y": 2450
+    },
+    {
+      "asset": "pilha_livros",
+      "x": 2550,
+      "y": 2150
+    },
+    {
+      "asset": "pedregulho",
+      "x": 1450,
+      "y": 4050
+    },
+    {
+      "asset": "pedregulho",
+      "x": 950,
+      "y": 2750
+    },
+    {
+      "asset": "banco",
+      "x": 600,
+      "y": 3750
+    },
+    {
+      "asset": "banco",
+      "x": 900,
+      "y": 3750
+    },
+    {
+      "asset": "lampada",
+      "x": 1250,
+      "y": 4050
+    },
+    {
+      "asset": "barril",
+      "x": 2150,
+      "y": 2950
+    },
+    {
+      "asset": "lampada",
+      "x": 4150,
+      "y": 3550
+    },
+    {
+      "asset": "lampada",
+      "x": 4150,
+      "y": 4250
+    },
+    {
+      "asset": "lampada",
+      "x": 6050,
+      "y": 3550
+    },
+    {
+      "asset": "lampada",
+      "x": 6050,
+      "y": 4250
+    },
+    {
+      "asset": "lampada",
+      "x": 5050,
+      "y": 3950
+    },
+    {
+      "asset": "altar",
+      "x": 5100,
+      "y": 4150
+    },
+    {
+      "asset": "sarcofago",
+      "x": 4250,
+      "y": 4000
+    },
+    {
+      "asset": "sarcofago",
+      "x": 4550,
+      "y": 4000
+    },
+    {
+      "asset": "sarcofago",
+      "x": 5450,
+      "y": 4000
+    },
+    {
+      "asset": "sarcofago",
+      "x": 5750,
+      "y": 4000
+    },
+    {
+      "asset": "estante",
+      "x": 4400,
+      "y": 3550
+    },
+    {
+      "asset": "estante",
+      "x": 4700,
+      "y": 3550
+    },
+    {
+      "asset": "estante",
+      "x": 5400,
+      "y": 3550
+    },
+    {
+      "asset": "estante",
+      "x": 5800,
+      "y": 3550
+    },
+    {
+      "asset": "atril",
+      "x": 5050,
+      "y": 3750
+    },
+    {
+      "asset": "fosso",
+      "x": 2950,
+      "y": 1250,
+      "hidden": true
+    },
+    {
+      "asset": "fio",
+      "x": 3050,
+      "y": 1650,
+      "hidden": true
+    },
+    {
+      "asset": "fosso",
+      "x": 5250,
+      "y": 2050,
+      "hidden": true
+    }
+  ],
+  "npcs": [
+    {
+      "npc": "miirym",
+      "x": 1350,
+      "y": 3450
+    }
+  ],
+  "multidao": [
+    {
+      "area": [
+        52,
+        1,
+        6,
+        6
+      ],
+      "n": 1,
+      "oficios": [
+        "acolito"
+      ]
+    }
+  ],
+  "notas": [
+    {
+      "x": 57,
+      "y": 4,
+      "titulo": "Ossuário",
+      "texto": "<p>Ao pé da escada da Capela dos Mortos. Os ossos dos Avowed mais antigos ficam empilhados em nichos; os recentes, em sarcófagos nas catacumbas.</p>"
+    },
+    {
+      "x": 44,
+      "y": 16,
+      "titulo": "Catacumbas",
+      "texto": "<p>Tumbas escavadas na rocha vulcânica, em galerias que se cruzam. Há passagens que nem os Avowed usam, e criaturas que vivem nelas. Fossos escondidos guardam o caminho.</p>"
+    },
+    {
+      "x": 6,
+      "y": 5,
+      "titulo": "Escada da Grande Biblioteca",
+      "texto": "<p>Sobe ao térreo da Grande Biblioteca. A porta lá em cima fica trancada.</p>"
+    },
+    {
+      "x": 15,
+      "y": 2,
+      "titulo": "Câmaras seguras",
+      "texto": "<p>Salas protegidas onde se conjura sem risco para o acervo.</p>"
+    },
+    {
+      "x": 4,
+      "y": 13,
+      "titulo": "Cofre dos Ecos de Alaundo",
+      "texto": "<p>Os Ecos de Alaundo são gemas prismáticas que gravaram as recitações das profecias de Alaundo. Só o Primeiro Leitor e o Guardião dos Tomos entram aqui.</p>"
+    },
+    {
+      "x": 14,
+      "y": 15,
+      "titulo": "Cofres",
+      "texto": "<p>Saber secreto e obras perigosas demais para as estantes. As portas são de ferro negro, com o brasão de Candlekeep.</p>"
+    },
+    {
+      "x": 13,
+      "y": 31,
+      "titulo": "Miirym e o caixão de Torth",
+      "texto": "<p>Miirym, a Sentinela, é uma dragoa de prata ancestral morta há séculos e presa a Candlekeep como guardiã: um par de mandíbulas espectrais, invisível, que atravessa paredes. Um arquimago (Torth) a prendeu por vinte anos, mas morreu antes; ninguém desfez o feitiço. Ela vive perto do caixão dele, patrulha e alarga os túneis, prefere conversar a lutar (troca histórias por notícias e piadas), adora plantas e exige que intrusos entreguem os livros. Os restos de quem não entregou ficam à mostra, como aviso.</p>"
+    },
+    {
+      "x": 19,
+      "y": 25,
+      "titulo": "Plantas para Miirym",
+      "texto": "<p>Vasos que alguns Avowed trazem para ela (nossa invenção, a partir do gosto dela por plantas).</p>"
+    },
+    {
+      "x": 50,
+      "y": 38,
+      "titulo": "Câmara do Saber Perdido",
+      "texto": "<p>A câmara mais funda de Candlekeep, sempre iluminada. Com permissão, aqui se consulta sábios mortos.</p>"
+    },
+    {
+      "x": 40,
+      "y": 31,
+      "titulo": "Esgotos",
+      "texto": "<p>O canal leva a água da fortaleza para o mar, pelas cavernas a oeste.</p>"
+    },
+    {
+      "x": 9,
+      "y": 38,
+      "titulo": "Warmwet",
+      "texto": "<p>Banho de água vulcânica, quente, só para os monges, embaixo do lado do mar.</p>"
+    },
+    {
+      "x": 2,
+      "y": 34,
+      "titulo": "Cavernas do mar",
+      "texto": "<p>Grutas ao nível do mar. A passagem é estreita e a maré bate forte.</p>"
+    }
+  ],
+  "lights": [],
+  "sounds": [
+    {
+      "x": 3200,
+      "y": 2200,
+      "radius": 160,
+      "path": "assets/audio/amb_catacumbas.ogg",
+      "volume": 0.35,
+      "walls": false
+    },
+    {
+      "x": 700,
+      "y": 4000,
+      "radius": 25,
+      "path": "assets/audio/amb_banhos.ogg",
+      "volume": 0.3,
+      "walls": false
+    },
+    {
+      "x": 100,
+      "y": 3900,
+      "radius": 25,
+      "path": "assets/audio/amb_mar.ogg",
+      "volume": 0.35,
+      "walls": false
+    }
+  ],
+  "musica": {
+    "path": "mapas/candlekeep/musica/subterraneo.ogg",
+    "volume": 0.25
+  },
+  "qualidade": 76
+}

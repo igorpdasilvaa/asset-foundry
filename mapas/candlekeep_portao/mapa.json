@@ -76,6 +76,38 @@
       },
       "para": "lobisomens",
       "chegada": "candlekeep"
+    },
+    {
+      "id": "torre_norte",
+      "nome": "Torre norte do portão",
+      "x": 7,
+      "y": 10,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 5,
+        "y": 9,
+        "w": 2,
+        "h": 3
+      },
+      "para": "candlekeep_muralha",
+      "chegada": "rua_norte"
+    },
+    {
+      "id": "torre_sul",
+      "nome": "Torre sul do portão",
+      "x": 7,
+      "y": 21,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 5,
+        "y": 20,
+        "w": 2,
+        "h": 3
+      },
+      "para": "candlekeep_muralha",
+      "chegada": "rua_sul"
     }
   ],
   "objects": [
@@ -305,6 +337,12 @@
       "y": 16,
       "titulo": "A fila",
       "texto": "<p>Buscadores, peregrinos e caravanas esperando a vez. Muitos estão aqui há dias, reescrevendo o livro que vão oferecer.</p>"
+    },
+    {
+      "x": 5,
+      "y": 15,
+      "titulo": "Torres do portão",
+      "texto": "<p>As portas do lado de dentro levam à sala da guarda de cada torre. De lá se sobe ao quartel e ao adarve, que passa por cima do portão.</p>"
     }
   ],
   "lights": [],

@@ -892,7 +892,7 @@
       {
         "id": "calma",
         "name": "Calma",
-        "src": "agua/agua_calma.webp",
+        "src": "agua/agua_calma.webm",
         "wet": true,
         "oculto": true
       },
@@ -926,7 +926,7 @@
       {
         "id": "vapor",
         "name": "Vapor",
-        "src": "agua/agua_vapor.webp",
+        "src": "agua/agua_vapor.webm",
         "wet": true,
         "ticks": 3,
         "then": "calma",
@@ -935,7 +935,7 @@
       {
         "id": "envenenada",
         "name": "Envenenada",
-        "src": "agua/agua_envenenada.webp",
+        "src": "agua/agua_envenenada.webm",
         "wet": true,
         "ticks": 10,
         "then": "calma",
@@ -1937,7 +1937,7 @@
       {
         "id": "brilhando",
         "name": "Brilhando",
-        "src": "amplificador/amplificador_brilhando.webp",
+        "src": "amplificador/amplificador_brilhando.webm",
         "light": {
           "bright": 10,
           "dim": 25,
@@ -4114,7 +4114,7 @@
       {
         "id": "acesa",
         "name": "Acesa",
-        "src": "lampada/lampada_acesa.webp",
+        "src": "lampada/lampada_acesa.webm",
         "light": {
           "bright": 6,
           "dim": 20,
@@ -4567,6 +4567,212 @@
       {
         "to": "derrubada",
         "say": "tomba e se parte! O sábio de pedra vira entulho."
+      }
+    ]
+  },
+  "disco_flutuante": {
+    "name": "Disco flutuante",
+    "tipo": "movel",
+    "interacao": "jogador",
+    "size": {
+      "w": 2,
+      "h": 2
+    },
+    "actor": {
+      "ac": 15,
+      "hp": 20,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": []
+    },
+    "player": {
+      "toggle": [
+        "parado",
+        "flutuando"
+      ]
+    },
+    "states": [
+      {
+        "id": "parado",
+        "name": "Parado",
+        "src": "disco_flutuante/disco_flutuante_parado.webp"
+      },
+      {
+        "id": "flutuando",
+        "name": "Flutuando",
+        "src": "disco_flutuante/disco_flutuante_flutuando.webp",
+        "light": {
+          "bright": 5,
+          "dim": 15,
+          "color": "#9fd8ff",
+          "alpha": 0.35,
+          "animation": {
+            "type": "pulse",
+            "speed": 3,
+            "intensity": 3
+          }
+        },
+        "sfx": "audio/disco_sobe.ogg"
+      },
+      {
+        "id": "quebrado",
+        "name": "Quebrado",
+        "src": "disco_flutuante/disco_flutuante_quebrado.webp",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 0
+        },
+        "sfx": "audio/pedra_desaba.ogg"
+      }
+    ],
+    "onZero": [
+      {
+        "to": "quebrado",
+        "say": "tem as runas apagadas e cai rachado no chão!"
+      }
+    ]
+  },
+  "sarcofago": {
+    "name": "Sarcófago",
+    "tipo": "imovel",
+    "interacao": "jogador",
+    "size": {
+      "w": 1,
+      "h": 2
+    },
+    "actor": {
+      "ac": 17,
+      "hp": 40,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": [
+        "piercing",
+        "slashing"
+      ]
+    },
+    "player": {
+      "toggle": [
+        "fechado",
+        "aberto"
+      ]
+    },
+    "states": [
+      {
+        "id": "fechado",
+        "name": "Fechado",
+        "src": "sarcofago/sarcofago_fechado.webp"
+      },
+      {
+        "id": "aberto",
+        "name": "Aberto",
+        "src": "sarcofago/sarcofago_aberto.webp",
+        "sfx": "audio/sarcofago_abre.ogg"
+      },
+      {
+        "id": "quebrado",
+        "name": "Quebrado",
+        "src": "sarcofago/sarcofago_quebrado.webp",
+        "broken": true,
+        "sfx": "audio/pedra_desaba.ogg"
+      }
+    ],
+    "onZero": [
+      {
+        "to": "quebrado",
+        "say": "racha e a tampa desaba em pedaços!"
+      }
+    ]
+  },
+  "pote_vagalumes": {
+    "name": "Pote de vaga-lumes",
+    "tipo": "movel",
+    "interacao": "jogador",
+    "size": {
+      "w": 1,
+      "h": 1
+    },
+    "actor": {
+      "ac": 10,
+      "hp": 2,
+      "immunities": [
+        "poison",
+        "psychic"
+      ],
+      "resistances": []
+    },
+    "player": {
+      "move": true,
+      "toggle": [
+        "aceso",
+        "solto"
+      ]
+    },
+    "states": [
+      {
+        "id": "aceso",
+        "name": "Aceso",
+        "src": "pote_vagalumes/pote_vagalumes_aceso.webp",
+        "light": {
+          "bright": 5,
+          "dim": 15,
+          "color": "#d6f36a",
+          "alpha": 0.3,
+          "animation": {
+            "type": "fairy",
+            "speed": 3,
+            "intensity": 4
+          }
+        }
+      },
+      {
+        "id": "solto",
+        "name": "Vaga-lumes soltos",
+        "src": "pote_vagalumes/pote_vagalumes_solto.webp",
+        "light": {
+          "bright": 0,
+          "dim": 10,
+          "color": "#d6f36a",
+          "alpha": 0.2,
+          "animation": {
+            "type": "fairy",
+            "speed": 5,
+            "intensity": 6
+          }
+        }
+      },
+      {
+        "id": "quebrado",
+        "name": "Quebrado",
+        "src": "pote_vagalumes/pote_vagalumes_quebrado.webp",
+        "broken": true,
+        "light": {
+          "bright": 0,
+          "dim": 0
+        },
+        "sfx": "audio/pote_quebra.ogg"
+      }
+    ],
+    "reactions": [
+      {
+        "types": [
+          "cold"
+        ],
+        "from": [
+          "aceso"
+        ],
+        "to": "solto",
+        "say": "esfria e os vaga-lumes se apagam."
+      }
+    ],
+    "onZero": [
+      {
+        "to": "quebrado",
+        "say": "se espatifa e os vaga-lumes fogem!"
       }
     ]
   }

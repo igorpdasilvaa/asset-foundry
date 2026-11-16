@@ -395,6 +395,240 @@
         "Gato"
       ],
       "bio": "Gato que vive pelos telhados e bibliotecas. (Nosso: a lore oficial não tem gatos de Candlekeep.)"
+    },
+    "janussi": {
+      "nome": "Janussi",
+      "titulo": "Guardião dos Tomos",
+      "especie": "humano",
+      "base": [
+        "Archmage",
+        "Arquimago"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Governa Candlekeep. Arquimaga devota de Deneir; assina cartas de admissão e pode erguer o Grande Escudo. Fica no gabinete da Torre do Guardião, no Pátio Interno.",
+      "cidade": "Candlekeep",
+      "img": "npcs/candlekeep/janussi.webp"
+    },
+    "skoda_valanaster": {
+      "nome": "Skoda \"Bookwyrm\" Valanaster",
+      "titulo": "Primeiro Leitor",
+      "especie": "draconato",
+      "base": [
+        "Mage",
+        "Mago"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Draconato verde, sábio-mestre. Cuida das aquisições: é quem traz obras novas para a biblioteca. Assina cartas de admissão.",
+      "cidade": "Candlekeep",
+      "img": "npcs/candlekeep/skoda_valanaster.webp"
+    },
+    "alai_aivenmore": {
+      "nome": "A'lai Aivenmore",
+      "titulo": "Grande Leitora: divindades",
+      "especie": "humano",
+      "base": [
+        "Priest",
+        "Sacerdote"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Devota de Oghma, especialista em deuses e religiões.",
+      "cidade": "Candlekeep",
+      "img": "npcs/candlekeep/alai_aivenmore.webp"
+    },
+    "alkrist": {
+      "nome": "Alkrist",
+      "titulo": "Grande Leitor: guerra e política",
+      "especie": "draconato",
+      "base": [
+        "Veteran",
+        "Veterano"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Draconato de bronze. Estuda militarismo, política e as grandes batalhas da história.",
+      "cidade": "Candlekeep",
+      "img": "npcs/candlekeep/alkrist.webp"
+    },
+    "daral_yashenti": {
+      "nome": "Daral Yashenti",
+      "titulo": "Grande Leitor: artes",
+      "especie": "humano",
+      "base": [
+        "Bard",
+        "Bardo"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Poeta. Cuida de literatura, música e poesia.",
+      "cidade": "Candlekeep",
+      "img": "npcs/candlekeep/daral_yashenti.webp"
+    },
+    "fheminor_scrivenbark": {
+      "nome": "Fheminor Scrivenbark",
+      "titulo": "Grande Leitor: história e culturas",
+      "especie": "halfling",
+      "base": [
+        "Commoner",
+        "Plebeu"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Halfling pés-leves. Estuda história e culturas, inclusive as que se perderam.",
+      "cidade": "Candlekeep",
+      "img": "npcs/candlekeep/fheminor_scrivenbark.webp"
+    },
+    "kazryn_nyantani": {
+      "nome": "Kazryn Nyantani",
+      "titulo": "Grande Leitora: natureza e estrelas",
+      "especie": "humano",
+      "base": [
+        "Druid",
+        "Druida"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Estuda o mundo natural e a navegação pelas estrelas.",
+      "cidade": "Candlekeep",
+      "img": "npcs/candlekeep/kazryn_nyantani.webp"
+    },
+    "sylvira_savikas": {
+      "nome": "Sylvira Savikas",
+      "titulo": "Grande Leitora: os planos",
+      "especie": "tiefling",
+      "base": [
+        "Archmage",
+        "Arquimago"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Arquimaga de humor seco. Especialista nos planos da Grande Roda e em caixas-quebra-cabeça mágicas; tem um laboratório numa torre redonda. A quasit Jezebel é sua familiar.",
+      "cidade": "Candlekeep",
+      "img": "npcs/candlekeep/sylvira_savikas.webp"
+    },
+    "jezebel": {
+      "nome": "Jezebel",
+      "titulo": "Familiar de Sylvira Savikas",
+      "especie": "demonio",
+      "base": [
+        "Quasit",
+        "Quasit"
+      ],
+      "disposicao": "neutro",
+      "bio": "Quasit travessa e bagunceira. Some com penas, troca livros de lugar e ri de quem tropeça.",
+      "cidade": "Candlekeep",
+      "img": "npcs/candlekeep/jezebel.webp"
+    },
+    "teles_ahvoste": {
+      "nome": "Teles Ahvoste",
+      "titulo": "Grande Leitor: magia arcana",
+      "especie": "humano",
+      "base": [
+        "Archmage",
+        "Arquimago"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Arquimago de Halruaa. Magia arcana, itens mágicos, maldições e a Trama. Divaga e fala demais.",
+      "cidade": "Candlekeep",
+      "img": "npcs/candlekeep/teles_ahvoste.webp"
+    },
+    "vziir_ag": {
+      "nome": "V'ziir-Ag",
+      "titulo": "Grande Leitor: o Reino Distante",
+      "especie": "githzerai",
+      "base": [
+        "Mage",
+        "Mago"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Githzerai. Estuda o Reino Distante, os mortos-vivos e as aberrações.",
+      "cidade": "Candlekeep",
+      "img": "npcs/candlekeep/vziir_ag.webp"
+    },
+    "miirym": {
+      "nome": "Miirym",
+      "titulo": "A Sentinela",
+      "especie": "dragao",
+      "base": [
+        "Ancient Silver Dragon",
+        "Dragão de Prata Ancião"
+      ],
+      "disposicao": "neutro",
+      "bio": "Dragoa de prata ancestral que morreu em 1182 DR e ficou presa a Candlekeep como guardiã fantasma: um par de mandíbulas espectrais, invisível, que atravessa paredes (no livro, ND 22). Vive perto do caixão do arquimago Torth, que a prendeu. Defende Candlekeep e os Avowed, prefere conversar a lutar, troca histórias por notícias e piadas, adora plantas e exige que intrusos entreguem os livros.",
+      "cidade": "Candlekeep",
+      "img": "npcs/candlekeep/miirym.webp"
+    },
+    "varnyr": {
+      "nome": "Varnyr",
+      "titulo": "Escriba do Porão dos Vaga-lumes",
+      "especie": "elfo",
+      "base": [
+        "Commoner",
+        "Plebeu"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Elfa do sol muito velha (uns 685 anos), escriba do arquivo do porão.",
+      "cidade": "Candlekeep",
+      "img": "npcs/candlekeep/varnyr.webp"
+    },
+    "ebder_smallstone": {
+      "nome": "Ebder Smallstone",
+      "titulo": "Assistente de Varnyr",
+      "especie": "humano",
+      "base": [
+        "Commoner",
+        "Plebeu"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Viúvo, pai de Gailby. Ajuda Varnyr no arquivo do porão.",
+      "cidade": "Candlekeep",
+      "img": "npcs/candlekeep/ebder_smallstone.webp"
+    },
+    "gailby_smallstone": {
+      "nome": "Gailby Smallstone",
+      "titulo": "Filha de Ebder",
+      "especie": "humano",
+      "base": [
+        "Commoner",
+        "Plebeu"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Menina pequena que mora no porão com o pai.",
+      "cidade": "Candlekeep",
+      "img": "npcs/candlekeep/gailby_smallstone.webp"
+    },
+    "k_tulah": {
+      "nome": "K'Tulah",
+      "titulo": "Estudiosa de magia popular",
+      "especie": "tabaxi",
+      "base": [
+        "Commoner",
+        "Plebeu"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Tabaxi que estuda magia popular: simpatias, amuletos e cantigas.",
+      "cidade": "Candlekeep",
+      "img": "npcs/candlekeep/k_tulah.webp"
+    },
+    "crinkle": {
+      "nome": "Crinkle",
+      "titulo": "Avowed do Porão dos Vaga-lumes",
+      "especie": "kenku",
+      "base": [
+        "Commoner",
+        "Plebeu"
+      ],
+      "disposicao": "amigavel",
+      "bio": "Kenku Avowed que cuida do porão e coleciona bugigangas.",
+      "cidade": "Candlekeep",
+      "img": "npcs/candlekeep/crinkle.webp"
+    },
+    "vigia": {
+      "nome": "Vigia de Candlekeep",
+      "titulo": "Monge Avowed de vigia",
+      "especie": "humano",
+      "unico": false,
+      "base": [
+        "Guard",
+        "Guarda"
+      ],
+      "bio": "Um dos monges que patrulham as muralhas e os arredores. São quatro Vigias, cada um com doze monges, sob o Guardião do Portão.",
+      "cidade": "Candlekeep",
+      "img": "npcs/candlekeep/vigia.webp"
     }
   },
   "oficios": {
@@ -1294,6 +1528,51 @@
       ],
       "f": [
         "-"
+      ]
+    },
+    "githzerai": {
+      "nome": "Githzerai",
+      "m": [
+        "V'ziir-Ag"
+      ],
+      "f": [
+        "V'ziir-Ag"
+      ]
+    },
+    "tabaxi": {
+      "nome": "Tabaxi",
+      "m": [
+        "K'Tulah"
+      ],
+      "f": [
+        "K'Tulah"
+      ]
+    },
+    "kenku": {
+      "nome": "Kenku",
+      "m": [
+        "Crinkle"
+      ],
+      "f": [
+        "Crinkle"
+      ]
+    },
+    "demonio": {
+      "nome": "Demônio",
+      "m": [
+        "Jezebel"
+      ],
+      "f": [
+        "Jezebel"
+      ]
+    },
+    "dragao": {
+      "nome": "Dragão",
+      "m": [
+        "Miirym"
+      ],
+      "f": [
+        "Miirym"
       ]
     }
   },

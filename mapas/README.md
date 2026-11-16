@@ -86,10 +86,16 @@ Cada `~` vira um token "Água". `preview_states` gera prévias com estados troca
 - Portas lado a lado (o portão de 4 quadrados) contam umas às outras como batente.
 
 ### Candlekeep
-`MAPA = "candlekeep"` monta os 10 mapas da cidade e o Caminho do Leão (lobisomens), começando pelo Portão:
-`candlekeep_portao` → `candlekeep_patio` (Pátio do Ar) → Hearth, Casa do Repouso, Banhos, Casa do Encadernador, Pilares da
-Pedagogia (3 torres), Templo de Oghma, Erudite Outfitters e Ferraria e Estábulos. Lore, NPCs e decisões em
+`MAPA = "candlekeep"` monta os 17 mapas da cidade e o Caminho do Leão (lobisomens), começando pelo Portão:
+`candlekeep_portao` → `candlekeep_patio` (Pátio do Ar) → Hearth, Casa do Repouso (e, pelo alçapão, o Porão dos Vaga-lumes), Banhos,
+Casa do Encadernador, Pilares da Pedagogia (3 torres), Templo de Oghma, Erudite Outfitters e Ferraria e Estábulos. Pela Porta
+Esmeralda, o Pátio Interno (`candlekeep_interno`) → Grande Biblioteca (andares ligados por discos flutuantes), Torres dos
+Leitores (Barn Door, Guardião dos Tomos, Primeiro Leitor, Grandes Leitores), Exaltação e alojamentos, Torre do Mar e Capela dos
+Mortos, que desce ao subterrâneo (catacumbas, cofres, Miirym, Câmara do Saber Perdido). As torres do Portão levam ao adarve. Lore, NPCs e decisões em
 [`candlekeep/PLANO.md`](candlekeep/PLANO.md). Todos os mapas têm proteções (fogo abafado e alarme com 1 arquimago e 4 magos).
 - `"pinturas"`: `[{ "img", "x", "y", "w", "h", "borda"? }]` aplica uma imagem pronta sobre o chão de uma área (em quadrados),
   com a borda esfumada. O jardim do Pátio do Ar é uma pintura gerada no ia-orc (`tools/gen_jardim.py`).
+- Água animada: mapas com água ganham `<mapa>_agua.webm`, um Tile abaixo dos tokens com a animação de `assets/agua/agua_calma.webm`
+  repetida pela área de água e recortada pelo formato dela (margem esfumada; dos lados do píer também). Os quadrados de água seguem ocultos e só aparecem
+  quando mudam de estado. `"agua_animada": false` desliga; `"agua_opacidade"` (padrão .85) deixa o fundo pintado aparecer.
 

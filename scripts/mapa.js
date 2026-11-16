@@ -253,6 +253,7 @@ export async function buildMap(data, root, { folder = null, sort, view = true, c
   mapId ??= data.background.src.split("/")[1];
   const sceneData = foundry.utils.deepClone(data);
   sceneData.background.src = `${root}/${data.background.src}`;
+  for (const t of sceneData.tiles ?? []) t.texture.src = `${root}/${t.texture.src}`; // água animada
   for (const s of sceneData.sounds ?? []) s.path = `${root}/${s.path}`;
   for (const k of ["structures", "objects", "npcs", "multidao", "notas"]) delete sceneData.flags[MODULE_ID].map[k];
   delete sceneData.regions; // criadas depois, com o comportamento de terreno difícil que o sistema tiver
@@ -263,24 +264,15 @@ export async function buildMap(data, root, { folder = null, sort, view = true, c
   const scene = await Scene.create(sceneData);
   const g = scene.grid.size;
 
-  // O ator falta quando o GM principal ainda roda uma versão sem o asset: o GM que monta o mapa cria.
   const actors = new Map();
-  for (const asset of new Set([...(map.structures ?? []), ...(map.objects ?? [])].map(o => o.asset))) {
-    const found = game.actors.find(a => a.getFlag(MODULE_ID, "asset") === asset);
-    actors.set(asset, found ?? (game.user.isGM ? await api.actorFor?.(asset)?.catch?.(() => null) : null));
-  }
+  for (const asset of new Set([...(map.structures ?? []), ...(map.objects ?? [])].map(o => o.asset))) actors.set(asset, await actorDoAsset(asset));
   const actorFor = asset => actors.get(asset);
   const missing = new Set();
   const tokens = [];
   for (const s of map.structures ?? []) {
     const actor = actorFor(s.asset);
     if (!actor) { missing.add(s.asset); continue; }
-    const td = await actor.getTokenDocument({
-      x: s.x * g, y: s.y * g, rotation: s.rotation ?? 0, locked: true,
-      displayName: CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
-      flags: { [MODULE_ID]: { cell: { x: s.x, y: s.y, kind: s.kind, ...(s.dir ? { dir: s.dir } : {}) } } }
-    });
-    tokens.push(td.toObject());
+    tokens.push(await tokenEstrutura(actor, s, g));
   }
   // Objetos: "hidden" (armadilhas escondidas), "flags" extras (ligações de armadilha, destino do pedregulho)
   // e a altura do chão onde ficam (mapas com relevo).
@@ -310,6 +302,63 @@ export async function buildMap(data, root, { folder = null, sort, view = true, c
   if (missing.size) ui.notifications.warn(`Assets não encontrados: ${[...missing].join(", ")}. Recarregue a página (F5) e rode de novo.`);
   if (view) await scene.view();
   return scene;
+}
+
+/** Ator do asset. Falta quando o GM principal ainda roda uma versão sem o asset: o GM que monta o mapa cria. */
+async function actorDoAsset(asset) {
+  const found = game.actors.find(a => a.getFlag(MODULE_ID, "asset") === asset);
+  return found ?? (game.user.isGM ? await game.modules.get(MODULE_ID).api.actorFor?.(asset)?.catch?.(() => null) : null);
+}
+
+/** Token de uma estrutura quebrável (parede, porta, pilar) no quadrado s.x, s.y. */
+async function tokenEstrutura(actor, s, g) {
+  const td = await actor.getTokenDocument({
+    x: s.x * g, y: s.y * g, rotation: s.rotation ?? 0, locked: true,
+    displayName: CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+    flags: { [MODULE_ID]: { cell: { x: s.x, y: s.y, kind: s.kind, ...(s.dir ? { dir: s.dir } : {}) } } }
+  });
+  return td.toObject();
+}
+
+/**
+ * Cena que já está em jogo (os jogadores mexeram nela): entra só o que o mapa ganhou depois que ela foi montada.
+ * - saídas novas (com a chegada), e a porta por onde cada uma passa quando ali era telhado ou parede fixa (sem token);
+ * - notas novas (pelo título).
+ * Tokens, objetos, NPCs, paredes de pé ou quebradas, portas, luzes, névoa e o fundo ficam como estão.
+ * Devolve as saídas acrescentadas.
+ */
+export async function acrescentaNovidades(scene, data, { diario } = {}) {
+  const map = scene.getFlag(MODULE_ID, "map");
+  const novo = data.flags?.[MODULE_ID]?.map ?? {};
+  if (!map) return [];
+  const tem = new Set([...(map.saidas ?? []).map(s => s.id), ...scene.regions.map(r => r.getFlag(MODULE_ID, "saida")).filter(Boolean)]);
+  const saidas = (novo.saidas ?? []).filter(s => !tem.has(s.id));
+  const titulos = new Set(scene.notes.map(n => n.text));
+  const notas = (novo.notas ?? []).filter(n => !titulos.has(n.titulo));
+  if (!saidas.length && !notas.length) return [];
+
+  const dentro = (s, x, y) => x >= s.x && x < s.x + (s.w ?? 1) && y >= s.y && y < s.y + (s.h ?? 1);
+  const comToken = new Set(scene.tokens.map(t => t.getFlag(MODULE_ID, "cell")).filter(Boolean).map(c => key(c.x, c.y)));
+  const portas = (novo.structures ?? []).filter(st =>
+    st.kind === "door" && !comToken.has(key(st.x, st.y)) && saidas.some(s => dentro(s, st.x, st.y)));
+  const abertas = new Set(portas.map(p => key(p.x, p.y)));
+  await scene.update({
+    [`flags.${MODULE_ID}.map.saidas`]: [...(map.saidas ?? []), ...saidas],
+    [`flags.${MODULE_ID}.map.fixed`]: (map.fixed ?? []).filter(k => !abertas.has(k))
+  });
+  if (portas.length) {
+    const g = scene.grid.size;
+    const tokens = [];
+    for (const st of portas) {
+      const actor = await actorDoAsset(st.asset);
+      if (actor) tokens.push(await tokenEstrutura(actor, st, g));
+    }
+    if (tokens.length) await scene.createEmbeddedDocuments("Token", tokens);
+    await rebuildWalls(scene);
+  }
+  await cidade.criaSaidas(scene, saidas);
+  await cidade.criaNotas(scene, notas, diario);
+  return saidas;
 }
 
 /**

@@ -62,15 +62,22 @@ Caminho do Leão (lobisomens, já existe)
         ▼
 [1] Portão de Candlekeep ──portão──▶ [2] Pátio do Ar (mapa geral)
                                         ├─▶ [3] Hearth (taverna) ──portas──▶ salas e santuários extradimensionais
-                                        ├─▶ [4] Casa do Repouso (3 andares) ──alçapão──▶ (fase 5) Porão dos Vaga-lumes
+                                        ├─▶ [4] Casa do Repouso (3 andares) ──alçapão──▶ [16] Porão dos Vaga-lumes
                                         ├─▶ [5] Casa de Banho e Vapor
                                         ├─▶ [6] Casa do Encadernador
                                         ├─▶ [7] Pilares da Pedagogia (torres de leitura)
                                         ├─▶ [8] Templo de Oghma
                                         ├─▶ [9] Erudite Outfitters & Clothiers (alfaiataria)
                                         ├─▶ [10] Ferraria e Estábulos
-                                        └─▶ Porta Esmeralda ──carta──▶ (fase 5) [11] Pátio Interno, Grande Biblioteca,
-                                                                        Exaltação, [12] subterrâneo (catacumbas, cofres, Miirym)
+                                        └─▶ Porta Esmeralda ──carta──▶ [11] Pátio Interno
+                                                                         ├─▶ [12] Grande Biblioteca ──escada──▶ cofres de [15]
+                                                                         ├─▶ [13] Barn Door, Guardião, Primeiro Leitor, Grandes Leitores
+                                                                         ├─▶ [14] Exaltação, refeitório, enfermaria, armazém
+                                                                         ├─▶ Torre do Mar ──▶ [17]
+                                                                         └─▶ Capela dos Mortos ──escada──▶ [15] Subterrâneo
+                                                                              (ossuário, catacumbas, cofres, esgotos, Miirym,
+                                                                               Câmara do Saber Perdido, Warmwet, cavernas do mar)
+[1] Portão ──portas das torres──▶ [17] Torres do portão e adarve ──adarve──▶ Torre do Mar
 ```
 
 Tamanhos em quadrados de 5 pés. São estimativas **[nosso]**, porque o mapa-pôster de CM não está no repositório.
@@ -81,15 +88,31 @@ Se você tiver o livro, a planta oficial pode guiar os `layout.txt`.
 | 1 | `candlekeep_portao` | 48 x 36 | `gen_relevo.py` | O fim do Caminho do Leão subindo o rochedo, com penhasco e o mar ao sul. Muralha, duas torres, o portão negro, a guarita com a sala do tributo (mesa onde o livro é examinado), a fila de buscadores e as carroças de caravana. Do lado de dentro, uma faixa do Pátio com a saída para o mapa 2. |
 | 2 | `candlekeep_patio` | 80 x 56 | `gen_mapa.py` (+ relevo leve) | O Pátio do Ar, de paralelepípedo. Os prédios aparecem como telhados, e as portas levam aos interiores. Tem a muralha externa e a Porta Esmeralda a oeste, com as torres do Pátio Interno ao fundo (só telhado, sem entrada). Um poço, bancos, carroças, barris e a rota da procissão do Cântico. As gárgulas do Templo ficam nos beirais. |
 | 3 | `candlekeep_hearth` | 40 x 26 | `gen_mapa.py` | O salão (3x maior por dentro), o balcão de 20 lugares, mesas redondas e compridas, a fogueira central acesa, a lareira e uma dúzia de poltronas. O **amplificador geométrico** fica sobre o balcão. Num fundo escuro (o "vazio"), 5 salas de 6 x 6: 2 salas de reunião e os santuários de Deneir, Gond e Milil. |
-| 4 | `candlekeep_repouso` | 64 x 18 | `gen_mapa.py` | 3 andares lado a lado ligados por escadas. Térreo: recepção e quarto comum. 1º e 2º: quartos privados e coletivos. No térreo, o alçapão laranja para o Porão dos Vaga-lumes (fase 5). |
+| 4 | `candlekeep_repouso` | 64 x 18 | `gen_mapa.py` | 3 andares lado a lado ligados por escadas. Térreo: recepção e quarto comum. 1º e 2º: quartos privados e coletivos. No térreo, o alçapão laranja para o Porão dos Vaga-lumes (mapa 16). |
 | 5 | `candlekeep_banhos` | 24 x 18 | `gen_mapa.py` | Piscinas termais (água que já solta vapor), saunas (área de visão prejudicada) e salas de massagem. |
 | 6 | `candlekeep_encadernador` | 22 x 16 | `gen_mapa.py` | O balcão de encomendas, o scriptorium com escrivaninhas, a oficina de encadernação com prensa, e o depósito de papel e couro. |
 | 7 | `candlekeep_pilares` | 48 x 20 | `gen_mapa.py` | 3 torres de topo plano, 2 andares cada, lado a lado. As salas de leitura privadas têm *silêncio* permanente (região sem som). |
 | 8 | `candlekeep_templo` | 18 x 24 | `gen_mapa.py` | A nave, o altar de Oghma e o campanário com o sino de bronze. |
 | 9 | `candlekeep_alfaiataria` | 18 x 14 | `gen_mapa.py` | A loja, a oficina com teares e rolos de tecido, e o átrio dos bichos-da-seda. |
 | 10 | `candlekeep_ferraria` | 28 x 18 | `gen_mapa.py` | A forja, a bigorna, o cocho, o palheiro, 8 baias de cavalo e 4 baias reforçadas (hipogrifo, grifo, serpe). |
-| 11 | `candlekeep_biblioteca` (fase 5) | 30 x 30 por andar | `gen_mapa.py` | Uma torre da Grande Biblioteca com estantes do chão ao teto e um disco flutuante que leva até 3 criaturas aos andares altos. |
-| 12 | `candlekeep_subterraneo` (fase 5) | a definir | `gen_relevo.py` | As catacumbas, os cofres dos Ecos de Alaundo, a Câmara do Saber Perdido e o caminho patrulhado por Miirym. |
+| 11 | `candlekeep_interno` | 60 x 46 | `gen_mapa.py` | O Pátio Interno, atrás da Porta Esmeralda: 11 prédios com porta (Grande Biblioteca no centro, Exaltação, torres do Guardião dos Tomos, do Primeiro Leitor e dos Grandes Leitores, Barn Door, armazém, refeitório, enfermaria, Torre do Mar e Capela dos Mortos), jardins, o poço, a estátua de Alaundo e, fora da muralha oeste, o rochedo e o mar. |
+| 12 | `candlekeep_biblioteca` | 4 andares de 20 x 20 | `gen_mapa.py` | A torre principal da Grande Biblioteca (um dos *necessariums*): térreo com o balcão dos Adjuntos e mesas de leitura, dois andares de acervo, topo de catalogação. Discos flutuantes (2 x 2) sobem e descem entre os andares; a escada do térreo desce aos cofres. |
+| 13 | `candlekeep_torres` | 4 torres de 2 andares | `gen_mapa.py` | Barn Door (interditada: piso cedido, pilares rachados), Torre do Guardião dos Tomos (antessala, gabinete, aposentos), Torre do Primeiro Leitor (aquisições, aposentos de Skoda) e Torre dos Grandes Leitores (8 gabinetes). |
+| 14 | `candlekeep_alojamentos` | 59 x 30 | `gen_mapa.py` | A Exaltação (sala comum, capela e dois andares de celas), o refeitório e a cozinha, a enfermaria e o armazém com celeiros. |
+| 15 | `candlekeep_subterraneo` | 64 x 46 | `gen_mapa.py` | Ossuário (sob a Capela dos Mortos), catacumbas com sarcófagos e fossos escondidos, vestíbulo da escada da Biblioteca, câmaras seguras, galeria dos cofres (Ecos de Alaundo, obras perigosas, tratados), esgotos, a caverna de Miirym com o caixão de Torth, a Câmara do Saber Perdido, o Warmwet e as cavernas do mar. |
+| 16 | `candlekeep_porao` | 3 níveis de 16 x 13 | `gen_mapa.py` | O Porão dos Vaga-lumes: dois níveis de arquivo e o de baixo com cozinha e quartos, iluminado por potes de vaga-lumes. |
+| 17 | `candlekeep_muralha` | 31 x 34 | `gen_mapa.py` | As torres do portão (sala da guarda, quartel e topo com o sino do alarme), o adarve sobre o portão e a Torre do Mar (posto dos Vigias e topo com farol). O adarve liga o topo do portão à Torre do Mar. |
+
+Os mapas 11 a 17 (a antiga fase 5) foram feitos em 16/11/2026 a partir de uma pesquisa no Forgotten Realms Wiki (que cita CM por
+página). **[CM]**: a Exaltação é a torre mais alta e abriga as residências dos Avowed; a Grande Biblioteca é um conjunto de torres de
+leitura (*necessariums*) com discos flutuantes; o subterrâneo tem catacumbas, cofres (os Ecos de Alaundo são gemas que gravaram
+as profecias), câmaras seguras para conjurar e a Câmara do Saber Perdido (a mais funda, sempre iluminada); Miirym é uma dragoa de
+prata fantasma presa perto do caixão de Torth; o Porão dos Vaga-lumes fica sob a Casa do Repouso; a Barn Door é uma torre
+interditada; a enfermaria e o armazém vêm do *Volo's Guide*; os Vigias (4 x 12 monges) e o Warmwet (banho vulcânico dos monges)
+também são da lore. **[nosso]**: a posição de tudo no Pátio Interno, a Torre do Mar, o refeitório, a Capela dos Mortos como
+entrada das catacumbas, a ordem dos cofres e os esgotos ligados às cavernas do mar. Nas fontes de fãs (não confirmadas no livro):
+o porão em 3 níveis, o gênero de Janussi e de V'ziir-Ag e a espécie dos NPCs do porão. Os gêneros de Skoda, Daral, Fheminor,
+Kazryn e Teles não aparecem nas fontes; os retratos escolheram um.
 
 **Escala do mapa geral.** Hoje o fundo é desenhado com 200 px por quadrado. Com 80 x 56 quadrados, isso dá 16000 x 11200 px,
 grande demais para muitas placas de vídeo. O plano é aceitar `"px"` no `mapa.json` e usar 120 no Pátio (9600 x 6720).
@@ -107,7 +130,9 @@ quebrável completa.
   região `chegada` da outra cena, com a opção de pedir confirmação ao jogador.
 - `api.buildCity("candlekeep")` lê `mapas/candlekeep/cidade.json` (a lista de mapas), cria a pasta de cenas *Candlekeep*,
   monta todas as cenas e só então liga as regiões, quando todas já têm UUID.
-- **Montar de novo sem duplicar:** cada cena guarda a flag `mapId`. Rodar outra vez pergunta se substitui as cenas da pasta.
+- **Montar de novo sem duplicar:** cada cena guarda a flag `mapId`. Rodar outra vez pergunta: **só os mapas novos** (padrão:
+  cria só as cenas que faltam; nas que já existem entram só as saídas e notas novas, com a porta da saída nova, e o resto que
+  os jogadores mexeram fica intacto) ou **substituir tudo** (confirma de novo e apaga as cenas antes de montar).
 - Uma saída pode depender de uma porta. Na entrada de um prédio, a região fica dentro da porta, então só funciona com a porta aberta ou arrombada.
 - Notas no mapa (alfinetes) no Pátio, uma por estabelecimento, abrindo a página do diário **"Guia de Candlekeep"**, que é gerado
   de `mapas/candlekeep/guia.json` com a descrição, os NPCs e os ganchos de cada lugar.
@@ -311,10 +336,10 @@ Tudo CC0, com os créditos em `mapas/CREDITOS.md`. O canto pode ser gerado se n�
 | *The Joy of Extradimensional Spaces* (1) | Pilares: a sala de leitura de Matreous |
 | *Mazfroth's Mighty Digressions* (2) | Pilares (o livro ataca), depois o Encadernador e o Pátio |
 | *A Deep and Creeping Darkness* (4) | Pilares e Casa do Repouso |
-| *Shemshime's Bedtime Rhyme* (4) | Porão dos Vaga-lumes, sob a Casa do Repouso (fase 5) |
+| *Shemshime's Bedtime Rhyme* (4) | Porão dos Vaga-lumes, sob a Casa do Repouso |
 | *The Price of Beauty* (5) | Encadernador |
-| *Kandlekeep Dekonstruktion* (9) | Pátio do Ar, com o terremoto (fase 5 para a torre "Barn Door") |
-| *The Scrivener's Tale* (14) | Cofres (fase 5) |
+| *Kandlekeep Dekonstruktion* (9) | Pátio do Ar, com o terremoto, e a Barn Door (Pátio Interno, mapa 13) |
+| *The Scrivener's Tale* (14) | Cofres (subterrâneo) |
 | *Alkazaar's Appendix* (15) | Hearth |
 
 A maior parte das outras aventuras começa com um livro lido em Candlekeep e depois sai para outros lugares.
@@ -325,7 +350,8 @@ A maior parte das outras aventuras começa com um livro lido em Candlekeep e dep
 1. **Planta:** desenhamos uma planta nossa, fiel às descrições de CM (sem o mapa-pôster).
 2. **Imagens dos NPCs:** geradas localmente no orquestrador `ia-orc` (ComfyUI), vista de cima, borda redonda igual em todos.
 3. **Proteções:** ligadas por padrão. O fogo só funciona com "Proteções caídas" (exceto lareira do Hearth e forja).
-4. **Fase 5 (Pátio Interno e subterrâneo):** fica para depois.
+4. **Fase 5 (Pátio Interno e subterrâneo):** fica para depois. Feita em 16/11/2026, com todos os lugares que faltavam
+   (inclusive torres do portão, adarve, Barn Door e Porão dos Vaga-lumes).
 
 ## 10. Estado (20/10/2026)
 Feito (ainda sem teste no Foundry):
@@ -350,3 +376,17 @@ Ficou de fora ou simplificado:
 - **Procissão:** os acólitos e Benedora ficam parados; o mestre os move.
 - **Dia e noite:** a multidão é sempre a de dia.
 - **Baias reforçadas da Ferraria:** usam parede e porta comuns. Para serem mais fortes, trocar por `muralha` e `portao`.
+
+## 11. Estado (16/11/2026): fase 5
+- **7 mapas novos** (11 a 17 na tabela), ligados ao resto: Porta Esmeralda (Pátio do Ar ↔ Pátio Interno), portas das torres do
+  Portão (↔ muralha), alçapão da Casa do Repouso (↔ porão). O miolo do Pátio do Ar atrás da Porta Esmeralda virou cenário sólido
+  (o Pátio Interno de verdade é o mapa 11), e a parede de dentro dele ficou fixa.
+- **Assets novos:** `disco_flutuante` (2 x 2, parado/flutuando), `sarcofago` (1 x 2, fechado/aberto) e `pote_vagalumes` (luz de
+  vaga-lume, pode ser solto). Fragmento em `tools/fragmentos/interno.json`. Os cofres usam o `portao` como porta.
+- **NPCs novos (18):** Janussi, Skoda, os 8 Grandes Leitores e Jezebel nas torres; Miirym no subterrâneo; Varnyr, Ebder, Gailby,
+  K'Tulah e Crinkle no porão; e os Vigias na muralha. Miirym usa o Dragão de Prata Ancião do SRD (o livro dá ND 22 para a versão
+  fantasma).
+- **Sons:** 3 efeitos (disco, sarcófago, pote), 4 ambiências (catacumbas, porão, refeitório, muralha) e 7 músicas, uma por mapa novo.
+- **Ficou simplificado:** os discos são saídas (pise e confirme), não veículos com altura; a Exaltação e a Grande Biblioteca
+  mostram só alguns andares; a água do Warmwet é a água comum; as outras torres de leitura da Grande Biblioteca não têm interior
+  próprio.

@@ -1,7 +1,8 @@
 // Macro (tipo Script) que monta um mapa deste repositório como cena nova no Foundry:
 // fundo, luzes e sons, paredes/portas/pilares quebráveis e os objetos interativos (mesa, tocha, barril...).
 // Se MAPA for uma cidade (pasta com cidade.json, ex.: "vila_teste"), monta todos os mapas dela numa pasta de cenas,
-// com as saídas ligando um mapa ao outro. Precisa do módulo Interactive Assets ativo. Cada execução cria cenas novas.
+// com as saídas ligando um mapa ao outro (cidade já montada: pergunta se monta só os mapas novos). Precisa do módulo
+// Interactive Assets ativo. Um mapa sozinho sempre vira uma cena nova.
 const MAPA = "taverna";
 const REF = "main"; // branch do GitHub de onde vem o mapa
 const REPO = "igorpdasilvaa/asset-foundry";
@@ -32,7 +33,7 @@ const cidade = await fetch(`${root}/mapas/${MAPA}/cidade.json`).then(r => r.ok ?
 if (cidade) {
   if (!api.buildCity) return ui.notifications.error("Interactive Assets desatualizado: atualize o módulo para a versão 0.12.0 ou mais nova (ou ligue o Modo desenvolvimento).");
   const inicio = await api.buildCity(MAPA, root);
-  if (inicio) for (const s of game.scenes.filter(s => s.getFlag("interactive-assets", "cidade") === MAPA)) await miniatura(s);
+  if (inicio) for (const s of game.scenes.filter(s => s.getFlag("interactive-assets", "cidade") === MAPA && !s.thumb)) await miniatura(s);
   return;
 }
 const data = await (await fetch(`${root}/mapas/${MAPA}/cena.json`)).json();

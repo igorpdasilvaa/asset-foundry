@@ -1547,7 +1547,13 @@ def gera(asset, rec, defs):
     pasta = ROOT / "assets" / asset
     pasta.mkdir(exist_ok=True)
     srcs = {}
+    cfg_anim = ROOT / "tools" / "ia_animacoes.json"
+    animados = json.loads(cfg_anim.read_text()).get(asset, {}) if cfg_anim.exists() else {}
     for st in d["states"]:
+        # estado com animação do ia-orc (tools/ia_animacao.py): fica o WebM, não refaz a imagem parada
+        if st["id"] in animados and (pasta / f"{asset}_{st['id']}.webm").exists():
+            srcs[st["id"]] = f"{asset}/{asset}_{st['id']}.webm"
+            continue
         r = rec["estados"].get(st["id"], [])
         if isinstance(r, list):
             r = {"efeitos": [r] if r and isinstance(r[0], str) else r}

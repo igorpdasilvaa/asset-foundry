@@ -20,7 +20,8 @@ const FALLBACK = {
   commoner: [10, 4, 0], acolyte: [10, 9, 0.25], priest: [13, 27, 2], guard: [16, 11, 0.125], veteran: [17, 58, 3],
   mage: [12, 40, 6], archmage: [12, 99, 12], noble: [15, 9, 0.125], scout: [13, 16, 0.5], "stone golem": [17, 178, 10],
   ogre: [11, 59, 2], bard: [15, 44, 2], horse: [10, 13, 0.25], "riding horse": [10, 13, 0.25], pony: [10, 11, 0.125],
-  mule: [10, 11, 0.125], hippogriff: [11, 19, 1], griffon: [12, 59, 2], wyvern: [13, 110, 6], cat: [12, 2, 0]
+  mule: [10, 11, 0.125], hippogriff: [11, 19, 1], griffon: [12, 59, 2], wyvern: [13, 110, 6], cat: [12, 2, 0],
+  druid: [11, 27, 2], quasit: [13, 7, 1], "ancient silver dragon": [22, 487, 23]
 };
 
 export function init(c) {

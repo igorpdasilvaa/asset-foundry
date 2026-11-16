@@ -879,7 +879,7 @@
       {
         "id": "acesa",
         "name": "Acesa",
-        "src": "lampada/lampada_acesa.webp",
+        "src": "lampada/lampada_acesa.webm",
         "light": {
           "bright": 6,
           "dim": 20,

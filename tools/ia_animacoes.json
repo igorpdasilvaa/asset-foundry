@@ -1,0 +1,50 @@
+{
+  "_comentario": "Animações feitas com o Wan 2.2 no ia-orc a partir da imagem do estado (tools/ia_animacao.py). job: vídeo gerado.",
+  "agua": {
+    "calma": {
+      "job": "28fc8d73-9ab5-4c4b-a0f6-6a94792f7c11",
+      "emendavel": true,
+      "opacidade": 0.8,
+      "fps": 16,
+      "cor": "agua/agua_calma.webp"
+    },
+    "envenenada": {
+      "job": "c09b4b9d-b002-4f92-9664-c27bed2f1b9d",
+      "emendavel": true,
+      "opacidade": 0.92,
+      "fps": 16
+    },
+    "vapor": {
+      "job": "cb9b3da0-9e12-4c99-8ce7-6b22d3cd0047",
+      "emendavel": true,
+      "opacidade": 0.92,
+      "fps": 16
+    }
+  },
+  "fogueira": {
+    "acesa": {
+      "job": "ab3beb07-a478-4c5a-a256-12805ef49878",
+      "fps": 16
+    }
+  },
+  "forja": {
+    "acesa": {
+      "job": "fed98e92-0873-4277-a24f-e9b652695895"
+    }
+  },
+  "tocha": {
+    "acesa": {
+      "job": "de3fcf60-1e4e-4c4f-977f-69e65b6308de"
+    }
+  },
+  "amplificador": {
+    "brilhando": {
+      "job": "7d444668-400f-4d8b-84f5-5881e5b63e82"
+    }
+  },
+  "lampada": {
+    "acesa": {
+      "job": "43f8df07-0ad8-4f47-9976-16ea6d326500"
+    }
+  }
+}

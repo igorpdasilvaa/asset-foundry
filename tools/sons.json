@@ -144,6 +144,18 @@
     "pedregulho": {
       "prompt": "Huge boulder rolling and rumbling down a rocky slope, gravel scattering",
       "seconds": 6
+    },
+    "disco_sobe": {
+      "prompt": "Magical stone platform levitating, low resonant hum rising in pitch with a soft whoosh of air and faint crystalline shimmer, close, stone hall",
+      "seconds": 4
+    },
+    "sarcofago_abre": {
+      "prompt": "Heavy stone sarcophagus lid grinding and sliding open slowly, deep scraping rumble in a crypt, long echo",
+      "seconds": 4
+    },
+    "pote_quebra": {
+      "prompt": "Small glass jar shattering on a stone floor followed by a short burst of buzzing insects flying away, close, small cellar",
+      "seconds": 3
     }
   },
   "loops": {
@@ -190,6 +202,22 @@
     "amb_amplificador": {
       "prompt": "Continuous steady magical drone of a glowing crystal orb, low warm hum with constant soft clockwork ticking, no pauses, sustained",
       "seconds": 20
+    },
+    "amb_catacumbas": {
+      "prompt": "Deep underground catacombs ambience, slow water drips echoing, faint cold wind through stone tunnels, distant low rumble, eerie and still",
+      "seconds": 60
+    },
+    "amb_porao": {
+      "prompt": "Old cellar ambience, creaking wooden beams, muffled footsteps on the floor above, faint soft buzzing of insects, quiet room tone",
+      "seconds": 45
+    },
+    "amb_refeitorio": {
+      "prompt": "Monastery refectory and kitchen, wooden bowls and spoons clinking, pots bubbling, quiet murmured conversation, stone hall",
+      "seconds": 45
+    },
+    "amb_muralha": {
+      "prompt": "Strong wind over high stone battlements, flags flapping, seagulls crying, distant ocean surf far below",
+      "seconds": 60
     }
   },
   "musicas": {
@@ -235,6 +263,34 @@
     },
     "combate": {
       "prompt": "Epic fantasy battle music, driving strings, brass stabs, war drums and choir pads, urgent and heroic, tabletop RPG combat. BPM: 140",
+      "seconds": 150
+    },
+    "interno": {
+      "prompt": "Majestic fantasy tabletop music, solo French horn and warm strings over soft choir pads and gentle harp, sacred inner sanctum of a great library fortress, awe and quiet grandeur. BPM: 72",
+      "seconds": 150
+    },
+    "biblioteca": {
+      "prompt": "Wondrous fantasy library music, celesta, harp arpeggios and soft glass harmonica over airy string pads, endless towering bookshelves, floating and magical, very calm. BPM: 64",
+      "seconds": 150
+    },
+    "torres": {
+      "prompt": "Solemn scholarly fantasy music, viola da gamba, harpsichord and soft low woodwinds, wise old masters in candlelit studies, dignified and introspective. BPM: 68",
+      "seconds": 150
+    },
+    "alojamentos": {
+      "prompt": "Humble medieval monastery music, gentle recorder and lute with soft hand drum and quiet male humming pads, daily chores of monks, warm and simple. BPM: 84",
+      "seconds": 150
+    },
+    "subterraneo": {
+      "prompt": "Dark fantasy dungeon music, deep cello drones, low choir pads, distant timpani and eerie metallic textures, ancient catacombs guarded by a ghostly dragon, tense and mysterious, slow. BPM: 60",
+      "seconds": 150
+    },
+    "porao": {
+      "prompt": "Creepy fantasy music box lullaby, detuned celesta and music box with soft dissonant strings and faint whispering pads, haunted cellar, unsettling and quiet. BPM: 62",
+      "seconds": 150
+    },
+    "muralha": {
+      "prompt": "Windswept fantasy watch music, low brass and martial snare with sweeping strings and wind pads, sentinels on high fortress walls above the sea, vigilant and steady. BPM: 76",
       "seconds": 150
     }
   },
@@ -495,6 +551,62 @@
     },
     "amb_amplificador": {
       "job": "e6a0b202-eb78-4026-a8b4-926b552fb5ef",
+      "variacao": "B"
+    },
+    "disco_sobe": {
+      "job": "b189445d-73a4-4446-a6fc-7117bc485bca",
+      "variacao": "B"
+    },
+    "sarcofago_abre": {
+      "job": "bb1e5b11-9e49-4141-844d-d86b952a368b",
+      "variacao": "B"
+    },
+    "pote_quebra": {
+      "job": "1db1dba9-0877-4b32-aa66-442b5661052a",
+      "variacao": "B"
+    },
+    "amb_catacumbas": {
+      "job": "f013f7ff-573b-4b83-a9b6-f3352265810b",
+      "variacao": "A"
+    },
+    "amb_porao": {
+      "job": "c39a722e-75cc-481e-ab42-728debd648e8",
+      "variacao": "B"
+    },
+    "amb_refeitorio": {
+      "job": "7f49545e-0f96-4f58-8988-a2fecbd15c05",
+      "variacao": "B"
+    },
+    "amb_muralha": {
+      "job": "0e3a10e4-deba-42ba-b056-d4e1cd1fea48",
+      "variacao": "B"
+    },
+    "interno": {
+      "job": "fff5c7c5-ff2e-49a9-bafb-200a56188295",
+      "variacao": "A"
+    },
+    "biblioteca": {
+      "job": "e5070f4c-e382-4806-a096-9c43be261379",
+      "variacao": "A"
+    },
+    "torres": {
+      "job": "f8814547-b949-4475-b54b-be294cc1c4c4",
+      "variacao": "A"
+    },
+    "alojamentos": {
+      "job": "ec0191da-9e27-4c4e-8cab-4a59be348200",
+      "variacao": "A"
+    },
+    "subterraneo": {
+      "job": "bf861136-2203-4aca-bb15-7a9bf25997a1",
+      "variacao": "A"
+    },
+    "porao": {
+      "job": "bb8e154b-d76f-47f4-a6f8-6a4bf1ced23d",
+      "variacao": "A"
+    },
+    "muralha": {
+      "job": "01ac123b-a94c-42a5-bfbe-672e08700d97",
       "variacao": "B"
     }
   },
@@ -875,6 +987,27 @@
       },
       "derrubada": {
         "sfx": "audio/pedra_desaba.ogg"
+      }
+    },
+    "disco_flutuante": {
+      "flutuando": {
+        "sfx": "audio/disco_sobe.ogg"
+      },
+      "quebrado": {
+        "sfx": "audio/pedra_desaba.ogg"
+      }
+    },
+    "sarcofago": {
+      "aberto": {
+        "sfx": "audio/sarcofago_abre.ogg"
+      },
+      "quebrado": {
+        "sfx": "audio/pedra_desaba.ogg"
+      }
+    },
+    "pote_vagalumes": {
+      "quebrado": {
+        "sfx": "audio/pote_quebra.ogg"
       }
     }
   }

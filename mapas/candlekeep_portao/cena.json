@@ -21,6 +21,29 @@
   }
  },
  "lights": [],
+ "tiles": [
+  {
+   "x": 1200,
+   "y": 3000,
+   "width": 3600,
+   "height": 600,
+   "elevation": 0,
+   "sort": 0,
+   "texture": {
+    "src": "mapas/candlekeep_portao/candlekeep_portao_agua.webm"
+   },
+   "video": {
+    "loop": true,
+    "autoplay": true,
+    "volume": 0
+   },
+   "flags": {
+    "interactive-assets": {
+     "aguaAnimada": true
+    }
+   }
+  }
+ ],
  "sounds": [
   {
    "walls": true,
@@ -74,7 +97,6 @@
      "11,9",
      "12,9",
      "13,9",
-     "7,10",
      "8,10",
      "9,10",
      "10,10",
@@ -123,7 +145,6 @@
      "11,20",
      "12,20",
      "13,20",
-     "7,21",
      "8,21",
      "9,21",
      "10,21",
@@ -363,6 +384,14 @@
       "kind": "wall"
      },
      {
+      "asset": "porta",
+      "x": 7,
+      "y": 10,
+      "kind": "door",
+      "dir": "v",
+      "rotation": 90
+     },
+     {
       "asset": "parede",
       "x": 15,
       "y": 10,
@@ -458,6 +487,14 @@
       "asset": "portao",
       "x": 11,
       "y": 17,
+      "kind": "door",
+      "dir": "v",
+      "rotation": 90
+     },
+     {
+      "asset": "porta",
+      "x": 7,
+      "y": 21,
       "kind": "door",
       "dir": "v",
       "rotation": 90
@@ -1376,6 +1413,38 @@
       },
       "para": "lobisomens",
       "chegada": "candlekeep"
+     },
+     {
+      "id": "torre_norte",
+      "nome": "Torre norte do portão",
+      "x": 7,
+      "y": 10,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+       "x": 5,
+       "y": 9,
+       "w": 2,
+       "h": 3
+      },
+      "para": "candlekeep_muralha",
+      "chegada": "rua_norte"
+     },
+     {
+      "id": "torre_sul",
+      "nome": "Torre sul do portão",
+      "x": 7,
+      "y": 21,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+       "x": 5,
+       "y": 20,
+       "w": 2,
+       "h": 3
+      },
+      "para": "candlekeep_muralha",
+      "chegada": "rua_sul"
      }
     ],
     "npcs": [
@@ -1458,6 +1527,12 @@
       "y": 16,
       "titulo": "A fila",
       "texto": "<p>Buscadores, peregrinos e caravanas esperando a vez. Muitos estão aqui há dias, reescrevendo o livro que vão oferecer.</p>"
+     },
+     {
+      "x": 5,
+      "y": 15,
+      "titulo": "Torres do portão",
+      "texto": "<p>As portas do lado de dentro levam à sala da guarda de cada torre. De lá se sobe ao quartel e ao adarve, que passa por cima do portão.</p>"
      }
     ]
    },

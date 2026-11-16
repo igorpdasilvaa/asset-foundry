@@ -1,0 +1,200 @@
+{
+  "disco_flutuante": {
+    "prompt": "a round flat levitating grey stone disc platform with glowing pale blue runes engraved in a ring around its rim and a small carved lectern post at one edge",
+    "jobs": {
+      "base": [
+        "d712888c-1603-4e5c-ad73-d3f1df91ca9b",
+        2
+      ]
+    },
+    "estados": {
+      "parado": [
+        [
+          "oval",
+          {
+            "r": 0.955,
+            "job": "d712888c-1603-4e5c-ad73-d3f1df91ca9b",
+            "i": 2
+          }
+        ]
+      ],
+      "flutuando": [
+        [
+          "oval",
+          {
+            "r": 0.955,
+            "job": "d712888c-1603-4e5c-ad73-d3f1df91ca9b",
+            "i": 2
+          }
+        ],
+        [
+          "tinge",
+          {
+            "cor": [
+              150,
+              205,
+              255
+            ],
+            "forca": 0.18
+          }
+        ],
+        [
+          "aura",
+          {
+            "cor": [
+              150,
+              215,
+              255
+            ],
+            "raio": 0.07,
+            "forca": 0.9
+          }
+        ]
+      ],
+      "quebrado": [
+        [
+          "oval",
+          {
+            "r": 0.955,
+            "job": "d712888c-1603-4e5c-ad73-d3f1df91ca9b",
+            "i": 2
+          }
+        ],
+        [
+          "escurece",
+          {
+            "k": 0.65
+          }
+        ],
+        [
+          "rachado",
+          {
+            "n": 8
+          }
+        ],
+        [
+          "entulho",
+          {
+            "n": 26,
+            "resto": 0.9,
+            "escuro": 0.5
+          }
+        ]
+      ]
+    }
+  },
+  "sarcofago": {
+    "prompt": "a long closed carved grey stone sarcophagus, its lid carved with the effigy of a robed monk holding a book (aberto: open, skeleton in tattered robes inside)",
+    "jobs": {
+      "base": [
+        "1b917311-b102-4a97-8dbc-05fe8bcfe3ca",
+        3
+      ],
+      "aberto": [
+        "99873426-d8cb-48f5-a1af-39ef8d3e6535",
+        3
+      ]
+    },
+    "estados": {
+      "fechado": [],
+      "aberto": {
+        "img": "aberto",
+        "efeitos": [
+          [
+            "apara",
+            {
+              "b": 0.06
+            }
+          ]
+        ]
+      },
+      "quebrado": [
+        [
+          "rachado",
+          {
+            "n": 7
+          }
+        ],
+        [
+          "entulho",
+          {
+            "n": 30,
+            "resto": 0.85,
+            "escuro": 0.45
+          }
+        ]
+      ]
+    }
+  },
+  "pote_vagalumes": {
+    "prompt": "a round glass jar seen from directly above with an open wide mouth, full of tiny glowing yellow-green fireflies, a cork stopper lying beside it",
+    "jobs": {
+      "base": [
+        "d9984877-3712-4a51-8167-bda68d3641c8",
+        3
+      ]
+    },
+    "estados": {
+      "aceso": [
+        [
+          "oval",
+          {
+            "r": 0.6,
+            "job": "d9984877-3712-4a51-8167-bda68d3641c8",
+            "i": 3
+          }
+        ],
+        [
+          "aura",
+          {
+            "cor": [
+              215,
+              245,
+              110
+            ],
+            "raio": 0.08,
+            "forca": 0.95
+          }
+        ]
+      ],
+      "solto": [
+        [
+          "oval",
+          {
+            "r": 0.6,
+            "job": "d9984877-3712-4a51-8167-bda68d3641c8",
+            "i": 3
+          }
+        ],
+        [
+          "escurece",
+          {
+            "k": 0.6
+          }
+        ],
+        [
+          "dessatura",
+          {
+            "k": 0.5
+          }
+        ]
+      ],
+      "quebrado": [
+        [
+          "oval",
+          {
+            "r": 0.6,
+            "job": "d9984877-3712-4a51-8167-bda68d3641c8",
+            "i": 3
+          }
+        ],
+        [
+          "quebrado",
+          {
+            "n": 14
+          }
+        ]
+      ]
+    }
+  }
+}

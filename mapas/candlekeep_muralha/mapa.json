@@ -1,0 +1,642 @@
+{
+  "name": "Candlekeep: torres e adarve",
+  "grid": 100,
+  "px": 150,
+  "darkness": 0.15,
+  "seed": 113,
+  "legend": {
+    "#": "parede",
+    ".": "piso_madeira",
+    "A": {
+      "nome": "adarve",
+      "chao": "muralha"
+    },
+    "D": "porta",
+    "S": {
+      "nome": "escada_sobe",
+      "peca": "escada",
+      "rot": 0,
+      "chao": "piso_pedra"
+    },
+    "X": {
+      "nome": "muralha_fixa",
+      "chao": "muralha",
+      "solido": true
+    },
+    "p": "piso_pedra",
+    "s": {
+      "nome": "escada_desce",
+      "peca": "escada",
+      "rot": 180,
+      "chao": "piso_pedra"
+    },
+    "v": "vazio"
+  },
+  "protecoes": {
+    "alarme": 1,
+    "resposta": [
+      {
+        "npc": "avowed_arquimago",
+        "n": 1
+      },
+      {
+        "npc": "avowed_mago",
+        "n": 4
+      }
+    ]
+  },
+  "saidas": [
+    {
+      "id": "rua_norte",
+      "nome": "Portão (pátio de entrada)",
+      "x": 16,
+      "y": 7,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 15,
+        "y": 6,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_portao",
+      "chegada": "torre_norte"
+    },
+    {
+      "id": "rua_sul",
+      "nome": "Portão (pátio de entrada)",
+      "x": 16,
+      "y": 16,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 15,
+        "y": 15,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_portao",
+      "chegada": "torre_sul"
+    },
+    {
+      "id": "rua_mar",
+      "nome": "Pátio Interno",
+      "x": 16,
+      "y": 18,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 15,
+        "y": 19,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_interno",
+      "chegada": "porta_mar"
+    },
+    {
+      "id": "sobe_n1",
+      "nome": "Escada: sobe (1º andar)",
+      "x": 19,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 18,
+        "y": 1,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_muralha",
+      "chegada": "desce_n1"
+    },
+    {
+      "id": "desce_n1",
+      "nome": "Escada: desce (térreo)",
+      "x": 23,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 24,
+        "y": 1,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_muralha",
+      "chegada": "sobe_n1"
+    },
+    {
+      "id": "sobe_n2",
+      "nome": "Escada: sobe (adarve)",
+      "x": 29,
+      "y": 1,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 28,
+        "y": 1,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_muralha",
+      "chegada": "desce_n2"
+    },
+    {
+      "id": "desce_n2",
+      "nome": "Escada: desce (torre norte)",
+      "x": 1,
+      "y": 7,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 2,
+        "y": 7,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_muralha",
+      "chegada": "sobe_n2"
+    },
+    {
+      "id": "sobe_s1",
+      "nome": "Escada: sobe (1º andar)",
+      "x": 19,
+      "y": 10,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 18,
+        "y": 10,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_muralha",
+      "chegada": "desce_s1"
+    },
+    {
+      "id": "desce_s1",
+      "nome": "Escada: desce (térreo)",
+      "x": 23,
+      "y": 10,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 24,
+        "y": 10,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_muralha",
+      "chegada": "sobe_s1"
+    },
+    {
+      "id": "sobe_s2",
+      "nome": "Escada: sobe (adarve)",
+      "x": 29,
+      "y": 10,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 28,
+        "y": 10,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_muralha",
+      "chegada": "desce_s2"
+    },
+    {
+      "id": "desce_s2",
+      "nome": "Escada: desce (torre sul)",
+      "x": 1,
+      "y": 26,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 2,
+        "y": 26,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_muralha",
+      "chegada": "sobe_s2"
+    },
+    {
+      "id": "sobe_mar",
+      "nome": "Escada: sobe (topo)",
+      "x": 19,
+      "y": 24,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 18,
+        "y": 24,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_muralha",
+      "chegada": "desce_mar"
+    },
+    {
+      "id": "desce_mar",
+      "nome": "Escada: desce (térreo)",
+      "x": 23,
+      "y": 24,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 24,
+        "y": 24,
+        "w": 1,
+        "h": 1
+      },
+      "para": "candlekeep_muralha",
+      "chegada": "sobe_mar"
+    },
+    {
+      "id": "adarve_norte",
+      "nome": "Adarve: segue pela muralha até a Torre do Mar",
+      "x": 4,
+      "y": 1,
+      "w": 3,
+      "h": 1,
+      "pouso": {
+        "x": 4,
+        "y": 2,
+        "w": 3,
+        "h": 1
+      },
+      "para": "candlekeep_muralha",
+      "chegada": "adarve",
+      "perguntar": true
+    },
+    {
+      "id": "adarve",
+      "nome": "Adarve: segue pela muralha até o Portão",
+      "x": 30,
+      "y": 21,
+      "w": 1,
+      "h": 1,
+      "pouso": {
+        "x": 28,
+        "y": 20,
+        "w": 2,
+        "h": 3
+      },
+      "para": "candlekeep_muralha",
+      "chegada": "adarve_norte",
+      "perguntar": true
+    }
+  ],
+  "objects": [
+    {
+      "asset": "sino",
+      "x": 850,
+      "y": 850
+    },
+    {
+      "asset": "lampada",
+      "x": 950,
+      "y": 1350
+    },
+    {
+      "asset": "lampada",
+      "x": 150,
+      "y": 2050
+    },
+    {
+      "asset": "lampada",
+      "x": 950,
+      "y": 2650
+    },
+    {
+      "asset": "lampada",
+      "x": 550,
+      "y": 350
+    },
+    {
+      "asset": "lampada",
+      "x": 550,
+      "y": 3050
+    },
+    {
+      "asset": "caixa",
+      "x": 950,
+      "y": 750
+    },
+    {
+      "asset": "barril",
+      "x": 150,
+      "y": 1350
+    },
+    {
+      "asset": "caixa",
+      "x": 950,
+      "y": 2050
+    },
+    {
+      "asset": "mesa",
+      "x": 1510,
+      "y": 260
+    },
+    {
+      "asset": "cadeira",
+      "x": 1450,
+      "y": 450
+    },
+    {
+      "asset": "cadeira",
+      "x": 1650,
+      "y": 450
+    },
+    {
+      "asset": "banco",
+      "x": 1400,
+      "y": 550
+    },
+    {
+      "asset": "barril",
+      "x": 1950,
+      "y": 650
+    },
+    {
+      "asset": "caixa",
+      "x": 1850,
+      "y": 650
+    },
+    {
+      "asset": "lampada",
+      "x": 1350,
+      "y": 150
+    },
+    {
+      "asset": "cama",
+      "x": 2550,
+      "y": 200
+    },
+    {
+      "asset": "cama",
+      "x": 2550,
+      "y": 600
+    },
+    {
+      "asset": "cama",
+      "x": 2750,
+      "y": 200
+    },
+    {
+      "asset": "cama",
+      "x": 2750,
+      "y": 600
+    },
+    {
+      "asset": "caixa",
+      "x": 2950,
+      "y": 650
+    },
+    {
+      "asset": "caixa",
+      "x": 2350,
+      "y": 650
+    },
+    {
+      "asset": "vela",
+      "x": 2450,
+      "y": 350
+    },
+    {
+      "asset": "mesa",
+      "x": 1510,
+      "y": 1160
+    },
+    {
+      "asset": "cadeira",
+      "x": 1450,
+      "y": 1350
+    },
+    {
+      "asset": "cadeira",
+      "x": 1650,
+      "y": 1350
+    },
+    {
+      "asset": "banco",
+      "x": 1400,
+      "y": 1450
+    },
+    {
+      "asset": "barril",
+      "x": 1950,
+      "y": 1550
+    },
+    {
+      "asset": "caixa",
+      "x": 1850,
+      "y": 1550
+    },
+    {
+      "asset": "lampada",
+      "x": 1350,
+      "y": 1050
+    },
+    {
+      "asset": "cama",
+      "x": 2550,
+      "y": 1100
+    },
+    {
+      "asset": "cama",
+      "x": 2550,
+      "y": 1500
+    },
+    {
+      "asset": "cama",
+      "x": 2750,
+      "y": 1100
+    },
+    {
+      "asset": "cama",
+      "x": 2750,
+      "y": 1500
+    },
+    {
+      "asset": "caixa",
+      "x": 2950,
+      "y": 1550
+    },
+    {
+      "asset": "caixa",
+      "x": 2350,
+      "y": 1550
+    },
+    {
+      "asset": "vela",
+      "x": 2450,
+      "y": 1250
+    },
+    {
+      "asset": "mesa",
+      "x": 1610,
+      "y": 2160
+    },
+    {
+      "asset": "cadeira",
+      "x": 1550,
+      "y": 2350
+    },
+    {
+      "asset": "cadeira",
+      "x": 1750,
+      "y": 2350
+    },
+    {
+      "asset": "estante",
+      "x": 1400,
+      "y": 2450
+    },
+    {
+      "asset": "lampada",
+      "x": 1950,
+      "y": 1950
+    },
+    {
+      "asset": "globo",
+      "x": 2650,
+      "y": 2150
+    },
+    {
+      "asset": "banco",
+      "x": 2400,
+      "y": 1950
+    },
+    {
+      "asset": "lampada",
+      "x": 2950,
+      "y": 2450
+    }
+  ],
+  "npcs": [
+    {
+      "npc": "vigia",
+      "x": 550,
+      "y": 1050
+    },
+    {
+      "npc": "vigia",
+      "x": 550,
+      "y": 1750
+    },
+    {
+      "npc": "vigia",
+      "x": 550,
+      "y": 2450
+    },
+    {
+      "npc": "vigia",
+      "x": 350,
+      "y": 2250
+    },
+    {
+      "npc": "vigia",
+      "x": 750,
+      "y": 950
+    },
+    {
+      "npc": "vigia",
+      "x": 1750,
+      "y": 450
+    },
+    {
+      "npc": "vigia",
+      "x": 1650,
+      "y": 1350
+    },
+    {
+      "npc": "vigia",
+      "x": 1850,
+      "y": 2150
+    },
+    {
+      "npc": "vigia",
+      "x": 2550,
+      "y": 2350
+    }
+  ],
+  "multidao": [],
+  "notas": [
+    {
+      "x": 8,
+      "y": 16,
+      "titulo": "Adarve sobre o portão",
+      "texto": "<p>Passarela no alto da muralha (50 pés). Sobre o portão, buracos no piso deixam ver (e atingir) quem está embaixo. As ameias protegem quem vigia; dos dois lados, a queda é longa.</p>"
+    },
+    {
+      "x": 8,
+      "y": 11,
+      "titulo": "Sino do alarme",
+      "texto": "<p>Tocado quando alguém briga, rouba ou ataca. As proteções de Candlekeep fazem o resto.</p>"
+    },
+    {
+      "x": 5,
+      "y": 32,
+      "titulo": "A muralha continua",
+      "texto": "<p>Daqui para o sul o adarve segue em volta da fortaleza (fora do mapa).</p>"
+    },
+    {
+      "x": 17,
+      "y": 2,
+      "titulo": "Sala da guarda",
+      "texto": "<p>Térreo das torres do portão. Os Vigias de Candlekeep (quatro, cada um com doze monges) se revezam aqui sob o Guardião do Portão.</p>"
+    },
+    {
+      "x": 26,
+      "y": 4,
+      "titulo": "Quartel",
+      "texto": "<p>Camas dos monges de plantão.</p>"
+    },
+    {
+      "x": 14,
+      "y": 20,
+      "titulo": "Posto dos Vigias",
+      "texto": "<p>A Torre do Mar vigia o penhasco oeste e o Mar das Espadas. Névoa e borrifo o ano todo; no inverno, gelo nas ameias.</p>"
+    },
+    {
+      "x": 27,
+      "y": 19,
+      "titulo": "Topo da Torre do Mar",
+      "texto": "<p>Um globo de luz serve de farol. A porta leste dá no adarve, que corre pela muralha até o Portão.</p>"
+    }
+  ],
+  "lights": [],
+  "sounds": [
+    {
+      "x": 500,
+      "y": 1700,
+      "radius": 70,
+      "path": "assets/audio/amb_muralha.ogg",
+      "volume": 0.35,
+      "walls": false
+    },
+    {
+      "x": 2600,
+      "y": 2200,
+      "radius": 30,
+      "path": "assets/audio/amb_muralha.ogg",
+      "volume": 0.35,
+      "walls": false
+    },
+    {
+      "x": 2600,
+      "y": 2200,
+      "radius": 25,
+      "path": "assets/audio/amb_mar.ogg",
+      "volume": 0.3,
+      "walls": false
+    }
+  ],
+  "musica": {
+    "path": "mapas/candlekeep/musica/muralha.ogg",
+    "volume": 0.22
+  }
+}

@@ -244,14 +244,18 @@ for y in range(H):
 img.alpha_composite(shore)
 
 # píer: tábuas (o piso de madeira) um pouco mais estreitas que o quadrado, com postes nas pontas
+def deck_box(x, y):
+    horiz = water(x - 1, y) or water(x + 1, y) or not water(x, y - 1)
+    return (0, 24, PX, PX - 24) if horiz else (24, 0, PX - 24, PX)
+
+
 for y in range(H):
     for x in range(W):
         if at(x, y) != "pier":
             continue
         X, Y = x * PX, y * PX
-        horiz = water(x - 1, y) or water(x + 1, y) or not water(x, y - 1)
         deck = material("piso_madeira", x, y)
-        box = (0, 24, PX, PX - 24) if horiz else (24, 0, PX - 24, PX)
+        box = deck_box(x, y)
         mask = Image.new("L", (PX, PX))
         ImageDraw.Draw(mask).rectangle(box, fill=255)
         shadow_box = Image.new("RGBA", (PX, PX))
@@ -292,6 +296,54 @@ for y in range(H):
                 od.line(seg, fill=(20, 18, 16, 255), width=max(2, int(6 * ESCALA)))
 
 bg_name = f"{name}.webp"
+
+# ---------- água animada: um vídeo só, do tamanho da área de água, recortado pelo formato dela ----------
+# Os quadros vêm de assets/agua/agua_calma.webm (ia-orc, emendável) repetidos pela área; a margem é esfumada
+# para a borda pintada continuar aparecendo. Vira um Tile abaixo dos tokens (os quadrados de água seguem ocultos).
+tiles = []
+ANIM = ROOT / "assets" / "agua" / "agua_calma.webm"
+celulas_agua = [(x, y) for y in range(H) for x in range(W) if at(x, y) in WET and at(x, y) != "pier"]
+celulas_pier = [(x, y) for y in range(H) for x in range(W) if at(x, y) == "pier"]
+if celulas_agua and ANIM.exists() and cfg.get("agua_animada", True):
+    todas = celulas_agua + celulas_pier
+    ax0, ay0 = min(c[0] for c in todas), min(c[1] for c in todas)
+    ax1, ay1 = max(c[0] for c in todas) + 1, max(c[1] for c in todas) + 1
+    APX = 100  # pixels por quadrado no vídeo (leve; o Foundry estica para a grade)
+    aw, ah = (ax1 - ax0) * APX, (ay1 - ay0) * APX
+    masc = Image.new("L", (aw, ah), 0)
+    dmask = ImageDraw.Draw(masc)
+    for cx, cy in celulas_agua:
+        dmask.rectangle(((cx - ax0) * APX, (cy - ay0) * APX, (cx - ax0 + 1) * APX - 1, (cy - ay0 + 1) * APX - 1), fill=255)
+    # píer: dos lados do deck também é água (o fundo pinta água em todo o quadrado do píer); o deck entra na máscara só
+    # para a margem não encolher em volta dele e depois sai, com folga para os postes (ele está pintado no fundo, abaixo do vídeo)
+    decks = Image.new("L", (aw, ah), 0)
+    dd = ImageDraw.Draw(decks)
+    k = APX / PX
+    for cx, cy in celulas_pier:
+        X, Y = (cx - ax0) * APX, (cy - ay0) * APX
+        b = [round(v * k) for v in deck_box(cx, cy)]
+        dmask.rectangle((X, Y, X + APX - 1, Y + APX - 1), fill=255)
+        dd.rectangle((X + b[0], Y + b[1], X + b[2] - 1, Y + b[3] - 1), fill=255)
+    masc = masc.filter(ImageFilter.MinFilter(int(APX * .16) | 1)).filter(ImageFilter.GaussianBlur(APX * .1))
+    masc = ImageChops.subtract(masc, decks.filter(ImageFilter.MaxFilter(7)).filter(ImageFilter.GaussianBlur(1)))
+    masc = masc.point(lambda v: int(v * cfg.get("agua_opacidade", .85)))
+    with tempfile.TemporaryDirectory() as tmpa:
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-c:v", "libvpx-vp9", "-i", str(ANIM), f"{tmpa}/a%03d.png"], check=True)
+        for f in sorted(pathlib.Path(tmpa).glob("a*.png")):
+            q = Image.open(f).convert("RGB").resize((APX * 2, APX * 2), Image.LANCZOS)  # um ladrilho = 2 quadrados
+            fr = Image.new("RGB", (aw, ah))
+            for yy in range(0, ah, q.height):
+                for xx in range(0, aw, q.width):
+                    fr.paste(q, (xx, yy))
+            fr = fr.convert("RGBA")
+            fr.putalpha(masc)
+            fr.save(f.with_name("s" + f.name[1:]))
+        anim_nome = f"{name}_agua.webm"
+        subprocess.run(["ffmpeg", "-y", "-v", "error", "-framerate", "16", "-i", f"{tmpa}/s%03d.png", "-c:v", "libvpx-vp9",
+                        "-pix_fmt", "yuva420p", "-auto-alt-ref", "0", "-b:v", "0", "-crf", "38", str(DIR / anim_nome)], check=True)
+    tiles.append({"x": ax0 * G, "y": ay0 * G, "width": (ax1 - ax0) * G, "height": (ay1 - ay0) * G, "elevation": 0, "sort": 0,
+                  "texture": {"src": f"mapas/{name}/{anim_nome}"}, "video": {"loop": True, "autoplay": True, "volume": 0},
+                  "flags": {"interactive-assets": {"aguaAnimada": True}}})
 img.convert("RGB").save(DIR / bg_name, quality=cfg.get("qualidade", 86), method=6)
 
 # ---------- estruturas quebráveis (tokens) ----------
@@ -326,6 +378,7 @@ scene = {
     "tokenVision": True,
     "environment": {"darknessLevel": cfg.get("darkness", 0), "globalLight": {"enabled": True}},
     "lights": cfg.get("lights", []),
+    "tiles": tiles,
     "sounds": [{"walls": True, "easing": True, **s} for s in cfg.get("sounds", [])] + extras.musica(cfg, W, H, G),
     "flags": {"interactive-assets": {"map": {
         "cols": W, "rows": H, "fixed": fixed, "structures": structures, "objects": cfg.get("objects", [])}}},
@@ -371,8 +424,12 @@ def preview(out, broken=(), states=()):
         d = ASSETS[o["asset"]]
         t = state_img(o["asset"], obj_override.get(o["asset"], 0))
         w, h = int(d["size"]["w"] * PX), int(d["size"]["h"] * PX)
+        t = t.resize((w, h))
+        if o.get("rotation"):  # o token gira em volta do centro
+            t = t.rotate(-o["rotation"], expand=True)
+            w, h = t.size
         f = PX / G
-        scene_img.alpha_composite(t.resize((w, h)), (int(o["x"] * f - w / 2), int(o["y"] * f - h / 2)))
+        scene_img.alpha_composite(t, (int(o["x"] * f - w / 2), int(o["y"] * f - h / 2)))
     st = {"cols": W, "rows": H, "solid": sorted(solid_now), "doors": doors, "pillars": pillars}
     walls = json.loads(subprocess.run(["node", str(ROOT / "tools" / "paredes.mjs")], input=json.dumps(st),
                                       capture_output=True, text=True, check=True).stdout)

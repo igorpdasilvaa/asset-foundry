@@ -20,7 +20,7 @@
       {
         "id": "brilhando",
         "name": "Brilhando",
-        "src": "amplificador/amplificador_brilhando.webp",
+        "src": "amplificador/amplificador_brilhando.webm",
         "light": {
           "bright": 10,
           "dim": 25,

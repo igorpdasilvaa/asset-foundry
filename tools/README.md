@@ -40,4 +40,11 @@
   `gen_biblioteca.py` e `gen_oficios.py` desenhavam a arte antiga em SVG. Os fragmentos (`fragmentos/*.json`) continuam sendo
   a fonte das definições (estados, reações), mas não rode esses geradores de novo: eles voltariam o `src` para a arte antiga.
   As peças `pilar`, `porta`, `lareira` e `escada` de `mapas/pecas/` ainda são SVG.
+- `ia_animacao.py` + `ia_animacoes.json`: animações feitas com o Wan 2.2 no ia-orc a partir da imagem do estado (imagem → vídeo):
+  água calma, envenenada e com vapor, fogueira, forja, tocha, amplificador e lâmpada (fogueira e água envenenada com o modelo
+  14b, que mexe mais; vela, globo e Porta Esmeralda saíram quase parados e ficaram como imagem). O vídeo recebe o recorte do
+  estado parado, um crossfade no fim para o loop não pular e, na água, o ladrilho em cada quadro; `"cor"` acerta o tom pelo
+  da imagem parada quando o vídeo sai com outra cor. Sai em WebM com transparência. O `ia_assets.py` não sobrescreve os
+  estados animados. Depois de mudar `agua_calma`, rode o `gen_mapa.py` dos mapas com água (lago e Candlekeep: portão,
+  pátio e banhos).
 
