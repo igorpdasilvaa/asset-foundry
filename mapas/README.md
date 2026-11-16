@@ -21,6 +21,10 @@ chão, as pedras e o mato são feitos com fotos CC0. A trilha de combate `cacada
 `previa_mestre.jpg` mostra as alturas, o terreno difícil, os penhascos (vermelho), as armadilhas e para onde
 cada pedregulho rola.
 
+[`candlekeep/macro_chefe.js`](candlekeep/macro_chefe.js) é outra macro (Script) para o mestre: troca a música de fundo
+do Pátio do Ar pela trilha do chefe final (`candlekeep/musica/chefe.ogg`) e, apertada de novo, volta a de sempre.
+`MAPA` escolhe o lugar.
+
 ## Como um mapa é feito
 - `mapas/pecas/`: as peças. Pisos (`piso_madeira`, `piso_pedra`), `grama`, `terra` e `parede`
   são materiais que cobrem áreas inteiras sem emenda; `pilar`, `porta` e `lareira` são peças de

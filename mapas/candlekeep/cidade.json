@@ -95,6 +95,10 @@
       "path": "mapas/candlekeep/musica/combate.ogg"
     },
     {
+      "nome": "Chefe final",
+      "path": "mapas/candlekeep/musica/chefe.ogg"
+    },
+    {
       "nome": "Cântico Sem Fim",
       "path": "mapas/candlekeep/musica/cantico.ogg",
       "repetir": false

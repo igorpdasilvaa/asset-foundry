@@ -292,6 +292,10 @@
     "muralha": {
       "prompt": "Windswept fantasy watch music, low brass and martial snare with sweeping strings and wind pads, sentinels on high fortress walls above the sea, vigilant and steady. BPM: 76",
       "seconds": 150
+    },
+    "chefe": {
+      "prompt": "Epic dark orchestral final boss battle music, relentless staccato strings and pounding taiko war drums over menacing low brass, pipe organ and an ominous chanting choir, dissonant tension building to a desperate climactic showdown, tabletop RPG final boss fight. BPM: 160",
+      "seconds": 150
     }
   },
   "cancoes": {
@@ -607,6 +611,10 @@
     },
     "muralha": {
       "job": "01ac123b-a94c-42a5-bfbe-672e08700d97",
+      "variacao": "B"
+    },
+    "chefe": {
+      "job": "68f9254b-f59c-41c8-a44f-fa10ccaf920a",
       "variacao": "B"
     }
   },
